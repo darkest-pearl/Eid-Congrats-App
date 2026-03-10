@@ -112,6 +112,10 @@ const templates = [
   }
 ];
 
+const DEFAULT_LANGUAGE = "en";
+const DEFAULT_TEMPLATE_ID = "classic";
+const templateIds = new Set(templates.map((template) => template.id));
+
 const ornaments = Array.from({ length: 12 }, (_, i) => ({
   id: i,
   left: `${6 + i * 7}%`,
@@ -131,6 +135,61 @@ function buildShareText(language, finalMessage) {
   return language === "ar"
     ? `عيد مبارك! ${finalMessage}`
     : `Eid Mubarak! ${finalMessage}`;
+}
+
+function sanitizeLanguage(language) {
+  return language === "ar" ? "ar" : DEFAULT_LANGUAGE;
+}
+
+function sanitizeTemplateId(templateId) {
+  return templateIds.has(templateId) ? templateId : DEFAULT_TEMPLATE_ID;
+}
+
+function getInitialGreetingStateFromUrl() {
+  const defaults = {
+    language: DEFAULT_LANGUAGE,
+    senderName: "",
+    customMessage: "",
+    templateId: DEFAULT_TEMPLATE_ID
+  };
+
+  if (typeof window === "undefined") {
+    return defaults;
+  }
+
+  const params = new URLSearchParams(window.location.search);
+
+  return {
+    language: sanitizeLanguage(params.get("lang")),
+    senderName: params.get("name")?.trim() ?? "",
+    customMessage: params.get("msg")?.trim() ?? "",
+    templateId: sanitizeTemplateId(params.get("style"))
+  };
+}
+
+function buildPersonalizedShareUrl({
+  language,
+  senderName,
+  customMessage,
+  templateId
+}) {
+  if (typeof window === "undefined") {
+    return "";
+  }
+
+  const url = new URL(window.location.href);
+  const params = new URLSearchParams();
+  params.set("lang", sanitizeLanguage(language));
+  params.set("name", senderName.trim());
+  params.set("msg", customMessage.trim());
+  params.set("style", sanitizeTemplateId(templateId));
+  url.search = params.toString();
+
+  return url.toString();
+}
+
+function buildCopyPayload(shareText, shareUrl) {
+  return `${shareText}\n${shareUrl}`;
 }
 
 function canUseNativeShare(payload) {
@@ -205,15 +264,38 @@ function runSelfTests() {
   if (!shareText.startsWith("Eid Mubarak!")) {
     throw new Error("English share text prefix is wrong.");
   }
+
+  if (typeof window !== "undefined") {
+    const shareUrl = buildPersonalizedShareUrl({
+      language: "en",
+      senderName: "Musab",
+      customMessage: "Warm wishes",
+      templateId: "night"
+    });
+    if (
+      !shareUrl.includes("lang=en") ||
+      !shareUrl.includes("name=Musab") ||
+      !shareUrl.includes("msg=Warm+wishes") ||
+      !shareUrl.includes("style=night")
+    ) {
+      throw new Error("Personalized share URL is missing expected query params.");
+    }
+  }
+
+  const copyPayload = buildCopyPayload("Eid Mubarak! Hello", "https://example.com");
+  if (!copyPayload.endsWith("\nhttps://example.com")) {
+    throw new Error("Copy payload must include the personalized URL.");
+  }
 }
 
 runSelfTests();
 
 export default function App() {
-  const [language, setLanguage] = useState("en");
-  const [senderName, setSenderName] = useState("");
-  const [customMessage, setCustomMessage] = useState("");
-  const [templateId, setTemplateId] = useState("classic");
+  const initialState = useMemo(() => getInitialGreetingStateFromUrl(), []);
+  const [language, setLanguage] = useState(initialState.language);
+  const [senderName, setSenderName] = useState(initialState.senderName);
+  const [customMessage, setCustomMessage] = useState(initialState.customMessage);
+  const [templateId, setTemplateId] = useState(initialState.templateId);
   const [statusMessage, setStatusMessage] = useState("");
   const [isSharing, setIsSharing] = useState(false);
   const [shareState, setShareState] = useState("idle");
@@ -234,10 +316,24 @@ export default function App() {
   );
 
   const shareText = buildShareText(language, finalMessage);
+  const personalizedShareUrl = useMemo(
+    () =>
+      buildPersonalizedShareUrl({
+        language,
+        senderName,
+        customMessage,
+        templateId
+      }),
+    [language, senderName, customMessage, templateId]
+  );
+  const copyPayload = useMemo(
+    () => buildCopyPayload(shareText, personalizedShareUrl),
+    [shareText, personalizedShareUrl]
+  );
 
   const handleCopy = async () => {
     try {
-      const copied = await copyToClipboard(shareText);
+      const copied = await copyToClipboard(copyPayload);
       setShareState(copied ? "copied" : "error");
       setStatusMessage(copied ? ui.copySuccess : ui.copyError);
     } catch {
@@ -259,7 +355,7 @@ export default function App() {
           ? "تهنئة عيد مبارك شخصية"
           : "Personalized Eid Mubarak Greeting",
       text: shareText,
-      url: window.location.href
+      url: personalizedShareUrl
     };
 
     try {
@@ -268,14 +364,14 @@ export default function App() {
         setShareState("shared");
         setStatusMessage(ui.shareSuccess);
       } else {
-        const copied = await copyToClipboard(shareText);
+        const copied = await copyToClipboard(copyPayload);
         setShareState(copied ? "copied" : "error");
         setStatusMessage(copied ? ui.shareFallback : ui.copyError);
       }
     } catch (error) {
       if (isPermissionStyleShareError(error)) {
         try {
-          const copied = await copyToClipboard(shareText);
+          const copied = await copyToClipboard(copyPayload);
           setShareState(copied ? "copied" : "error");
           setStatusMessage(copied ? ui.shareFallback : ui.copyError);
         } catch {
@@ -389,8 +485,8 @@ export default function App() {
                   onClick={() => {
                     setSenderName("");
                     setCustomMessage("");
-                    setTemplateId("classic");
-                    setLanguage("en");
+                    setTemplateId(DEFAULT_TEMPLATE_ID);
+                    setLanguage(DEFAULT_LANGUAGE);
                     setShareState("idle");
                     setStatusMessage("");
                   }}
