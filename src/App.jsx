@@ -155,6 +155,60 @@ const greetingParticles = [
   { id: 10, top: "87%", left: "52%", delay: "0.5s", duration: "13.2s", size: "6px" }
 ];
 
+const greetingBirds = [
+  {
+    id: 1,
+    top: "9%",
+    left: "3%",
+    delay: "0s",
+    duration: "20.5s",
+    scale: 1.02,
+    direction: "right",
+    banner: "Eid Mubarak",
+    lang: "en",
+    ribbon: "gold"
+  },
+  {
+    id: 2,
+    top: "10%",
+    left: "68%",
+    delay: "0.9s",
+    duration: "21.2s",
+    scale: 1.08,
+    direction: "left",
+    banner: "كل عام وأنتم بخير",
+    lang: "ar",
+    ribbon: "ivory"
+  },
+  {
+    id: 3,
+    top: "18%",
+    left: "17%",
+    delay: "2.1s",
+    duration: "18.8s",
+    scale: 0.78,
+    direction: "right",
+    ribbon: "emerald"
+  }
+];
+
+const greetingConfetti = [
+  { id: 1, top: "18%", left: "31%", delay: "0s", duration: "9.8s", size: "10px", tone: "gold" },
+  { id: 2, top: "24%", left: "67%", delay: "1.2s", duration: "10.6s", size: "8px", tone: "ivory" },
+  { id: 3, top: "34%", left: "15%", delay: "2.1s", duration: "9.4s", size: "7px", tone: "emerald" },
+  { id: 4, top: "39%", left: "82%", delay: "0.7s", duration: "10.2s", size: "9px", tone: "gold" },
+  { id: 5, top: "51%", left: "24%", delay: "1.8s", duration: "11s", size: "8px", tone: "ivory" },
+  { id: 6, top: "57%", left: "76%", delay: "2.5s", duration: "10.8s", size: "10px", tone: "gold" },
+  { id: 7, top: "68%", left: "42%", delay: "0.4s", duration: "9.9s", size: "7px", tone: "emerald" },
+  { id: 8, top: "74%", left: "61%", delay: "2.7s", duration: "10.4s", size: "8px", tone: "ivory" }
+];
+
+const greetingFireworks = [
+  { id: 1, top: "16%", left: "32%", delay: "0s", duration: "8.6s", size: "160px" },
+  { id: 2, top: "18%", left: "78%", delay: "2.2s", duration: "9.1s", size: "140px" },
+  { id: 3, top: "24%", left: "54%", delay: "4.2s", duration: "10.4s", size: "120px" }
+];
+
 function normalizeLanguage(value) {
   return value === "ar" ? "ar" : DEFAULT_LANGUAGE;
 }
@@ -509,6 +563,22 @@ function GreetingMode({ ui, isArabic, selectedStyle, senderName, greetingMessage
         <div className="greeting-vignette" />
         <div className="greeting-noor greeting-noor-a" />
         <div className="greeting-noor greeting-noor-b" />
+        <div className="greeting-fireworks">
+          {greetingFireworks.map((firework) => (
+            <span
+              key={firework.id}
+              className="greeting-firework"
+              style={{
+                top: firework.top,
+                left: firework.left,
+                animationDelay: firework.delay,
+                animationDuration: firework.duration,
+                width: firework.size,
+                height: firework.size
+              }}
+            />
+          ))}
+        </div>
         <div className="greeting-pattern-grid" />
         <div className="greeting-pattern-rings" />
         <div className="greeting-crescent-cluster">
@@ -549,6 +619,50 @@ function GreetingMode({ ui, isArabic, selectedStyle, senderName, greetingMessage
                 height: particle.size
               }}
             />
+          ))}
+        </div>
+        <div className="greeting-confetti">
+          {greetingConfetti.map((piece) => (
+            <span
+              key={piece.id}
+              className={`greeting-confetti-piece tone-${piece.tone}`}
+              style={{
+                top: piece.top,
+                left: piece.left,
+                animationDelay: piece.delay,
+                animationDuration: piece.duration,
+                width: piece.size,
+                height: piece.size
+              }}
+            />
+          ))}
+        </div>
+        <div className="greeting-birds">
+          {greetingBirds.map((bird) => (
+            <span
+              key={bird.id}
+              className={`greeting-bird-flight direction-${bird.direction} ${bird.banner ? "has-banner" : "has-streamer"}`}
+              style={{
+                top: bird.top,
+                left: bird.left,
+                animationDelay: bird.delay,
+                animationDuration: bird.duration,
+                "--bird-scale": bird.scale
+              }}
+            >
+              <span className={`greeting-bird-ribbon ribbon-${bird.ribbon}${bird.banner ? "" : " ribbon-streamer"}`}>
+                {bird.banner ? (
+                  <span className="greeting-bird-banner-text" dir={bird.lang === "ar" ? "rtl" : "ltr"} lang={bird.lang}>
+                    {bird.banner}
+                  </span>
+                ) : null}
+              </span>
+              <span className="greeting-bird">
+                <span className="greeting-bird-wing wing-left" />
+                <span className="greeting-bird-body" />
+                <span className="greeting-bird-wing wing-right" />
+              </span>
+            </span>
           ))}
         </div>
         <div className="greeting-lanterns">
