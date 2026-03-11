@@ -1307,63 +1307,132 @@ textarea:focus {
 .greeting-fireworks-layer {
   position: absolute;
   inset: 0;
-  z-index: 1;
+  z-index: 4;
   pointer-events: none;
   mix-blend-mode: screen;
-  opacity: 0.78;
+  opacity: 1;
+  isolation: isolate;
 }
 
 .greeting-firework {
-  --firework-core: rgba(255, 245, 221, 0.32);
-  --firework-ray: rgba(248, 208, 131, 0.22);
-  --firework-halo: rgba(248, 208, 131, 0.14);
+  --firework-size: 200px;
+  --firework-scale: 1;
+  --firework-delay: 0s;
+  --firework-cycle: 12.8s;
+  --firework-tilt: 0deg;
+  --firework-core: rgba(255, 250, 239, 0.98);
+  --firework-ray: rgba(248, 205, 122, 0.88);
+  --firework-spark: rgba(255, 236, 188, 0.96);
+  --firework-halo: rgba(248, 196, 94, 0.28);
   position: absolute;
+  display: block;
+  width: calc(var(--firework-size) * var(--firework-scale));
+  height: calc(var(--firework-size) * var(--firework-scale));
+  transform: translate(-50%, -50%) rotate(var(--firework-tilt));
+  opacity: 0;
+  will-change: transform, opacity;
+  animation: fireworkPresence var(--firework-cycle) linear infinite;
+  animation-delay: var(--firework-delay);
+}
+
+.greeting-firework-burst,
+.greeting-firework-ring,
+.greeting-firework-sparks,
+.greeting-firework-halo {
+  position: absolute;
+  inset: 0;
   display: block;
   border-radius: 50%;
   opacity: 0;
+  transform-origin: center;
+  animation-duration: var(--firework-cycle);
+  animation-delay: var(--firework-delay);
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+}
+
+.greeting-firework-burst {
+  inset: 12%;
   background:
-    radial-gradient(circle, var(--firework-core) 0 9%, transparent 10%),
+    radial-gradient(circle, var(--firework-core) 0 4%, transparent 5%),
     repeating-conic-gradient(
       from 0deg,
-      var(--firework-ray) 0deg 7deg,
-      transparent 7deg 24deg
+      transparent 0deg 7deg,
+      var(--firework-ray) 7deg 14deg,
+      transparent 14deg 28deg
     );
-  transform: translate(-50%, -50%) scale(0.16);
-  mask-image: radial-gradient(circle, transparent 0 8%, black 10% 56%, transparent 72%);
-  filter: blur(0.8px);
-  animation: haloFirework ease-out infinite;
+  mask-image: radial-gradient(circle, transparent 0 7%, black 10% 54%, transparent 74%);
+  filter:
+    drop-shadow(0 0 16px var(--firework-halo))
+    drop-shadow(0 0 30px rgba(255, 242, 214, 0.2));
+  animation-name: fireworkBurstExpand;
 }
 
-.greeting-firework::before,
-.greeting-firework::after {
+.greeting-firework-burst::before {
   content: "";
   position: absolute;
-  inset: 0;
+  inset: 40%;
   border-radius: 50%;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.96), transparent 72%);
+  box-shadow: 0 0 18px rgba(255, 248, 228, 0.56);
 }
 
-.greeting-firework::before {
-  inset: 20%;
-  background: radial-gradient(circle, rgba(255, 252, 244, 0.74), transparent 70%);
-  filter: blur(3px);
+.greeting-firework-ring {
+  inset: 28%;
+  border: 1.4px solid var(--firework-spark);
+  box-shadow:
+    0 0 20px var(--firework-halo),
+    inset 0 0 18px rgba(255, 255, 255, 0.2);
+  animation-name: fireworkRingExpand;
 }
 
-.greeting-firework::after {
-  inset: -28%;
-  background: radial-gradient(circle, var(--firework-halo), transparent 66%);
-  filter: blur(22px);
+.greeting-firework-sparks {
+  inset: 32%;
+  background:
+    radial-gradient(circle at 50% 0%, var(--firework-spark) 0 10%, transparent 11%),
+    radial-gradient(circle at 78% 8%, var(--firework-spark) 0 8%, transparent 9%),
+    radial-gradient(circle at 95% 30%, var(--firework-spark) 0 8%, transparent 9%),
+    radial-gradient(circle at 100% 50%, var(--firework-spark) 0 10%, transparent 11%),
+    radial-gradient(circle at 92% 76%, var(--firework-spark) 0 8%, transparent 9%),
+    radial-gradient(circle at 76% 92%, var(--firework-spark) 0 8%, transparent 9%),
+    radial-gradient(circle at 50% 100%, var(--firework-spark) 0 10%, transparent 11%),
+    radial-gradient(circle at 24% 92%, var(--firework-spark) 0 8%, transparent 9%),
+    radial-gradient(circle at 8% 76%, var(--firework-spark) 0 8%, transparent 9%),
+    radial-gradient(circle at 0% 50%, var(--firework-spark) 0 10%, transparent 11%),
+    radial-gradient(circle at 8% 24%, var(--firework-spark) 0 8%, transparent 9%),
+    radial-gradient(circle at 24% 8%, var(--firework-spark) 0 8%, transparent 9%);
+  filter:
+    drop-shadow(0 0 10px rgba(255, 248, 228, 0.54))
+    drop-shadow(0 0 20px var(--firework-halo));
+  animation-name: fireworkSparkExpand;
+}
+
+.greeting-firework-halo {
+  inset: -24%;
+  background: radial-gradient(circle, var(--firework-halo) 0 22%, transparent 64%);
+  filter: blur(18px);
+  animation-name: fireworkHaloExpand;
+}
+
+.greeting-firework.tone-gold {
+  --firework-core: rgba(255, 250, 239, 0.98);
+  --firework-ray: rgba(248, 205, 122, 0.92);
+  --firework-spark: rgba(255, 236, 188, 0.98);
+  --firework-halo: rgba(248, 196, 94, 0.3);
 }
 
 .greeting-firework.tone-ivory {
-  --firework-core: rgba(255, 249, 240, 0.36);
-  --firework-ray: rgba(255, 242, 208, 0.24);
-  --firework-halo: rgba(255, 240, 208, 0.14);
+  --firework-core: rgba(255, 252, 246, 0.98);
+  --firework-ray: rgba(255, 240, 210, 0.82);
+  --firework-spark: rgba(255, 248, 231, 0.98);
+  --firework-halo: rgba(255, 241, 214, 0.24);
 }
 
 .greeting-firework.tone-emerald {
-  --firework-core: rgba(232, 255, 244, 0.26);
-  --firework-ray: rgba(105, 219, 184, 0.2);
-  --firework-halo: rgba(105, 219, 184, 0.12);
+  --firework-core: rgba(243, 255, 249, 0.94);
+  --firework-ray: rgba(121, 219, 189, 0.72);
+  --firework-spark: rgba(198, 255, 231, 0.92);
+  --firework-halo: rgba(88, 186, 148, 0.24);
 }
 
 .greeting-sparkle-layer {
@@ -1446,42 +1515,42 @@ textarea:focus {
 }
 
 .bird-group-left .greeting-bird-path {
-  top: 8%;
-  left: -270px;
-  animation: birdArcRight 18.6s cubic-bezier(0.3, 0.04, 0.22, 1) infinite;
+  top: 7%;
+  left: -330px;
+  animation: birdArcRight 19.2s cubic-bezier(0.3, 0.04, 0.22, 1) infinite;
 }
 
 .bird-group-right .greeting-bird-path {
-  top: 14%;
-  right: -350px;
-  animation: birdArcLeft 19.8s cubic-bezier(0.3, 0.04, 0.22, 1) infinite 1.6s;
+  top: 13%;
+  right: -380px;
+  animation: birdArcLeft 20.2s cubic-bezier(0.3, 0.04, 0.22, 1) infinite 1.4s;
 }
 
 .greeting-bird-formation {
   position: relative;
   display: inline-flex;
   align-items: center;
-  gap: 14px;
+  gap: 18px;
   filter:
-    drop-shadow(0 18px 24px rgba(1, 8, 14, 0.34))
-    drop-shadow(0 0 16px rgba(247, 198, 101, 0.14));
-  animation: formationFloat 5.4s ease-in-out infinite;
+    drop-shadow(0 22px 30px rgba(1, 8, 14, 0.38))
+    drop-shadow(0 0 18px rgba(247, 198, 101, 0.18));
+  animation: formationFloat 5.8s ease-in-out infinite;
 }
 
 .bird-group-right .greeting-bird-formation {
   flex-direction: row-reverse;
-  animation-delay: 0.7s;
+  animation-delay: 0.6s;
 }
 
 .greeting-flight-aura {
   position: absolute;
-  inset: -26px 72px -18px;
+  inset: -34px 88px -22px;
   border-radius: 999px;
   background:
-    radial-gradient(circle at 50% 50%, rgba(248, 205, 122, 0.14), transparent 58%),
-    radial-gradient(circle at 62% 50%, rgba(98, 223, 185, 0.1), transparent 60%);
-  filter: blur(14px);
-  opacity: 0.74;
+    radial-gradient(circle at 48% 50%, rgba(248, 205, 122, 0.18), transparent 58%),
+    radial-gradient(circle at 62% 50%, rgba(98, 223, 185, 0.14), transparent 60%);
+  filter: blur(18px);
+  opacity: 0.8;
   animation: glowPulse 7.2s ease-in-out infinite;
 }
 
@@ -1489,8 +1558,8 @@ textarea:focus {
   position: relative;
   display: flex;
   flex-direction: column;
-  gap: 8px;
-  min-width: 92px;
+  gap: 10px;
+  min-width: 118px;
 }
 
 .bird-group-right .greeting-banner-trails {
@@ -1502,12 +1571,12 @@ textarea:focus {
   --trail-soft: rgba(247, 201, 112, 0.22);
   position: relative;
   display: block;
-  height: 10px;
+  height: 12px;
   border-radius: 999px;
   background: linear-gradient(90deg, transparent 0, var(--trail-soft) 34%, var(--trail-strong) 100%);
   box-shadow:
-    0 0 14px rgba(248, 208, 131, 0.16),
-    inset 0 1px 0 rgba(255, 248, 228, 0.34);
+    0 0 16px rgba(248, 208, 131, 0.18),
+    inset 0 1px 0 rgba(255, 248, 228, 0.42);
   transform-origin: right center;
   animation: bannerTrailWave 4.7s ease-in-out infinite;
 }
@@ -1520,27 +1589,27 @@ textarea:focus {
 .greeting-banner-trail::after {
   content: "";
   position: absolute;
-  inset: 18% 0;
+  inset: 16% 0;
   border-radius: inherit;
   background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.56), transparent 76%);
-  opacity: 0.64;
+  opacity: 0.74;
   animation: bannerSweep 4.4s linear infinite;
 }
 
 .greeting-banner-trail.trail-main {
-  width: 96px;
+  width: 118px;
 }
 
 .greeting-banner-trail.trail-accent {
-  width: 66px;
-  margin-left: 22px;
-  opacity: 0.78;
+  width: 82px;
+  margin-left: 30px;
+  opacity: 0.82;
   animation-delay: 0.35s;
 }
 
 .bird-group-right .greeting-banner-trail.trail-accent {
   margin-left: 0;
-  margin-right: 22px;
+  margin-right: 30px;
 }
 
 .greeting-banner-trail.tone-gold {
@@ -1567,43 +1636,44 @@ textarea:focus {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  min-height: 56px;
-  padding: 12px 30px 14px;
+  min-height: 64px;
+  padding: 14px 34px 16px;
+  isolation: isolate;
+  animation: bannerWave 4.6s ease-in-out infinite;
+}
+
+.bird-group-left .greeting-banner-rig {
+  min-width: clamp(208px, 20vw, 260px);
+}
+
+.bird-group-right .greeting-banner-rig {
+  min-width: clamp(250px, 25vw, 338px);
+}
+
+.greeting-banner-rig::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
   border: 1px solid var(--banner-border);
-  clip-path: polygon(5% 0, 95% 0, 100% 24%, 100% 76%, 95% 100%, 5% 100%, 0 76%, 0 24%);
+  clip-path: polygon(4% 18%, 0 34%, 0 66%, 4% 82%, 12% 100%, 88% 100%, 96% 82%, 100% 66%, 100% 34%, 96% 18%, 88% 0, 12% 0);
   background:
     linear-gradient(180deg, var(--banner-top), rgba(255, 248, 228, 0.04)),
     linear-gradient(135deg, rgba(151, 96, 36, 0.96), rgba(83, 50, 16, 0.92) 32%, var(--banner-bottom) 100%);
   box-shadow:
     0 18px 28px rgba(3, 11, 18, 0.34),
     inset 0 1px 0 rgba(255, 251, 240, 0.24),
+    inset 0 0 0 1px rgba(255, 248, 228, 0.12),
     0 0 24px rgba(248, 191, 91, 0.14);
-  overflow: hidden;
-  backdrop-filter: blur(10px);
-  animation: bannerWave 4.6s ease-in-out infinite;
-}
-
-.bird-group-left .greeting-banner-rig {
-  min-width: clamp(182px, 18vw, 242px);
-}
-
-.bird-group-right .greeting-banner-rig {
-  min-width: clamp(230px, 23vw, 320px);
-}
-
-.greeting-banner-rig::before {
-  content: "";
-  position: absolute;
-  inset: 7px;
-  clip-path: inherit;
-  border: 1px solid rgba(255, 248, 228, 0.18);
 }
 
 .greeting-banner-rig::after {
   content: "";
   position: absolute;
-  inset: -22% -18%;
-  background: linear-gradient(120deg, transparent 40%, var(--banner-sheen) 50%, transparent 60%);
+  inset: 0;
+  z-index: 0;
+  clip-path: polygon(4% 18%, 0 34%, 0 66%, 4% 82%, 12% 100%, 88% 100%, 96% 82%, 100% 66%, 100% 34%, 96% 18%, 88% 0, 12% 0);
+  background: linear-gradient(120deg, transparent 34%, var(--banner-sheen) 50%, transparent 66%);
   animation: bannerSweep 6.6s linear infinite;
 }
 
@@ -1619,9 +1689,34 @@ textarea:focus {
   --banner-bottom: rgba(14, 89, 68, 0.96);
 }
 
+.greeting-banner-tail {
+  --tail-flip: 1;
+  position: absolute;
+  top: 50%;
+  width: 28px;
+  height: 40px;
+  z-index: -2;
+  border: 1px solid rgba(255, 238, 201, 0.22);
+  background: linear-gradient(180deg, rgba(255, 245, 216, 0.32), rgba(114, 70, 27, 0.92));
+  clip-path: polygon(0 0, 100% 16%, 64% 50%, 100% 84%, 0 100%, 18% 50%);
+  box-shadow: 0 12px 18px rgba(2, 10, 16, 0.24);
+  animation: bannerTailWave 4.2s ease-in-out infinite;
+}
+
+.greeting-banner-tail.tail-start {
+  left: -16px;
+}
+
+.greeting-banner-tail.tail-end {
+  --tail-flip: -1;
+  right: -16px;
+  animation-delay: 0.4s;
+}
+
 .greeting-banner-ornament {
   position: absolute;
   top: 50%;
+  z-index: 1;
   width: 18px;
   height: 38px;
   border: 1px solid rgba(255, 239, 206, 0.26);
@@ -1641,6 +1736,7 @@ textarea:focus {
 
 .greeting-banner-spark {
   position: absolute;
+  z-index: 1;
   width: 12px;
   height: 12px;
   border-radius: 50%;
@@ -1667,173 +1763,205 @@ textarea:focus {
   z-index: 1;
   color: #fff8ea;
   font-family: "Amiri", "Noto Naskh Arabic", Georgia, serif;
-  font-size: clamp(1.08rem, 1.74vw, 1.44rem);
+  font-size: clamp(1.14rem, 1.78vw, 1.5rem);
   font-weight: 700;
   line-height: 1.08;
   text-shadow:
-    0 2px 18px rgba(248, 208, 131, 0.26),
-    0 0 26px rgba(255, 248, 228, 0.08);
+    0 2px 18px rgba(248, 208, 131, 0.3),
+    0 0 26px rgba(255, 248, 228, 0.12);
   white-space: nowrap;
 }
 
 .bird-group-right .greeting-banner-text {
-  font-size: clamp(0.98rem, 1.42vw, 1.22rem);
+  font-size: clamp(1rem, 1.5vw, 1.26rem);
 }
 
 .greeting-banner-link {
+  --link-direction: 1;
+  --tether-core: rgba(255, 244, 218, 0.92);
+  --tether-glow: rgba(255, 224, 162, 0.28);
   position: relative;
-  width: 42px;
+  display: block;
+  width: 58px;
+  height: 28px;
+  flex: 0 0 auto;
+  animation: tetherSway 4.6s ease-in-out infinite;
+}
+
+.greeting-banner-link.tone-gold {
+  --tether-core: rgba(255, 236, 188, 0.94);
+  --tether-glow: rgba(248, 205, 122, 0.34);
+}
+
+.greeting-banner-link.tone-ivory {
+  --tether-core: rgba(255, 249, 233, 0.96);
+  --tether-glow: rgba(255, 242, 213, 0.3);
+}
+
+.greeting-banner-link.tone-emerald {
+  --tether-core: rgba(212, 255, 239, 0.92);
+  --tether-glow: rgba(105, 219, 184, 0.26);
+}
+
+.greeting-banner-cord,
+.greeting-banner-clasp {
+  position: absolute;
+  display: block;
+}
+
+.greeting-banner-cord {
+  left: 0;
+  right: 12px;
   height: 2px;
   border-radius: 999px;
-  background: linear-gradient(
-    90deg,
-    rgba(255, 244, 218, 0.18),
-    rgba(255, 244, 218, 0.94) 50%,
-    rgba(255, 244, 218, 0.18)
-  );
-  box-shadow: 0 0 12px rgba(255, 229, 173, 0.26);
+  background: linear-gradient(90deg, rgba(255, 244, 218, 0.16), var(--tether-core) 52%, rgba(255, 244, 218, 0.16));
+  box-shadow: 0 0 12px var(--tether-glow);
 }
 
-.greeting-banner-link::before,
-.greeting-banner-link::after {
-  content: "";
-  position: absolute;
-  left: 0;
-  right: 4px;
-  height: 1px;
-  border-radius: 999px;
-  background: linear-gradient(90deg, rgba(255, 244, 218, 0.1), rgba(255, 244, 218, 0.7));
-}
-
-.greeting-banner-link::before {
-  top: -5px;
+.greeting-banner-cord.cord-top {
+  top: 8px;
   transform: rotate(12deg);
+  transform-origin: left center;
 }
 
-.greeting-banner-link::after {
-  bottom: -5px;
+.greeting-banner-cord.cord-bottom {
+  bottom: 8px;
   transform: rotate(-12deg);
+  transform-origin: left center;
+}
+
+.greeting-banner-clasp {
+  right: 0;
+  top: 50%;
+  width: 13px;
+  height: 13px;
+  transform: translateY(-50%);
+  border-radius: 50%;
+  border: 1px solid rgba(255, 240, 206, 0.42);
+  background: radial-gradient(circle at 35% 35%, rgba(255, 255, 255, 0.96), var(--tether-core) 68%, rgba(108, 69, 24, 0.96) 100%);
+  box-shadow:
+    0 0 12px var(--tether-glow),
+    0 0 20px rgba(255, 244, 218, 0.16);
+  animation: claspPulse 3.8s ease-in-out infinite;
 }
 
 .bird-group-right .greeting-banner-link {
-  transform: scaleX(-1);
+  --link-direction: -1;
+  animation-delay: 0.3s;
 }
 
 .greeting-bird {
   position: relative;
-  width: clamp(78px, 6.4vw, 102px);
-  height: clamp(38px, 3.5vw, 52px);
+  display: block;
+  width: clamp(106px, 8.8vw, 132px);
+  height: clamp(58px, 5.4vw, 74px);
   flex: 0 0 auto;
+}
+
+.greeting-bird-svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
 }
 
 .greeting-bird-hero {
   filter:
-    drop-shadow(0 12px 18px rgba(2, 10, 16, 0.28))
-    drop-shadow(0 0 10px rgba(247, 198, 101, 0.12));
+    drop-shadow(0 14px 20px rgba(2, 10, 16, 0.34))
+    drop-shadow(0 0 16px rgba(247, 198, 101, 0.16));
 }
 
 .bird-group-right .greeting-bird {
   transform: scaleX(-1);
 }
 
-.greeting-bird-wing,
-.greeting-bird-body,
-.greeting-bird-tail,
-.greeting-bird-head {
-  position: absolute;
-  display: block;
+.greeting-bird-back-wing,
+.greeting-bird-front-wing,
+.greeting-bird-body-group {
+  transform-box: fill-box;
+  transform-origin: center;
 }
 
-.greeting-bird-wing {
-  top: 4px;
-  width: 40px;
-  height: 26px;
-  border: 1px solid rgba(255, 232, 183, 0.18);
-  background: linear-gradient(
-    180deg,
-    rgba(255, 245, 220, 0.8) 0%,
-    rgba(189, 147, 84, 0.34) 18%,
-    rgba(8, 24, 35, 0.94) 74%,
-    rgba(2, 10, 15, 0.98) 100%
-  );
-  box-shadow:
-    inset 0 1px 0 rgba(255, 250, 238, 0.24),
-    0 8px 16px rgba(0, 0, 0, 0.14);
+.greeting-bird-body-group {
+  animation: birdBodyLift 2.9s ease-in-out infinite;
 }
 
-.greeting-bird-wing.wing-left {
-  left: 10px;
-  clip-path: polygon(100% 100%, 18% 92%, 0 58%, 10% 18%, 44% 0, 76% 12%, 100% 56%);
-  border-radius: 100% 10% 92% 10%;
-  transform: rotate(-24deg);
-  transform-origin: 84% 100%;
-  animation: wingFlapLeft 2.2s ease-in-out infinite;
+.greeting-bird-back-wing {
+  animation: birdWingBack 2.7s cubic-bezier(0.38, 0.02, 0.28, 1) infinite;
 }
 
-.greeting-bird-wing.wing-right {
-  right: 10px;
-  clip-path: polygon(0 100%, 82% 92%, 100% 58%, 90% 18%, 56% 0, 24% 12%, 0 56%);
-  border-radius: 10% 100% 10% 92%;
-  transform: rotate(24deg);
-  transform-origin: 16% 100%;
-  animation: wingFlapRight 2.2s ease-in-out infinite;
+.greeting-bird-front-wing {
+  animation: birdWingFront 2.7s cubic-bezier(0.38, 0.02, 0.28, 1) infinite;
 }
 
-.greeting-bird-body {
-  left: 50%;
-  top: 18px;
-  width: 34px;
-  height: 14px;
-  transform: translateX(-50%);
-  border-radius: 999px;
-  border: 1px solid rgba(255, 232, 183, 0.16);
-  background: linear-gradient(
-    180deg,
-    rgba(255, 246, 224, 0.82),
-    rgba(167, 118, 55, 0.68) 24%,
-    rgba(5, 19, 27, 0.98) 100%
-  );
-  box-shadow:
-    inset 0 1px 0 rgba(255, 255, 245, 0.22),
-    0 0 12px rgba(247, 193, 82, 0.08);
+.greeting-bird-wing-shape {
+  stroke: rgba(255, 238, 200, 0.18);
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 1.6;
 }
 
-.greeting-bird-body::before {
-  content: "";
-  position: absolute;
-  inset: 1px 2px 5px;
-  border-radius: inherit;
-  background: linear-gradient(180deg, rgba(255, 247, 229, 0.62), transparent 72%);
+.greeting-bird-wing-shape.wing-back-main {
+  fill: #081723;
+  opacity: 0.92;
 }
 
-.greeting-bird-tail {
-  left: 6px;
-  top: 18px;
-  width: 22px;
-  height: 14px;
-  clip-path: polygon(100% 50%, 0 0, 24% 50%, 0 100%);
-  background: linear-gradient(90deg, rgba(214, 169, 96, 0.72), rgba(5, 18, 27, 0.96));
+.greeting-bird-wing-shape.wing-front-main {
+  fill: #102634;
 }
 
-.greeting-bird-head {
-  right: 12px;
-  top: 12px;
-  width: 14px;
-  height: 14px;
-  border-radius: 68% 74% 70% 52%;
-  background: linear-gradient(180deg, rgba(255, 246, 224, 0.78), rgba(141, 93, 41, 0.94));
-  box-shadow: 0 0 8px rgba(247, 193, 82, 0.14);
+.greeting-bird-wing-mark {
+  fill: none;
+  stroke: rgba(255, 226, 169, 0.28);
+  stroke-linecap: round;
+  stroke-width: 3.1;
+  opacity: 0.84;
 }
 
-.greeting-bird-head::after {
-  content: "";
-  position: absolute;
-  left: -4px;
-  top: 5px;
-  width: 8px;
-  height: 5px;
-  clip-path: polygon(100% 50%, 0 0, 0 100%);
-  background: linear-gradient(90deg, rgba(255, 216, 141, 0.94), rgba(177, 116, 35, 0.92));
+.greeting-bird-body-shape {
+  fill: #0c2130;
+  stroke: rgba(255, 238, 200, 0.18);
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 1.6;
+}
+
+.greeting-bird-belly-shape {
+  fill: rgba(218, 168, 92, 0.22);
+}
+
+.greeting-bird-neck-shine {
+  fill: rgba(255, 240, 209, 0.16);
+}
+
+.greeting-bird-head-shape {
+  fill: #142c38;
+  stroke: rgba(255, 239, 206, 0.2);
+  stroke-width: 1.4;
+}
+
+.greeting-bird-eye {
+  fill: rgba(255, 245, 229, 0.74);
+}
+
+.greeting-bird-beak-shape {
+  fill: #d69a46;
+  stroke: rgba(255, 236, 204, 0.22);
+  stroke-width: 1.2;
+}
+
+.greeting-bird-tail-shape {
+  fill: #0a1a25;
+  stroke: rgba(255, 234, 188, 0.16);
+  stroke-width: 1.4;
+}
+
+.greeting-bird-tail-shape.tail-upper {
+  opacity: 0.96;
+}
+
+.greeting-bird-tail-shape.tail-lower {
+  opacity: 0.84;
 }
 
 .greeting-bird-escort {
@@ -1842,35 +1970,35 @@ textarea:focus {
 }
 
 .bird-group-left .greeting-bird-escort.escort-one {
-  --escort-scale: 0.56;
-  right: 14px;
-  top: -28px;
+  --escort-scale: 0.62;
+  right: 18px;
+  top: -34px;
   transform: scale(var(--escort-scale));
   animation: escortDriftNear 5.6s ease-in-out infinite;
 }
 
 .bird-group-left .greeting-bird-escort.escort-two {
-  --escort-scale: 0.42;
-  right: 98px;
+  --escort-scale: 0.46;
+  right: 116px;
   top: 26px;
-  opacity: 0.56;
+  opacity: 0.62;
   transform: scale(var(--escort-scale));
   animation: escortDriftFar 6.4s ease-in-out infinite;
 }
 
 .bird-group-right .greeting-bird-escort.escort-one {
-  --escort-scale: 0.56;
-  left: 14px;
-  top: -28px;
+  --escort-scale: 0.62;
+  left: 18px;
+  top: -34px;
   transform: scale(var(--escort-scale));
   animation: escortDriftNear 5.6s ease-in-out infinite;
 }
 
 .bird-group-right .greeting-bird-escort.escort-two {
-  --escort-scale: 0.42;
-  left: 98px;
+  --escort-scale: 0.46;
+  left: 116px;
   top: 26px;
-  opacity: 0.56;
+  opacity: 0.62;
   transform: scale(var(--escort-scale));
   animation: escortDriftFar 6.4s ease-in-out infinite;
 }
@@ -2918,102 +3046,275 @@ textarea:focus {
   }
 }
 
+@keyframes fireworkPresence {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, -50%) rotate(var(--firework-tilt)) scale(0.22);
+  }
+  2% {
+    opacity: 1;
+  }
+  9% {
+    opacity: 1;
+    transform: translate(-50%, -50%) rotate(var(--firework-tilt)) scale(0.98);
+  }
+  15%,
+  100% {
+    opacity: 0;
+    transform: translate(-50%, -50%) rotate(var(--firework-tilt)) scale(1.08);
+  }
+}
+
+@keyframes fireworkBurstExpand {
+  0% {
+    opacity: 0;
+    transform: scale(0.14);
+  }
+  3% {
+    opacity: 1;
+  }
+  9% {
+    opacity: 0.92;
+    transform: scale(0.94);
+  }
+  14%,
+  100% {
+    opacity: 0;
+    transform: scale(1.32);
+  }
+}
+
+@keyframes fireworkRingExpand {
+  0% {
+    opacity: 0;
+    transform: scale(0.12);
+  }
+  4% {
+    opacity: 0.86;
+  }
+  10% {
+    opacity: 0.72;
+    transform: scale(1.14);
+  }
+  15%,
+  100% {
+    opacity: 0;
+    transform: scale(1.58);
+  }
+}
+
+@keyframes fireworkSparkExpand {
+  0% {
+    opacity: 0;
+    transform: scale(0.18);
+  }
+  3% {
+    opacity: 1;
+  }
+  10% {
+    opacity: 0.8;
+    transform: scale(1.2);
+  }
+  15%,
+  100% {
+    opacity: 0;
+    transform: scale(1.7);
+  }
+}
+
+@keyframes fireworkHaloExpand {
+  0% {
+    opacity: 0;
+    transform: scale(0.22);
+  }
+  4% {
+    opacity: 0.8;
+  }
+  11% {
+    opacity: 0.38;
+    transform: scale(1.12);
+  }
+  17%,
+  100% {
+    opacity: 0;
+    transform: scale(1.88);
+  }
+}
+
+@keyframes birdBodyLift {
+  0%,
+  100% {
+    transform: translateY(0) rotate(-1deg);
+  }
+  50% {
+    transform: translateY(-2px) rotate(1.2deg);
+  }
+}
+
+@keyframes birdWingBack {
+  0%,
+  100% {
+    transform: translate(-2px, 2px) rotate(-16deg) scale(0.96);
+  }
+  50% {
+    transform: translate(-4px, -6px) rotate(-36deg) scale(1.04);
+  }
+}
+
+@keyframes birdWingFront {
+  0%,
+  100% {
+    transform: translate(0, 4px) rotate(10deg) scale(0.94);
+  }
+  50% {
+    transform: translate(1px, -10px) rotate(-18deg) scale(1.08);
+  }
+}
+
 @keyframes birdArcRight {
   0% {
     opacity: 0;
-    transform: translate3d(0, 22px, 0) rotate(-10deg);
+    transform: translate3d(0, 40px, 0) rotate(-13deg);
   }
-  12% {
+  10% {
     opacity: 1;
   }
-  28% {
-    transform: translate3d(18vw, -12px, 0) rotate(-4deg);
+  24% {
+    transform: translate3d(17vw, -12px, 0) rotate(-9deg);
   }
-  52% {
-    transform: translate3d(42vw, -54px, 0) rotate(3deg);
+  46% {
+    transform: translate3d(39vw, -86px, 0) rotate(-1deg);
   }
-  76% {
+  68% {
+    transform: translate3d(62vw, -34px, 0) rotate(7deg);
+  }
+  84% {
     opacity: 1;
-    transform: translate3d(66vw, -6px, 0) rotate(8deg);
+    transform: translate3d(78vw, 12px, 0) rotate(11deg);
   }
   100% {
     opacity: 0;
-    transform: translate3d(92vw, 24px, 0) rotate(10deg);
+    transform: translate3d(96vw, 44px, 0) rotate(13deg);
   }
 }
 
 @keyframes birdArcLeft {
   0% {
     opacity: 0;
-    transform: translate3d(0, 22px, 0) rotate(10deg);
+    transform: translate3d(0, 40px, 0) rotate(13deg);
   }
-  12% {
+  10% {
     opacity: 1;
   }
-  28% {
-    transform: translate3d(-18vw, -10px, 0) rotate(4deg);
+  24% {
+    transform: translate3d(-17vw, -10px, 0) rotate(9deg);
   }
-  52% {
-    transform: translate3d(-46vw, -58px, 0) rotate(-4deg);
+  46% {
+    transform: translate3d(-41vw, -88px, 0) rotate(1deg);
   }
-  76% {
+  68% {
+    transform: translate3d(-65vw, -30px, 0) rotate(-7deg);
+  }
+  84% {
     opacity: 1;
-    transform: translate3d(-70vw, -8px, 0) rotate(-8deg);
+    transform: translate3d(-81vw, 10px, 0) rotate(-11deg);
   }
   100% {
     opacity: 0;
-    transform: translate3d(-96vw, 22px, 0) rotate(-10deg);
+    transform: translate3d(-98vw, 42px, 0) rotate(-13deg);
   }
 }
 
 @keyframes formationFloat {
   0%,
   100% {
-    transform: translateY(0) rotate(-1.6deg);
+    transform: translateY(0) rotate(-1.8deg);
   }
   50% {
-    transform: translateY(-10px) rotate(1.6deg);
+    transform: translateY(-12px) rotate(1.8deg);
   }
 }
 
 @keyframes bannerTrailWave {
   0%,
   100% {
-    transform: scaleX(1) scaleY(1);
+    transform: scaleX(1) scaleY(1) translateY(0) skewY(0deg);
   }
   50% {
-    transform: scaleX(0.96) scaleY(1.12);
+    transform: scaleX(0.93) scaleY(1.16) translateY(2px) skewY(3deg);
   }
 }
 
 @keyframes bannerWave {
   0%,
   100% {
-    transform: translateY(0) rotate(-2deg);
+    transform: translateY(0) rotate(-3deg);
+  }
+  25% {
+    transform: translateY(2px) rotate(-1.4deg);
   }
   50% {
-    transform: translateY(4px) rotate(2deg);
+    transform: translateY(6px) rotate(2.4deg);
+  }
+  75% {
+    transform: translateY(3px) rotate(0.8deg);
+  }
+}
+
+@keyframes bannerTailWave {
+  0%,
+  100% {
+    transform: translateY(-50%) scaleX(var(--tail-flip, 1)) rotate(-12deg);
+  }
+  50% {
+    transform: translateY(-46%) scaleX(var(--tail-flip, 1)) rotate(4deg);
+  }
+}
+
+@keyframes tetherSway {
+  0%,
+  100% {
+    transform: scaleX(var(--link-direction, 1)) translateY(0) rotate(-1deg);
+  }
+  50% {
+    transform: scaleX(var(--link-direction, 1)) translateY(2px) rotate(4deg);
+  }
+}
+
+@keyframes claspPulse {
+  0%,
+  100% {
+    transform: translateY(-50%) scale(0.94);
+    box-shadow:
+      0 0 10px var(--tether-glow),
+      0 0 16px rgba(255, 244, 218, 0.14);
+  }
+  50% {
+    transform: translateY(-50%) scale(1.08);
+    box-shadow:
+      0 0 16px var(--tether-glow),
+      0 0 24px rgba(255, 244, 218, 0.22);
   }
 }
 
 @keyframes bannerSweep {
   from {
-    transform: translateX(-24%);
+    transform: translateX(-120%);
   }
   to {
-    transform: translateX(24%);
+    transform: translateX(120%);
   }
 }
 
 @keyframes bannerSpark {
   0%,
   100% {
-    opacity: 0.3;
-    transform: scale(0.72);
+    opacity: 0.34;
+    transform: scale(0.7);
   }
   50% {
     opacity: 1;
-    transform: scale(1.14);
+    transform: scale(1.18);
   }
 }
 
@@ -3023,7 +3324,7 @@ textarea:focus {
     transform: scale(var(--escort-scale, 0.56)) translate3d(0, 0, 0);
   }
   50% {
-    transform: scale(var(--escort-scale, 0.56)) translate3d(10px, -8px, 0);
+    transform: scale(var(--escort-scale, 0.56)) translate3d(12px, -10px, 0);
   }
 }
 
@@ -3033,7 +3334,7 @@ textarea:focus {
     transform: scale(var(--escort-scale, 0.42)) translate3d(0, 0, 0);
   }
   50% {
-    transform: scale(var(--escort-scale, 0.42)) translate3d(-12px, -6px, 0);
+    transform: scale(var(--escort-scale, 0.42)) translate3d(-14px, -8px, 0);
   }
 }
 
@@ -3069,7 +3370,7 @@ textarea:focus {
   }
 
   .greeting-firework {
-    opacity: 0.16;
+    --firework-scale: 0.82;
   }
 
   .greeting-crescent-cluster {
@@ -3254,56 +3555,73 @@ textarea:focus {
   }
 
   .greeting-fireworks-layer {
-    opacity: 0.68;
+    opacity: 0.94;
+  }
+
+  .greeting-firework {
+    --firework-scale: 0.82;
   }
 
   .bird-group-left .greeting-bird-path {
-    top: 14%;
-    left: -210px;
+    top: 13%;
+    left: -240px;
   }
 
   .bird-group-right .greeting-bird-path {
-    top: 19%;
-    right: -250px;
+    top: 18%;
+    right: -278px;
   }
 
   .greeting-bird-formation {
-    gap: 10px;
+    gap: 12px;
   }
 
   .greeting-flight-aura {
-    inset: -18px 54px -14px;
+    inset: -22px 62px -18px;
   }
 
   .greeting-banner-trails {
-    min-width: 62px;
-    gap: 6px;
+    min-width: 74px;
+    gap: 7px;
   }
 
   .greeting-banner-trail.trail-main {
-    width: 62px;
+    width: 74px;
   }
 
   .greeting-banner-trail.trail-accent {
-    width: 42px;
-    margin-left: 14px;
+    width: 52px;
+    margin-left: 16px;
   }
 
   .bird-group-right .greeting-banner-trail.trail-accent {
-    margin-right: 14px;
+    margin-right: 16px;
   }
 
   .greeting-banner-rig {
-    min-height: 46px;
-    padding: 10px 18px 12px;
+    min-height: 54px;
+    padding: 12px 22px 14px;
   }
 
   .bird-group-left .greeting-banner-rig {
-    min-width: min(50vw, 190px);
+    min-width: min(54vw, 212px);
   }
 
   .bird-group-right .greeting-banner-rig {
-    min-width: min(60vw, 230px);
+    min-width: min(62vw, 248px);
+  }
+
+  .greeting-banner-tail {
+    width: 22px;
+    height: 32px;
+  }
+
+  .greeting-banner-tail.tail-start {
+    left: -12px;
+  }
+
+  .greeting-banner-tail.tail-end {
+    right: -12px;
   }
 
   .greeting-banner-text {
@@ -3315,35 +3633,22 @@ textarea:focus {
   }
 
   .greeting-banner-link {
-    width: 30px;
+    width: 42px;
+    height: 22px;
   }
 
-  .greeting-bird {
-    width: 66px;
-    height: 36px;
+  .greeting-banner-cord {
+    right: 10px;
   }
 
-  .greeting-bird-wing {
-    width: 31px;
-    height: 19px;
-  }
-
-  .greeting-bird-body {
-    top: 16px;
-    width: 27px;
+  .greeting-banner-clasp {
+    width: 11px;
     height: 11px;
   }
 
-  .greeting-bird-tail {
-    top: 16px;
-    width: 19px;
-    height: 12px;
-  }
-
-  .greeting-bird-head {
-    top: 10px;
-    width: 12px;
-    height: 12px;
+  .greeting-bird {
+    width: 82px;
+    height: 50px;
   }
 
   .greeting-bird-escort.escort-two {
@@ -3364,10 +3669,6 @@ textarea:focus {
   .greeting-stage-glow {
     opacity: 0.7;
     filter: blur(20px);
-  }
-
-  .greeting-fireworks {
-    opacity: 0.72;
   }
 
   .greeting-crescent-cluster {
@@ -3509,34 +3810,38 @@ textarea:focus {
   }
 
   .greeting-fireworks-layer {
-    opacity: 0.54;
+    opacity: 0.86;
+  }
+
+  .greeting-firework {
+    --firework-scale: 0.68;
   }
 
   .bird-group-left .greeting-bird-path {
-    top: 15%;
-    left: -176px;
+    top: 14%;
+    left: -188px;
   }
 
   .bird-group-right .greeting-bird-path {
-    top: 21%;
-    right: -216px;
+    top: 20%;
+    right: -220px;
   }
 
   .greeting-bird-formation {
-    gap: 8px;
+    gap: 10px;
   }
 
   .greeting-banner-trails {
-    min-width: 48px;
+    min-width: 56px;
     gap: 5px;
   }
 
   .greeting-banner-trail.trail-main {
-    width: 52px;
+    width: 56px;
   }
 
   .greeting-banner-trail.trail-accent {
-    width: 34px;
+    width: 38px;
     margin-left: 12px;
   }
 
@@ -3545,16 +3850,29 @@ textarea:focus {
   }
 
   .greeting-banner-rig {
-    min-height: 40px;
-    padding: 8px 14px 10px;
+    min-height: 44px;
+    padding: 9px 16px 11px;
   }
 
   .bird-group-left .greeting-banner-rig {
-    min-width: min(46vw, 164px);
+    min-width: min(48vw, 170px);
   }
 
   .bird-group-right .greeting-banner-rig {
-    min-width: min(58vw, 204px);
+    min-width: min(60vw, 214px);
+  }
+
+  .greeting-banner-tail {
+    width: 18px;
+    height: 28px;
+  }
+
+  .greeting-banner-tail.tail-start {
+    left: -10px;
+  }
+
+  .greeting-banner-tail.tail-end {
+    right: -10px;
   }
 
   .greeting-banner-text {
@@ -3566,39 +3884,34 @@ textarea:focus {
   }
 
   .greeting-banner-link {
-    width: 22px;
+    width: 30px;
+    height: 18px;
   }
 
-  .greeting-bird {
-    width: 52px;
-    height: 30px;
+  .greeting-banner-cord {
+    right: 8px;
   }
 
-  .greeting-bird-wing {
-    width: 24px;
-    height: 15px;
+  .greeting-banner-cord.cord-top {
+    top: 5px;
   }
 
-  .greeting-bird-body {
-    top: 13px;
-    width: 22px;
+  .greeting-banner-cord.cord-bottom {
+    bottom: 5px;
+  }
+
+  .greeting-banner-clasp {
+    width: 9px;
     height: 9px;
   }
 
-  .greeting-bird-tail {
-    top: 14px;
-    width: 16px;
-    height: 10px;
-  }
-
-  .greeting-bird-head {
-    top: 9px;
-    width: 10px;
-    height: 10px;
+  .greeting-bird {
+    width: 68px;
+    height: 42px;
   }
 
   .greeting-bird-escort.escort-one {
     opacity: 0.52;
-    --escort-scale: 0.42;
+    --escort-scale: 0.44;
   }
 }

@@ -212,10 +212,16 @@ const greetingCelebrationSparkles = [
 ];
 
 const greetingCelebrationFireworks = [
-  { id: 1, top: "11%", left: "18%", delay: "0s", duration: "9.4s", size: "188px", tone: "gold" },
-  { id: 2, top: "15%", left: "44%", delay: "2.2s", duration: "10.2s", size: "148px", tone: "ivory" },
-  { id: 3, top: "12%", left: "78%", delay: "4.4s", duration: "9.8s", size: "176px", tone: "emerald" },
-  { id: 4, top: "26%", left: "61%", delay: "6.1s", duration: "10.6s", size: "132px", tone: "gold" }
+  { id: 1, top: "11%", left: "16%", delay: "0.12s", cycle: "12.8s", size: "236px", tone: "gold", tilt: "-12deg" },
+  { id: 2, top: "8%", left: "37%", delay: "0.46s", cycle: "12.8s", size: "208px", tone: "ivory", tilt: "9deg" },
+  { id: 3, top: "13%", left: "74%", delay: "0.82s", cycle: "12.8s", size: "224px", tone: "emerald", tilt: "-7deg" },
+  { id: 4, top: "18%", left: "24%", delay: "1.58s", cycle: "12.8s", size: "186px", tone: "ivory", tilt: "12deg" },
+  { id: 5, top: "14%", left: "54%", delay: "1.94s", cycle: "12.8s", size: "216px", tone: "gold", tilt: "-10deg" },
+  { id: 6, top: "20%", left: "84%", delay: "2.28s", cycle: "12.8s", size: "176px", tone: "gold", tilt: "7deg" },
+  { id: 7, top: "26%", left: "13%", delay: "5.1s", cycle: "12.8s", size: "152px", tone: "emerald", tilt: "-13deg" },
+  { id: 8, top: "23%", left: "44%", delay: "7.35s", cycle: "12.8s", size: "164px", tone: "ivory", tilt: "10deg" },
+  { id: 9, top: "27%", left: "68%", delay: "9.62s", cycle: "12.8s", size: "148px", tone: "gold", tilt: "-8deg" },
+  { id: 10, top: "17%", left: "91%", delay: "11.18s", cycle: "12.8s", size: "138px", tone: "emerald", tilt: "8deg" }
 ];
 
 function normalizeLanguage(value) {
@@ -429,11 +435,61 @@ function DecorativeBackground() {
 function GreetingBird({ className = "" }) {
   return (
     <span className={`greeting-bird ${className}`.trim()}>
-      <span className="greeting-bird-wing wing-left" />
-      <span className="greeting-bird-body" />
-      <span className="greeting-bird-wing wing-right" />
-      <span className="greeting-bird-tail" />
-      <span className="greeting-bird-head" />
+      <svg
+        className="greeting-bird-svg"
+        viewBox="0 0 168 108"
+        aria-hidden="true"
+        focusable="false"
+      >
+        <g className="greeting-bird-back-wing">
+          <path
+            className="greeting-bird-wing-shape wing-back-main"
+            d="M74 56 C57 34 39 22 19 21 C13 22 10 27 12 32 C20 46 38 58 61 66 C69 69 76 65 74 56 Z"
+          />
+          <path
+            className="greeting-bird-wing-mark wing-back-mark"
+            d="M63 51 C50 39 35 31 22 29 C31 40 44 50 58 57"
+          />
+        </g>
+        <g className="greeting-bird-body-group">
+          <path
+            className="greeting-bird-tail-shape tail-upper"
+            d="M55 66 C40 65 27 68 12 77 C18 66 29 58 45 56 Z"
+          />
+          <path
+            className="greeting-bird-tail-shape tail-lower"
+            d="M57 68 C43 72 30 79 16 92 C20 79 29 69 46 61 Z"
+          />
+          <path
+            className="greeting-bird-body-shape"
+            d="M57 62 C66 49 84 43 105 46 C120 48 132 56 138 65 C129 70 118 72 109 71 C102 80 91 85 79 83 C66 81 55 73 52 64 C51 61 53 59 57 62 Z"
+          />
+          <path
+            className="greeting-bird-belly-shape"
+            d="M64 64 C75 56 91 54 107 57 C100 66 88 71 74 70 C69 69 66 67 64 64 Z"
+          />
+          <path
+            className="greeting-bird-neck-shine"
+            d="M101 49 C111 50 118 54 123 60 C117 58 111 56 104 57 C102 54 101 52 101 49 Z"
+          />
+          <path
+            className="greeting-bird-head-shape"
+            d="M118 45 C128 43 137 49 139 58 C141 66 132 73 122 70 C115 68 111 59 114 51 C115 48 116 46 118 45 Z"
+          />
+          <path className="greeting-bird-eye" d="M126 55 C128 54 130 55 130 57 C129 59 127 60 125 59 C124 57 124 56 126 55 Z" />
+          <path className="greeting-bird-beak-shape" d="M138 55 L154 51 L141 63 Z" />
+        </g>
+        <g className="greeting-bird-front-wing">
+          <path
+            className="greeting-bird-wing-shape wing-front-main"
+            d="M87 61 C74 32 52 15 27 12 C23 12 21 15 22 19 C29 35 45 56 72 74 C84 81 96 76 87 61 Z"
+          />
+          <path
+            className="greeting-bird-wing-mark wing-front-mark"
+            d="M77 59 C64 40 48 28 32 24 C41 39 56 52 71 65"
+          />
+        </g>
+      </svg>
     </span>
   );
 }
@@ -449,6 +505,8 @@ function GreetingBirdGroup({ side, bannerText, accent }) {
             <span className={`greeting-banner-trail tone-${accent} trail-accent`} />
           </span>
           <span className={`greeting-banner-rig banner-${accent}`}>
+            <span className="greeting-banner-tail tail-start" />
+            <span className="greeting-banner-tail tail-end" />
             <span className="greeting-banner-ornament ornament-start" />
             <span className="greeting-banner-ornament ornament-end" />
             <span className="greeting-banner-spark spark-one" />
@@ -457,7 +515,11 @@ function GreetingBirdGroup({ side, bannerText, accent }) {
               {bannerText}
             </span>
           </span>
-          <span className="greeting-banner-link" />
+          <span className={`greeting-banner-link tone-${accent}`}>
+            <span className="greeting-banner-cord cord-top" />
+            <span className="greeting-banner-cord cord-bottom" />
+            <span className="greeting-banner-clasp" />
+          </span>
           <GreetingBird className="greeting-bird-hero" />
           <span className="greeting-bird-escort escort-one">
             <GreetingBird />
@@ -625,12 +687,17 @@ function GreetingMode({ ui, isArabic, selectedStyle, senderName, greetingMessage
               style={{
                 top: firework.top,
                 left: firework.left,
-                animationDelay: firework.delay,
-                animationDuration: firework.duration,
-                width: firework.size,
-                height: firework.size
+                "--firework-delay": firework.delay,
+                "--firework-cycle": firework.cycle,
+                "--firework-size": firework.size,
+                "--firework-tilt": firework.tilt
               }}
-            />
+            >
+              <span className="greeting-firework-burst" />
+              <span className="greeting-firework-ring" />
+              <span className="greeting-firework-sparks" />
+              <span className="greeting-firework-halo" />
+            </span>
           ))}
         </div>
         <div className="greeting-pattern-grid" />
