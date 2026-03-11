@@ -224,6 +224,201 @@ const greetingCelebrationFireworks = [
   { id: 10, top: "17%", left: "91%", delay: "11.18s", cycle: "12.8s", size: "138px", tone: "emerald", tilt: "8deg" }
 ];
 
+const greetingCelebrationFountainParticles = [
+  {
+    id: 1,
+    kind: "dot",
+    tone: "gold",
+    size: "10px",
+    midX: "30px",
+    midY: "-82px",
+    x: "82px",
+    y: "-194px",
+    drift: "14px",
+    delay: "0.18s",
+    duration: "12.6s",
+    rotate: "14deg",
+    startRotate: "-24deg",
+    scale: "0.94"
+  },
+  {
+    id: 2,
+    kind: "star",
+    tone: "ivory",
+    size: "14px",
+    midX: "44px",
+    midY: "-118px",
+    x: "104px",
+    y: "-266px",
+    drift: "20px",
+    delay: "0.48s",
+    duration: "12.6s",
+    rotate: "-12deg",
+    startRotate: "-30deg",
+    scale: "1.12"
+  },
+  {
+    id: 3,
+    kind: "streak",
+    tone: "gold",
+    size: "7px",
+    midX: "52px",
+    midY: "-104px",
+    x: "124px",
+    y: "-234px",
+    drift: "24px",
+    delay: "0.78s",
+    duration: "12.6s",
+    rotate: "18deg",
+    startRotate: "-32deg",
+    scale: "1.06"
+  },
+  {
+    id: 4,
+    kind: "confetti",
+    tone: "emerald",
+    size: "9px",
+    midX: "68px",
+    midY: "-92px",
+    x: "158px",
+    y: "-218px",
+    drift: "30px",
+    delay: "1.08s",
+    duration: "12.6s",
+    rotate: "24deg",
+    startRotate: "-18deg",
+    scale: "1"
+  },
+  {
+    id: 5,
+    kind: "dot",
+    tone: "ivory",
+    size: "8px",
+    midX: "36px",
+    midY: "-90px",
+    x: "94px",
+    y: "-212px",
+    drift: "18px",
+    delay: "4.46s",
+    duration: "12.6s",
+    rotate: "-8deg",
+    startRotate: "-22deg",
+    scale: "0.88"
+  },
+  {
+    id: 6,
+    kind: "ribbon",
+    tone: "gold",
+    size: "10px",
+    midX: "58px",
+    midY: "-126px",
+    x: "138px",
+    y: "-286px",
+    drift: "28px",
+    delay: "4.74s",
+    duration: "12.6s",
+    rotate: "12deg",
+    startRotate: "-28deg",
+    scale: "1.08"
+  },
+  {
+    id: 7,
+    kind: "star",
+    tone: "gold",
+    size: "12px",
+    midX: "70px",
+    midY: "-146px",
+    x: "168px",
+    y: "-318px",
+    drift: "34px",
+    delay: "5.02s",
+    duration: "12.6s",
+    rotate: "-20deg",
+    startRotate: "-36deg",
+    scale: "1.16"
+  },
+  {
+    id: 8,
+    kind: "confetti",
+    tone: "ivory",
+    size: "8px",
+    midX: "48px",
+    midY: "-112px",
+    x: "116px",
+    y: "-254px",
+    drift: "22px",
+    delay: "5.34s",
+    duration: "12.6s",
+    rotate: "28deg",
+    startRotate: "-16deg",
+    scale: "0.96"
+  },
+  {
+    id: 9,
+    kind: "dot",
+    tone: "gold",
+    size: "9px",
+    midX: "34px",
+    midY: "-86px",
+    x: "88px",
+    y: "-202px",
+    drift: "16px",
+    delay: "8.84s",
+    duration: "12.6s",
+    rotate: "10deg",
+    startRotate: "-24deg",
+    scale: "0.9"
+  },
+  {
+    id: 10,
+    kind: "streak",
+    tone: "ivory",
+    size: "6px",
+    midX: "62px",
+    midY: "-118px",
+    x: "146px",
+    y: "-274px",
+    drift: "24px",
+    delay: "9.1s",
+    duration: "12.6s",
+    rotate: "-18deg",
+    startRotate: "-30deg",
+    scale: "1"
+  },
+  {
+    id: 11,
+    kind: "star",
+    tone: "emerald",
+    size: "11px",
+    midX: "74px",
+    midY: "-136px",
+    x: "174px",
+    y: "-296px",
+    drift: "32px",
+    delay: "9.42s",
+    duration: "12.6s",
+    rotate: "18deg",
+    startRotate: "-18deg",
+    scale: "1.04"
+  },
+  {
+    id: 12,
+    kind: "ribbon",
+    tone: "gold",
+    size: "9px",
+    midX: "54px",
+    midY: "-106px",
+    x: "132px",
+    y: "-236px",
+    drift: "26px",
+    delay: "9.72s",
+    duration: "12.6s",
+    rotate: "30deg",
+    startRotate: "-14deg",
+    scale: "0.96"
+  }
+];
+
 function normalizeLanguage(value) {
   return value === "ar" ? "ar" : DEFAULT_LANGUAGE;
 }
@@ -533,6 +728,37 @@ function GreetingBirdGroup({ side, bannerText, accent }) {
   );
 }
 
+function GreetingCelebrationFountain({ side }) {
+  return (
+    <div className={`greeting-corner-burst greeting-corner-burst-${side}`} aria-hidden="true">
+      <span className="greeting-corner-anchor-glow" />
+      <span className="greeting-corner-anchor" />
+      <span className="greeting-corner-burst-haze" />
+      <div className="greeting-corner-burst-stream">
+        {greetingCelebrationFountainParticles.map((particle) => (
+          <span
+            key={`${side}-${particle.id}`}
+            className={`greeting-fountain-particle kind-${particle.kind} tone-${particle.tone}`}
+            style={{
+              "--burst-size": particle.size,
+              "--burst-mid-x": particle.midX,
+              "--burst-mid-y": particle.midY,
+              "--burst-x": particle.x,
+              "--burst-y": particle.y,
+              "--burst-drift": particle.drift,
+              "--burst-delay": particle.delay,
+              "--burst-duration": particle.duration,
+              "--burst-rotate": particle.rotate,
+              "--burst-start-rotate": particle.startRotate,
+              "--burst-scale": particle.scale
+            }}
+          />
+        ))}
+      </div>
+    </div>
+  );
+}
+
 function CreatorMode({
   ui,
   isArabic,
@@ -757,6 +983,10 @@ function GreetingMode({ ui, isArabic, selectedStyle, senderName, greetingMessage
               }}
             />
           ))}
+        </div>
+        <div className="greeting-corner-bursts" aria-hidden="true">
+          <GreetingCelebrationFountain side="left" />
+          <GreetingCelebrationFountain side="right" />
         </div>
         <div className="greeting-bird-groups">
           <GreetingBirdGroup side="left" bannerText="عيد مبارك" accent="gold" />

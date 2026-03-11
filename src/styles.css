@@ -1496,6 +1496,334 @@ textarea:focus {
   --sparkle-glow: rgba(105, 219, 184, 0.16);
 }
 
+.greeting-corner-bursts {
+  position: absolute;
+  inset: 0;
+  z-index: 5;
+  overflow: hidden;
+  pointer-events: none;
+  isolation: isolate;
+}
+
+.greeting-corner-burst {
+  --burst-direction: 1;
+  --fountain-haze-drift: 18px;
+  --anchor-glow: rgba(247, 198, 101, 0.2);
+  --anchor-emerald: rgba(117, 216, 183, 0.2);
+  position: absolute;
+  bottom: -1%;
+  width: clamp(210px, 24vw, 330px);
+  height: clamp(280px, 42vh, 470px);
+  overflow: visible;
+}
+
+.greeting-corner-burst-left {
+  left: -1.2%;
+}
+
+.greeting-corner-burst-right {
+  right: -1.2%;
+  --burst-direction: -1;
+  --fountain-haze-drift: -18px;
+  --anchor-glow: rgba(117, 216, 183, 0.16);
+  --anchor-emerald: rgba(247, 198, 101, 0.14);
+}
+
+.greeting-corner-anchor-glow,
+.greeting-corner-anchor,
+.greeting-corner-burst-haze,
+.greeting-corner-burst-stream {
+  position: absolute;
+  display: block;
+}
+
+.greeting-corner-anchor-glow {
+  z-index: 0;
+  bottom: 26px;
+  width: clamp(128px, 16vw, 210px);
+  height: clamp(94px, 13vw, 150px);
+  border-radius: 50%;
+  background:
+    radial-gradient(circle at 50% 72%, rgba(247, 198, 101, 0.3), transparent 54%),
+    radial-gradient(circle at 48% 42%, rgba(255, 249, 237, 0.2), transparent 46%),
+    radial-gradient(circle at 62% 56%, var(--anchor-emerald), transparent 42%);
+  filter: blur(16px);
+  opacity: 0.86;
+  animation: fountainGlitterDrift 8.2s ease-in-out infinite;
+}
+
+.greeting-corner-burst-left .greeting-corner-anchor-glow {
+  left: -4px;
+}
+
+.greeting-corner-burst-right .greeting-corner-anchor-glow {
+  right: -4px;
+}
+
+.greeting-corner-anchor {
+  z-index: 2;
+  bottom: 2px;
+  width: clamp(70px, 8vw, 96px);
+  height: clamp(86px, 10vw, 122px);
+  border-radius: 28px 28px 18px 18px;
+  border: 1px solid rgba(255, 239, 204, 0.26);
+  clip-path: polygon(14% 0, 86% 0, 100% 14%, 100% 100%, 0 100%, 0 14%);
+  background:
+    linear-gradient(180deg, rgba(255, 251, 239, 0.92), rgba(242, 204, 121, 0.76) 24%, rgba(141, 88, 32, 0.96) 64%, rgba(74, 45, 17, 0.98) 100%);
+  box-shadow:
+    0 18px 26px rgba(2, 8, 14, 0.28),
+    inset 0 1px 0 rgba(255, 255, 255, 0.4),
+    inset 0 -8px 14px rgba(79, 43, 17, 0.34),
+    0 0 24px var(--anchor-glow);
+}
+
+.greeting-corner-burst-left .greeting-corner-anchor {
+  left: 18px;
+  transform: rotate(-12deg);
+}
+
+.greeting-corner-burst-right .greeting-corner-anchor {
+  right: 18px;
+  transform: rotate(12deg);
+}
+
+.greeting-corner-anchor::before {
+  content: "";
+  position: absolute;
+  top: -12px;
+  left: 14px;
+  right: 14px;
+  height: 26px;
+  border-radius: 16px 16px 10px 10px;
+  border: 1px solid rgba(255, 243, 214, 0.34);
+  background: linear-gradient(180deg, rgba(255, 252, 243, 0.94), rgba(213, 163, 82, 0.92));
+  box-shadow:
+    0 10px 18px rgba(2, 8, 14, 0.18),
+    0 0 18px var(--anchor-glow);
+}
+
+.greeting-corner-anchor::after {
+  content: "";
+  position: absolute;
+  inset: 22% 16% 20%;
+  border-radius: 14px;
+  background:
+    linear-gradient(180deg, transparent, rgba(255, 255, 255, 0.18) 28%, transparent 64%),
+    radial-gradient(circle at 50% 32%, rgba(255, 249, 236, 0.88) 0 10%, transparent 18%),
+    radial-gradient(circle at 50% 72%, rgba(96, 201, 168, 0.26) 0 16%, transparent 26%);
+  opacity: 0.9;
+}
+
+.greeting-corner-burst-haze {
+  z-index: 1;
+  bottom: 48px;
+  width: clamp(118px, 17vw, 220px);
+  height: clamp(98px, 14vw, 168px);
+  border-radius: 50%;
+  background:
+    radial-gradient(circle at 36% 72%, rgba(255, 250, 241, 0.26), transparent 34%),
+    radial-gradient(circle at 50% 50%, rgba(247, 198, 101, 0.18), transparent 42%),
+    radial-gradient(circle at 68% 40%, rgba(124, 220, 188, 0.14), transparent 40%);
+  filter: blur(10px);
+  opacity: 0.72;
+  animation: fountainGlitterDrift 7.4s ease-in-out infinite reverse;
+}
+
+.greeting-corner-burst-left .greeting-corner-burst-haze {
+  left: 10px;
+}
+
+.greeting-corner-burst-right .greeting-corner-burst-haze {
+  right: 10px;
+}
+
+.greeting-corner-burst-stream {
+  inset: 0;
+  z-index: 3;
+  overflow: visible;
+  filter: saturate(108%);
+}
+
+.greeting-fountain-particle {
+  --burst-size: 10px;
+  --burst-mid-x: 40px;
+  --burst-mid-y: -100px;
+  --burst-x: 110px;
+  --burst-y: -240px;
+  --burst-drift: 20px;
+  --burst-delay: 0s;
+  --burst-duration: 12.6s;
+  --burst-scale: 1;
+  --burst-rotate: 0deg;
+  --burst-start-rotate: -20deg;
+  --particle-core: rgba(255, 241, 204, 0.96);
+  --particle-edge: rgba(224, 173, 84, 0.92);
+  --particle-glow: rgba(247, 198, 101, 0.28);
+  --particle-haze: rgba(255, 245, 221, 0.18);
+  position: absolute;
+  bottom: 70px;
+  width: var(--burst-size);
+  height: var(--burst-size);
+  opacity: 0;
+  transform-origin: center;
+  will-change: transform, opacity;
+  mix-blend-mode: screen;
+  animation: fountainBurstLaunch var(--burst-duration) cubic-bezier(0.18, 0.74, 0.24, 1) infinite;
+  animation-delay: var(--burst-delay);
+}
+
+.greeting-corner-burst-left .greeting-fountain-particle {
+  left: 52px;
+}
+
+.greeting-corner-burst-right .greeting-fountain-particle {
+  right: 52px;
+}
+
+.greeting-fountain-particle.tone-gold {
+  --particle-core: rgba(255, 236, 185, 0.96);
+  --particle-edge: rgba(245, 191, 86, 0.92);
+  --particle-glow: rgba(247, 198, 101, 0.28);
+  --particle-haze: rgba(255, 240, 205, 0.18);
+}
+
+.greeting-fountain-particle.tone-ivory {
+  --particle-core: rgba(255, 249, 239, 0.98);
+  --particle-edge: rgba(248, 229, 190, 0.88);
+  --particle-glow: rgba(255, 244, 220, 0.24);
+  --particle-haze: rgba(255, 249, 236, 0.18);
+}
+
+.greeting-fountain-particle.tone-emerald {
+  --particle-core: rgba(201, 255, 235, 0.9);
+  --particle-edge: rgba(105, 211, 177, 0.84);
+  --particle-glow: rgba(105, 219, 184, 0.22);
+  --particle-haze: rgba(166, 242, 214, 0.16);
+}
+
+.greeting-fountain-particle.kind-dot {
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 35%, rgba(255, 255, 255, 0.98), var(--particle-core) 42%, rgba(255, 255, 255, 0) 74%);
+  box-shadow:
+    0 0 12px var(--particle-glow),
+    0 0 26px rgba(255, 248, 232, 0.12);
+}
+
+.greeting-fountain-particle.kind-dot::before {
+  content: "";
+  position: absolute;
+  inset: 18%;
+  border-radius: 50%;
+  background: radial-gradient(circle at 34% 34%, rgba(255, 255, 255, 0.96), transparent 72%);
+}
+
+.greeting-fountain-particle.kind-dot::after {
+  content: "";
+  position: absolute;
+  inset: -55%;
+  border-radius: 50%;
+  background: radial-gradient(circle, var(--particle-haze), transparent 70%);
+  filter: blur(4px);
+  animation: fountainGlitterDrift 3.2s ease-in-out infinite;
+}
+
+.greeting-fountain-particle.kind-star {
+  border-radius: 50%;
+  background: radial-gradient(circle, var(--particle-core) 0 28%, transparent 29%);
+  filter: drop-shadow(0 0 10px var(--particle-glow));
+}
+
+.greeting-fountain-particle.kind-star::before,
+.greeting-fountain-particle.kind-star::after {
+  content: "";
+  position: absolute;
+  inset: -24%;
+  border-radius: 999px;
+  background: linear-gradient(
+    180deg,
+    transparent 0,
+    rgba(255, 255, 255, 0.28) 16%,
+    var(--particle-core) 50%,
+    rgba(255, 255, 255, 0.22) 84%,
+    transparent 100%
+  );
+  box-shadow: 0 0 14px var(--particle-glow);
+  animation: fountainSparkleTwinkle 1.9s ease-in-out infinite;
+}
+
+.greeting-fountain-particle.kind-star::before {
+  transform: scaleY(0.16);
+}
+
+.greeting-fountain-particle.kind-star::after {
+  transform: rotate(90deg) scaleY(0.14);
+  animation-delay: 0.4s;
+}
+
+.greeting-fountain-particle.kind-streak {
+  width: max(2px, calc(var(--burst-size) * 0.34));
+  height: calc(var(--burst-size) * 3.8);
+  border-radius: 999px;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.96), var(--particle-core) 28%, rgba(255, 255, 255, 0.08) 100%);
+  box-shadow: 0 0 12px var(--particle-glow);
+}
+
+.greeting-fountain-particle.kind-streak::after {
+  content: "";
+  position: absolute;
+  top: -20%;
+  left: 50%;
+  width: calc(var(--burst-size) * 1.2);
+  height: calc(var(--burst-size) * 1.2);
+  transform: translateX(-50%);
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.94), transparent 66%);
+  box-shadow: 0 0 12px var(--particle-glow);
+}
+
+.greeting-fountain-particle.kind-ribbon,
+.greeting-fountain-particle.kind-confetti {
+  animation-name: fountainConfettiArc;
+}
+
+.greeting-fountain-particle.kind-ribbon {
+  width: calc(var(--burst-size) * 2.8);
+  height: calc(var(--burst-size) * 0.72);
+  border-radius: 999px;
+  background: linear-gradient(90deg, rgba(255, 255, 255, 0.92), var(--particle-core) 44%, var(--particle-edge) 100%);
+  box-shadow: 0 0 14px var(--particle-glow);
+}
+
+.greeting-fountain-particle.kind-ribbon::before {
+  content: "";
+  position: absolute;
+  inset: -24% 18%;
+  border-radius: inherit;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.52), transparent 72%);
+  transform: skewX(-22deg);
+}
+
+.greeting-fountain-particle.kind-confetti {
+  width: calc(var(--burst-size) * 1.3);
+  height: calc(var(--burst-size) * 1.8);
+  border-radius: 999px 999px 999px 5px;
+  clip-path: polygon(24% 0, 100% 20%, 76% 100%, 0 76%, 10% 18%);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.94), var(--particle-core) 38%, var(--particle-edge) 100%);
+  box-shadow: 0 0 12px var(--particle-glow);
+}
+
+.greeting-fountain-particle.kind-confetti::before {
+  content: "";
+  position: absolute;
+  inset: 18%;
+  border-radius: inherit;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.48), transparent 76%);
+}
+
+.greeting-fountain-particle.kind-confetti:nth-child(4n) {
+  clip-path: polygon(50% 0, 100% 40%, 70% 100%, 0 60%, 18% 14%);
+}
+
 .greeting-bird-groups {
   position: absolute;
   inset: 0;
@@ -1532,8 +1860,9 @@ textarea:focus {
   align-items: center;
   gap: 18px;
   filter:
-    drop-shadow(0 22px 30px rgba(1, 8, 14, 0.38))
-    drop-shadow(0 0 18px rgba(247, 198, 101, 0.18));
+    drop-shadow(0 22px 30px rgba(1, 8, 14, 0.32))
+    drop-shadow(0 0 20px rgba(247, 198, 101, 0.2))
+    drop-shadow(0 0 28px rgba(255, 245, 220, 0.08));
   animation: formationFloat 5.8s ease-in-out infinite;
 }
 
@@ -1863,12 +2192,15 @@ textarea:focus {
   width: 100%;
   height: 100%;
   overflow: visible;
+  filter:
+    drop-shadow(0 8px 14px rgba(4, 12, 18, 0.22))
+    drop-shadow(0 0 12px rgba(255, 245, 220, 0.14));
 }
 
 .greeting-bird-hero {
   filter:
-    drop-shadow(0 14px 20px rgba(2, 10, 16, 0.34))
-    drop-shadow(0 0 16px rgba(247, 198, 101, 0.16));
+    drop-shadow(0 14px 20px rgba(2, 10, 16, 0.24))
+    drop-shadow(0 0 18px rgba(255, 231, 179, 0.22));
 }
 
 .bird-group-right .greeting-bird {
@@ -1895,64 +2227,64 @@ textarea:focus {
 }
 
 .greeting-bird-wing-shape {
-  stroke: rgba(255, 238, 200, 0.18);
+  stroke: rgba(190, 136, 72, 0.34);
   stroke-linecap: round;
   stroke-linejoin: round;
   stroke-width: 1.6;
 }
 
 .greeting-bird-wing-shape.wing-back-main {
-  fill: #081723;
-  opacity: 0.92;
+  fill: rgba(238, 224, 195, 0.94);
+  opacity: 0.96;
 }
 
 .greeting-bird-wing-shape.wing-front-main {
-  fill: #102634;
+  fill: rgba(255, 248, 234, 0.98);
 }
 
 .greeting-bird-wing-mark {
   fill: none;
-  stroke: rgba(255, 226, 169, 0.28);
+  stroke: rgba(216, 166, 92, 0.42);
   stroke-linecap: round;
   stroke-width: 3.1;
   opacity: 0.84;
 }
 
 .greeting-bird-body-shape {
-  fill: #0c2130;
-  stroke: rgba(255, 238, 200, 0.18);
+  fill: rgba(255, 249, 237, 0.96);
+  stroke: rgba(184, 129, 67, 0.34);
   stroke-linecap: round;
   stroke-linejoin: round;
   stroke-width: 1.6;
 }
 
 .greeting-bird-belly-shape {
-  fill: rgba(218, 168, 92, 0.22);
+  fill: rgba(251, 236, 210, 0.82);
 }
 
 .greeting-bird-neck-shine {
-  fill: rgba(255, 240, 209, 0.16);
+  fill: rgba(255, 255, 255, 0.62);
 }
 
 .greeting-bird-head-shape {
-  fill: #142c38;
-  stroke: rgba(255, 239, 206, 0.2);
+  fill: rgba(247, 239, 224, 0.98);
+  stroke: rgba(190, 138, 74, 0.28);
   stroke-width: 1.4;
 }
 
 .greeting-bird-eye {
-  fill: rgba(255, 245, 229, 0.74);
+  fill: rgba(38, 63, 65, 0.74);
 }
 
 .greeting-bird-beak-shape {
-  fill: #d69a46;
-  stroke: rgba(255, 236, 204, 0.22);
+  fill: #dfac57;
+  stroke: rgba(255, 245, 220, 0.38);
   stroke-width: 1.2;
 }
 
 .greeting-bird-tail-shape {
-  fill: #0a1a25;
-  stroke: rgba(255, 234, 188, 0.16);
+  fill: rgba(233, 216, 183, 0.94);
+  stroke: rgba(182, 128, 67, 0.24);
   stroke-width: 1.4;
 }
 
@@ -1961,7 +2293,8 @@ textarea:focus {
 }
 
 .greeting-bird-tail-shape.tail-lower {
-  opacity: 0.84;
+  opacity: 0.9;
+  fill: rgba(215, 190, 148, 0.92);
 }
 
 .greeting-bird-escort {
@@ -3141,6 +3474,79 @@ textarea:focus {
   }
 }
 
+@keyframes fountainBurstLaunch {
+  0%,
+  100% {
+    opacity: 0;
+    transform: translate3d(0, 0, 0) scale(0.2) rotate(var(--burst-start-rotate));
+  }
+  4% {
+    opacity: 0.22;
+  }
+  12% {
+    opacity: 1;
+  }
+  26% {
+    opacity: 0.96;
+    transform: translate3d(calc(var(--burst-mid-x) * var(--burst-direction)), var(--burst-mid-y), 0) scale(calc(var(--burst-scale) * 0.94)) rotate(var(--burst-rotate));
+  }
+  40% {
+    opacity: 0;
+    transform: translate3d(calc((var(--burst-x) + var(--burst-drift)) * var(--burst-direction)), calc(var(--burst-y) + 44px), 0) scale(calc(var(--burst-scale) * 0.86)) rotate(calc(var(--burst-rotate) + 18deg));
+  }
+}
+
+@keyframes fountainGlitterDrift {
+  0%,
+  100% {
+    opacity: 0.22;
+    transform: translate3d(0, 12px, 0) scale(0.82);
+  }
+  50% {
+    opacity: 0.78;
+    transform: translate3d(var(--fountain-haze-drift, 12px), -18px, 0) scale(1.08);
+  }
+}
+
+@keyframes fountainSparkleTwinkle {
+  0%,
+  100% {
+    opacity: 0.34;
+    filter: brightness(0.88);
+  }
+  42% {
+    opacity: 1;
+    filter: brightness(1.26);
+  }
+  72% {
+    opacity: 0.58;
+    filter: brightness(1.02);
+  }
+}
+
+@keyframes fountainConfettiArc {
+  0%,
+  100% {
+    opacity: 0;
+    transform: translate3d(0, 0, 0) scale(0.24) rotate(var(--burst-start-rotate));
+  }
+  8% {
+    opacity: 0.94;
+  }
+  22% {
+    opacity: 0.98;
+    transform: translate3d(calc(var(--burst-mid-x) * var(--burst-direction)), calc(var(--burst-mid-y) - 12px), 0) scale(var(--burst-scale)) rotate(calc(var(--burst-rotate) - 16deg));
+  }
+  36% {
+    opacity: 0.72;
+    transform: translate3d(calc(var(--burst-x) * var(--burst-direction)), calc(var(--burst-y) + 18px), 0) scale(calc(var(--burst-scale) * 0.98)) rotate(calc(var(--burst-rotate) + 28deg));
+  }
+  50% {
+    opacity: 0;
+    transform: translate3d(calc((var(--burst-x) + var(--burst-drift) + 18px) * var(--burst-direction)), calc(var(--burst-y) + 92px), 0) scale(calc(var(--burst-scale) * 0.76)) rotate(calc(var(--burst-rotate) + 96deg));
+  }
+}
+
 @keyframes birdBodyLift {
   0%,
   100% {
@@ -3390,6 +3796,48 @@ textarea:focus {
 
   .greeting-silhouette {
     height: 204px;
+  }
+
+  .greeting-corner-burst {
+    bottom: 8px;
+    width: 220px;
+    height: 300px;
+  }
+
+  .greeting-corner-burst-left {
+    left: -40px;
+  }
+
+  .greeting-corner-burst-right {
+    right: -40px;
+  }
+
+  .greeting-corner-anchor-glow {
+    width: 136px;
+    height: 100px;
+  }
+
+  .greeting-corner-anchor {
+    width: 68px;
+    height: 88px;
+  }
+
+  .greeting-corner-burst-haze {
+    bottom: 42px;
+    width: 132px;
+    height: 104px;
+  }
+
+  .greeting-fountain-particle {
+    bottom: 60px;
+  }
+
+  .greeting-corner-burst-left .greeting-fountain-particle {
+    left: 44px;
+  }
+
+  .greeting-corner-burst-right .greeting-fountain-particle {
+    right: 44px;
   }
 
   .greeting-bird-flight {
@@ -3675,6 +4123,52 @@ textarea:focus {
     top: 96px;
     right: 0;
     width: 148px;
+  }
+
+  .greeting-corner-burst {
+    bottom: 12px;
+    width: 168px;
+    height: 236px;
+  }
+
+  .greeting-corner-burst-left {
+    left: -34px;
+  }
+
+  .greeting-corner-burst-right {
+    right: -34px;
+  }
+
+  .greeting-corner-anchor-glow {
+    width: 112px;
+    height: 82px;
+  }
+
+  .greeting-corner-anchor {
+    width: 56px;
+    height: 72px;
+  }
+
+  .greeting-corner-burst-haze {
+    bottom: 34px;
+    width: 108px;
+    height: 84px;
+  }
+
+  .greeting-fountain-particle {
+    bottom: 50px;
+  }
+
+  .greeting-corner-burst-left .greeting-fountain-particle {
+    left: 36px;
+  }
+
+  .greeting-corner-burst-right .greeting-fountain-particle {
+    right: 36px;
+  }
+
+  .greeting-fountain-particle:nth-child(4n) {
+    opacity: 0.92;
   }
 
   .greeting-bird-flight {
