@@ -155,19 +155,8 @@ const greetingParticles = [
   { id: 10, top: "87%", left: "52%", delay: "0.5s", duration: "13.2s", size: "6px" }
 ];
 
-const greetingBirds = [
-  {
-    id: 1,
-    top: "9%",
-    left: "3%",
-    delay: "0s",
-    duration: "20.5s",
-    scale: 1.02,
-    direction: "right",
-    banner: "Eid Mubarak",
-    lang: "en",
-    ribbon: "gold"
-  },
+const greetingSparkles = [
+  { id: 1, top: "12%", left: "18%", delay: "0s", duration: "7.8s", size: "16px", tone: "gold" },
   {
     id: 2,
     top: "10%",
@@ -207,6 +196,26 @@ const greetingFireworks = [
   { id: 1, top: "16%", left: "32%", delay: "0s", duration: "8.6s", size: "160px" },
   { id: 2, top: "18%", left: "78%", delay: "2.2s", duration: "9.1s", size: "140px" },
   { id: 3, top: "24%", left: "54%", delay: "4.2s", duration: "10.4s", size: "120px" }
+];
+
+const greetingCelebrationSparkles = [
+  { id: 1, top: "12%", left: "18%", delay: "0s", duration: "7.8s", size: "16px", tone: "gold" },
+  { id: 2, top: "15%", left: "33%", delay: "0.8s", duration: "8.5s", size: "12px", tone: "ivory" },
+  { id: 3, top: "13%", left: "57%", delay: "1.7s", duration: "9.2s", size: "14px", tone: "emerald" },
+  { id: 4, top: "16%", left: "76%", delay: "2.3s", duration: "8.8s", size: "11px", tone: "gold" },
+  { id: 5, top: "24%", left: "26%", delay: "1.2s", duration: "9.4s", size: "10px", tone: "gold" },
+  { id: 6, top: "27%", left: "48%", delay: "2.6s", duration: "8.1s", size: "13px", tone: "ivory" },
+  { id: 7, top: "25%", left: "69%", delay: "0.5s", duration: "8.9s", size: "12px", tone: "emerald" },
+  { id: 8, top: "34%", left: "15%", delay: "2.1s", duration: "9.7s", size: "9px", tone: "ivory" },
+  { id: 9, top: "36%", left: "84%", delay: "1.4s", duration: "8.7s", size: "10px", tone: "gold" },
+  { id: 10, top: "45%", left: "39%", delay: "3s", duration: "9.6s", size: "8px", tone: "emerald" }
+];
+
+const greetingCelebrationFireworks = [
+  { id: 1, top: "11%", left: "18%", delay: "0s", duration: "9.4s", size: "188px", tone: "gold" },
+  { id: 2, top: "15%", left: "44%", delay: "2.2s", duration: "10.2s", size: "148px", tone: "ivory" },
+  { id: 3, top: "12%", left: "78%", delay: "4.4s", duration: "9.8s", size: "176px", tone: "emerald" },
+  { id: 4, top: "26%", left: "61%", delay: "6.1s", duration: "10.6s", size: "132px", tone: "gold" }
 ];
 
 function normalizeLanguage(value) {
@@ -417,6 +426,51 @@ function DecorativeBackground() {
   );
 }
 
+function GreetingBird({ className = "" }) {
+  return (
+    <span className={`greeting-bird ${className}`.trim()}>
+      <span className="greeting-bird-wing wing-left" />
+      <span className="greeting-bird-body" />
+      <span className="greeting-bird-wing wing-right" />
+      <span className="greeting-bird-tail" />
+      <span className="greeting-bird-head" />
+    </span>
+  );
+}
+
+function GreetingBirdGroup({ side, bannerText, accent }) {
+  return (
+    <div className={`greeting-bird-group bird-group-${side}`} aria-hidden="true">
+      <div className="greeting-bird-path">
+        <div className="greeting-bird-formation">
+          <span className="greeting-flight-aura" />
+          <span className="greeting-banner-trails">
+            <span className={`greeting-banner-trail tone-${accent} trail-main`} />
+            <span className={`greeting-banner-trail tone-${accent} trail-accent`} />
+          </span>
+          <span className={`greeting-banner-rig banner-${accent}`}>
+            <span className="greeting-banner-ornament ornament-start" />
+            <span className="greeting-banner-ornament ornament-end" />
+            <span className="greeting-banner-spark spark-one" />
+            <span className="greeting-banner-spark spark-two" />
+            <span className="greeting-banner-text" dir="rtl" lang="ar">
+              {bannerText}
+            </span>
+          </span>
+          <span className="greeting-banner-link" />
+          <GreetingBird className="greeting-bird-hero" />
+          <span className="greeting-bird-escort escort-one">
+            <GreetingBird />
+          </span>
+          <span className="greeting-bird-escort escort-two">
+            <GreetingBird />
+          </span>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 function CreatorMode({
   ui,
   isArabic,
@@ -563,11 +617,11 @@ function GreetingMode({ ui, isArabic, selectedStyle, senderName, greetingMessage
         <div className="greeting-vignette" />
         <div className="greeting-noor greeting-noor-a" />
         <div className="greeting-noor greeting-noor-b" />
-        <div className="greeting-fireworks">
-          {greetingFireworks.map((firework) => (
+        <div className="greeting-fireworks-layer">
+          {greetingCelebrationFireworks.map((firework) => (
             <span
               key={firework.id}
-              className="greeting-firework"
+              className={`greeting-firework tone-${firework.tone}`}
               style={{
                 top: firework.top,
                 left: firework.left,
@@ -621,11 +675,11 @@ function GreetingMode({ ui, isArabic, selectedStyle, senderName, greetingMessage
             />
           ))}
         </div>
-        <div className="greeting-confetti">
-          {greetingConfetti.map((piece) => (
+        <div className="greeting-sparkle-layer">
+          {greetingCelebrationSparkles.map((piece) => (
             <span
               key={piece.id}
-              className={`greeting-confetti-piece tone-${piece.tone}`}
+              className={`greeting-sparkle tone-${piece.tone}`}
               style={{
                 top: piece.top,
                 left: piece.left,
@@ -637,33 +691,9 @@ function GreetingMode({ ui, isArabic, selectedStyle, senderName, greetingMessage
             />
           ))}
         </div>
-        <div className="greeting-birds">
-          {greetingBirds.map((bird) => (
-            <span
-              key={bird.id}
-              className={`greeting-bird-flight direction-${bird.direction} ${bird.banner ? "has-banner" : "has-streamer"}`}
-              style={{
-                top: bird.top,
-                left: bird.left,
-                animationDelay: bird.delay,
-                animationDuration: bird.duration,
-                "--bird-scale": bird.scale
-              }}
-            >
-              <span className={`greeting-bird-ribbon ribbon-${bird.ribbon}${bird.banner ? "" : " ribbon-streamer"}`}>
-                {bird.banner ? (
-                  <span className="greeting-bird-banner-text" dir={bird.lang === "ar" ? "rtl" : "ltr"} lang={bird.lang}>
-                    {bird.banner}
-                  </span>
-                ) : null}
-              </span>
-              <span className="greeting-bird">
-                <span className="greeting-bird-wing wing-left" />
-                <span className="greeting-bird-body" />
-                <span className="greeting-bird-wing wing-right" />
-              </span>
-            </span>
-          ))}
+        <div className="greeting-bird-groups">
+          <GreetingBirdGroup side="left" bannerText="عيد مبارك" accent="gold" />
+          <GreetingBirdGroup side="right" bannerText="كل عام وأنتم بخير" accent="emerald" />
         </div>
         <div className="greeting-lanterns">
           <div className="greeting-lantern-rail" />
