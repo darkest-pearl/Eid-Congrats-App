@@ -198,6 +198,40 @@ const greetingFireworks = [
   { id: 3, top: "24%", left: "54%", delay: "4.2s", duration: "10.4s", size: "120px" }
 ];
 
+function createCelebrationParticle(
+  id,
+  kind,
+  tone,
+  size,
+  midX,
+  midY,
+  x,
+  y,
+  drift,
+  delay,
+  duration,
+  rotate,
+  startRotate,
+  scale
+) {
+  return {
+    id,
+    kind,
+    tone,
+    size,
+    midX,
+    midY,
+    x,
+    y,
+    drift,
+    delay,
+    duration,
+    rotate,
+    startRotate,
+    scale
+  };
+}
+
 const greetingCelebrationSparkles = [
   { id: 1, top: "12%", left: "18%", delay: "0s", duration: "7.8s", size: "16px", tone: "gold" },
   { id: 2, top: "15%", left: "33%", delay: "0.8s", duration: "8.5s", size: "12px", tone: "ivory" },
@@ -224,199 +258,50 @@ const greetingCelebrationFireworks = [
   { id: 10, top: "17%", left: "91%", delay: "11.18s", cycle: "12.8s", size: "138px", tone: "emerald", tilt: "8deg" }
 ];
 
+const greetingOpeningCelebrationParticles = [
+  createCelebrationParticle(1, "dot", "gold", "16px", "10vw", "-18vh", "24vw", "-44vh", "5vw", "0s", "4.8s", "14deg", "-18deg", "1.2"),
+  createCelebrationParticle(2, "star", "ivory", "18px", "12vw", "-24vh", "30vw", "-58vh", "6vw", "0.08s", "5.1s", "-12deg", "-24deg", "1.18"),
+  createCelebrationParticle(3, "streak", "gold", "10px", "16vw", "-22vh", "34vw", "-54vh", "5vw", "0.12s", "4.7s", "18deg", "-30deg", "1.08"),
+  createCelebrationParticle(4, "confetti", "ivory", "12px", "18vw", "-20vh", "36vw", "-46vh", "6vw", "0.16s", "5.4s", "26deg", "-16deg", "1"),
+  createCelebrationParticle(5, "ribbon", "gold", "13px", "20vw", "-26vh", "40vw", "-60vh", "7vw", "0.22s", "5.6s", "18deg", "-22deg", "1.14"),
+  createCelebrationParticle(6, "dot", "emerald", "11px", "14vw", "-16vh", "28vw", "-40vh", "5vw", "0.28s", "4.9s", "-10deg", "-20deg", "0.9"),
+  createCelebrationParticle(7, "star", "gold", "14px", "22vw", "-30vh", "46vw", "-68vh", "7vw", "0.34s", "5.8s", "12deg", "-34deg", "1.22"),
+  createCelebrationParticle(8, "streak", "ivory", "9px", "24vw", "-28vh", "50vw", "-63vh", "8vw", "0.4s", "5.1s", "-16deg", "-28deg", "1.04"),
+  createCelebrationParticle(9, "confetti", "gold", "11px", "26vw", "-24vh", "54vw", "-52vh", "9vw", "0.46s", "5.5s", "30deg", "-18deg", "1.08"),
+  createCelebrationParticle(10, "dot", "ivory", "12px", "17vw", "-19vh", "38vw", "-48vh", "6vw", "0.52s", "4.9s", "-4deg", "-20deg", "0.96"),
+  createCelebrationParticle(11, "ribbon", "gold", "12px", "28vw", "-34vh", "58vw", "-74vh", "10vw", "0.58s", "6.1s", "20deg", "-26deg", "1.12"),
+  createCelebrationParticle(12, "star", "ivory", "13px", "30vw", "-36vh", "60vw", "-78vh", "10vw", "0.64s", "6.2s", "-18deg", "-30deg", "1.08"),
+  createCelebrationParticle(13, "dot", "gold", "15px", "19vw", "-26vh", "44vw", "-62vh", "7vw", "0.7s", "5.3s", "8deg", "-18deg", "1.16"),
+  createCelebrationParticle(14, "star", "emerald", "12px", "23vw", "-25vh", "48vw", "-56vh", "8vw", "0.78s", "5.4s", "14deg", "-24deg", "0.94"),
+  createCelebrationParticle(15, "streak", "gold", "8px", "32vw", "-32vh", "62vw", "-70vh", "11vw", "0.84s", "5.7s", "24deg", "-28deg", "1.1"),
+  createCelebrationParticle(16, "confetti", "ivory", "10px", "34vw", "-29vh", "64vw", "-60vh", "10vw", "0.92s", "5.9s", "-26deg", "-14deg", "0.98"),
+  createCelebrationParticle(17, "ribbon", "gold", "14px", "36vw", "-40vh", "68vw", "-82vh", "12vw", "1.02s", "6.3s", "34deg", "-20deg", "1.18"),
+  createCelebrationParticle(18, "dot", "ivory", "10px", "27vw", "-21vh", "52vw", "-50vh", "8vw", "1.12s", "5.1s", "6deg", "-16deg", "0.88"),
+  createCelebrationParticle(19, "star", "gold", "12px", "15vw", "-17vh", "26vw", "-36vh", "5vw", "0.18s", "4.6s", "10deg", "-20deg", "0.84"),
+  createCelebrationParticle(20, "streak", "ivory", "7px", "11vw", "-14vh", "20vw", "-32vh", "4vw", "0.26s", "4.4s", "-12deg", "-22deg", "0.88"),
+  createCelebrationParticle(21, "confetti", "gold", "9px", "21vw", "-18vh", "42vw", "-42vh", "6vw", "0.66s", "4.9s", "22deg", "-16deg", "0.92"),
+  createCelebrationParticle(22, "dot", "emerald", "8px", "24vw", "-20vh", "46vw", "-46vh", "7vw", "0.74s", "5s", "-6deg", "-18deg", "0.86"),
+  createCelebrationParticle(23, "ribbon", "ivory", "11px", "29vw", "-28vh", "56vw", "-66vh", "10vw", "0.88s", "5.8s", "28deg", "-24deg", "1.04"),
+  createCelebrationParticle(24, "star", "gold", "15px", "33vw", "-38vh", "66vw", "-84vh", "12vw", "0.96s", "6.4s", "-22deg", "-32deg", "1.24")
+];
+
 const greetingCelebrationFountainParticles = [
-  {
-    id: 1,
-    kind: "dot",
-    tone: "gold",
-    size: "10px",
-    midX: "30px",
-    midY: "-82px",
-    x: "82px",
-    y: "-194px",
-    drift: "14px",
-    delay: "0.18s",
-    duration: "12.6s",
-    rotate: "14deg",
-    startRotate: "-24deg",
-    scale: "0.94"
-  },
-  {
-    id: 2,
-    kind: "star",
-    tone: "ivory",
-    size: "14px",
-    midX: "44px",
-    midY: "-118px",
-    x: "104px",
-    y: "-266px",
-    drift: "20px",
-    delay: "0.48s",
-    duration: "12.6s",
-    rotate: "-12deg",
-    startRotate: "-30deg",
-    scale: "1.12"
-  },
-  {
-    id: 3,
-    kind: "streak",
-    tone: "gold",
-    size: "7px",
-    midX: "52px",
-    midY: "-104px",
-    x: "124px",
-    y: "-234px",
-    drift: "24px",
-    delay: "0.78s",
-    duration: "12.6s",
-    rotate: "18deg",
-    startRotate: "-32deg",
-    scale: "1.06"
-  },
-  {
-    id: 4,
-    kind: "confetti",
-    tone: "emerald",
-    size: "9px",
-    midX: "68px",
-    midY: "-92px",
-    x: "158px",
-    y: "-218px",
-    drift: "30px",
-    delay: "1.08s",
-    duration: "12.6s",
-    rotate: "24deg",
-    startRotate: "-18deg",
-    scale: "1"
-  },
-  {
-    id: 5,
-    kind: "dot",
-    tone: "ivory",
-    size: "8px",
-    midX: "36px",
-    midY: "-90px",
-    x: "94px",
-    y: "-212px",
-    drift: "18px",
-    delay: "4.46s",
-    duration: "12.6s",
-    rotate: "-8deg",
-    startRotate: "-22deg",
-    scale: "0.88"
-  },
-  {
-    id: 6,
-    kind: "ribbon",
-    tone: "gold",
-    size: "10px",
-    midX: "58px",
-    midY: "-126px",
-    x: "138px",
-    y: "-286px",
-    drift: "28px",
-    delay: "4.74s",
-    duration: "12.6s",
-    rotate: "12deg",
-    startRotate: "-28deg",
-    scale: "1.08"
-  },
-  {
-    id: 7,
-    kind: "star",
-    tone: "gold",
-    size: "12px",
-    midX: "70px",
-    midY: "-146px",
-    x: "168px",
-    y: "-318px",
-    drift: "34px",
-    delay: "5.02s",
-    duration: "12.6s",
-    rotate: "-20deg",
-    startRotate: "-36deg",
-    scale: "1.16"
-  },
-  {
-    id: 8,
-    kind: "confetti",
-    tone: "ivory",
-    size: "8px",
-    midX: "48px",
-    midY: "-112px",
-    x: "116px",
-    y: "-254px",
-    drift: "22px",
-    delay: "5.34s",
-    duration: "12.6s",
-    rotate: "28deg",
-    startRotate: "-16deg",
-    scale: "0.96"
-  },
-  {
-    id: 9,
-    kind: "dot",
-    tone: "gold",
-    size: "9px",
-    midX: "34px",
-    midY: "-86px",
-    x: "88px",
-    y: "-202px",
-    drift: "16px",
-    delay: "8.84s",
-    duration: "12.6s",
-    rotate: "10deg",
-    startRotate: "-24deg",
-    scale: "0.9"
-  },
-  {
-    id: 10,
-    kind: "streak",
-    tone: "ivory",
-    size: "6px",
-    midX: "62px",
-    midY: "-118px",
-    x: "146px",
-    y: "-274px",
-    drift: "24px",
-    delay: "9.1s",
-    duration: "12.6s",
-    rotate: "-18deg",
-    startRotate: "-30deg",
-    scale: "1"
-  },
-  {
-    id: 11,
-    kind: "star",
-    tone: "emerald",
-    size: "11px",
-    midX: "74px",
-    midY: "-136px",
-    x: "174px",
-    y: "-296px",
-    drift: "32px",
-    delay: "9.42s",
-    duration: "12.6s",
-    rotate: "18deg",
-    startRotate: "-18deg",
-    scale: "1.04"
-  },
-  {
-    id: 12,
-    kind: "ribbon",
-    tone: "gold",
-    size: "9px",
-    midX: "54px",
-    midY: "-106px",
-    x: "132px",
-    y: "-236px",
-    drift: "26px",
-    delay: "9.72s",
-    duration: "12.6s",
-    rotate: "30deg",
-    startRotate: "-14deg",
-    scale: "0.96"
-  }
+  createCelebrationParticle(1, "dot", "gold", "10px", "5vw", "-10vh", "11vw", "-22vh", "2vw", "2.35s", "11.4s", "12deg", "-20deg", "0.92"),
+  createCelebrationParticle(2, "star", "ivory", "12px", "7vw", "-14vh", "15vw", "-30vh", "3vw", "2.65s", "11.6s", "-10deg", "-26deg", "1.02"),
+  createCelebrationParticle(3, "streak", "gold", "7px", "8vw", "-13vh", "18vw", "-28vh", "3vw", "2.92s", "11.2s", "16deg", "-28deg", "1"),
+  createCelebrationParticle(4, "confetti", "emerald", "8px", "10vw", "-12vh", "20vw", "-26vh", "4vw", "3.18s", "11.8s", "22deg", "-16deg", "0.96"),
+  createCelebrationParticle(5, "dot", "ivory", "9px", "6vw", "-11vh", "13vw", "-24vh", "2vw", "4.86s", "11.5s", "-8deg", "-22deg", "0.86"),
+  createCelebrationParticle(6, "ribbon", "gold", "9px", "9vw", "-15vh", "22vw", "-34vh", "4vw", "5.14s", "12s", "12deg", "-26deg", "1.04"),
+  createCelebrationParticle(7, "star", "gold", "11px", "11vw", "-18vh", "25vw", "-38vh", "5vw", "5.42s", "12.2s", "-18deg", "-32deg", "1.12"),
+  createCelebrationParticle(8, "confetti", "ivory", "8px", "8vw", "-14vh", "18vw", "-30vh", "3vw", "5.72s", "11.7s", "26deg", "-14deg", "0.94"),
+  createCelebrationParticle(9, "dot", "gold", "10px", "5vw", "-10vh", "12vw", "-22vh", "2vw", "8.96s", "11.4s", "10deg", "-20deg", "0.9"),
+  createCelebrationParticle(10, "streak", "ivory", "6px", "9vw", "-15vh", "20vw", "-32vh", "4vw", "9.26s", "11.6s", "-18deg", "-28deg", "0.98"),
+  createCelebrationParticle(11, "star", "emerald", "10px", "12vw", "-18vh", "24vw", "-34vh", "5vw", "9.52s", "12s", "14deg", "-18deg", "0.98"),
+  createCelebrationParticle(12, "ribbon", "gold", "9px", "9vw", "-13vh", "19vw", "-28vh", "4vw", "9.8s", "11.8s", "24deg", "-14deg", "0.94"),
+  createCelebrationParticle(13, "dot", "ivory", "8px", "7vw", "-11vh", "14vw", "-24vh", "3vw", "11.38s", "11.2s", "-6deg", "-20deg", "0.84"),
+  createCelebrationParticle(14, "confetti", "gold", "8px", "10vw", "-15vh", "22vw", "-31vh", "4vw", "11.66s", "11.8s", "20deg", "-16deg", "0.9"),
+  createCelebrationParticle(15, "star", "ivory", "10px", "13vw", "-16vh", "26vw", "-36vh", "5vw", "11.96s", "12.4s", "-14deg", "-24deg", "1.04"),
+  createCelebrationParticle(16, "dot", "gold", "9px", "8vw", "-12vh", "17vw", "-26vh", "3vw", "12.24s", "11.6s", "8deg", "-20deg", "0.88")
 ];
 
 function normalizeLanguage(value) {
@@ -728,6 +613,58 @@ function GreetingBirdGroup({ side, bannerText, accent }) {
   );
 }
 
+function GreetingOpeningCelebration() {
+  return (
+    <div className="greeting-opening-celebration" aria-hidden="true">
+      <span className="greeting-opening-celebration-veil" />
+      <span className="greeting-opening-celebration-shimmer shimmer-left" />
+      <span className="greeting-opening-celebration-shimmer shimmer-right" />
+      <div className="greeting-opening-burst greeting-opening-burst-left">
+        {greetingOpeningCelebrationParticles.map((particle) => (
+          <span
+            key={`opening-left-${particle.id}`}
+            className={`greeting-opening-particle kind-${particle.kind} tone-${particle.tone}`}
+            style={{
+              "--burst-size": particle.size,
+              "--burst-mid-x": particle.midX,
+              "--burst-mid-y": particle.midY,
+              "--burst-x": particle.x,
+              "--burst-y": particle.y,
+              "--burst-drift": particle.drift,
+              "--burst-delay": particle.delay,
+              "--burst-duration": particle.duration,
+              "--burst-rotate": particle.rotate,
+              "--burst-start-rotate": particle.startRotate,
+              "--burst-scale": particle.scale
+            }}
+          />
+        ))}
+      </div>
+      <div className="greeting-opening-burst greeting-opening-burst-right">
+        {greetingOpeningCelebrationParticles.map((particle) => (
+          <span
+            key={`opening-right-${particle.id}`}
+            className={`greeting-opening-particle kind-${particle.kind} tone-${particle.tone}`}
+            style={{
+              "--burst-size": particle.size,
+              "--burst-mid-x": particle.midX,
+              "--burst-mid-y": particle.midY,
+              "--burst-x": particle.x,
+              "--burst-y": particle.y,
+              "--burst-drift": particle.drift,
+              "--burst-delay": particle.delay,
+              "--burst-duration": particle.duration,
+              "--burst-rotate": particle.rotate,
+              "--burst-start-rotate": particle.startRotate,
+              "--burst-scale": particle.scale
+            }}
+          />
+        ))}
+      </div>
+    </div>
+  );
+}
+
 function GreetingCelebrationFountain({ side }) {
   return (
     <div className={`greeting-corner-burst greeting-corner-burst-${side}`} aria-hidden="true">
@@ -984,6 +921,7 @@ function GreetingMode({ ui, isArabic, selectedStyle, senderName, greetingMessage
             />
           ))}
         </div>
+        <GreetingOpeningCelebration />
         <div className="greeting-corner-bursts" aria-hidden="true">
           <GreetingCelebrationFountain side="left" />
           <GreetingCelebrationFountain side="right" />

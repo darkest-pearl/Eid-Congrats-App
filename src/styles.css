@@ -1496,6 +1496,104 @@ textarea:focus {
   --sparkle-glow: rgba(105, 219, 184, 0.16);
 }
 
+.greeting-opening-celebration {
+  position: absolute;
+  inset: 0;
+  z-index: 6;
+  overflow: hidden;
+  pointer-events: none;
+  isolation: isolate;
+  mix-blend-mode: screen;
+  filter: saturate(116%);
+}
+
+.greeting-opening-celebration::before,
+.greeting-opening-celebration::after {
+  content: "";
+  position: absolute;
+  bottom: -18%;
+  width: min(62vw, 860px);
+  height: min(90vh, 980px);
+  border-radius: 50%;
+  opacity: 0;
+  filter: blur(18px);
+}
+
+.greeting-opening-celebration::before {
+  left: -22%;
+  background:
+    radial-gradient(circle at 34% 78%, rgba(255, 248, 232, 0.42), transparent 16%),
+    radial-gradient(circle at 36% 72%, rgba(247, 198, 101, 0.34), transparent 34%),
+    radial-gradient(circle at 52% 38%, rgba(255, 238, 196, 0.16), transparent 54%),
+    radial-gradient(circle at 44% 56%, rgba(117, 216, 183, 0.1), transparent 48%);
+  animation: openingCelebrationBloom 4.6s cubic-bezier(0.14, 0.82, 0.2, 1) 1 both;
+}
+
+.greeting-opening-celebration::after {
+  right: -22%;
+  background:
+    radial-gradient(circle at 66% 78%, rgba(255, 249, 236, 0.4), transparent 16%),
+    radial-gradient(circle at 64% 72%, rgba(247, 198, 101, 0.28), transparent 34%),
+    radial-gradient(circle at 46% 40%, rgba(255, 236, 188, 0.16), transparent 54%),
+    radial-gradient(circle at 56% 58%, rgba(117, 216, 183, 0.12), transparent 48%);
+  animation: openingCelebrationBloom 4.8s cubic-bezier(0.14, 0.82, 0.2, 1) 0.14s 1 both;
+}
+
+.greeting-opening-celebration-veil,
+.greeting-opening-celebration-shimmer {
+  position: absolute;
+  display: block;
+}
+
+.greeting-opening-celebration-veil {
+  inset: 8% 5% 14%;
+  border-radius: 50%;
+  background:
+    radial-gradient(circle at 50% 42%, rgba(255, 248, 229, 0.24), transparent 24%),
+    radial-gradient(circle at 24% 72%, rgba(247, 198, 101, 0.18), transparent 26%),
+    radial-gradient(circle at 76% 70%, rgba(119, 221, 186, 0.14), transparent 24%),
+    radial-gradient(circle at 50% 70%, rgba(255, 246, 217, 0.12), transparent 42%);
+  filter: blur(30px);
+  opacity: 0;
+  animation: openingCelebrationVeil 5.4s ease-out 1 both;
+}
+
+.greeting-opening-celebration-shimmer {
+  bottom: 14%;
+  width: min(44vw, 560px);
+  height: clamp(160px, 24vh, 320px);
+  border-radius: 50%;
+  opacity: 0;
+  background:
+    radial-gradient(circle at 32% 48%, rgba(255, 248, 229, 0.18), transparent 34%),
+    linear-gradient(90deg, transparent 0, rgba(255, 243, 212, 0.08) 24%, rgba(247, 198, 101, 0.24) 52%, transparent 88%);
+  filter: blur(16px);
+  animation: openingCelebrationSweep 4.8s cubic-bezier(0.12, 0.78, 0.2, 1) 1 both;
+}
+
+.greeting-opening-celebration-shimmer.shimmer-left {
+  left: -5%;
+  transform: rotate(-20deg);
+}
+
+.greeting-opening-celebration-shimmer.shimmer-right {
+  right: -5%;
+  transform: rotate(20deg) scaleX(-1);
+  animation-delay: 0.22s;
+}
+
+.greeting-opening-burst {
+  --burst-direction: 1;
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  overflow: visible;
+}
+
+.greeting-opening-burst-right {
+  --burst-direction: -1;
+}
+
 .greeting-corner-bursts {
   position: absolute;
   inset: 0;
@@ -1503,30 +1601,31 @@ textarea:focus {
   overflow: hidden;
   pointer-events: none;
   isolation: isolate;
+  animation: ongoingCornerBurstsReveal 5.2s ease-out both;
 }
 
 .greeting-corner-burst {
   --burst-direction: 1;
-  --fountain-haze-drift: 18px;
-  --anchor-glow: rgba(247, 198, 101, 0.2);
-  --anchor-emerald: rgba(117, 216, 183, 0.2);
+  --fountain-haze-drift: 26px;
+  --anchor-glow: rgba(247, 198, 101, 0.24);
+  --anchor-emerald: rgba(117, 216, 183, 0.22);
   position: absolute;
-  bottom: -1%;
-  width: clamp(210px, 24vw, 330px);
-  height: clamp(280px, 42vh, 470px);
+  bottom: -2%;
+  width: clamp(250px, 30vw, 420px);
+  height: clamp(360px, 58vh, 620px);
   overflow: visible;
 }
 
 .greeting-corner-burst-left {
-  left: -1.2%;
+  left: -2.2%;
 }
 
 .greeting-corner-burst-right {
-  right: -1.2%;
+  right: -2.2%;
   --burst-direction: -1;
-  --fountain-haze-drift: -18px;
-  --anchor-glow: rgba(117, 216, 183, 0.16);
-  --anchor-emerald: rgba(247, 198, 101, 0.14);
+  --fountain-haze-drift: -26px;
+  --anchor-glow: rgba(117, 216, 183, 0.18);
+  --anchor-emerald: rgba(247, 198, 101, 0.18);
 }
 
 .greeting-corner-anchor-glow,
@@ -1539,51 +1638,51 @@ textarea:focus {
 
 .greeting-corner-anchor-glow {
   z-index: 0;
-  bottom: 26px;
-  width: clamp(128px, 16vw, 210px);
-  height: clamp(94px, 13vw, 150px);
+  bottom: 30px;
+  width: clamp(152px, 19vw, 248px);
+  height: clamp(108px, 15vw, 172px);
   border-radius: 50%;
   background:
-    radial-gradient(circle at 50% 72%, rgba(247, 198, 101, 0.3), transparent 54%),
-    radial-gradient(circle at 48% 42%, rgba(255, 249, 237, 0.2), transparent 46%),
+    radial-gradient(circle at 50% 72%, rgba(247, 198, 101, 0.36), transparent 54%),
+    radial-gradient(circle at 48% 42%, rgba(255, 249, 237, 0.22), transparent 46%),
     radial-gradient(circle at 62% 56%, var(--anchor-emerald), transparent 42%);
-  filter: blur(16px);
-  opacity: 0.86;
-  animation: fountainGlitterDrift 8.2s ease-in-out infinite;
+  filter: blur(18px);
+  opacity: 0.92;
+  animation: fountainGlitterDrift 7.2s ease-in-out infinite;
 }
 
 .greeting-corner-burst-left .greeting-corner-anchor-glow {
-  left: -4px;
+  left: 4px;
 }
 
 .greeting-corner-burst-right .greeting-corner-anchor-glow {
-  right: -4px;
+  right: 4px;
 }
 
 .greeting-corner-anchor {
   z-index: 2;
-  bottom: 2px;
-  width: clamp(70px, 8vw, 96px);
-  height: clamp(86px, 10vw, 122px);
+  bottom: 4px;
+  width: clamp(74px, 8.8vw, 104px);
+  height: clamp(92px, 11vw, 134px);
   border-radius: 28px 28px 18px 18px;
-  border: 1px solid rgba(255, 239, 204, 0.26);
+  border: 1px solid rgba(255, 239, 204, 0.28);
   clip-path: polygon(14% 0, 86% 0, 100% 14%, 100% 100%, 0 100%, 0 14%);
   background:
-    linear-gradient(180deg, rgba(255, 251, 239, 0.92), rgba(242, 204, 121, 0.76) 24%, rgba(141, 88, 32, 0.96) 64%, rgba(74, 45, 17, 0.98) 100%);
+    linear-gradient(180deg, rgba(255, 251, 239, 0.94), rgba(242, 204, 121, 0.82) 24%, rgba(141, 88, 32, 0.96) 64%, rgba(74, 45, 17, 0.98) 100%);
   box-shadow:
-    0 18px 26px rgba(2, 8, 14, 0.28),
-    inset 0 1px 0 rgba(255, 255, 255, 0.4),
+    0 18px 26px rgba(2, 8, 14, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.42),
     inset 0 -8px 14px rgba(79, 43, 17, 0.34),
-    0 0 24px var(--anchor-glow);
+    0 0 28px var(--anchor-glow);
 }
 
 .greeting-corner-burst-left .greeting-corner-anchor {
-  left: 18px;
+  left: 22px;
   transform: rotate(-12deg);
 }
 
 .greeting-corner-burst-right .greeting-corner-anchor {
-  right: 18px;
+  right: 22px;
   transform: rotate(12deg);
 }
 
@@ -1609,41 +1708,42 @@ textarea:focus {
   border-radius: 14px;
   background:
     linear-gradient(180deg, transparent, rgba(255, 255, 255, 0.18) 28%, transparent 64%),
-    radial-gradient(circle at 50% 32%, rgba(255, 249, 236, 0.88) 0 10%, transparent 18%),
-    radial-gradient(circle at 50% 72%, rgba(96, 201, 168, 0.26) 0 16%, transparent 26%);
-  opacity: 0.9;
+    radial-gradient(circle at 50% 32%, rgba(255, 249, 236, 0.9) 0 10%, transparent 18%),
+    radial-gradient(circle at 50% 72%, rgba(96, 201, 168, 0.28) 0 16%, transparent 26%);
+  opacity: 0.92;
 }
 
 .greeting-corner-burst-haze {
   z-index: 1;
-  bottom: 48px;
-  width: clamp(118px, 17vw, 220px);
-  height: clamp(98px, 14vw, 168px);
+  bottom: 56px;
+  width: clamp(150px, 20vw, 260px);
+  height: clamp(116px, 16vw, 190px);
   border-radius: 50%;
   background:
-    radial-gradient(circle at 36% 72%, rgba(255, 250, 241, 0.26), transparent 34%),
-    radial-gradient(circle at 50% 50%, rgba(247, 198, 101, 0.18), transparent 42%),
-    radial-gradient(circle at 68% 40%, rgba(124, 220, 188, 0.14), transparent 40%);
-  filter: blur(10px);
-  opacity: 0.72;
-  animation: fountainGlitterDrift 7.4s ease-in-out infinite reverse;
+    radial-gradient(circle at 36% 72%, rgba(255, 250, 241, 0.3), transparent 34%),
+    radial-gradient(circle at 50% 50%, rgba(247, 198, 101, 0.24), transparent 42%),
+    radial-gradient(circle at 68% 40%, rgba(124, 220, 188, 0.18), transparent 40%);
+  filter: blur(12px);
+  opacity: 0.82;
+  animation: fountainGlitterDrift 6.8s ease-in-out infinite reverse;
 }
 
 .greeting-corner-burst-left .greeting-corner-burst-haze {
-  left: 10px;
+  left: 12px;
 }
 
 .greeting-corner-burst-right .greeting-corner-burst-haze {
-  right: 10px;
+  right: 12px;
 }
 
 .greeting-corner-burst-stream {
   inset: 0;
   z-index: 3;
   overflow: visible;
-  filter: saturate(108%);
+  filter: saturate(112%) brightness(1.04);
 }
 
+.greeting-opening-particle,
 .greeting-fountain-particle {
   --burst-size: 10px;
   --burst-mid-x: 40px;
@@ -1661,54 +1761,76 @@ textarea:focus {
   --particle-glow: rgba(247, 198, 101, 0.28);
   --particle-haze: rgba(255, 245, 221, 0.18);
   position: absolute;
-  bottom: 70px;
   width: var(--burst-size);
   height: var(--burst-size);
   opacity: 0;
   transform-origin: center;
   will-change: transform, opacity;
   mix-blend-mode: screen;
+}
+
+.greeting-opening-particle {
+  bottom: clamp(72px, 10vh, 118px);
+  animation: openingBurstLaunch var(--burst-duration) cubic-bezier(0.16, 0.82, 0.22, 1) 1 both;
+  animation-delay: var(--burst-delay);
+}
+
+.greeting-opening-burst-left .greeting-opening-particle {
+  left: clamp(50px, 6vw, 86px);
+}
+
+.greeting-opening-burst-right .greeting-opening-particle {
+  right: clamp(50px, 6vw, 86px);
+}
+
+.greeting-fountain-particle {
+  bottom: 78px;
   animation: fountainBurstLaunch var(--burst-duration) cubic-bezier(0.18, 0.74, 0.24, 1) infinite;
   animation-delay: var(--burst-delay);
 }
 
 .greeting-corner-burst-left .greeting-fountain-particle {
-  left: 52px;
+  left: clamp(54px, 6vw, 92px);
 }
 
 .greeting-corner-burst-right .greeting-fountain-particle {
-  right: 52px;
+  right: clamp(54px, 6vw, 92px);
 }
 
+.greeting-opening-particle.tone-gold,
 .greeting-fountain-particle.tone-gold {
-  --particle-core: rgba(255, 236, 185, 0.96);
-  --particle-edge: rgba(245, 191, 86, 0.92);
-  --particle-glow: rgba(247, 198, 101, 0.28);
-  --particle-haze: rgba(255, 240, 205, 0.18);
+  --particle-core: rgba(255, 236, 185, 0.98);
+  --particle-edge: rgba(245, 191, 86, 0.94);
+  --particle-glow: rgba(247, 198, 101, 0.32);
+  --particle-haze: rgba(255, 240, 205, 0.2);
 }
 
+.greeting-opening-particle.tone-ivory,
 .greeting-fountain-particle.tone-ivory {
   --particle-core: rgba(255, 249, 239, 0.98);
-  --particle-edge: rgba(248, 229, 190, 0.88);
-  --particle-glow: rgba(255, 244, 220, 0.24);
-  --particle-haze: rgba(255, 249, 236, 0.18);
+  --particle-edge: rgba(248, 229, 190, 0.9);
+  --particle-glow: rgba(255, 244, 220, 0.28);
+  --particle-haze: rgba(255, 249, 236, 0.2);
 }
 
+.greeting-opening-particle.tone-emerald,
 .greeting-fountain-particle.tone-emerald {
   --particle-core: rgba(201, 255, 235, 0.9);
   --particle-edge: rgba(105, 211, 177, 0.84);
-  --particle-glow: rgba(105, 219, 184, 0.22);
-  --particle-haze: rgba(166, 242, 214, 0.16);
+  --particle-glow: rgba(105, 219, 184, 0.24);
+  --particle-haze: rgba(166, 242, 214, 0.18);
 }
 
+.greeting-opening-particle.kind-dot,
 .greeting-fountain-particle.kind-dot {
   border-radius: 50%;
   background: radial-gradient(circle at 35% 35%, rgba(255, 255, 255, 0.98), var(--particle-core) 42%, rgba(255, 255, 255, 0) 74%);
   box-shadow:
-    0 0 12px var(--particle-glow),
-    0 0 26px rgba(255, 248, 232, 0.12);
+    0 0 14px var(--particle-glow),
+    0 0 32px rgba(255, 248, 232, 0.12);
 }
 
+.greeting-opening-particle.kind-dot::before,
 .greeting-fountain-particle.kind-dot::before {
   content: "";
   position: absolute;
@@ -1717,6 +1839,7 @@ textarea:focus {
   background: radial-gradient(circle at 34% 34%, rgba(255, 255, 255, 0.96), transparent 72%);
 }
 
+.greeting-opening-particle.kind-dot::after,
 .greeting-fountain-particle.kind-dot::after {
   content: "";
   position: absolute;
@@ -1727,12 +1850,15 @@ textarea:focus {
   animation: fountainGlitterDrift 3.2s ease-in-out infinite;
 }
 
+.greeting-opening-particle.kind-star,
 .greeting-fountain-particle.kind-star {
   border-radius: 50%;
   background: radial-gradient(circle, var(--particle-core) 0 28%, transparent 29%);
   filter: drop-shadow(0 0 10px var(--particle-glow));
 }
 
+.greeting-opening-particle.kind-star::before,
+.greeting-opening-particle.kind-star::after,
 .greeting-fountain-particle.kind-star::before,
 .greeting-fountain-particle.kind-star::after {
   content: "";
@@ -1751,15 +1877,18 @@ textarea:focus {
   animation: fountainSparkleTwinkle 1.9s ease-in-out infinite;
 }
 
+.greeting-opening-particle.kind-star::before,
 .greeting-fountain-particle.kind-star::before {
   transform: scaleY(0.16);
 }
 
+.greeting-opening-particle.kind-star::after,
 .greeting-fountain-particle.kind-star::after {
   transform: rotate(90deg) scaleY(0.14);
   animation-delay: 0.4s;
 }
 
+.greeting-opening-particle.kind-streak,
 .greeting-fountain-particle.kind-streak {
   width: max(2px, calc(var(--burst-size) * 0.34));
   height: calc(var(--burst-size) * 3.8);
@@ -1768,6 +1897,7 @@ textarea:focus {
   box-shadow: 0 0 12px var(--particle-glow);
 }
 
+.greeting-opening-particle.kind-streak::after,
 .greeting-fountain-particle.kind-streak::after {
   content: "";
   position: absolute;
@@ -1781,11 +1911,17 @@ textarea:focus {
   box-shadow: 0 0 12px var(--particle-glow);
 }
 
+.greeting-opening-particle.kind-ribbon,
+.greeting-opening-particle.kind-confetti {
+  animation-name: openingConfettiArc;
+}
+
 .greeting-fountain-particle.kind-ribbon,
 .greeting-fountain-particle.kind-confetti {
   animation-name: fountainConfettiArc;
 }
 
+.greeting-opening-particle.kind-ribbon,
 .greeting-fountain-particle.kind-ribbon {
   width: calc(var(--burst-size) * 2.8);
   height: calc(var(--burst-size) * 0.72);
@@ -1794,6 +1930,7 @@ textarea:focus {
   box-shadow: 0 0 14px var(--particle-glow);
 }
 
+.greeting-opening-particle.kind-ribbon::before,
 .greeting-fountain-particle.kind-ribbon::before {
   content: "";
   position: absolute;
@@ -1803,6 +1940,7 @@ textarea:focus {
   transform: skewX(-22deg);
 }
 
+.greeting-opening-particle.kind-confetti,
 .greeting-fountain-particle.kind-confetti {
   width: calc(var(--burst-size) * 1.3);
   height: calc(var(--burst-size) * 1.8);
@@ -1812,6 +1950,7 @@ textarea:focus {
   box-shadow: 0 0 12px var(--particle-glow);
 }
 
+.greeting-opening-particle.kind-confetti::before,
 .greeting-fountain-particle.kind-confetti::before {
   content: "";
   position: absolute;
@@ -1820,6 +1959,7 @@ textarea:focus {
   background: linear-gradient(180deg, rgba(255, 255, 255, 0.48), transparent 76%);
 }
 
+.greeting-opening-particle.kind-confetti:nth-child(4n),
 .greeting-fountain-particle.kind-confetti:nth-child(4n) {
   clip-path: polygon(50% 0, 100% 40%, 70% 100%, 0 60%, 18% 14%);
 }
@@ -3474,37 +3614,135 @@ textarea:focus {
   }
 }
 
+@keyframes openingCelebrationBloom {
+  0% {
+    opacity: 0;
+    transform: translate3d(0, 140px, 0) scale(0.34);
+  }
+  18% {
+    opacity: 0.92;
+  }
+  44% {
+    opacity: 0.78;
+    transform: translate3d(0, -140px, 0) scale(1.04);
+  }
+  100% {
+    opacity: 0;
+    transform: translate3d(0, -260px, 0) scale(1.22);
+  }
+}
+
+@keyframes openingCelebrationVeil {
+  0% {
+    opacity: 0;
+    transform: scale(0.72);
+  }
+  20% {
+    opacity: 0.36;
+  }
+  54% {
+    opacity: 0.42;
+    transform: scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(1.16);
+  }
+}
+
+@keyframes openingCelebrationSweep {
+  0%,
+  100% {
+    opacity: 0;
+    filter: blur(18px);
+  }
+  18% {
+    opacity: 0.34;
+  }
+  42% {
+    opacity: 0.56;
+    filter: blur(12px);
+  }
+  72% {
+    opacity: 0.18;
+  }
+}
+
+@keyframes ongoingCornerBurstsReveal {
+  0% {
+    opacity: 0.18;
+  }
+  24% {
+    opacity: 0.32;
+  }
+  55% {
+    opacity: 0.9;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes openingBurstLaunch {
+  0% {
+    opacity: 0;
+    transform: translate3d(0, 0, 0) scale(0.18) rotate(var(--burst-start-rotate));
+  }
+  8% {
+    opacity: 0.32;
+  }
+  20% {
+    opacity: 1;
+    transform: translate3d(calc(var(--burst-mid-x) * var(--burst-direction)), calc(var(--burst-mid-y) * 0.72), 0) scale(calc(var(--burst-scale) * 0.92)) rotate(calc(var(--burst-rotate) - 10deg));
+  }
+  46% {
+    opacity: 0.98;
+    transform: translate3d(calc(var(--burst-x) * var(--burst-direction)), var(--burst-y), 0) scale(var(--burst-scale)) rotate(var(--burst-rotate));
+  }
+  72% {
+    opacity: 0.18;
+    transform: translate3d(calc((var(--burst-x) + var(--burst-drift)) * var(--burst-direction)), calc(var(--burst-y) - 6vh), 0) scale(calc(var(--burst-scale) * 0.9)) rotate(calc(var(--burst-rotate) + 16deg));
+  }
+  100% {
+    opacity: 0;
+    transform: translate3d(calc((var(--burst-x) + var(--burst-drift) + 2vw) * var(--burst-direction)), calc(var(--burst-y) - 14vh), 0) scale(calc(var(--burst-scale) * 0.74)) rotate(calc(var(--burst-rotate) + 20deg));
+  }
+}
+
 @keyframes fountainBurstLaunch {
   0%,
   100% {
     opacity: 0;
-    transform: translate3d(0, 0, 0) scale(0.2) rotate(var(--burst-start-rotate));
+    transform: translate3d(0, 0, 0) scale(0.18) rotate(var(--burst-start-rotate));
   }
-  4% {
-    opacity: 0.22;
+  6% {
+    opacity: 0.24;
   }
-  12% {
+  16% {
     opacity: 1;
   }
-  26% {
+  34% {
     opacity: 0.96;
-    transform: translate3d(calc(var(--burst-mid-x) * var(--burst-direction)), var(--burst-mid-y), 0) scale(calc(var(--burst-scale) * 0.94)) rotate(var(--burst-rotate));
+    transform: translate3d(calc(var(--burst-mid-x) * var(--burst-direction)), var(--burst-mid-y), 0) scale(calc(var(--burst-scale) * 0.96)) rotate(var(--burst-rotate));
   }
-  40% {
+  54% {
+    opacity: 0.12;
+    transform: translate3d(calc((var(--burst-x) + var(--burst-drift)) * var(--burst-direction)), calc(var(--burst-y) + 54px), 0) scale(calc(var(--burst-scale) * 0.84)) rotate(calc(var(--burst-rotate) + 18deg));
+  }
+  62% {
     opacity: 0;
-    transform: translate3d(calc((var(--burst-x) + var(--burst-drift)) * var(--burst-direction)), calc(var(--burst-y) + 44px), 0) scale(calc(var(--burst-scale) * 0.86)) rotate(calc(var(--burst-rotate) + 18deg));
   }
 }
 
 @keyframes fountainGlitterDrift {
   0%,
   100% {
-    opacity: 0.22;
-    transform: translate3d(0, 12px, 0) scale(0.82);
+    opacity: 0.2;
+    transform: translate3d(0, 14px, 0) scale(0.82);
   }
   50% {
-    opacity: 0.78;
-    transform: translate3d(var(--fountain-haze-drift, 12px), -18px, 0) scale(1.08);
+    opacity: 0.84;
+    transform: translate3d(var(--fountain-haze-drift, 12px), -22px, 0) scale(1.1);
   }
 }
 
@@ -3524,6 +3762,32 @@ textarea:focus {
   }
 }
 
+@keyframes openingConfettiArc {
+  0% {
+    opacity: 0;
+    transform: translate3d(0, 0, 0) scale(0.24) rotate(var(--burst-start-rotate));
+  }
+  12% {
+    opacity: 0.98;
+  }
+  34% {
+    opacity: 1;
+    transform: translate3d(calc(var(--burst-mid-x) * var(--burst-direction)), calc(var(--burst-mid-y) - 2vh), 0) scale(var(--burst-scale)) rotate(calc(var(--burst-rotate) - 18deg));
+  }
+  56% {
+    opacity: 0.8;
+    transform: translate3d(calc(var(--burst-x) * var(--burst-direction)), calc(var(--burst-y) + 1vh), 0) scale(calc(var(--burst-scale) * 1.02)) rotate(calc(var(--burst-rotate) + 26deg));
+  }
+  78% {
+    opacity: 0.16;
+    transform: translate3d(calc((var(--burst-x) + var(--burst-drift) + 2vw) * var(--burst-direction)), calc(var(--burst-y) + 10vh), 0) scale(calc(var(--burst-scale) * 0.84)) rotate(calc(var(--burst-rotate) + 94deg));
+  }
+  100% {
+    opacity: 0;
+    transform: translate3d(calc((var(--burst-x) + var(--burst-drift) + 4vw) * var(--burst-direction)), calc(var(--burst-y) + 18vh), 0) scale(calc(var(--burst-scale) * 0.7)) rotate(calc(var(--burst-rotate) + 128deg));
+  }
+}
+
 @keyframes fountainConfettiArc {
   0%,
   100% {
@@ -3533,15 +3797,15 @@ textarea:focus {
   8% {
     opacity: 0.94;
   }
-  22% {
+  24% {
     opacity: 0.98;
     transform: translate3d(calc(var(--burst-mid-x) * var(--burst-direction)), calc(var(--burst-mid-y) - 12px), 0) scale(var(--burst-scale)) rotate(calc(var(--burst-rotate) - 16deg));
   }
-  36% {
+  42% {
     opacity: 0.72;
     transform: translate3d(calc(var(--burst-x) * var(--burst-direction)), calc(var(--burst-y) + 18px), 0) scale(calc(var(--burst-scale) * 0.98)) rotate(calc(var(--burst-rotate) + 28deg));
   }
-  50% {
+  58% {
     opacity: 0;
     transform: translate3d(calc((var(--burst-x) + var(--burst-drift) + 18px) * var(--burst-direction)), calc(var(--burst-y) + 92px), 0) scale(calc(var(--burst-scale) * 0.76)) rotate(calc(var(--burst-rotate) + 96deg));
   }
@@ -3798,46 +4062,75 @@ textarea:focus {
     height: 204px;
   }
 
+  .greeting-opening-celebration::before,
+  .greeting-opening-celebration::after {
+    width: 74vw;
+    height: 76vh;
+    bottom: -12%;
+  }
+
+  .greeting-opening-celebration-veil {
+    inset: 10% 0 18%;
+  }
+
+  .greeting-opening-celebration-shimmer {
+    width: 56vw;
+    height: 18vh;
+    bottom: 18%;
+  }
+
+  .greeting-opening-particle {
+    bottom: 64px;
+  }
+
+  .greeting-opening-burst-left .greeting-opening-particle {
+    left: 42px;
+  }
+
+  .greeting-opening-burst-right .greeting-opening-particle {
+    right: 42px;
+  }
+
   .greeting-corner-burst {
-    bottom: 8px;
-    width: 220px;
-    height: 300px;
+    bottom: 6px;
+    width: 260px;
+    height: 340px;
   }
 
   .greeting-corner-burst-left {
-    left: -40px;
+    left: -48px;
   }
 
   .greeting-corner-burst-right {
-    right: -40px;
+    right: -48px;
   }
 
   .greeting-corner-anchor-glow {
-    width: 136px;
-    height: 100px;
-  }
-
-  .greeting-corner-anchor {
-    width: 68px;
-    height: 88px;
-  }
-
-  .greeting-corner-burst-haze {
-    bottom: 42px;
-    width: 132px;
+    width: 148px;
     height: 104px;
   }
 
+  .greeting-corner-anchor {
+    width: 70px;
+    height: 90px;
+  }
+
+  .greeting-corner-burst-haze {
+    bottom: 44px;
+    width: 142px;
+    height: 108px;
+  }
+
   .greeting-fountain-particle {
-    bottom: 60px;
+    bottom: 66px;
   }
 
   .greeting-corner-burst-left .greeting-fountain-particle {
-    left: 44px;
+    left: 48px;
   }
 
   .greeting-corner-burst-right .greeting-fountain-particle {
-    right: 44px;
+    right: 48px;
   }
 
   .greeting-bird-flight {
@@ -4125,46 +4418,75 @@ textarea:focus {
     width: 148px;
   }
 
+  .greeting-opening-celebration::before,
+  .greeting-opening-celebration::after {
+    width: 88vw;
+    height: 68vh;
+    bottom: -10%;
+  }
+
+  .greeting-opening-celebration-veil {
+    inset: 12% -6% 22%;
+  }
+
+  .greeting-opening-celebration-shimmer {
+    width: 68vw;
+    height: 16vh;
+    bottom: 20%;
+  }
+
+  .greeting-opening-particle {
+    bottom: 56px;
+  }
+
+  .greeting-opening-burst-left .greeting-opening-particle {
+    left: 32px;
+  }
+
+  .greeting-opening-burst-right .greeting-opening-particle {
+    right: 32px;
+  }
+
   .greeting-corner-burst {
-    bottom: 12px;
-    width: 168px;
-    height: 236px;
+    bottom: 10px;
+    width: 210px;
+    height: 290px;
   }
 
   .greeting-corner-burst-left {
-    left: -34px;
+    left: -38px;
   }
 
   .greeting-corner-burst-right {
-    right: -34px;
+    right: -38px;
   }
 
   .greeting-corner-anchor-glow {
-    width: 112px;
-    height: 82px;
+    width: 126px;
+    height: 88px;
   }
 
   .greeting-corner-anchor {
-    width: 56px;
-    height: 72px;
+    width: 60px;
+    height: 76px;
   }
 
   .greeting-corner-burst-haze {
-    bottom: 34px;
-    width: 108px;
-    height: 84px;
+    bottom: 36px;
+    width: 118px;
+    height: 88px;
   }
 
   .greeting-fountain-particle {
-    bottom: 50px;
+    bottom: 58px;
   }
 
   .greeting-corner-burst-left .greeting-fountain-particle {
-    left: 36px;
+    left: 38px;
   }
 
   .greeting-corner-burst-right .greeting-fountain-particle {
-    right: 36px;
+    right: 38px;
   }
 
   .greeting-fountain-particle:nth-child(4n) {
