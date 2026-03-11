@@ -668,8 +668,23 @@ function GreetingOpeningCelebration() {
 function GreetingCelebrationFountain({ side }) {
   return (
     <div className={`greeting-corner-burst greeting-corner-burst-${side}`} aria-hidden="true">
-      <span className="greeting-corner-anchor-glow" />
-      <span className="greeting-corner-anchor" />
+      <span className="greeting-cannon-aura" />
+      <span className="greeting-cannon-shadow" />
+      <div className="greeting-cannon-shell">
+        <span className="greeting-cannon-base" />
+        <span className="greeting-cannon-pedestal" />
+        <span className="greeting-cannon-support support-back" />
+        <span className="greeting-cannon-support support-front" />
+        <span className="greeting-cannon-barrel">
+          <span className="greeting-cannon-band band-back" />
+          <span className="greeting-cannon-band band-front" />
+          <span className="greeting-cannon-muzzle" />
+          <span className="greeting-cannon-jewel" />
+        </span>
+      </div>
+      <span className="greeting-cannon-charge-ring ring-outer" />
+      <span className="greeting-cannon-charge-ring ring-inner" />
+      <span className="greeting-cannon-muzzle-glow" />
       <span className="greeting-corner-burst-haze" />
       <div className="greeting-corner-burst-stream">
         {greetingCelebrationFountainParticles.map((particle) => (
@@ -922,10 +937,6 @@ function GreetingMode({ ui, isArabic, selectedStyle, senderName, greetingMessage
           ))}
         </div>
         <GreetingOpeningCelebration />
-        <div className="greeting-corner-bursts" aria-hidden="true">
-          <GreetingCelebrationFountain side="left" />
-          <GreetingCelebrationFountain side="right" />
-        </div>
         <div className="greeting-bird-groups">
           <GreetingBirdGroup side="left" bannerText="عيد مبارك" accent="gold" />
           <GreetingBirdGroup side="right" bannerText="كل عام وأنتم بخير" accent="emerald" />
@@ -982,6 +993,10 @@ function GreetingMode({ ui, isArabic, selectedStyle, senderName, greetingMessage
             <span className="corner corner-br" />
           </div>
           <div className="greeting-plaque-glow" aria-hidden="true" />
+          <div className="greeting-corner-bursts" aria-hidden="true">
+            <GreetingCelebrationFountain side="left" />
+            <GreetingCelebrationFountain side="right" />
+          </div>
 
           <div className="greeting-card">
             <div className="greeting-card-inner">

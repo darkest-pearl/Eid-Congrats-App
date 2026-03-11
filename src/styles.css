@@ -1596,9 +1596,12 @@ textarea:focus {
 
 .greeting-corner-bursts {
   position: absolute;
-  inset: 0;
-  z-index: 5;
-  overflow: hidden;
+  left: 0;
+  right: 0;
+  bottom: clamp(28px, 4vh, 56px);
+  height: clamp(230px, 34vh, 340px);
+  z-index: 2;
+  overflow: visible;
   pointer-events: none;
   isolation: isolate;
   animation: ongoingCornerBurstsReveal 5.2s ease-out both;
@@ -1606,139 +1609,389 @@ textarea:focus {
 
 .greeting-corner-burst {
   --burst-direction: 1;
-  --fountain-haze-drift: 26px;
-  --anchor-glow: rgba(247, 198, 101, 0.24);
-  --anchor-emerald: rgba(117, 216, 183, 0.22);
+  --fountain-haze-drift: 28px;
+  --cannon-cycle: 12s;
+  --cannon-origin-x: clamp(118px, 10vw, 142px);
+  --cannon-origin-y: clamp(126px, 18vh, 154px);
+  --cannon-aura: rgba(247, 198, 101, 0.22);
+  --cannon-aura-soft: rgba(255, 244, 218, 0.18);
+  --cannon-emerald: rgba(122, 222, 188, 0.18);
+  --cannon-shadow: rgba(3, 10, 17, 0.52);
+  --cannon-band: rgba(255, 233, 188, 0.56);
+  --cannon-barrel-transform: rotate(-26deg);
+  --cannon-barrel-origin: 18% 50%;
+  --cannon-jitter: 4px;
   position: absolute;
-  bottom: -2%;
-  width: clamp(250px, 30vw, 420px);
-  height: clamp(360px, 58vh, 620px);
+  bottom: 0;
+  width: clamp(250px, 24vw, 340px);
+  height: 100%;
   overflow: visible;
 }
 
 .greeting-corner-burst-left {
-  left: -2.2%;
+  left: clamp(0px, 1vw, 16px);
 }
 
 .greeting-corner-burst-right {
-  right: -2.2%;
+  right: clamp(0px, 1vw, 16px);
   --burst-direction: -1;
-  --fountain-haze-drift: -26px;
-  --anchor-glow: rgba(117, 216, 183, 0.18);
-  --anchor-emerald: rgba(247, 198, 101, 0.18);
+  --fountain-haze-drift: -28px;
+  --cannon-aura: rgba(255, 240, 210, 0.18);
+  --cannon-aura-soft: rgba(247, 198, 101, 0.16);
+  --cannon-emerald: rgba(122, 222, 188, 0.22);
+  --cannon-barrel-transform: scaleX(-1) rotate(-26deg);
+  --cannon-barrel-origin: 82% 50%;
+  --cannon-jitter: -4px;
 }
 
-.greeting-corner-anchor-glow,
-.greeting-corner-anchor,
+.greeting-cannon-aura,
+.greeting-cannon-shadow,
+.greeting-cannon-shell,
+.greeting-cannon-base,
+.greeting-cannon-pedestal,
+.greeting-cannon-support,
+.greeting-cannon-barrel,
+.greeting-cannon-band,
+.greeting-cannon-muzzle,
+.greeting-cannon-jewel,
+.greeting-cannon-charge-ring,
+.greeting-cannon-muzzle-glow,
 .greeting-corner-burst-haze,
 .greeting-corner-burst-stream {
   position: absolute;
   display: block;
 }
 
-.greeting-corner-anchor-glow {
+.greeting-cannon-aura {
   z-index: 0;
-  bottom: 30px;
-  width: clamp(152px, 19vw, 248px);
-  height: clamp(108px, 15vw, 172px);
+  bottom: 12px;
+  width: clamp(188px, 20vw, 262px);
+  height: clamp(126px, 15vw, 174px);
   border-radius: 50%;
   background:
-    radial-gradient(circle at 50% 72%, rgba(247, 198, 101, 0.36), transparent 54%),
-    radial-gradient(circle at 48% 42%, rgba(255, 249, 237, 0.22), transparent 46%),
-    radial-gradient(circle at 62% 56%, var(--anchor-emerald), transparent 42%);
-  filter: blur(18px);
-  opacity: 0.92;
-  animation: fountainGlitterDrift 7.2s ease-in-out infinite;
+    radial-gradient(circle at 50% 68%, var(--cannon-aura) 0 26%, transparent 62%),
+    radial-gradient(circle at 48% 38%, var(--cannon-aura-soft) 0 22%, transparent 54%),
+    radial-gradient(circle at 64% 48%, var(--cannon-emerald) 0 18%, transparent 50%);
+  filter: blur(24px);
+  opacity: 0.76;
+  animation: cannonChargeGlow var(--cannon-cycle) ease-in-out infinite;
 }
 
-.greeting-corner-burst-left .greeting-corner-anchor-glow {
-  left: 4px;
+.greeting-corner-burst-left .greeting-cannon-aura {
+  left: 8px;
 }
 
-.greeting-corner-burst-right .greeting-corner-anchor-glow {
-  right: 4px;
+.greeting-corner-burst-right .greeting-cannon-aura {
+  right: 8px;
 }
 
-.greeting-corner-anchor {
+.greeting-cannon-shadow {
+  z-index: 0;
+  bottom: -6px;
+  width: clamp(198px, 20vw, 260px);
+  height: 48px;
+  border-radius: 50%;
+  background:
+    radial-gradient(circle, rgba(0, 0, 0, 0.58), transparent 72%),
+    radial-gradient(circle at 50% 30%, rgba(247, 198, 101, 0.12), transparent 54%);
+  filter: blur(14px);
+  opacity: 0.82;
+}
+
+.greeting-corner-burst-left .greeting-cannon-shadow {
+  left: 10px;
+}
+
+.greeting-corner-burst-right .greeting-cannon-shadow {
+  right: 10px;
+}
+
+.greeting-cannon-shell {
   z-index: 2;
-  bottom: 4px;
-  width: clamp(74px, 8.8vw, 104px);
-  height: clamp(92px, 11vw, 134px);
-  border-radius: 28px 28px 18px 18px;
-  border: 1px solid rgba(255, 239, 204, 0.28);
-  clip-path: polygon(14% 0, 86% 0, 100% 14%, 100% 100%, 0 100%, 0 14%);
+  bottom: 0;
+  width: clamp(196px, 18vw, 244px);
+  height: clamp(156px, 18vh, 188px);
+  transform-origin: 50% 88%;
+  animation: cannonChargeSwell var(--cannon-cycle) cubic-bezier(0.22, 0.74, 0.24, 1) infinite;
+}
+
+.greeting-corner-burst-left .greeting-cannon-shell {
+  left: 0;
+}
+
+.greeting-corner-burst-right .greeting-cannon-shell {
+  right: 0;
+}
+
+.greeting-cannon-base {
+  z-index: 1;
+  left: 18px;
+  right: 18px;
+  bottom: 0;
+  height: 56px;
+  clip-path: polygon(8% 0, 92% 0, 100% 38%, 94% 100%, 6% 100%, 0 38%);
+  border: 1px solid rgba(255, 240, 208, 0.28);
   background:
-    linear-gradient(180deg, rgba(255, 251, 239, 0.94), rgba(242, 204, 121, 0.82) 24%, rgba(141, 88, 32, 0.96) 64%, rgba(74, 45, 17, 0.98) 100%);
+    linear-gradient(180deg, rgba(255, 251, 241, 0.94), rgba(231, 194, 122, 0.94) 34%, rgba(124, 82, 36, 0.98) 100%);
   box-shadow:
-    0 18px 26px rgba(2, 8, 14, 0.3),
-    inset 0 1px 0 rgba(255, 255, 255, 0.42),
-    inset 0 -8px 14px rgba(79, 43, 17, 0.34),
-    0 0 28px var(--anchor-glow);
+    0 18px 28px var(--cannon-shadow),
+    inset 0 1px 0 rgba(255, 255, 255, 0.5),
+    inset 0 -10px 20px rgba(86, 53, 21, 0.34);
 }
 
-.greeting-corner-burst-left .greeting-corner-anchor {
-  left: 22px;
-  transform: rotate(-12deg);
-}
-
-.greeting-corner-burst-right .greeting-corner-anchor {
-  right: 22px;
-  transform: rotate(12deg);
-}
-
-.greeting-corner-anchor::before {
+.greeting-cannon-base::before {
   content: "";
   position: absolute;
-  top: -12px;
-  left: 14px;
-  right: 14px;
-  height: 26px;
-  border-radius: 16px 16px 10px 10px;
-  border: 1px solid rgba(255, 243, 214, 0.34);
-  background: linear-gradient(180deg, rgba(255, 252, 243, 0.94), rgba(213, 163, 82, 0.92));
-  box-shadow:
-    0 10px 18px rgba(2, 8, 14, 0.18),
-    0 0 18px var(--anchor-glow);
+  inset: 8px 14px 10px;
+  clip-path: polygon(8% 0, 92% 0, 100% 36%, 94% 100%, 6% 100%, 0 36%);
+  border: 1px solid rgba(255, 241, 209, 0.24);
+  background:
+    linear-gradient(180deg, rgba(255, 243, 211, 0.22), transparent 60%),
+    repeating-linear-gradient(90deg, rgba(255, 241, 209, 0.08) 0 5px, transparent 5px 16px);
 }
 
-.greeting-corner-anchor::after {
+.greeting-cannon-base::after {
   content: "";
   position: absolute;
-  inset: 22% 16% 20%;
-  border-radius: 14px;
+  left: 50%;
+  top: 15px;
+  width: 18px;
+  height: 18px;
+  transform: translateX(-50%) rotate(45deg);
+  border: 1px solid rgba(229, 255, 244, 0.52);
+  background: linear-gradient(135deg, rgba(210, 255, 239, 0.94), rgba(85, 188, 151, 0.78));
+  box-shadow:
+    0 0 14px rgba(112, 217, 182, 0.26),
+    inset 0 1px 0 rgba(255, 255, 255, 0.5);
+}
+
+.greeting-cannon-pedestal {
+  z-index: 2;
+  left: 66px;
+  bottom: 34px;
+  width: 108px;
+  height: 54px;
+  clip-path: polygon(18% 0, 82% 0, 100% 24%, 92% 100%, 8% 100%, 0 24%);
+  border: 1px solid rgba(255, 241, 208, 0.26);
   background:
-    linear-gradient(180deg, transparent, rgba(255, 255, 255, 0.18) 28%, transparent 64%),
-    radial-gradient(circle at 50% 32%, rgba(255, 249, 236, 0.9) 0 10%, transparent 18%),
-    radial-gradient(circle at 50% 72%, rgba(96, 201, 168, 0.28) 0 16%, transparent 26%);
-  opacity: 0.92;
+    linear-gradient(180deg, rgba(255, 248, 231, 0.96), rgba(236, 196, 118, 0.9) 42%, rgba(126, 79, 34, 0.96) 100%);
+  box-shadow:
+    0 10px 18px rgba(0, 0, 0, 0.28),
+    inset 0 1px 0 rgba(255, 255, 255, 0.46);
+}
+
+.greeting-cannon-pedestal::before {
+  content: "";
+  position: absolute;
+  inset: 8px 12px 10px;
+  clip-path: inherit;
+  border: 1px solid rgba(255, 242, 211, 0.18);
+  background:
+    radial-gradient(circle at 50% 34%, rgba(255, 243, 211, 0.2), transparent 34%),
+    linear-gradient(180deg, transparent, rgba(13, 92, 71, 0.14));
+}
+
+.greeting-cannon-support {
+  z-index: 2;
+  bottom: 48px;
+  width: 26px;
+  height: 82px;
+  border-radius: 18px;
+  border: 1px solid rgba(255, 238, 198, 0.24);
+  background:
+    linear-gradient(180deg, rgba(255, 249, 236, 0.92), rgba(225, 179, 98, 0.88) 28%, rgba(93, 59, 28, 0.98) 100%);
+  box-shadow:
+    0 12px 18px rgba(0, 0, 0, 0.22),
+    inset 0 1px 0 rgba(255, 255, 255, 0.4);
+  transform-origin: bottom center;
+}
+
+.greeting-cannon-support.support-back {
+  left: 64px;
+  transform: rotate(-30deg);
+}
+
+.greeting-cannon-support.support-front {
+  right: 64px;
+  transform: rotate(24deg);
+}
+
+.greeting-cannon-barrel {
+  z-index: 3;
+  left: 70px;
+  bottom: 74px;
+  width: 130px;
+  height: 38px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 240, 206, 0.32);
+  background:
+    linear-gradient(90deg, rgba(82, 56, 29, 0.98) 0 10%, rgba(255, 248, 230, 0.96) 18%, rgba(241, 195, 104, 0.94) 56%, rgba(108, 73, 34, 0.98) 100%);
+  box-shadow:
+    0 18px 26px rgba(0, 0, 0, 0.26),
+    inset 0 2px 4px rgba(255, 255, 255, 0.42),
+    inset 0 -10px 18px rgba(94, 58, 26, 0.28),
+    0 0 24px rgba(247, 198, 101, 0.16);
+  overflow: visible;
+  transform-origin: var(--cannon-barrel-origin);
+  transform: var(--cannon-barrel-transform);
+  animation: cannonBarrelTension var(--cannon-cycle) linear infinite;
+}
+
+.greeting-cannon-barrel::before {
+  content: "";
+  position: absolute;
+  inset: 6px 14px 14px 18px;
+  border-radius: inherit;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.34), transparent 70%),
+    repeating-linear-gradient(90deg, rgba(255, 241, 209, 0.12) 0 10px, transparent 10px 22px);
+  opacity: 0.84;
+}
+
+.greeting-cannon-barrel::after {
+  content: "";
+  position: absolute;
+  inset: -6px 20px auto 28px;
+  height: 10px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, rgba(255, 244, 216, 0.68), rgba(255, 255, 255, 0.14));
+  filter: blur(1px);
+  opacity: 0.9;
+}
+
+.greeting-cannon-band {
+  top: -2px;
+  width: 16px;
+  height: 42px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 240, 208, 0.28);
+  background:
+    linear-gradient(180deg, rgba(255, 250, 236, 0.92), rgba(234, 194, 116, 0.92) 52%, rgba(127, 81, 35, 0.96) 100%);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.4),
+    0 0 10px rgba(247, 198, 101, 0.14);
+}
+
+.greeting-cannon-band.band-back {
+  left: 18px;
+}
+
+.greeting-cannon-band.band-front {
+  right: 24px;
+}
+
+.greeting-cannon-muzzle {
+  top: 3px;
+  right: -8px;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 244, 216, 0.42);
+  background:
+    radial-gradient(circle at 50% 50%, rgba(14, 10, 8, 0.94) 0 34%, rgba(113, 80, 41, 0.92) 35% 56%, rgba(255, 243, 213, 0.82) 57% 74%, rgba(170, 123, 62, 0.92) 75% 100%);
+  box-shadow:
+    inset 0 0 14px rgba(0, 0, 0, 0.42),
+    0 0 18px rgba(255, 243, 214, 0.18);
+}
+
+.greeting-cannon-jewel {
+  left: 24px;
+  top: 50%;
+  width: 18px;
+  height: 18px;
+  transform: translateY(-50%) rotate(45deg);
+  border: 1px solid rgba(229, 255, 244, 0.48);
+  background: linear-gradient(135deg, rgba(210, 255, 239, 0.96), rgba(89, 191, 154, 0.8));
+  box-shadow:
+    0 0 12px rgba(112, 217, 182, 0.24),
+    inset 0 1px 0 rgba(255, 255, 255, 0.52);
+}
+
+.greeting-cannon-charge-ring {
+  z-index: 3;
+  bottom: calc(var(--cannon-origin-y) - 31px);
+  width: 62px;
+  height: 62px;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 242, 212, 0.34);
+  background:
+    radial-gradient(circle, rgba(255, 247, 231, 0.14) 0 22%, transparent 58%);
+  opacity: 0;
+  mix-blend-mode: screen;
+  animation: cannonChargeRing var(--cannon-cycle) ease-in-out infinite;
+}
+
+.greeting-corner-burst-left .greeting-cannon-charge-ring {
+  left: calc(var(--cannon-origin-x) - 28px);
+}
+
+.greeting-corner-burst-right .greeting-cannon-charge-ring {
+  right: calc(var(--cannon-origin-x) - 28px);
+}
+
+.greeting-cannon-charge-ring.ring-inner {
+  bottom: calc(var(--cannon-origin-y) - 22px);
+  width: 44px;
+  height: 44px;
+  animation-delay: 0.12s;
+}
+
+.greeting-corner-burst-left .greeting-cannon-charge-ring.ring-inner {
+  left: calc(var(--cannon-origin-x) - 19px);
+}
+
+.greeting-corner-burst-right .greeting-cannon-charge-ring.ring-inner {
+  right: calc(var(--cannon-origin-x) - 19px);
+}
+
+.greeting-cannon-muzzle-glow {
+  z-index: 3;
+  bottom: calc(var(--cannon-origin-y) - 46px);
+  width: 92px;
+  height: 92px;
+  border-radius: 50%;
+  background:
+    radial-gradient(circle, rgba(255, 248, 232, 0.32) 0 12%, rgba(247, 198, 101, 0.2) 20%, transparent 66%),
+    radial-gradient(circle at 58% 48%, rgba(122, 222, 188, 0.14) 0 10%, transparent 44%);
+  filter: blur(8px);
+  opacity: 0.22;
+  animation: cannonMuzzleCharge var(--cannon-cycle) ease-in-out infinite;
+}
+
+.greeting-corner-burst-left .greeting-cannon-muzzle-glow {
+  left: calc(var(--cannon-origin-x) - 42px);
+}
+
+.greeting-corner-burst-right .greeting-cannon-muzzle-glow {
+  right: calc(var(--cannon-origin-x) - 42px);
 }
 
 .greeting-corner-burst-haze {
   z-index: 1;
-  bottom: 56px;
-  width: clamp(150px, 20vw, 260px);
-  height: clamp(116px, 16vw, 190px);
+  bottom: calc(var(--cannon-origin-y) - 44px);
+  width: clamp(146px, 18vw, 218px);
+  height: clamp(108px, 14vw, 156px);
   border-radius: 50%;
   background:
-    radial-gradient(circle at 36% 72%, rgba(255, 250, 241, 0.3), transparent 34%),
-    radial-gradient(circle at 50% 50%, rgba(247, 198, 101, 0.24), transparent 42%),
-    radial-gradient(circle at 68% 40%, rgba(124, 220, 188, 0.18), transparent 40%);
-  filter: blur(12px);
-  opacity: 0.82;
-  animation: fountainGlitterDrift 6.8s ease-in-out infinite reverse;
+    radial-gradient(circle at 36% 72%, rgba(255, 250, 241, 0.34), transparent 34%),
+    radial-gradient(circle at 54% 44%, rgba(247, 198, 101, 0.24), transparent 42%),
+    radial-gradient(circle at 70% 38%, rgba(124, 220, 188, 0.18), transparent 38%);
+  filter: blur(14px);
+  opacity: 0.34;
+  animation: cannonChargeMist var(--cannon-cycle) ease-in-out infinite;
 }
 
 .greeting-corner-burst-left .greeting-corner-burst-haze {
-  left: 12px;
+  left: calc(var(--cannon-origin-x) - 56px);
 }
 
 .greeting-corner-burst-right .greeting-corner-burst-haze {
-  right: 12px;
+  right: calc(var(--cannon-origin-x) - 56px);
 }
 
 .greeting-corner-burst-stream {
   inset: 0;
-  z-index: 3;
+  z-index: 4;
   overflow: visible;
   filter: saturate(112%) brightness(1.04);
 }
@@ -1784,17 +2037,17 @@ textarea:focus {
 }
 
 .greeting-fountain-particle {
-  bottom: 78px;
+  bottom: var(--cannon-origin-y);
   animation: fountainBurstLaunch var(--burst-duration) cubic-bezier(0.18, 0.74, 0.24, 1) infinite;
   animation-delay: var(--burst-delay);
 }
 
 .greeting-corner-burst-left .greeting-fountain-particle {
-  left: clamp(54px, 6vw, 92px);
+  left: var(--cannon-origin-x);
 }
 
 .greeting-corner-burst-right .greeting-fountain-particle {
-  right: clamp(54px, 6vw, 92px);
+  right: var(--cannon-origin-x);
 }
 
 .greeting-opening-particle.tone-gold,
@@ -3683,6 +3936,232 @@ textarea:focus {
   }
 }
 
+@keyframes cannonChargeSwell {
+  0%,
+  14%,
+  25%,
+  39%,
+  50%,
+  72%,
+  83%,
+  91%,
+  100% {
+    transform: translate3d(0, 0, 0) scale(1);
+    filter: brightness(1);
+  }
+  16.5%,
+  41.5%,
+  74.5%,
+  93.5% {
+    transform: translate3d(0, -4px, 0) scale(1.02);
+    filter: brightness(1.03);
+  }
+  19.5%,
+  44.5%,
+  77.5%,
+  96.5% {
+    transform: translate3d(0, -10px, 0) scale(1.065);
+    filter: brightness(1.12);
+  }
+  21.5%,
+  46.5%,
+  79.5%,
+  98.2% {
+    transform: translate3d(0, -2px, 0) scale(0.988);
+    filter: brightness(1.02);
+  }
+}
+
+@keyframes cannonChargeGlow {
+  0%,
+  14%,
+  25%,
+  39%,
+  50%,
+  72%,
+  83%,
+  91%,
+  100% {
+    opacity: 0.48;
+    transform: translate3d(0, 14px, 0) scale(0.82);
+  }
+  16.5%,
+  41.5%,
+  74.5%,
+  93.5% {
+    opacity: 0.76;
+    transform: translate3d(calc(var(--fountain-haze-drift) * 0.18), 2px, 0) scale(0.98);
+  }
+  19.5%,
+  44.5%,
+  77.5%,
+  96.5% {
+    opacity: 0.96;
+    transform: translate3d(calc(var(--fountain-haze-drift) * 0.3), -10px, 0) scale(1.16);
+  }
+  22.2%,
+  47.2%,
+  80.2%,
+  99% {
+    opacity: 0.42;
+    transform: translate3d(calc(var(--fountain-haze-drift) * 0.46), -18px, 0) scale(1.24);
+  }
+}
+
+@keyframes cannonBarrelTension {
+  0%,
+  14%,
+  25%,
+  39%,
+  50%,
+  72%,
+  83%,
+  91%,
+  100% {
+    transform: var(--cannon-barrel-transform);
+  }
+  16.5%,
+  41.5%,
+  74.5%,
+  93.5% {
+    transform: translate3d(var(--cannon-jitter), -2px, 0) var(--cannon-barrel-transform);
+  }
+  18.4%,
+  20.2%,
+  43.4%,
+  45.2%,
+  76.4%,
+  78.2%,
+  95.2%,
+  96.8% {
+    transform: translate3d(calc(var(--cannon-jitter) * -0.7), 1px, 0) var(--cannon-barrel-transform);
+  }
+  19.3%,
+  44.3%,
+  77.3%,
+  96.3% {
+    transform: translate3d(calc(var(--cannon-jitter) * 1.15), -4px, 0) var(--cannon-barrel-transform);
+  }
+  21.6%,
+  46.6%,
+  79.6%,
+  98.1% {
+    transform: translate3d(0, 0, 0) var(--cannon-barrel-transform);
+  }
+}
+
+@keyframes cannonChargeRing {
+  0%,
+  14%,
+  25%,
+  39%,
+  50%,
+  72%,
+  83%,
+  91%,
+  100% {
+    opacity: 0;
+    transform: scale(0.62);
+  }
+  16.5%,
+  41.5%,
+  74.5%,
+  93.5% {
+    opacity: 0.44;
+    transform: scale(0.9);
+  }
+  19.5%,
+  44.5%,
+  77.5%,
+  96.5% {
+    opacity: 0.88;
+    transform: scale(1.08);
+  }
+  22.2%,
+  47.2%,
+  80.2%,
+  99% {
+    opacity: 0;
+    transform: scale(1.36);
+  }
+}
+
+@keyframes cannonMuzzleCharge {
+  0%,
+  14%,
+  25%,
+  39%,
+  50%,
+  72%,
+  83%,
+  91%,
+  100% {
+    opacity: 0.18;
+    transform: scale(0.82);
+    filter: blur(8px);
+  }
+  16.5%,
+  41.5%,
+  74.5%,
+  93.5% {
+    opacity: 0.34;
+    transform: scale(0.94);
+    filter: blur(7px);
+  }
+  19.5%,
+  44.5%,
+  77.5%,
+  96.5% {
+    opacity: 0.92;
+    transform: scale(1.08);
+    filter: blur(5px);
+  }
+  22.2%,
+  47.2%,
+  80.2%,
+  99% {
+    opacity: 0.2;
+    transform: scale(1.18);
+    filter: blur(9px);
+  }
+}
+
+@keyframes cannonChargeMist {
+  0%,
+  14%,
+  25%,
+  39%,
+  50%,
+  72%,
+  83%,
+  91%,
+  100% {
+    opacity: 0.2;
+    transform: translate3d(0, 14px, 0) scale(0.78);
+  }
+  16.5%,
+  41.5%,
+  74.5%,
+  93.5% {
+    opacity: 0.48;
+    transform: translate3d(calc(var(--fountain-haze-drift) * 0.34), -6px, 0) scale(0.96);
+  }
+  19.5%,
+  44.5%,
+  77.5%,
+  96.5% {
+    opacity: 0.78;
+    transform: translate3d(calc(var(--fountain-haze-drift) * 0.72), -18px, 0) scale(1.14);
+  }
+  22.2%,
+  47.2%,
+  80.2%,
+  99% {
+    opacity: 0.16;
+    transform: translate3d(calc(var(--fountain-haze-drift) * 1.06), -32px, 0) scale(1.28);
+  }
+}
+
 @keyframes openingBurstLaunch {
   0% {
     opacity: 0;
@@ -3713,23 +4192,28 @@ textarea:focus {
   0%,
   100% {
     opacity: 0;
-    transform: translate3d(0, 0, 0) scale(0.18) rotate(var(--burst-start-rotate));
+    transform: translate3d(0, 0, 0) scale(0.14) rotate(var(--burst-start-rotate));
   }
-  6% {
-    opacity: 0.24;
+  12% {
+    opacity: 0;
   }
-  16% {
+  18% {
+    opacity: 0.34;
+    transform: translate3d(calc(var(--burst-mid-x) * 0.16 * var(--burst-direction)), calc(var(--burst-mid-y) * 0.16), 0) scale(calc(var(--burst-scale) * 0.42)) rotate(calc(var(--burst-start-rotate) + 8deg));
+  }
+  24% {
     opacity: 1;
+    transform: translate3d(calc(var(--burst-mid-x) * 0.56 * var(--burst-direction)), calc(var(--burst-mid-y) * 0.58), 0) scale(calc(var(--burst-scale) * 0.82)) rotate(calc(var(--burst-rotate) - 8deg));
   }
-  34% {
+  40% {
     opacity: 0.96;
     transform: translate3d(calc(var(--burst-mid-x) * var(--burst-direction)), var(--burst-mid-y), 0) scale(calc(var(--burst-scale) * 0.96)) rotate(var(--burst-rotate));
   }
-  54% {
+  58% {
     opacity: 0.12;
     transform: translate3d(calc((var(--burst-x) + var(--burst-drift)) * var(--burst-direction)), calc(var(--burst-y) + 54px), 0) scale(calc(var(--burst-scale) * 0.84)) rotate(calc(var(--burst-rotate) + 18deg));
   }
-  62% {
+  66% {
     opacity: 0;
   }
 }
@@ -3792,20 +4276,24 @@ textarea:focus {
   0%,
   100% {
     opacity: 0;
-    transform: translate3d(0, 0, 0) scale(0.24) rotate(var(--burst-start-rotate));
+    transform: translate3d(0, 0, 0) scale(0.18) rotate(var(--burst-start-rotate));
   }
-  8% {
-    opacity: 0.94;
+  12% {
+    opacity: 0;
   }
-  24% {
+  18% {
+    opacity: 0.3;
+    transform: translate3d(calc(var(--burst-mid-x) * 0.18 * var(--burst-direction)), calc(var(--burst-mid-y) * 0.18), 0) scale(calc(var(--burst-scale) * 0.48)) rotate(calc(var(--burst-start-rotate) + 10deg));
+  }
+  28% {
     opacity: 0.98;
-    transform: translate3d(calc(var(--burst-mid-x) * var(--burst-direction)), calc(var(--burst-mid-y) - 12px), 0) scale(var(--burst-scale)) rotate(calc(var(--burst-rotate) - 16deg));
+    transform: translate3d(calc(var(--burst-mid-x) * 0.8 * var(--burst-direction)), calc(var(--burst-mid-y) - 18px), 0) scale(calc(var(--burst-scale) * 0.94)) rotate(calc(var(--burst-rotate) - 20deg));
   }
-  42% {
+  46% {
     opacity: 0.72;
     transform: translate3d(calc(var(--burst-x) * var(--burst-direction)), calc(var(--burst-y) + 18px), 0) scale(calc(var(--burst-scale) * 0.98)) rotate(calc(var(--burst-rotate) + 28deg));
   }
-  58% {
+  62% {
     opacity: 0;
     transform: translate3d(calc((var(--burst-x) + var(--burst-drift) + 18px) * var(--burst-direction)), calc(var(--burst-y) + 92px), 0) scale(calc(var(--burst-scale) * 0.76)) rotate(calc(var(--burst-rotate) + 96deg));
   }
@@ -4092,45 +4580,110 @@ textarea:focus {
   }
 
   .greeting-corner-burst {
-    bottom: 6px;
-    width: 260px;
-    height: 340px;
+    --cannon-origin-x: 90px;
+    --cannon-origin-y: 106px;
+    width: 210px;
+    height: 230px;
   }
 
   .greeting-corner-burst-left {
-    left: -48px;
+    left: -12px;
   }
 
   .greeting-corner-burst-right {
-    right: -48px;
+    right: -12px;
   }
 
-  .greeting-corner-anchor-glow {
-    width: 148px;
-    height: 104px;
+  .greeting-corner-bursts {
+    bottom: 20px;
+    height: 230px;
   }
 
-  .greeting-corner-anchor {
-    width: 70px;
-    height: 90px;
+  .greeting-cannon-aura {
+    width: 152px;
+    height: 110px;
   }
 
-  .greeting-corner-burst-haze {
-    bottom: 44px;
-    width: 142px;
-    height: 108px;
+  .greeting-cannon-shadow {
+    width: 166px;
+    height: 40px;
   }
 
-  .greeting-fountain-particle {
-    bottom: 66px;
+  .greeting-cannon-shell {
+    width: 160px;
+    height: 132px;
   }
 
-  .greeting-corner-burst-left .greeting-fountain-particle {
+  .greeting-cannon-base {
+    left: 10px;
+    right: 10px;
+    height: 44px;
+  }
+
+  .greeting-cannon-pedestal {
+    left: 52px;
+    bottom: 28px;
+    width: 78px;
+    height: 42px;
+  }
+
+  .greeting-cannon-support {
+    bottom: 40px;
+    width: 20px;
+    height: 64px;
+  }
+
+  .greeting-cannon-support.support-back {
     left: 48px;
   }
 
-  .greeting-corner-burst-right .greeting-fountain-particle {
+  .greeting-cannon-support.support-front {
     right: 48px;
+  }
+
+  .greeting-cannon-barrel {
+    left: 54px;
+    bottom: 60px;
+    width: 96px;
+    height: 30px;
+  }
+
+  .greeting-cannon-band {
+    top: -1px;
+    width: 12px;
+    height: 32px;
+  }
+
+  .greeting-cannon-muzzle {
+    top: 2px;
+    right: -7px;
+    width: 24px;
+    height: 24px;
+  }
+
+  .greeting-cannon-jewel {
+    width: 14px;
+    height: 14px;
+  }
+
+  .greeting-cannon-charge-ring {
+    width: 48px;
+    height: 48px;
+  }
+
+  .greeting-cannon-charge-ring.ring-inner {
+    width: 34px;
+    height: 34px;
+  }
+
+  .greeting-cannon-muzzle-glow {
+    width: 68px;
+    height: 68px;
+  }
+
+  .greeting-corner-burst-haze {
+    width: 118px;
+    height: 86px;
   }
 
   .greeting-bird-flight {
@@ -4448,45 +5001,110 @@ textarea:focus {
   }
 
   .greeting-corner-burst {
-    bottom: 10px;
-    width: 210px;
-    height: 290px;
+    --cannon-origin-x: 72px;
+    --cannon-origin-y: 90px;
+    width: 168px;
+    height: 190px;
   }
 
   .greeting-corner-burst-left {
-    left: -38px;
+    left: -8px;
   }
 
   .greeting-corner-burst-right {
-    right: -38px;
+    right: -8px;
   }
 
-  .greeting-corner-anchor-glow {
+  .greeting-corner-bursts {
+    bottom: 16px;
+    height: 190px;
+  }
+
+  .greeting-cannon-aura {
     width: 126px;
-    height: 88px;
+    height: 92px;
   }
 
-  .greeting-corner-anchor {
-    width: 60px;
-    height: 76px;
+  .greeting-cannon-shadow {
+    width: 136px;
+    height: 34px;
+  }
+
+  .greeting-cannon-shell {
+    width: 132px;
+    height: 112px;
+  }
+
+  .greeting-cannon-base {
+    left: 8px;
+    right: 8px;
+    height: 38px;
+  }
+
+  .greeting-cannon-pedestal {
+    left: 42px;
+    bottom: 24px;
+    width: 64px;
+    height: 36px;
+  }
+
+  .greeting-cannon-support {
+    bottom: 34px;
+    width: 16px;
+    height: 52px;
+  }
+
+  .greeting-cannon-support.support-back {
+    left: 40px;
+  }
+
+  .greeting-cannon-support.support-front {
+    right: 40px;
+  }
+
+  .greeting-cannon-barrel {
+    left: 44px;
+    bottom: 50px;
+    width: 82px;
+    height: 24px;
+  }
+
+  .greeting-cannon-band {
+    width: 10px;
+    height: 26px;
+  }
+
+  .greeting-cannon-muzzle {
+    top: 1px;
+    right: -6px;
+    width: 20px;
+    height: 20px;
+  }
+
+  .greeting-cannon-jewel {
+    left: 18px;
+    width: 12px;
+    height: 12px;
+  }
+
+  .greeting-cannon-charge-ring {
+    width: 40px;
+    height: 40px;
+  }
+
+  .greeting-cannon-charge-ring.ring-inner {
+    width: 28px;
+    height: 28px;
+  }
+
+  .greeting-cannon-muzzle-glow {
+    width: 56px;
+    height: 56px;
   }
 
   .greeting-corner-burst-haze {
-    bottom: 36px;
-    width: 118px;
-    height: 88px;
-  }
-
-  .greeting-fountain-particle {
-    bottom: 58px;
-  }
-
-  .greeting-corner-burst-left .greeting-fountain-particle {
-    left: 38px;
-  }
-
-  .greeting-corner-burst-right .greeting-fountain-particle {
-    right: 38px;
+    width: 92px;
+    height: 68px;
   }
 
   .greeting-fountain-particle:nth-child(4n) {
