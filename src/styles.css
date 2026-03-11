@@ -1596,11 +1596,15 @@ textarea:focus {
 
 .greeting-corner-bursts {
   position: absolute;
-  left: 0;
-  right: 0;
-  bottom: clamp(28px, 4vh, 56px);
-  height: clamp(230px, 34vh, 340px);
-  z-index: 2;
+  left: 50%;
+  bottom: clamp(34px, 5vh, 62px);
+  width: min(100%, 980px);
+  height: clamp(248px, 30vh, 318px);
+  transform: translateX(-50%);
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  padding: 0 clamp(22px, 5vw, 74px);
   overflow: visible;
   pointer-events: none;
   isolation: isolate;
@@ -1611,36 +1615,35 @@ textarea:focus {
   --burst-direction: 1;
   --fountain-haze-drift: 28px;
   --cannon-cycle: 12s;
-  --cannon-origin-x: clamp(118px, 10vw, 142px);
-  --cannon-origin-y: clamp(126px, 18vh, 154px);
-  --cannon-aura: rgba(247, 198, 101, 0.22);
-  --cannon-aura-soft: rgba(255, 244, 218, 0.18);
-  --cannon-emerald: rgba(122, 222, 188, 0.18);
+  --cannon-origin-x: clamp(176px, 14vw, 192px);
+  --cannon-origin-y: clamp(130px, 15vh, 144px);
+  --cannon-aura: rgba(247, 198, 101, 0.24);
+  --cannon-aura-soft: rgba(255, 244, 218, 0.22);
+  --cannon-emerald: rgba(122, 222, 188, 0.22);
   --cannon-shadow: rgba(3, 10, 17, 0.52);
   --cannon-band: rgba(255, 233, 188, 0.56);
-  --cannon-barrel-transform: rotate(-26deg);
-  --cannon-barrel-origin: 18% 50%;
+  --cannon-barrel-transform: rotate(-24deg);
+  --cannon-barrel-origin: 16% 58%;
   --cannon-jitter: 4px;
-  position: absolute;
-  bottom: 0;
-  width: clamp(250px, 24vw, 340px);
+  position: relative;
+  width: clamp(250px, 23vw, 300px);
   height: 100%;
   overflow: visible;
+  flex: 0 0 auto;
 }
 
 .greeting-corner-burst-left {
-  left: clamp(0px, 1vw, 16px);
+  align-self: flex-end;
 }
 
 .greeting-corner-burst-right {
-  right: clamp(0px, 1vw, 16px);
   --burst-direction: -1;
   --fountain-haze-drift: -28px;
-  --cannon-aura: rgba(255, 240, 210, 0.18);
-  --cannon-aura-soft: rgba(247, 198, 101, 0.16);
+  --cannon-aura: rgba(255, 240, 210, 0.2);
+  --cannon-aura-soft: rgba(247, 198, 101, 0.18);
   --cannon-emerald: rgba(122, 222, 188, 0.22);
-  --cannon-barrel-transform: scaleX(-1) rotate(-26deg);
-  --cannon-barrel-origin: 82% 50%;
+  --cannon-barrel-transform: scaleX(-1) rotate(-24deg);
+  --cannon-barrel-origin: 84% 58%;
   --cannon-jitter: -4px;
 }
 
@@ -1648,12 +1651,17 @@ textarea:focus {
 .greeting-cannon-shadow,
 .greeting-cannon-shell,
 .greeting-cannon-base,
+.greeting-cannon-wheel,
+.greeting-cannon-axle,
 .greeting-cannon-pedestal,
+.greeting-cannon-carriage,
 .greeting-cannon-support,
 .greeting-cannon-barrel,
+.greeting-cannon-breech,
 .greeting-cannon-band,
 .greeting-cannon-muzzle,
 .greeting-cannon-jewel,
+.greeting-cannon-finial,
 .greeting-cannon-charge-ring,
 .greeting-cannon-muzzle-glow,
 .greeting-corner-burst-haze,
@@ -1664,54 +1672,54 @@ textarea:focus {
 
 .greeting-cannon-aura {
   z-index: 0;
-  bottom: 12px;
-  width: clamp(188px, 20vw, 262px);
-  height: clamp(126px, 15vw, 174px);
+  bottom: 18px;
+  width: clamp(206px, 20vw, 272px);
+  height: clamp(134px, 15vw, 182px);
   border-radius: 50%;
   background:
-    radial-gradient(circle at 50% 68%, var(--cannon-aura) 0 26%, transparent 62%),
-    radial-gradient(circle at 48% 38%, var(--cannon-aura-soft) 0 22%, transparent 54%),
-    radial-gradient(circle at 64% 48%, var(--cannon-emerald) 0 18%, transparent 50%);
-  filter: blur(24px);
-  opacity: 0.76;
+    radial-gradient(circle at 50% 68%, var(--cannon-aura) 0 28%, transparent 64%),
+    radial-gradient(circle at 48% 38%, var(--cannon-aura-soft) 0 24%, transparent 56%),
+    radial-gradient(circle at 64% 48%, var(--cannon-emerald) 0 20%, transparent 52%);
+  filter: blur(26px);
+  opacity: 0.82;
   animation: cannonChargeGlow var(--cannon-cycle) ease-in-out infinite;
 }
 
 .greeting-corner-burst-left .greeting-cannon-aura {
-  left: 8px;
+  left: 10px;
 }
 
 .greeting-corner-burst-right .greeting-cannon-aura {
-  right: 8px;
+  right: 10px;
 }
 
 .greeting-cannon-shadow {
   z-index: 0;
-  bottom: -6px;
-  width: clamp(198px, 20vw, 260px);
-  height: 48px;
+  bottom: 4px;
+  width: clamp(212px, 21vw, 276px);
+  height: 46px;
   border-radius: 50%;
   background:
-    radial-gradient(circle, rgba(0, 0, 0, 0.58), transparent 72%),
-    radial-gradient(circle at 50% 30%, rgba(247, 198, 101, 0.12), transparent 54%);
-  filter: blur(14px);
+    radial-gradient(circle, rgba(0, 0, 0, 0.58), transparent 70%),
+    radial-gradient(circle at 50% 30%, rgba(247, 198, 101, 0.12), transparent 52%);
+  filter: blur(16px);
   opacity: 0.82;
 }
 
 .greeting-corner-burst-left .greeting-cannon-shadow {
-  left: 10px;
+  left: 12px;
 }
 
 .greeting-corner-burst-right .greeting-cannon-shadow {
-  right: 10px;
+  right: 12px;
 }
 
 .greeting-cannon-shell {
   z-index: 2;
   bottom: 0;
-  width: clamp(196px, 18vw, 244px);
-  height: clamp(156px, 18vh, 188px);
-  transform-origin: 50% 88%;
+  width: clamp(224px, 19vw, 270px);
+  height: clamp(172px, 18vh, 206px);
+  transform-origin: 50% 92%;
   animation: cannonChargeSwell var(--cannon-cycle) cubic-bezier(0.22, 0.74, 0.24, 1) infinite;
 }
 
@@ -1727,23 +1735,23 @@ textarea:focus {
   z-index: 1;
   left: 18px;
   right: 18px;
-  bottom: 0;
-  height: 56px;
-  clip-path: polygon(8% 0, 92% 0, 100% 38%, 94% 100%, 6% 100%, 0 38%);
+  bottom: 10px;
+  height: 30px;
+  border-radius: 999px 999px 22px 22px;
   border: 1px solid rgba(255, 240, 208, 0.28);
   background:
-    linear-gradient(180deg, rgba(255, 251, 241, 0.94), rgba(231, 194, 122, 0.94) 34%, rgba(124, 82, 36, 0.98) 100%);
+    linear-gradient(180deg, rgba(255, 251, 241, 0.96), rgba(233, 194, 121, 0.94) 44%, rgba(121, 80, 36, 0.98) 100%);
   box-shadow:
-    0 18px 28px var(--cannon-shadow),
+    0 16px 26px var(--cannon-shadow),
     inset 0 1px 0 rgba(255, 255, 255, 0.5),
-    inset 0 -10px 20px rgba(86, 53, 21, 0.34);
+    inset 0 -8px 14px rgba(86, 53, 21, 0.32);
 }
 
 .greeting-cannon-base::before {
   content: "";
   position: absolute;
-  inset: 8px 14px 10px;
-  clip-path: polygon(8% 0, 92% 0, 100% 36%, 94% 100%, 6% 100%, 0 36%);
+  inset: 6px 16px 8px;
+  border-radius: inherit;
   border: 1px solid rgba(255, 241, 209, 0.24);
   background:
     linear-gradient(180deg, rgba(255, 243, 211, 0.22), transparent 60%),
@@ -1754,9 +1762,9 @@ textarea:focus {
   content: "";
   position: absolute;
   left: 50%;
-  top: 15px;
-  width: 18px;
-  height: 18px;
+  top: 4px;
+  width: 20px;
+  height: 20px;
   transform: translateX(-50%) rotate(45deg);
   border: 1px solid rgba(229, 255, 244, 0.52);
   background: linear-gradient(135deg, rgba(210, 255, 239, 0.94), rgba(85, 188, 151, 0.78));
@@ -1765,37 +1773,143 @@ textarea:focus {
     inset 0 1px 0 rgba(255, 255, 255, 0.5);
 }
 
+.greeting-cannon-wheel {
+  z-index: 2;
+  bottom: 14px;
+  border-radius: 50%;
+  border: 2px solid rgba(255, 240, 210, 0.38);
+  background:
+    radial-gradient(circle at 50% 50%, rgba(255, 247, 225, 0.98) 0 12%, rgba(219, 179, 99, 0.96) 13% 24%, transparent 25% 100%),
+    repeating-conic-gradient(from -6deg, rgba(255, 238, 198, 0.88) 0 10deg, rgba(130, 87, 38, 0.96) 10deg 22.5deg);
+  box-shadow:
+    0 12px 20px rgba(0, 0, 0, 0.24),
+    inset 0 1px 0 rgba(255, 255, 255, 0.46),
+    inset 0 -14px 18px rgba(90, 57, 26, 0.32);
+}
+
+.greeting-cannon-wheel::before {
+  content: "";
+  position: absolute;
+  inset: 12%;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 243, 215, 0.24);
+}
+
+.greeting-cannon-wheel::after {
+  content: "";
+  position: absolute;
+  inset: 34%;
+  border-radius: 50%;
+  background:
+    radial-gradient(circle, rgba(221, 255, 242, 0.94) 0 34%, rgba(83, 188, 152, 0.82) 35% 100%);
+  box-shadow:
+    0 0 12px rgba(110, 214, 180, 0.26),
+    inset 0 1px 0 rgba(255, 255, 255, 0.42);
+}
+
+.greeting-corner-burst-left .greeting-cannon-wheel.wheel-back {
+  left: 30px;
+  width: 48px;
+  height: 48px;
+  opacity: 0.92;
+}
+
+.greeting-corner-burst-left .greeting-cannon-wheel.wheel-front {
+  right: 32px;
+  width: 60px;
+  height: 60px;
+}
+
+.greeting-corner-burst-right .greeting-cannon-wheel.wheel-back {
+  right: 30px;
+  width: 48px;
+  height: 48px;
+  opacity: 0.92;
+}
+
+.greeting-corner-burst-right .greeting-cannon-wheel.wheel-front {
+  left: 32px;
+  width: 60px;
+  height: 60px;
+}
+
+.greeting-cannon-axle {
+  z-index: 2;
+  left: 74px;
+  right: 74px;
+  bottom: 42px;
+  height: 10px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 238, 198, 0.2);
+  background:
+    linear-gradient(180deg, rgba(255, 248, 232, 0.94), rgba(211, 170, 91, 0.92) 46%, rgba(98, 65, 31, 0.98) 100%);
+  box-shadow:
+    0 8px 14px rgba(0, 0, 0, 0.22),
+    inset 0 1px 0 rgba(255, 255, 255, 0.36);
+}
+
 .greeting-cannon-pedestal {
   z-index: 2;
-  left: 66px;
-  bottom: 34px;
-  width: 108px;
-  height: 54px;
-  clip-path: polygon(18% 0, 82% 0, 100% 24%, 92% 100%, 8% 100%, 0 24%);
+  left: 80px;
+  bottom: 54px;
+  width: 114px;
+  height: 32px;
+  border-radius: 20px 20px 14px 14px;
   border: 1px solid rgba(255, 241, 208, 0.26);
   background:
-    linear-gradient(180deg, rgba(255, 248, 231, 0.96), rgba(236, 196, 118, 0.9) 42%, rgba(126, 79, 34, 0.96) 100%);
+    linear-gradient(180deg, rgba(255, 248, 231, 0.96), rgba(236, 196, 118, 0.9) 52%, rgba(126, 79, 34, 0.96) 100%);
   box-shadow:
-    0 10px 18px rgba(0, 0, 0, 0.28),
+    0 10px 18px rgba(0, 0, 0, 0.24),
     inset 0 1px 0 rgba(255, 255, 255, 0.46);
 }
 
 .greeting-cannon-pedestal::before {
   content: "";
   position: absolute;
-  inset: 8px 12px 10px;
-  clip-path: inherit;
+  inset: 6px 10px 8px;
+  border-radius: inherit;
   border: 1px solid rgba(255, 242, 211, 0.18);
   background:
-    radial-gradient(circle at 50% 34%, rgba(255, 243, 211, 0.2), transparent 34%),
+    radial-gradient(circle at 50% 34%, rgba(255, 243, 211, 0.24), transparent 34%),
     linear-gradient(180deg, transparent, rgba(13, 92, 71, 0.14));
 }
 
+.greeting-cannon-carriage {
+  z-index: 3;
+  left: 78px;
+  bottom: 74px;
+  width: 118px;
+  height: 24px;
+  clip-path: polygon(6% 100%, 0 58%, 12% 16%, 50% 0, 88% 16%, 100% 58%, 94% 100%);
+  border: 1px solid rgba(255, 240, 208, 0.26);
+  background:
+    linear-gradient(180deg, rgba(255, 249, 236, 0.96), rgba(228, 186, 106, 0.9) 54%, rgba(103, 67, 31, 0.96) 100%);
+  box-shadow:
+    0 8px 14px rgba(0, 0, 0, 0.22),
+    inset 0 1px 0 rgba(255, 255, 255, 0.42);
+}
+
+.greeting-cannon-carriage::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 4px;
+  width: 24px;
+  height: 10px;
+  transform: translateX(-50%);
+  border-radius: 999px;
+  background:
+    radial-gradient(circle at 50% 50%, rgba(220, 255, 242, 0.92) 0 40%, rgba(88, 191, 154, 0.76) 41% 100%);
+  box-shadow:
+    0 0 12px rgba(112, 217, 182, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.32);
+}
+
 .greeting-cannon-support {
-  z-index: 2;
-  bottom: 48px;
-  width: 26px;
-  height: 82px;
+  z-index: 3;
+  bottom: 80px;
+  width: 18px;
+  height: 56px;
   border-radius: 18px;
   border: 1px solid rgba(255, 238, 198, 0.24);
   background:
@@ -1807,25 +1921,26 @@ textarea:focus {
 }
 
 .greeting-cannon-support.support-back {
-  left: 64px;
-  transform: rotate(-30deg);
+  left: 94px;
+  transform: rotate(-20deg);
 }
 
 .greeting-cannon-support.support-front {
-  right: 64px;
-  transform: rotate(24deg);
+  right: 94px;
+  transform: rotate(18deg);
 }
 
 .greeting-cannon-barrel {
-  z-index: 3;
-  left: 70px;
-  bottom: 74px;
-  width: 130px;
-  height: 38px;
-  border-radius: 999px;
+  z-index: 4;
+  left: 86px;
+  bottom: 92px;
+  width: 156px;
+  height: 40px;
+  border-radius: 32px 48px 48px 32px;
+  clip-path: polygon(0 18%, 74% 6%, 90% 0, 100% 14%, 100% 86%, 90% 100%, 74% 94%, 0 82%, 4% 50%);
   border: 1px solid rgba(255, 240, 206, 0.32);
   background:
-    linear-gradient(90deg, rgba(82, 56, 29, 0.98) 0 10%, rgba(255, 248, 230, 0.96) 18%, rgba(241, 195, 104, 0.94) 56%, rgba(108, 73, 34, 0.98) 100%);
+    linear-gradient(90deg, rgba(84, 56, 29, 0.98) 0 9%, rgba(255, 248, 230, 0.96) 17%, rgba(241, 195, 104, 0.94) 50%, rgba(178, 129, 62, 0.94) 78%, rgba(105, 70, 33, 0.98) 100%);
   box-shadow:
     0 18px 26px rgba(0, 0, 0, 0.26),
     inset 0 2px 4px rgba(255, 255, 255, 0.42),
@@ -1840,23 +1955,37 @@ textarea:focus {
 .greeting-cannon-barrel::before {
   content: "";
   position: absolute;
-  inset: 6px 14px 14px 18px;
-  border-radius: inherit;
+  inset: 6px 18px 16px 20px;
+  border-radius: 24px 36px 36px 24px;
   background:
     linear-gradient(180deg, rgba(255, 255, 255, 0.34), transparent 70%),
-    repeating-linear-gradient(90deg, rgba(255, 241, 209, 0.12) 0 10px, transparent 10px 22px);
+    repeating-linear-gradient(90deg, rgba(255, 241, 209, 0.12) 0 10px, transparent 10px 24px);
   opacity: 0.84;
 }
 
 .greeting-cannon-barrel::after {
   content: "";
   position: absolute;
-  inset: -6px 20px auto 28px;
-  height: 10px;
+  inset: -5px 24px auto 36px;
+  height: 9px;
   border-radius: 999px;
   background: linear-gradient(90deg, rgba(255, 244, 216, 0.68), rgba(255, 255, 255, 0.14));
   filter: blur(1px);
   opacity: 0.9;
+}
+
+.greeting-cannon-breech {
+  left: 4px;
+  top: 4px;
+  width: 34px;
+  height: 30px;
+  border-radius: 52% 42% 42% 52%;
+  border: 1px solid rgba(255, 241, 209, 0.26);
+  background:
+    linear-gradient(180deg, rgba(255, 250, 237, 0.96), rgba(222, 176, 95, 0.94) 48%, rgba(95, 63, 30, 0.98) 100%);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.42),
+    0 0 12px rgba(247, 198, 101, 0.14);
 }
 
 .greeting-cannon-band {
@@ -1873,33 +2002,33 @@ textarea:focus {
 }
 
 .greeting-cannon-band.band-back {
-  left: 18px;
+  left: 28px;
 }
 
 .greeting-cannon-band.band-front {
-  right: 24px;
+  right: 28px;
 }
 
 .greeting-cannon-muzzle {
-  top: 3px;
-  right: -8px;
-  width: 30px;
-  height: 30px;
+  top: 2px;
+  right: -10px;
+  width: 36px;
+  height: 36px;
   border-radius: 50%;
   border: 1px solid rgba(255, 244, 216, 0.42);
   background:
-    radial-gradient(circle at 50% 50%, rgba(14, 10, 8, 0.94) 0 34%, rgba(113, 80, 41, 0.92) 35% 56%, rgba(255, 243, 213, 0.82) 57% 74%, rgba(170, 123, 62, 0.92) 75% 100%);
+    radial-gradient(circle at 50% 50%, rgba(12, 9, 7, 0.96) 0 34%, rgba(116, 79, 41, 0.94) 35% 56%, rgba(255, 243, 213, 0.84) 57% 74%, rgba(170, 123, 62, 0.94) 75% 100%);
   box-shadow:
     inset 0 0 14px rgba(0, 0, 0, 0.42),
     0 0 18px rgba(255, 243, 214, 0.18);
 }
 
 .greeting-cannon-jewel {
-  left: 24px;
-  top: 50%;
-  width: 18px;
-  height: 18px;
-  transform: translateY(-50%) rotate(45deg);
+  left: 52px;
+  top: 8px;
+  width: 14px;
+  height: 14px;
+  transform: rotate(45deg);
   border: 1px solid rgba(229, 255, 244, 0.48);
   background: linear-gradient(135deg, rgba(210, 255, 239, 0.96), rgba(89, 191, 154, 0.8));
   box-shadow:
@@ -1907,11 +2036,26 @@ textarea:focus {
     inset 0 1px 0 rgba(255, 255, 255, 0.52);
 }
 
+.greeting-cannon-finial {
+  left: -2px;
+  top: 50%;
+  width: 12px;
+  height: 12px;
+  transform: translateY(-50%);
+  border-radius: 50%;
+  border: 1px solid rgba(255, 242, 211, 0.42);
+  background:
+    radial-gradient(circle at 40% 35%, rgba(255, 250, 238, 0.98), rgba(217, 171, 93, 0.94) 72%, rgba(108, 71, 33, 0.98) 100%);
+  box-shadow:
+    0 0 10px rgba(247, 198, 101, 0.16),
+    inset 0 1px 0 rgba(255, 255, 255, 0.42);
+}
+
 .greeting-cannon-charge-ring {
   z-index: 3;
-  bottom: calc(var(--cannon-origin-y) - 31px);
-  width: 62px;
-  height: 62px;
+  bottom: calc(var(--cannon-origin-y) - 36px);
+  width: 72px;
+  height: 72px;
   border-radius: 50%;
   border: 1px solid rgba(255, 242, 212, 0.34);
   background:
@@ -1922,33 +2066,33 @@ textarea:focus {
 }
 
 .greeting-corner-burst-left .greeting-cannon-charge-ring {
-  left: calc(var(--cannon-origin-x) - 28px);
+  left: calc(var(--cannon-origin-x) - 34px);
 }
 
 .greeting-corner-burst-right .greeting-cannon-charge-ring {
-  right: calc(var(--cannon-origin-x) - 28px);
+  right: calc(var(--cannon-origin-x) - 34px);
 }
 
 .greeting-cannon-charge-ring.ring-inner {
-  bottom: calc(var(--cannon-origin-y) - 22px);
-  width: 44px;
-  height: 44px;
+  bottom: calc(var(--cannon-origin-y) - 26px);
+  width: 50px;
+  height: 50px;
   animation-delay: 0.12s;
 }
 
 .greeting-corner-burst-left .greeting-cannon-charge-ring.ring-inner {
-  left: calc(var(--cannon-origin-x) - 19px);
+  left: calc(var(--cannon-origin-x) - 24px);
 }
 
 .greeting-corner-burst-right .greeting-cannon-charge-ring.ring-inner {
-  right: calc(var(--cannon-origin-x) - 19px);
+  right: calc(var(--cannon-origin-x) - 24px);
 }
 
 .greeting-cannon-muzzle-glow {
-  z-index: 3;
-  bottom: calc(var(--cannon-origin-y) - 46px);
-  width: 92px;
-  height: 92px;
+  z-index: 4;
+  bottom: calc(var(--cannon-origin-y) - 54px);
+  width: 104px;
+  height: 104px;
   border-radius: 50%;
   background:
     radial-gradient(circle, rgba(255, 248, 232, 0.32) 0 12%, rgba(247, 198, 101, 0.2) 20%, transparent 66%),
@@ -1959,18 +2103,18 @@ textarea:focus {
 }
 
 .greeting-corner-burst-left .greeting-cannon-muzzle-glow {
-  left: calc(var(--cannon-origin-x) - 42px);
+  left: calc(var(--cannon-origin-x) - 48px);
 }
 
 .greeting-corner-burst-right .greeting-cannon-muzzle-glow {
-  right: calc(var(--cannon-origin-x) - 42px);
+  right: calc(var(--cannon-origin-x) - 48px);
 }
 
 .greeting-corner-burst-haze {
   z-index: 1;
-  bottom: calc(var(--cannon-origin-y) - 44px);
-  width: clamp(146px, 18vw, 218px);
-  height: clamp(108px, 14vw, 156px);
+  bottom: calc(var(--cannon-origin-y) - 48px);
+  width: clamp(154px, 18vw, 226px);
+  height: clamp(112px, 14vw, 162px);
   border-radius: 50%;
   background:
     radial-gradient(circle at 36% 72%, rgba(255, 250, 241, 0.34), transparent 34%),
@@ -1982,16 +2126,16 @@ textarea:focus {
 }
 
 .greeting-corner-burst-left .greeting-corner-burst-haze {
-  left: calc(var(--cannon-origin-x) - 56px);
+  left: calc(var(--cannon-origin-x) - 64px);
 }
 
 .greeting-corner-burst-right .greeting-corner-burst-haze {
-  right: calc(var(--cannon-origin-x) - 56px);
+  right: calc(var(--cannon-origin-x) - 64px);
 }
 
 .greeting-corner-burst-stream {
   inset: 0;
-  z-index: 4;
+  z-index: 6;
   overflow: visible;
   filter: saturate(112%) brightness(1.04);
 }
@@ -3099,9 +3243,9 @@ textarea:focus {
 
 .greeting-card {
   position: relative;
-  z-index: 3;
+  z-index: 5;
   width: min(100%, 790px);
-  margin-bottom: clamp(46px, 6vh, 82px);
+  margin-bottom: clamp(164px, 18vh, 220px);
   padding: 2px;
   clip-path: polygon(8% 0, 92% 0, 100% 11%, 100% 89%, 92% 100%, 8% 100%, 0 89%, 0 11%);
   background: linear-gradient(
@@ -4518,7 +4662,7 @@ textarea:focus {
   }
 
   .greeting-stage {
-    min-height: 660px;
+    min-height: 700px;
     padding: 0 6px;
   }
 
@@ -4580,72 +4724,106 @@ textarea:focus {
   }
 
   .greeting-corner-burst {
-    --cannon-origin-x: 90px;
-    --cannon-origin-y: 106px;
-    width: 210px;
-    height: 230px;
+    --cannon-origin-x: 142px;
+    --cannon-origin-y: 110px;
+    width: 214px;
+    height: 218px;
   }
 
   .greeting-corner-burst-left {
-    left: -12px;
+    align-self: flex-end;
   }
 
   .greeting-corner-burst-right {
-    right: -12px;
+    align-self: flex-end;
   }
 
   .greeting-corner-bursts {
-    bottom: 20px;
-    height: 230px;
+    bottom: 28px;
+    width: min(100%, 760px);
+    height: 218px;
+    padding: 0 14px;
   }
 
   .greeting-cannon-aura {
-    width: 152px;
-    height: 110px;
+    width: 166px;
+    height: 118px;
   }
 
   .greeting-cannon-shadow {
-    width: 166px;
+    width: 174px;
     height: 40px;
   }
 
   .greeting-cannon-shell {
-    width: 160px;
-    height: 132px;
+    width: 182px;
+    height: 142px;
   }
 
   .greeting-cannon-base {
-    left: 10px;
-    right: 10px;
-    height: 44px;
+    left: 12px;
+    right: 12px;
+    bottom: 8px;
+    height: 24px;
+  }
+
+  .greeting-corner-burst-left .greeting-cannon-wheel.wheel-back,
+  .greeting-corner-burst-right .greeting-cannon-wheel.wheel-back {
+    width: 36px;
+    height: 36px;
+  }
+
+  .greeting-corner-burst-left .greeting-cannon-wheel.wheel-front,
+  .greeting-corner-burst-right .greeting-cannon-wheel.wheel-front {
+    width: 46px;
+    height: 46px;
+  }
+
+  .greeting-cannon-axle {
+    left: 54px;
+    right: 54px;
+    bottom: 34px;
+    height: 8px;
   }
 
   .greeting-cannon-pedestal {
-    left: 52px;
-    bottom: 28px;
-    width: 78px;
-    height: 42px;
+    left: 62px;
+    bottom: 42px;
+    width: 84px;
+    height: 24px;
+  }
+
+  .greeting-cannon-carriage {
+    left: 58px;
+    bottom: 56px;
+    width: 90px;
+    height: 18px;
   }
 
   .greeting-cannon-support {
-    bottom: 40px;
-    width: 20px;
-    height: 64px;
+    bottom: 60px;
+    width: 14px;
+    height: 42px;
   }
 
   .greeting-cannon-support.support-back {
-    left: 48px;
+    left: 72px;
   }
 
   .greeting-cannon-support.support-front {
-    right: 48px;
+    right: 72px;
   }
 
   .greeting-cannon-barrel {
-    left: 54px;
-    bottom: 60px;
-    width: 96px;
+    left: 66px;
+    bottom: 70px;
+    width: 114px;
     height: 30px;
+  }
+
+  .greeting-cannon-breech {
+    width: 26px;
+    height: 22px;
   }
 
   .greeting-cannon-band {
@@ -4655,35 +4833,41 @@ textarea:focus {
   }
 
   .greeting-cannon-muzzle {
-    top: 2px;
-    right: -7px;
-    width: 24px;
-    height: 24px;
+    right: -8px;
+    width: 28px;
+    height: 28px;
   }
 
   .greeting-cannon-jewel {
-    width: 14px;
-    height: 14px;
+    left: 38px;
+    top: 6px;
+    width: 11px;
+    height: 11px;
+  }
+
+  .greeting-cannon-finial {
+    width: 10px;
+    height: 10px;
   }
 
   .greeting-cannon-charge-ring {
-    width: 48px;
-    height: 48px;
+    width: 54px;
+    height: 54px;
   }
 
   .greeting-cannon-charge-ring.ring-inner {
-    width: 34px;
-    height: 34px;
+    width: 36px;
+    height: 36px;
   }
 
   .greeting-cannon-muzzle-glow {
-    width: 68px;
-    height: 68px;
+    width: 76px;
+    height: 76px;
   }
 
   .greeting-corner-burst-haze {
-    width: 118px;
-    height: 86px;
+    width: 126px;
+    height: 90px;
   }
 
   .greeting-bird-flight {
@@ -4786,7 +4970,7 @@ textarea:focus {
 
   .greeting-card {
     width: min(100%, 700px);
-    margin-bottom: 34px;
+    margin-bottom: 136px;
   }
 
   .greeting-card-inner {
@@ -4957,7 +5141,7 @@ textarea:focus {
   }
 
   .greeting-stage {
-    min-height: 600px;
+    min-height: 650px;
   }
 
   .greeting-stage-glow {
@@ -5001,72 +5185,105 @@ textarea:focus {
   }
 
   .greeting-corner-burst {
-    --cannon-origin-x: 72px;
+    --cannon-origin-x: 108px;
     --cannon-origin-y: 90px;
-    width: 168px;
-    height: 190px;
+    width: min(41vw, 168px);
+    height: 176px;
   }
 
   .greeting-corner-burst-left {
-    left: -8px;
+    align-self: flex-end;
   }
 
   .greeting-corner-burst-right {
-    right: -8px;
+    align-self: flex-end;
   }
 
   .greeting-corner-bursts {
-    bottom: 16px;
-    height: 190px;
+    bottom: 22px;
+    height: 176px;
+    padding: 0 4px;
   }
 
   .greeting-cannon-aura {
-    width: 126px;
-    height: 92px;
+    width: 130px;
+    height: 94px;
   }
 
   .greeting-cannon-shadow {
-    width: 136px;
+    width: 140px;
     height: 34px;
   }
 
   .greeting-cannon-shell {
-    width: 132px;
-    height: 112px;
+    width: 146px;
+    height: 116px;
   }
 
   .greeting-cannon-base {
-    left: 8px;
-    right: 8px;
-    height: 38px;
+    left: 10px;
+    right: 10px;
+    bottom: 6px;
+    height: 20px;
+  }
+
+  .greeting-corner-burst-left .greeting-cannon-wheel.wheel-back,
+  .greeting-corner-burst-right .greeting-cannon-wheel.wheel-back {
+    width: 30px;
+    height: 30px;
+  }
+
+  .greeting-corner-burst-left .greeting-cannon-wheel.wheel-front,
+  .greeting-corner-burst-right .greeting-cannon-wheel.wheel-front {
+    width: 40px;
+    height: 40px;
+  }
+
+  .greeting-cannon-axle {
+    left: 42px;
+    right: 42px;
+    bottom: 26px;
+    height: 7px;
   }
 
   .greeting-cannon-pedestal {
-    left: 42px;
-    bottom: 24px;
-    width: 64px;
-    height: 36px;
+    left: 48px;
+    bottom: 32px;
+    width: 62px;
+    height: 19px;
+  }
+
+  .greeting-cannon-carriage {
+    left: 44px;
+    bottom: 43px;
+    width: 70px;
+    height: 14px;
   }
 
   .greeting-cannon-support {
-    bottom: 34px;
-    width: 16px;
-    height: 52px;
+    bottom: 46px;
+    width: 11px;
+    height: 32px;
   }
 
   .greeting-cannon-support.support-back {
-    left: 40px;
+    left: 56px;
   }
 
   .greeting-cannon-support.support-front {
-    right: 40px;
+    right: 56px;
   }
 
   .greeting-cannon-barrel {
-    left: 44px;
-    bottom: 50px;
-    width: 82px;
-    height: 24px;
+    left: 50px;
+    bottom: 52px;
+    width: 88px;
+    height: 22px;
+  }
+
+  .greeting-cannon-breech {
+    width: 20px;
+    height: 17px;
   }
 
   .greeting-cannon-band {
@@ -5075,21 +5292,26 @@ textarea:focus {
   }
 
   .greeting-cannon-muzzle {
-    top: 1px;
     right: -6px;
     width: 20px;
     height: 20px;
   }
 
   .greeting-cannon-jewel {
-    left: 18px;
-    width: 12px;
-    height: 12px;
+    left: 28px;
+    top: 4px;
+    width: 8px;
+    height: 8px;
+  }
+
+  .greeting-cannon-finial {
+    width: 7px;
+    height: 7px;
   }
 
   .greeting-cannon-charge-ring {
-    width: 40px;
-    height: 40px;
+    width: 42px;
+    height: 42px;
   }
 
   .greeting-cannon-charge-ring.ring-inner {
@@ -5103,8 +5325,8 @@ textarea:focus {
   }
 
   .greeting-corner-burst-haze {
-    width: 92px;
-    height: 68px;
+    width: 94px;
+    height: 70px;
   }
 
   .greeting-fountain-particle:nth-child(4n) {
@@ -5195,7 +5417,7 @@ textarea:focus {
   }
 
   .greeting-card {
-    margin-bottom: 24px;
+    margin-bottom: 104px;
   }
 
   .greeting-card-inner {

@@ -672,14 +672,20 @@ function GreetingCelebrationFountain({ side }) {
       <span className="greeting-cannon-shadow" />
       <div className="greeting-cannon-shell">
         <span className="greeting-cannon-base" />
+        <span className="greeting-cannon-wheel wheel-back" />
+        <span className="greeting-cannon-wheel wheel-front" />
+        <span className="greeting-cannon-axle" />
         <span className="greeting-cannon-pedestal" />
+        <span className="greeting-cannon-carriage" />
         <span className="greeting-cannon-support support-back" />
         <span className="greeting-cannon-support support-front" />
         <span className="greeting-cannon-barrel">
+          <span className="greeting-cannon-breech" />
           <span className="greeting-cannon-band band-back" />
           <span className="greeting-cannon-band band-front" />
           <span className="greeting-cannon-muzzle" />
           <span className="greeting-cannon-jewel" />
+          <span className="greeting-cannon-finial" />
         </span>
       </div>
       <span className="greeting-cannon-charge-ring ring-outer" />
