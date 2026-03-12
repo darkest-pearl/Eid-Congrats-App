@@ -875,9 +875,11 @@ function CreatorMode({
 
 function GreetingMode({ ui, isArabic, selectedStyle, senderName, greetingMessage, creatorUrl }) {
   const displayName = senderName.trim() || ui.defaultSender;
+  const textDirection = isArabic ? "rtl" : "ltr";
+  const dynamicTextDirection = isArabic ? "auto" : "ltr";
 
   return (
-    <main className={`greeting-layout ${selectedStyle.className}`}>
+    <main className={`greeting-layout ${selectedStyle.className}`} dir="ltr" lang={isArabic ? "ar" : "en"}>
       <div className="greeting-scene" aria-hidden="true">
         <div className="greeting-vignette" />
         <div className="greeting-noor greeting-noor-a" />
@@ -1027,31 +1029,39 @@ function GreetingMode({ ui, isArabic, selectedStyle, senderName, greetingMessage
             <div className="greeting-card-inner">
               <div className="greeting-top-row">
                 <span className="greeting-top-line" aria-hidden="true" />
-                <div className="pill greeting-scene-pill">{ui.greetingBadge}</div>
+                <div className="pill greeting-scene-pill" dir={textDirection}>
+                  {ui.greetingBadge}
+                </div>
                 <span className="greeting-top-line" aria-hidden="true" />
               </div>
 
               <div className="greeting-headline">
-                <h1 className="greeting-title">{isArabic ? "عيد مبارك" : "Eid Mubarak"}</h1>
+                <h1 className="greeting-title" dir={textDirection}>
+                  {isArabic ? "عيد مبارك" : "Eid Mubarak"}
+                </h1>
                 <div className="greeting-title-mark" aria-hidden="true">
                   <span />
                   <span />
                   <span />
                 </div>
-                <p className="greeting-subtitle">{ui.greetingSubtitle}</p>
+                <p className="greeting-subtitle" dir={textDirection}>
+                  {ui.greetingSubtitle}
+                </p>
               </div>
 
               <div className="greeting-message" role="note" aria-live="polite">
                 <div className="greeting-message-glow" aria-hidden="true" />
                 <div className="greeting-message-frame" aria-hidden="true" />
-                <p>{greetingMessage}</p>
+                <p dir={dynamicTextDirection}>{greetingMessage}</p>
               </div>
 
               <div className="from-area">
-                <small>{ui.fromLabel}</small>
+                <small dir={textDirection}>{ui.fromLabel}</small>
                 <div className="from-name-wrap">
                   <span className="from-name-mark" aria-hidden="true" />
-                  <div className="from-name">{displayName}</div>
+                  <div className="from-name" dir={dynamicTextDirection}>
+                    {displayName}
+                  </div>
                 </div>
               </div>
             </div>
@@ -1060,7 +1070,7 @@ function GreetingMode({ ui, isArabic, selectedStyle, senderName, greetingMessage
       </section>
 
       <div className="greeting-cta-wrap">
-        <a className="cta-link" href={creatorUrl}>
+        <a className="cta-link" href={creatorUrl} dir={textDirection}>
           {ui.ctaCreateOwn}
         </a>
       </div>

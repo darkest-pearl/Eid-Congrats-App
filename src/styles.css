@@ -492,6 +492,7 @@ textarea:focus {
   place-items: center;
   padding: clamp(86px, 11vh, 122px) 0 44px;
   isolation: isolate;
+  direction: ltr;
 }
 
 .greeting-layout.theme-classic {
@@ -3618,26 +3619,35 @@ textarea:focus {
   filter: brightness(1.05);
 }
 
-[dir="rtl"] .greeting-title {
+.greeting-scene-pill:lang(ar),
+.cta-link:lang(ar) {
+  font-family: "Noto Naskh Arabic", "Amiri", Georgia, serif;
+  letter-spacing: 0;
+}
+
+.greeting-title:lang(ar) {
   font-family: "Amiri", "Noto Naskh Arabic", Georgia, serif;
   letter-spacing: 0;
   line-height: 1.08;
 }
 
-[dir="rtl"] .greeting-subtitle {
+.greeting-subtitle:lang(ar) {
   max-width: 34ch;
+  font-family: "Noto Naskh Arabic", "Amiri", Georgia, serif;
 }
 
-[dir="rtl"] .greeting-message p {
+.greeting-message p:lang(ar) {
   font-family: "Noto Naskh Arabic", "Amiri", Georgia, serif;
   line-height: 2.24;
+  letter-spacing: 0;
 }
 
-[dir="rtl"] .from-area small {
-  letter-spacing: 0.14em;
+.from-area small:lang(ar) {
+  letter-spacing: 0.08em;
+  text-transform: none;
 }
 
-[dir="rtl"] .from-name {
+.from-name:lang(ar) {
   font-family: "Amiri", "Noto Naskh Arabic", Georgia, serif;
 }
 
