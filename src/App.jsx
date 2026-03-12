@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import { generateRandomEidMessage } from "./lib/messageGenerator";
 import AdSlot from "./components/AdSlot";
+import CreatorSupportMenu from "./components/CreatorSupportMenu";
 import SiteFooter from "./components/SiteFooter";
 import SupportPageView from "./components/SupportPageView";
 import { siteConfig } from "./config/siteConfig";
@@ -52,15 +53,15 @@ const copy = {
     style: "Greeting style",
     customMessage: "Custom message (optional)",
     customPlaceholder: "Leave blank to use the selected style default.",
-    previewLink: "Preview Link",
+    previewLink: "Shareable Link",
     share: "Share Link",
     sharing: "Sharing...",
-    copyLink: "Copy Link",
+    copyLink: "Copy Message + Link",
     reset: "Reset",
     shareTitle: "Eid Mubarak Greeting",
-    shareSuccess: "Personalized link shared successfully.",
-    copySuccess: "Preview link copied.",
-    shareFallback: "Native share unavailable. Preview link copied instead.",
+    shareSuccess: "Personalized message and link shared successfully.",
+    copySuccess: "Personalized message and link copied.",
+    shareFallback: "Native share unavailable. Personalized message and link copied instead.",
     copyError: "Clipboard is unavailable in this browser.",
     helperHint:
       "Only the personalized URL is shared. Recipients see a full Eid greeting page.",
@@ -89,15 +90,15 @@ const copy = {
     style: "نمط التهنئة",
     customMessage: "رسالة مخصصة (اختيارية)",
     customPlaceholder: "اترك الحقل فارغًا لاستخدام رسالة النمط الافتراضية.",
-    previewLink: "رابط المعاينة",
+    previewLink: "رابط المشاركة",
     share: "مشاركة الرابط",
     sharing: "جارٍ المشاركة...",
-    copyLink: "نسخ الرابط",
+    copyLink: "نسخ الرسالة مع الرابط",
     reset: "إعادة تعيين",
     shareTitle: "تهنئة عيد مبارك",
-    shareSuccess: "تمت مشاركة الرابط الشخصي بنجاح.",
-    copySuccess: "تم نسخ رابط المعاينة.",
-    shareFallback: "المشاركة المباشرة غير متاحة. تم نسخ رابط المعاينة بدلًا من ذلك.",
+    shareSuccess: "تمت مشاركة الرسالة والرابط الشخصي بنجاح.",
+    copySuccess: "تم نسخ الرسالة مع الرابط.",
+    shareFallback: "المشاركة المباشرة غير متاحة. تم نسخ الرسالة مع الرابط بدلًا من ذلك.",
     copyError: "لا يمكن الوصول إلى الحافظة في هذا المتصفح.",
     helperHint:
       "تتم مشاركة الرابط الشخصي فقط. المستلم يرى صفحة تهنئة عيد كاملة.",
@@ -353,6 +354,15 @@ function buildShareUrl({ language, senderName, customMessage, styleId }, baseHre
   return url.toString();
 }
 
+function buildShareMessage(language, shareUrl) {
+  const intro =
+    language === "ar"
+      ? "السلام عليكم ورحمة الله وبركاته، هذه تهنئتي الشخصية لكم بمناسبة العيد. أسأل الله أن يأتيكم العيد بالمحبة والرضا والسعادة."
+      : "Assalamu Alaikum wa Rahmatullahi wa Barakatuh. This is my personalized Eid greeting message. May Eid find you with love, contentment, and happiness.";
+
+  return `${intro}\n\n${shareUrl}`;
+}
+
 function buildGreetingMessage(language, senderName, customMessage, style) {
   const custom = customMessage.trim();
   if (custom) {
@@ -369,7 +379,7 @@ function buildGreetingMessage(language, senderName, customMessage, style) {
   return `${defaultMessage} From ${fromName || copy.en.defaultSender}.`;
 }
 
-function canUseNativeShare(payload) {
+function canUseNativeShare() {
   if (typeof navigator === "undefined" || typeof window === "undefined") {
     return false;
   }
@@ -385,14 +395,6 @@ function canUseNativeShare(payload) {
 
   if (!secureOk) {
     return false;
-  }
-
-  if (typeof navigator.canShare === "function") {
-    try {
-      return navigator.canShare(payload);
-    } catch {
-      return false;
-    }
   }
 
   return true;
@@ -416,12 +418,14 @@ async function copyToClipboard(text) {
   return copied;
 }
 
-function isPermissionStyleShareError(error) {
+function isShareDismissedError(error) {
+  return error instanceof Error && error.name === "AbortError";
+}
+
+function isShareDeniedError(error) {
   return (
     error instanceof Error &&
-    (error.name === "AbortError" ||
-      error.name === "NotAllowedError" ||
-      /permission denied/i.test(error.message))
+    (error.name === "NotAllowedError" || /permission denied/i.test(error.message))
   );
 }
 
@@ -489,6 +493,22 @@ function runSelfTests() {
     params.get("style") !== "soft"
   ) {
     throw new Error("Share URL generation sanity check failed.");
+  }
+
+  const englishShareMessage = buildShareMessage("en", "https://example.com/eid");
+  if (
+    !englishShareMessage.includes("Assalamu Alaikum wa Rahmatullahi wa Barakatuh.") ||
+    !englishShareMessage.endsWith("https://example.com/eid")
+  ) {
+    throw new Error("English share message generation failed.");
+  }
+
+  const arabicShareMessage = buildShareMessage("ar", "https://example.com/eid");
+  if (
+    !arabicShareMessage.includes("السلام عليكم ورحمة الله وبركاته") ||
+    !arabicShareMessage.endsWith("https://example.com/eid")
+  ) {
+    throw new Error("Arabic share message generation failed.");
   }
 }
 
@@ -748,15 +768,17 @@ function CreatorMode({
   setCustomMessage,
   handleGenerateMessage,
   previewUrl,
-  selectedStyle,
-  greetingMessage,
   isSharing,
   handleShare,
   handleCopyLink,
   resetState,
   statusMessage,
   homepageContent,
-  adsConfig
+  adsConfig,
+  footerLinks,
+  footerHomeLabel,
+  supportPages,
+  creatorUrl
 }) {
   return (
     <main className="creator-layout">
@@ -863,66 +885,19 @@ function CreatorMode({
 
           <div className="status-note">{statusMessage || ui.helperHint}</div>
         </div>
-
       </section>
 
-      <section className="creator-preview-panel">
-        <div className={`creator-preview-card ${selectedStyle.className}`}>
-          <div className="creator-preview-inner">
-            <div className="preview-pill">{ui.previewCardLabel}</div>
-            <h2>{isArabic ? "عيد مبارك" : "Eid Mubarak"}</h2>
-            <p>{greetingMessage}</p>
-            <div className="from-block">
-              <small>{ui.fromLabel}</small>
-              <strong>{senderName.trim() || ui.defaultSender}</strong>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section className="creator-info-section">
-        <div className="creator-section-heading">
-          <div className="pill">{homepageContent.howEyebrow}</div>
-          <h2>{homepageContent.howTitle}</h2>
-          <p>{homepageContent.howIntro}</p>
-        </div>
-
-        <div className="creator-steps-grid">
-          {homepageContent.steps.map((step) => (
-            <article key={step.title} className="content-card">
-              <h3>{step.title}</h3>
-              <p>{step.body}</p>
-            </article>
-          ))}
-        </div>
-
-        <div className="creator-trust-grid">
-          {homepageContent.trustCards.map((card) => (
-            <article key={card.title} className="content-card compact">
-              <h3>{card.title}</h3>
-              <p>{card.body}</p>
-            </article>
-          ))}
-        </div>
-      </section>
-
-      <section className="creator-more-section">
-        <div className="creator-section-heading">
-          <h2>{homepageContent.moreTitle}</h2>
-          <p>{homepageContent.moreIntro}</p>
-        </div>
-
-        <div className="creator-more-grid">
-          {homepageContent.linkCards.map((card) => (
-            <article key={card.id} className="content-card link-card">
-              <h3>{card.title}</h3>
-              <p>{card.body}</p>
-              <a className="ghost-link" href={card.href}>
-                {card.cta}
-              </a>
-            </article>
-          ))}
-
+      <CreatorSupportMenu
+        title={homepageContent.menuTitle}
+        intro={homepageContent.menuIntro}
+        homeLabel={footerHomeLabel}
+        homeTitle={homepageContent.menuHomeTitle}
+        homeIntro={homepageContent.menuHomeIntro}
+        openPageLabel={homepageContent.openPageLabel}
+        homeHref={creatorUrl}
+        items={footerLinks}
+        pages={supportPages}
+        lowerContent={
           <AdSlot
             className="secondary-ad"
             title={homepageContent.lowerAdTitle}
@@ -936,8 +911,8 @@ function CreatorMode({
             placeholderMode={adsConfig.usePlaceholderAds}
             minHeight={132}
           />
-        </div>
-      </section>
+        }
+      />
     </main>
   );
 }
@@ -1190,6 +1165,8 @@ export default function App() {
     [language, senderName, customMessage, styleId]
   );
 
+  const shareMessage = useMemo(() => buildShareMessage(language, previewUrl), [language, previewUrl]);
+
   const creatorUrl = useMemo(() => {
     if (typeof window === "undefined") {
       return "/";
@@ -1212,7 +1189,7 @@ export default function App() {
 
   async function handleCopyLink() {
     try {
-      const copied = await copyToClipboard(previewUrl);
+      const copied = await copyToClipboard(shareMessage);
       setStatusMessage(copied ? ui.copySuccess : ui.copyError);
     } catch {
       setStatusMessage(ui.copyError);
@@ -1229,6 +1206,7 @@ export default function App() {
 
     const payload = {
       title: ui.shareTitle,
+      text: shareMessage,
       url: previewUrl
     };
 
@@ -1237,13 +1215,15 @@ export default function App() {
         await navigator.share(payload);
         setStatusMessage(ui.shareSuccess);
       } else {
-        const copied = await copyToClipboard(previewUrl);
+        const copied = await copyToClipboard(shareMessage);
         setStatusMessage(copied ? ui.shareFallback : ui.copyError);
       }
     } catch (error) {
-      if (isPermissionStyleShareError(error)) {
+      if (isShareDismissedError(error)) {
+        setStatusMessage("");
+      } else if (isShareDeniedError(error)) {
         try {
-          const copied = await copyToClipboard(previewUrl);
+          const copied = await copyToClipboard(shareMessage);
           setStatusMessage(copied ? ui.shareFallback : ui.copyError);
         } catch {
           setStatusMessage(ui.copyError);
@@ -1325,8 +1305,6 @@ export default function App() {
           setCustomMessage={setCustomMessage}
           handleGenerateMessage={handleGenerateMessage}
           previewUrl={previewUrl}
-          selectedStyle={selectedStyle}
-          greetingMessage={greetingMessage}
           isSharing={isSharing}
           handleShare={handleShare}
           handleCopyLink={handleCopyLink}
@@ -1334,6 +1312,10 @@ export default function App() {
           statusMessage={statusMessage}
           homepageContent={content.homepage}
           adsConfig={siteConfig.ads}
+          footerLinks={footerLinks}
+          footerHomeLabel={content.footerHome}
+          supportPages={content.supportPages}
+          creatorUrl={creatorUrl}
         />
       )}
 

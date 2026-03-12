@@ -23,6 +23,12 @@ export const siteContent = {
       howTitle: "A simple flow for the sender and a polished page for the recipient",
       howIntro:
         "The creator page helps you compose, preview, and share one personalized link. The recipient opens a dedicated festive greeting view without extra clutter.",
+      menuTitle: "Explore site sections",
+      menuIntro: "Use the row below to expand a page summary only when you need it.",
+      menuHomeTitle: "Homepage overview",
+      menuHomeIntro:
+        "The creator page stays focused on building and sharing one Eid greeting link, while support pages and future monetization stay tucked into this expandable menu.",
+      openPageLabel: "Open full page",
       steps: [
         {
           title: "1. Add the sender details",
@@ -197,6 +203,12 @@ export const siteContent = {
       howTitle: "خطوات بسيطة للمرسل وصفحة تهنئة أنيقة للمستلم",
       howIntro:
         "تساعدك الصفحة الرئيسية على كتابة الرسالة ومعاينتها ومشاركة رابط شخصي واحد، بينما يفتح المستلم صفحة تهنئة احتفالية جاهزة بدون ازدحام.",
+      menuTitle: "استكشاف أقسام الموقع",
+      menuIntro: "استخدم الشريط التالي لفتح ملخص أي صفحة فقط عند الحاجة.",
+      menuHomeTitle: "نظرة عامة على الصفحة الرئيسية",
+      menuHomeIntro:
+        "تبقى الصفحة الرئيسية مركزة على إنشاء رابط تهنئة عيد واحد ومشاركته، بينما تظل صفحات الدعم ومساحة الإعلانات المستقبلية داخل هذه القائمة القابلة للتوسعة.",
+      openPageLabel: "فتح الصفحة الكاملة",
       steps: [
         {
           title: "1. أضف بيانات المرسل",
