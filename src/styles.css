@@ -525,8 +525,10 @@ textarea:focus {
 .greeting-scene {
   position: absolute;
   inset: -4% -4% 0;
+  z-index: 0;
   pointer-events: none;
   overflow: hidden;
+  contain: paint;
 }
 
 .greeting-vignette {
@@ -577,9 +579,9 @@ textarea:focus {
 .greeting-noor {
   position: absolute;
   border-radius: 50%;
-  filter: blur(10px);
-  opacity: 0.88;
-  animation: sceneFloat 14s ease-in-out infinite;
+  filter: blur(8px);
+  opacity: 0.78;
+  animation: sceneFloat 18s ease-in-out infinite;
 }
 
 .greeting-noor-a {
@@ -772,7 +774,7 @@ textarea:focus {
 .greeting-stars {
   position: absolute;
   inset: 0;
-  filter: drop-shadow(0 0 16px rgba(255, 224, 162, 0.26));
+  contain: paint;
 }
 
 .greeting-star {
@@ -821,6 +823,7 @@ textarea:focus {
 .greeting-particles {
   position: absolute;
   inset: 0;
+  contain: paint;
 }
 
 .greeting-particle {
@@ -832,10 +835,7 @@ textarea:focus {
     rgba(250, 228, 182, 0.68) 42%,
     rgba(250, 228, 182, 0.06) 76%
   );
-  box-shadow:
-    0 0 12px rgba(248, 214, 142, 0.5),
-    0 0 28px rgba(250, 228, 182, 0.18);
-  filter: blur(0.2px);
+  box-shadow: 0 0 10px rgba(248, 214, 142, 0.34);
   animation: particleDrift 13s ease-in-out infinite;
 }
 
@@ -1200,7 +1200,7 @@ textarea:focus {
   inset: 0;
   z-index: 3;
   opacity: 0.78;
-  filter: drop-shadow(0 20px 32px rgba(0, 0, 0, 0.36));
+  contain: paint;
 }
 
 .greeting-lantern-rail {
@@ -1230,6 +1230,8 @@ textarea:focus {
   align-items: center;
   transform-origin: top center;
   animation: ceremonialSwing ease-in-out infinite;
+  will-change: transform;
+  backface-visibility: hidden;
 }
 
 .lantern-emerald {
@@ -1278,8 +1280,8 @@ textarea:focus {
   height: 88px;
   transform: translate(-50%, -50%);
   border-radius: 50%;
-  background: radial-gradient(circle, var(--lantern-glow), transparent 70%);
-  filter: blur(8px);
+  background:
+    radial-gradient(circle, var(--lantern-glow) 0 16%, rgba(255, 248, 228, 0.08) 36%, transparent 72%);
   animation: glowPulse 5.4s ease-in-out infinite;
 }
 
@@ -1289,9 +1291,9 @@ textarea:focus {
   height: 78px;
   margin-top: -1px;
   box-shadow:
-    0 0 26px var(--lantern-glow),
-    0 14px 26px rgba(0, 0, 0, 0.28),
-    inset 0 0 16px rgba(255, 248, 222, 0.24);
+    0 0 18px var(--lantern-glow),
+    0 12px 22px rgba(0, 0, 0, 0.24),
+    inset 0 0 12px rgba(255, 248, 222, 0.18);
   display: grid;
   place-items: center;
   clip-path: polygon(22% 0, 78% 0, 100% 20%, 100% 80%, 78% 100%, 22% 100%, 0 80%, 0 20%);
@@ -1333,8 +1335,8 @@ textarea:focus {
   border-radius: 50%;
   background: rgba(255, 251, 238, 0.98);
   box-shadow:
-    0 0 12px rgba(255, 251, 220, 0.92),
-    0 0 28px rgba(255, 210, 118, 0.72);
+    0 0 10px rgba(255, 251, 220, 0.78),
+    0 0 18px rgba(255, 210, 118, 0.44);
   animation: glowPulse 4.1s ease-in-out infinite;
 }
 
@@ -1357,6 +1359,7 @@ textarea:focus {
   mix-blend-mode: screen;
   opacity: 1;
   isolation: isolate;
+  contain: paint;
 }
 
 .greeting-firework {
@@ -1373,9 +1376,11 @@ textarea:focus {
   display: block;
   width: calc(var(--firework-size) * var(--firework-scale));
   height: calc(var(--firework-size) * var(--firework-scale));
-  transform: translate(-50%, -50%) rotate(var(--firework-tilt));
+  transform: translate3d(-50%, -50%, 0) rotate(var(--firework-tilt));
   opacity: 0;
   will-change: transform, opacity;
+  backface-visibility: hidden;
+  contain: paint;
   animation: fireworkPresence var(--firework-cycle) linear infinite;
   animation-delay: var(--firework-delay);
 }
@@ -1394,68 +1399,53 @@ textarea:focus {
   animation-delay: var(--firework-delay);
   animation-iteration-count: infinite;
   animation-timing-function: linear;
+  backface-visibility: hidden;
 }
 
 .greeting-firework-burst {
-  inset: 12%;
+  inset: 14%;
   background:
     radial-gradient(circle, var(--firework-core) 0 4%, transparent 5%),
     repeating-conic-gradient(
       from 0deg,
-      transparent 0deg 7deg,
-      var(--firework-ray) 7deg 14deg,
-      transparent 14deg 28deg
+      transparent 0deg 9deg,
+      var(--firework-ray) 9deg 15deg,
+      transparent 15deg 30deg
     );
-  mask-image: radial-gradient(circle, transparent 0 7%, black 10% 54%, transparent 74%);
-  filter:
-    drop-shadow(0 0 16px var(--firework-halo))
-    drop-shadow(0 0 30px rgba(255, 242, 214, 0.2));
   animation-name: fireworkBurstExpand;
 }
 
 .greeting-firework-burst::before {
   content: "";
   position: absolute;
-  inset: 40%;
+  inset: 42%;
   border-radius: 50%;
-  background: radial-gradient(circle, rgba(255, 255, 255, 0.96), transparent 72%);
-  box-shadow: 0 0 18px rgba(255, 248, 228, 0.56);
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.88), transparent 74%);
 }
 
 .greeting-firework-ring {
-  inset: 28%;
-  border: 1.4px solid var(--firework-spark);
-  box-shadow:
-    0 0 20px var(--firework-halo),
-    inset 0 0 18px rgba(255, 255, 255, 0.2);
+  inset: 22%;
+  background: radial-gradient(circle, transparent 58%, var(--firework-spark) 60% 62%, transparent 66%);
   animation-name: fireworkRingExpand;
 }
 
 .greeting-firework-sparks {
-  inset: 32%;
+  inset: 30%;
   background:
     radial-gradient(circle at 50% 0%, var(--firework-spark) 0 10%, transparent 11%),
-    radial-gradient(circle at 78% 8%, var(--firework-spark) 0 8%, transparent 9%),
-    radial-gradient(circle at 95% 30%, var(--firework-spark) 0 8%, transparent 9%),
+    radial-gradient(circle at 82% 18%, var(--firework-spark) 0 8%, transparent 9%),
     radial-gradient(circle at 100% 50%, var(--firework-spark) 0 10%, transparent 11%),
-    radial-gradient(circle at 92% 76%, var(--firework-spark) 0 8%, transparent 9%),
-    radial-gradient(circle at 76% 92%, var(--firework-spark) 0 8%, transparent 9%),
+    radial-gradient(circle at 82% 82%, var(--firework-spark) 0 8%, transparent 9%),
     radial-gradient(circle at 50% 100%, var(--firework-spark) 0 10%, transparent 11%),
-    radial-gradient(circle at 24% 92%, var(--firework-spark) 0 8%, transparent 9%),
-    radial-gradient(circle at 8% 76%, var(--firework-spark) 0 8%, transparent 9%),
+    radial-gradient(circle at 18% 82%, var(--firework-spark) 0 8%, transparent 9%),
     radial-gradient(circle at 0% 50%, var(--firework-spark) 0 10%, transparent 11%),
-    radial-gradient(circle at 8% 24%, var(--firework-spark) 0 8%, transparent 9%),
-    radial-gradient(circle at 24% 8%, var(--firework-spark) 0 8%, transparent 9%);
-  filter:
-    drop-shadow(0 0 10px rgba(255, 248, 228, 0.54))
-    drop-shadow(0 0 20px var(--firework-halo));
+    radial-gradient(circle at 18% 18%, var(--firework-spark) 0 8%, transparent 9%);
   animation-name: fireworkSparkExpand;
 }
 
 .greeting-firework-halo {
-  inset: -24%;
-  background: radial-gradient(circle, var(--firework-halo) 0 22%, transparent 64%);
-  filter: blur(18px);
+  inset: -18%;
+  background: radial-gradient(circle, var(--firework-halo) 0 18%, rgba(255, 247, 231, 0.08) 34%, transparent 68%);
   animation-name: fireworkHaloExpand;
 }
 
@@ -1487,6 +1477,7 @@ textarea:focus {
   overflow: hidden;
   pointer-events: none;
   mix-blend-mode: screen;
+  contain: paint;
 }
 
 .greeting-sparkle {
@@ -1498,6 +1489,8 @@ textarea:focus {
   background: radial-gradient(circle, var(--sparkle-core) 0 28%, transparent 29%);
   opacity: 0;
   transform-origin: center;
+  will-change: transform, opacity;
+  backface-visibility: hidden;
   animation: celebrationSpark ease-in-out infinite;
 }
 
@@ -1515,7 +1508,7 @@ textarea:focus {
     rgba(255, 248, 228, 0.16) 82%,
     transparent 100%
   );
-  box-shadow: 0 0 18px var(--sparkle-glow);
+  box-shadow: 0 0 10px var(--sparkle-glow);
 }
 
 .greeting-sparkle::before {
@@ -1548,8 +1541,8 @@ textarea:focus {
   overflow: hidden;
   pointer-events: none;
   isolation: isolate;
-  mix-blend-mode: screen;
-  filter: saturate(116%);
+  mix-blend-mode: normal;
+  contain: paint;
 }
 
 .greeting-opening-celebration::before,
@@ -1561,26 +1554,25 @@ textarea:focus {
   height: min(90vh, 980px);
   border-radius: 50%;
   opacity: 0;
-  filter: blur(18px);
 }
 
 .greeting-opening-celebration::before {
   left: -22%;
   background:
-    radial-gradient(circle at 34% 78%, rgba(255, 248, 232, 0.42), transparent 16%),
-    radial-gradient(circle at 36% 72%, rgba(247, 198, 101, 0.34), transparent 34%),
-    radial-gradient(circle at 52% 38%, rgba(255, 238, 196, 0.16), transparent 54%),
-    radial-gradient(circle at 44% 56%, rgba(117, 216, 183, 0.1), transparent 48%);
+    radial-gradient(circle at 34% 78%, rgba(255, 248, 232, 0.14), transparent 18%),
+    radial-gradient(circle at 36% 72%, rgba(247, 198, 101, 0.16), transparent 38%),
+    radial-gradient(circle at 52% 38%, rgba(255, 238, 196, 0.08), transparent 58%),
+    radial-gradient(circle at 44% 56%, rgba(117, 216, 183, 0.05), transparent 54%);
   animation: openingCelebrationBloom 4.6s cubic-bezier(0.14, 0.82, 0.2, 1) 1 both;
 }
 
 .greeting-opening-celebration::after {
   right: -22%;
   background:
-    radial-gradient(circle at 66% 78%, rgba(255, 249, 236, 0.4), transparent 16%),
-    radial-gradient(circle at 64% 72%, rgba(247, 198, 101, 0.28), transparent 34%),
-    radial-gradient(circle at 46% 40%, rgba(255, 236, 188, 0.16), transparent 54%),
-    radial-gradient(circle at 56% 58%, rgba(117, 216, 183, 0.12), transparent 48%);
+    radial-gradient(circle at 66% 78%, rgba(255, 249, 236, 0.13), transparent 18%),
+    radial-gradient(circle at 64% 72%, rgba(247, 198, 101, 0.15), transparent 38%),
+    radial-gradient(circle at 46% 40%, rgba(255, 236, 188, 0.08), transparent 58%),
+    radial-gradient(circle at 56% 58%, rgba(117, 216, 183, 0.05), transparent 54%);
   animation: openingCelebrationBloom 4.8s cubic-bezier(0.14, 0.82, 0.2, 1) 0.14s 1 both;
 }
 
@@ -1594,11 +1586,10 @@ textarea:focus {
   inset: 8% 5% 14%;
   border-radius: 50%;
   background:
-    radial-gradient(circle at 50% 42%, rgba(255, 248, 229, 0.24), transparent 24%),
-    radial-gradient(circle at 24% 72%, rgba(247, 198, 101, 0.18), transparent 26%),
-    radial-gradient(circle at 76% 70%, rgba(119, 221, 186, 0.14), transparent 24%),
-    radial-gradient(circle at 50% 70%, rgba(255, 246, 217, 0.12), transparent 42%);
-  filter: blur(30px);
+    radial-gradient(circle at 50% 42%, rgba(255, 248, 229, 0.1), transparent 24%),
+    radial-gradient(circle at 24% 72%, rgba(247, 198, 101, 0.09), transparent 26%),
+    radial-gradient(circle at 76% 70%, rgba(119, 221, 186, 0.07), transparent 24%),
+    radial-gradient(circle at 50% 70%, rgba(255, 246, 217, 0.06), transparent 42%);
   opacity: 0;
   animation: openingCelebrationVeil 5.4s ease-out 1 both;
 }
@@ -1610,9 +1601,9 @@ textarea:focus {
   border-radius: 50%;
   opacity: 0;
   background:
-    radial-gradient(circle at 32% 48%, rgba(255, 248, 229, 0.18), transparent 34%),
-    linear-gradient(90deg, transparent 0, rgba(255, 243, 212, 0.08) 24%, rgba(247, 198, 101, 0.24) 52%, transparent 88%);
-  filter: blur(16px);
+    radial-gradient(circle at 32% 48%, rgba(255, 248, 229, 0.08), transparent 34%),
+    linear-gradient(90deg, transparent 0, rgba(255, 243, 212, 0.03) 24%, rgba(247, 198, 101, 0.1) 52%, transparent 88%);
+  will-change: opacity;
   animation: openingCelebrationSweep 4.8s cubic-bezier(0.12, 0.78, 0.2, 1) 1 both;
 }
 
@@ -1719,8 +1710,7 @@ textarea:focus {
     radial-gradient(circle at 50% 68%, var(--cannon-aura) 0 28%, transparent 64%),
     radial-gradient(circle at 48% 38%, var(--cannon-aura-soft) 0 24%, transparent 56%),
     radial-gradient(circle at 64% 48%, var(--cannon-emerald) 0 20%, transparent 52%);
-  filter: blur(26px);
-  opacity: 0.82;
+  opacity: 0.68;
   animation: cannonChargeGlow var(--cannon-cycle) ease-in-out infinite;
 }
 
@@ -1774,6 +1764,8 @@ textarea:focus {
   height: clamp(160px, 17vh, 194px);
   transform-origin: 50% 92%;
   animation: cannonChargeSwell var(--cannon-cycle) cubic-bezier(0.22, 0.74, 0.24, 1) infinite;
+  will-change: transform;
+  backface-visibility: hidden;
   direction: ltr;
 }
 
@@ -2154,9 +2146,8 @@ textarea:focus {
   height: 96px;
   border-radius: 50%;
   background:
-    radial-gradient(circle, rgba(255, 248, 232, 0.32) 0 12%, rgba(247, 198, 101, 0.2) 20%, transparent 66%),
-    radial-gradient(circle at 58% 48%, rgba(122, 222, 188, 0.14) 0 10%, transparent 44%);
-  filter: blur(8px);
+    radial-gradient(circle, rgba(255, 248, 232, 0.28) 0 12%, rgba(247, 198, 101, 0.18) 24%, transparent 66%),
+    radial-gradient(circle at 58% 48%, rgba(122, 222, 188, 0.12) 0 10%, transparent 44%);
   opacity: 0.22;
   animation: cannonMuzzleCharge var(--cannon-cycle) ease-in-out infinite;
 }
@@ -2179,8 +2170,7 @@ textarea:focus {
     radial-gradient(circle at 36% 72%, rgba(255, 250, 241, 0.34), transparent 34%),
     radial-gradient(circle at 54% 44%, rgba(247, 198, 101, 0.24), transparent 42%),
     radial-gradient(circle at 70% 38%, rgba(124, 220, 188, 0.18), transparent 38%);
-  filter: blur(14px);
-  opacity: 0.34;
+  opacity: 0.26;
   animation: cannonChargeMist var(--cannon-cycle) ease-in-out infinite;
 }
 
@@ -2196,7 +2186,7 @@ textarea:focus {
   inset: 0;
   z-index: 6;
   overflow: visible;
-  filter: saturate(112%) brightness(1.04);
+  contain: paint;
 }
 
 .greeting-opening-particle,
@@ -2222,7 +2212,7 @@ textarea:focus {
   opacity: 0;
   transform-origin: center;
   will-change: transform, opacity;
-  mix-blend-mode: screen;
+  backface-visibility: hidden;
 }
 
 .greeting-opening-particle {
@@ -2281,9 +2271,7 @@ textarea:focus {
 .greeting-fountain-particle.kind-dot {
   border-radius: 50%;
   background: radial-gradient(circle at 35% 35%, rgba(255, 255, 255, 0.98), var(--particle-core) 42%, rgba(255, 255, 255, 0) 74%);
-  box-shadow:
-    0 0 14px var(--particle-glow),
-    0 0 32px rgba(255, 248, 232, 0.12);
+  box-shadow: 0 0 12px var(--particle-glow);
 }
 
 .greeting-opening-particle.kind-dot::before,
@@ -2302,7 +2290,6 @@ textarea:focus {
   inset: -55%;
   border-radius: 50%;
   background: radial-gradient(circle, var(--particle-haze), transparent 70%);
-  filter: blur(4px);
   animation: fountainGlitterDrift 3.2s ease-in-out infinite;
 }
 
@@ -2310,7 +2297,7 @@ textarea:focus {
 .greeting-fountain-particle.kind-star {
   border-radius: 50%;
   background: radial-gradient(circle, var(--particle-core) 0 28%, transparent 29%);
-  filter: drop-shadow(0 0 10px var(--particle-glow));
+  box-shadow: 0 0 10px var(--particle-glow);
 }
 
 .greeting-opening-particle.kind-star::before,
@@ -2329,7 +2316,7 @@ textarea:focus {
     rgba(255, 255, 255, 0.22) 84%,
     transparent 100%
   );
-  box-shadow: 0 0 14px var(--particle-glow);
+  box-shadow: 0 0 8px var(--particle-glow);
   animation: fountainSparkleTwinkle 1.9s ease-in-out infinite;
 }
 
@@ -2350,7 +2337,7 @@ textarea:focus {
   height: calc(var(--burst-size) * 3.8);
   border-radius: 999px;
   background: linear-gradient(180deg, rgba(255, 255, 255, 0.96), var(--particle-core) 28%, rgba(255, 255, 255, 0.08) 100%);
-  box-shadow: 0 0 12px var(--particle-glow);
+  box-shadow: 0 0 8px var(--particle-glow);
 }
 
 .greeting-opening-particle.kind-streak::after,
@@ -2364,7 +2351,7 @@ textarea:focus {
   transform: translateX(-50%);
   border-radius: 50%;
   background: radial-gradient(circle, rgba(255, 255, 255, 0.94), transparent 66%);
-  box-shadow: 0 0 12px var(--particle-glow);
+  box-shadow: 0 0 8px var(--particle-glow);
 }
 
 .greeting-opening-particle.kind-ribbon,
@@ -2383,7 +2370,7 @@ textarea:focus {
   height: calc(var(--burst-size) * 0.72);
   border-radius: 999px;
   background: linear-gradient(90deg, rgba(255, 255, 255, 0.92), var(--particle-core) 44%, var(--particle-edge) 100%);
-  box-shadow: 0 0 14px var(--particle-glow);
+  box-shadow: 0 0 8px var(--particle-glow);
 }
 
 .greeting-opening-particle.kind-ribbon::before,
@@ -2403,7 +2390,7 @@ textarea:focus {
   border-radius: 999px 999px 999px 5px;
   clip-path: polygon(24% 0, 100% 20%, 76% 100%, 0 76%, 10% 18%);
   background: linear-gradient(180deg, rgba(255, 255, 255, 0.94), var(--particle-core) 38%, var(--particle-edge) 100%);
-  box-shadow: 0 0 12px var(--particle-glow);
+  box-shadow: 0 0 8px var(--particle-glow);
 }
 
 .greeting-opening-particle.kind-confetti::before,
@@ -2423,7 +2410,6 @@ textarea:focus {
 .greeting-bird-groups {
   position: absolute;
   inset: 0;
-  z-index: 6;
   pointer-events: none;
 }
 
@@ -2436,17 +2422,18 @@ textarea:focus {
 .greeting-bird-path {
   position: absolute;
   will-change: transform, opacity;
+  backface-visibility: hidden;
 }
 
 .bird-group-left .greeting-bird-path {
-  top: 6.5%;
+  top: 5.5%;
   left: -336px;
   z-index: 2;
   animation: birdArcRight 19.2s cubic-bezier(0.3, 0.04, 0.22, 1) infinite;
 }
 
 .bird-group-right .greeting-bird-path {
-  top: 16%;
+  top: 13%;
   right: -392px;
   z-index: 1;
   animation: birdArcLeft 21.4s cubic-bezier(0.3, 0.04, 0.22, 1) infinite 2.6s;
@@ -2457,10 +2444,7 @@ textarea:focus {
   display: inline-flex;
   align-items: center;
   gap: 18px;
-  filter:
-    drop-shadow(0 22px 30px rgba(1, 8, 14, 0.32))
-    drop-shadow(0 0 20px rgba(247, 198, 101, 0.2))
-    drop-shadow(0 0 28px rgba(255, 245, 220, 0.08));
+  will-change: transform;
   animation: formationFloat 5.8s ease-in-out infinite;
 }
 
@@ -2476,8 +2460,7 @@ textarea:focus {
   background:
     radial-gradient(circle at 48% 50%, rgba(248, 205, 122, 0.18), transparent 58%),
     radial-gradient(circle at 62% 50%, rgba(98, 223, 185, 0.14), transparent 60%);
-  filter: blur(18px);
-  opacity: 0.8;
+  opacity: 0.52;
   animation: glowPulse 7.2s ease-in-out infinite;
 }
 
@@ -2502,8 +2485,8 @@ textarea:focus {
   border-radius: 999px;
   background: linear-gradient(90deg, transparent 0, var(--trail-soft) 34%, var(--trail-strong) 100%);
   box-shadow:
-    0 0 16px rgba(248, 208, 131, 0.18),
-    inset 0 1px 0 rgba(255, 248, 228, 0.42);
+    0 0 10px rgba(248, 208, 131, 0.12),
+    inset 0 1px 0 rgba(255, 248, 228, 0.36);
   transform-origin: right center;
   animation: bannerTrailWave 4.7s ease-in-out infinite;
 }
@@ -2566,6 +2549,8 @@ textarea:focus {
   min-height: 64px;
   padding: 14px 34px 16px;
   isolation: isolate;
+  will-change: transform;
+  backface-visibility: hidden;
   animation: bannerWave 4.6s ease-in-out infinite;
 }
 
@@ -2588,10 +2573,10 @@ textarea:focus {
     linear-gradient(180deg, var(--banner-top), rgba(255, 248, 228, 0.04)),
     linear-gradient(135deg, rgba(151, 96, 36, 0.96), rgba(83, 50, 16, 0.92) 32%, var(--banner-bottom) 100%);
   box-shadow:
-    0 18px 28px rgba(3, 11, 18, 0.34),
+    0 14px 22px rgba(3, 11, 18, 0.28),
     inset 0 1px 0 rgba(255, 251, 240, 0.24),
     inset 0 0 0 1px rgba(255, 248, 228, 0.12),
-    0 0 24px rgba(248, 191, 91, 0.14);
+    0 0 16px rgba(248, 191, 91, 0.1);
 }
 
 .greeting-banner-rig::after {
@@ -2669,8 +2654,8 @@ textarea:focus {
   border-radius: 50%;
   background: radial-gradient(circle, rgba(255, 249, 236, 0.94) 0 34%, transparent 35%);
   box-shadow:
-    0 0 12px rgba(255, 238, 194, 0.72),
-    0 0 26px rgba(247, 198, 101, 0.18);
+    0 0 8px rgba(255, 238, 194, 0.58),
+    0 0 14px rgba(247, 198, 101, 0.12);
   animation: bannerSpark 3.8s ease-in-out infinite;
 }
 
@@ -2767,8 +2752,8 @@ textarea:focus {
   border: 1px solid rgba(255, 240, 206, 0.42);
   background: radial-gradient(circle at 35% 35%, rgba(255, 255, 255, 0.96), var(--tether-core) 68%, rgba(108, 69, 24, 0.96) 100%);
   box-shadow:
-    0 0 12px var(--tether-glow),
-    0 0 20px rgba(255, 244, 218, 0.16);
+    0 0 8px var(--tether-glow),
+    0 0 12px rgba(255, 244, 218, 0.12);
   animation: claspPulse 3.8s ease-in-out infinite;
 }
 
@@ -2790,15 +2775,15 @@ textarea:focus {
   width: 100%;
   height: 100%;
   overflow: visible;
-  filter:
-    drop-shadow(0 8px 14px rgba(4, 12, 18, 0.22))
-    drop-shadow(0 0 12px rgba(255, 245, 220, 0.14));
+  filter: none;
 }
 
 .greeting-bird-hero {
-  filter:
-    drop-shadow(0 14px 20px rgba(2, 10, 16, 0.24))
-    drop-shadow(0 0 18px rgba(255, 231, 179, 0.22));
+  filter: none;
+}
+
+.greeting-bird-hero .greeting-bird-svg {
+  filter: drop-shadow(0 8px 12px rgba(2, 10, 16, 0.18));
 }
 
 .bird-group-right .greeting-bird {
@@ -2898,6 +2883,7 @@ textarea:focus {
 .greeting-bird-escort {
   position: absolute;
   display: block;
+  will-change: transform;
 }
 
 .bird-group-left .greeting-bird-escort.escort-one {
@@ -2944,8 +2930,8 @@ textarea:focus {
   background:
     radial-gradient(ellipse, rgba(14, 108, 84, 0.24), transparent 56%),
     radial-gradient(ellipse, rgba(247, 198, 101, 0.18), transparent 48%);
-  filter: blur(14px);
-  animation: sceneFloat 13s ease-in-out infinite reverse;
+  filter: blur(12px);
+  animation: sceneFloat 18s ease-in-out infinite reverse;
 }
 
 .greeting-silhouette {
@@ -3029,6 +3015,15 @@ textarea:focus {
     radial-gradient(ellipse, rgba(246, 192, 85, 0.18), transparent 52%),
     radial-gradient(ellipse, rgba(0, 0, 0, 0.5), transparent 70%);
   filter: blur(7px);
+}
+
+.greeting-flight-layer {
+  position: absolute;
+  inset: 0 0 auto;
+  z-index: 7;
+  height: clamp(220px, 34vh, 320px);
+  pointer-events: none;
+  overflow: visible;
 }
 
 .greeting-arch {
@@ -3676,10 +3671,10 @@ textarea:focus {
 @keyframes ceremonialSwing {
   0%,
   100% {
-    transform: rotate(-8deg) translateY(0) scale(var(--lantern-scale));
+    transform: translate3d(0, 0, 0) rotate(-6deg) scale(var(--lantern-scale));
   }
   50% {
-    transform: rotate(8deg) translateY(10px) scale(var(--lantern-scale));
+    transform: translate3d(0, 6px, 0) rotate(6deg) scale(var(--lantern-scale));
   }
 }
 
@@ -3771,7 +3766,7 @@ textarea:focus {
     transform: translate3d(0, 0, 0);
   }
   50% {
-    transform: translate3d(0, -18px, 0);
+    transform: translate3d(0, -10px, 0);
   }
 }
 
@@ -3989,19 +3984,19 @@ textarea:focus {
 @keyframes fireworkPresence {
   0% {
     opacity: 0;
-    transform: translate(-50%, -50%) rotate(var(--firework-tilt)) scale(0.22);
+    transform: translate3d(-50%, -50%, 0) rotate(var(--firework-tilt)) scale(0.22);
   }
   2% {
     opacity: 1;
   }
   9% {
     opacity: 1;
-    transform: translate(-50%, -50%) rotate(var(--firework-tilt)) scale(0.98);
+    transform: translate3d(-50%, -50%, 0) rotate(var(--firework-tilt)) scale(0.96);
   }
   15%,
   100% {
     opacity: 0;
-    transform: translate(-50%, -50%) rotate(var(--firework-tilt)) scale(1.08);
+    transform: translate3d(-50%, -50%, 0) rotate(var(--firework-tilt)) scale(1.04);
   }
 }
 
@@ -4087,15 +4082,15 @@ textarea:focus {
     transform: translate3d(0, 140px, 0) scale(0.34);
   }
   18% {
-    opacity: 0.92;
+    opacity: 0.34;
   }
   44% {
-    opacity: 0.78;
-    transform: translate3d(0, -140px, 0) scale(1.04);
+    opacity: 0.2;
+    transform: translate3d(0, -112px, 0) scale(0.96);
   }
   100% {
     opacity: 0;
-    transform: translate3d(0, -260px, 0) scale(1.22);
+    transform: translate3d(0, -220px, 0) scale(1.08);
   }
 }
 
@@ -4105,15 +4100,15 @@ textarea:focus {
     transform: scale(0.72);
   }
   20% {
-    opacity: 0.36;
+    opacity: 0.12;
   }
   54% {
-    opacity: 0.42;
+    opacity: 0.16;
     transform: scale(1);
   }
   100% {
     opacity: 0;
-    transform: scale(1.16);
+    transform: scale(1.08);
   }
 }
 
@@ -4121,17 +4116,15 @@ textarea:focus {
   0%,
   100% {
     opacity: 0;
-    filter: blur(18px);
   }
   18% {
-    opacity: 0.34;
+    opacity: 0.05;
   }
   42% {
-    opacity: 0.56;
-    filter: blur(12px);
+    opacity: 0.12;
   }
   72% {
-    opacity: 0.18;
+    opacity: 0.04;
   }
 }
 
@@ -4161,28 +4154,24 @@ textarea:focus {
   91%,
   100% {
     transform: translate3d(0, 0, 0) scale(1);
-    filter: brightness(1);
   }
   16.5%,
   41.5%,
   74.5%,
   93.5% {
-    transform: translate3d(0, -4px, 0) scale(1.02);
-    filter: brightness(1.03);
+    transform: translate3d(0, -3px, 0) scale(1.015);
   }
   19.5%,
   44.5%,
   77.5%,
   96.5% {
-    transform: translate3d(0, -10px, 0) scale(1.065);
-    filter: brightness(1.12);
+    transform: translate3d(0, -8px, 0) scale(1.045);
   }
   21.5%,
   46.5%,
   79.5%,
   98.2% {
-    transform: translate3d(0, -2px, 0) scale(0.988);
-    filter: brightness(1.02);
+    transform: translate3d(0, -1px, 0) scale(0.992);
   }
 }
 
@@ -4312,7 +4301,6 @@ textarea:focus {
   100% {
     opacity: 0.18;
     transform: scale(0.82);
-    filter: blur(8px);
   }
   16.5%,
   41.5%,
@@ -4320,23 +4308,20 @@ textarea:focus {
   93.5% {
     opacity: 0.34;
     transform: scale(0.94);
-    filter: blur(7px);
   }
   19.5%,
   44.5%,
   77.5%,
   96.5% {
-    opacity: 0.92;
-    transform: scale(1.08);
-    filter: blur(5px);
+    opacity: 0.84;
+    transform: scale(1.04);
   }
   22.2%,
   47.2%,
   80.2%,
   99% {
     opacity: 0.2;
-    transform: scale(1.18);
-    filter: blur(9px);
+    transform: scale(1.12);
   }
 }
 
@@ -4448,15 +4433,12 @@ textarea:focus {
   0%,
   100% {
     opacity: 0.34;
-    filter: brightness(0.88);
   }
   42% {
     opacity: 1;
-    filter: brightness(1.26);
   }
   72% {
     opacity: 0.58;
-    filter: brightness(1.02);
   }
 }
 
@@ -4603,7 +4585,7 @@ textarea:focus {
     transform: translateY(0) rotate(-1.8deg);
   }
   50% {
-    transform: translateY(-12px) rotate(1.8deg);
+    transform: translateY(-8px) rotate(1.6deg);
   }
 }
 
@@ -4657,15 +4639,11 @@ textarea:focus {
   0%,
   100% {
     transform: translateY(-50%) scale(0.94);
-    box-shadow:
-      0 0 10px var(--tether-glow),
-      0 0 16px rgba(255, 244, 218, 0.14);
+    opacity: 0.76;
   }
   50% {
-    transform: translateY(-50%) scale(1.08);
-    box-shadow:
-      0 0 16px var(--tether-glow),
-      0 0 24px rgba(255, 244, 218, 0.22);
+    transform: translateY(-50%) scale(1.04);
+    opacity: 1;
   }
 }
 
@@ -4736,6 +4714,10 @@ textarea:focus {
     padding: 0 6px;
   }
 
+  .greeting-flight-layer {
+    height: clamp(186px, 28vh, 252px);
+  }
+
   .greeting-stage-glow {
     width: 180px;
     height: 240px;
@@ -4743,6 +4725,19 @@ textarea:focus {
 
   .greeting-firework {
     --firework-scale: 0.82;
+  }
+
+  .greeting-firework:nth-child(n + 6),
+  .greeting-sparkle:nth-child(n + 6) {
+    display: none;
+  }
+
+  .greeting-fountain-particle:nth-child(3n) {
+    display: none;
+  }
+
+  .greeting-opening-particle:nth-child(6n) {
+    display: none;
   }
 
   .greeting-crescent-cluster {
@@ -5109,12 +5104,12 @@ textarea:focus {
   }
 
   .bird-group-left .greeting-bird-path {
-    top: 12%;
+    top: 9%;
     left: -246px;
   }
 
   .bird-group-right .greeting-bird-path {
-    top: 22%;
+    top: 16%;
     right: -286px;
   }
 
@@ -5124,6 +5119,7 @@ textarea:focus {
 
   .greeting-flight-aura {
     inset: -22px 62px -18px;
+    opacity: 0.44;
   }
 
   .greeting-banner-trails {
@@ -5210,6 +5206,10 @@ textarea:focus {
 
   .greeting-stage {
     min-height: 636px;
+  }
+
+  .greeting-flight-layer {
+    height: clamp(160px, 26vh, 214px);
   }
 
   .greeting-stage-glow {
@@ -5539,13 +5539,22 @@ textarea:focus {
     --firework-scale: 0.68;
   }
 
+  .greeting-firework:nth-child(n + 5),
+  .greeting-sparkle:nth-child(n + 5),
+  .greeting-opening-particle:nth-child(4n),
+  .greeting-fountain-particle:nth-child(2n),
+  .greeting-banner-spark.spark-two,
+  .greeting-flight-aura {
+    display: none;
+  }
+
   .bird-group-left .greeting-bird-path {
-    top: 13.5%;
+    top: 10.5%;
     left: -194px;
   }
 
   .bird-group-right .greeting-bird-path {
-    top: 23%;
+    top: 17.5%;
     right: -226px;
   }
 
@@ -5625,6 +5634,11 @@ textarea:focus {
   .greeting-banner-clasp {
     width: 9px;
     height: 9px;
+  }
+
+  .greeting-banner-rig::after,
+  .greeting-banner-trail::after {
+    display: none;
   }
 
   .greeting-bird {

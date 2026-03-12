@@ -245,23 +245,18 @@ const greetingCelebrationSparkles = [
   { id: 4, top: "16%", left: "76%", delay: "2.3s", duration: "8.8s", size: "11px", tone: "gold" },
   { id: 5, top: "24%", left: "26%", delay: "1.2s", duration: "9.4s", size: "10px", tone: "gold" },
   { id: 6, top: "27%", left: "48%", delay: "2.6s", duration: "8.1s", size: "13px", tone: "ivory" },
-  { id: 7, top: "25%", left: "69%", delay: "0.5s", duration: "8.9s", size: "12px", tone: "emerald" },
-  { id: 8, top: "34%", left: "15%", delay: "2.1s", duration: "9.7s", size: "9px", tone: "ivory" },
-  { id: 9, top: "36%", left: "84%", delay: "1.4s", duration: "8.7s", size: "10px", tone: "gold" },
-  { id: 10, top: "45%", left: "39%", delay: "3s", duration: "9.6s", size: "8px", tone: "emerald" }
+  { id: 7, top: "25%", left: "69%", delay: "0.5s", duration: "8.9s", size: "12px", tone: "emerald" }
 ];
 
 const greetingCelebrationFireworks = [
-  { id: 1, top: "11%", left: "16%", delay: "0.12s", cycle: "12.8s", size: "236px", tone: "gold", tilt: "-12deg" },
-  { id: 2, top: "8%", left: "37%", delay: "0.46s", cycle: "12.8s", size: "208px", tone: "ivory", tilt: "9deg" },
-  { id: 3, top: "13%", left: "74%", delay: "0.82s", cycle: "12.8s", size: "224px", tone: "emerald", tilt: "-7deg" },
-  { id: 4, top: "18%", left: "24%", delay: "1.58s", cycle: "12.8s", size: "186px", tone: "ivory", tilt: "12deg" },
-  { id: 5, top: "14%", left: "54%", delay: "1.94s", cycle: "12.8s", size: "216px", tone: "gold", tilt: "-10deg" },
-  { id: 6, top: "20%", left: "84%", delay: "2.28s", cycle: "12.8s", size: "176px", tone: "gold", tilt: "7deg" },
-  { id: 7, top: "26%", left: "13%", delay: "5.1s", cycle: "12.8s", size: "152px", tone: "emerald", tilt: "-13deg" },
-  { id: 8, top: "23%", left: "44%", delay: "7.35s", cycle: "12.8s", size: "164px", tone: "ivory", tilt: "10deg" },
-  { id: 9, top: "27%", left: "68%", delay: "9.62s", cycle: "12.8s", size: "148px", tone: "gold", tilt: "-8deg" },
-  { id: 10, top: "17%", left: "91%", delay: "11.18s", cycle: "12.8s", size: "138px", tone: "emerald", tilt: "8deg" }
+  { id: 1, top: "11%", left: "16%", delay: "0.12s", cycle: "12.8s", size: "224px", tone: "gold", tilt: "-12deg" },
+  { id: 2, top: "8%", left: "39%", delay: "1.18s", cycle: "12.8s", size: "196px", tone: "ivory", tilt: "9deg" },
+  { id: 3, top: "13%", left: "74%", delay: "2.36s", cycle: "12.8s", size: "212px", tone: "emerald", tilt: "-7deg" },
+  { id: 4, top: "18%", left: "24%", delay: "4.02s", cycle: "12.8s", size: "178px", tone: "ivory", tilt: "12deg" },
+  { id: 5, top: "14%", left: "55%", delay: "5.68s", cycle: "12.8s", size: "204px", tone: "gold", tilt: "-10deg" },
+  { id: 6, top: "22%", left: "82%", delay: "7.34s", cycle: "12.8s", size: "166px", tone: "gold", tilt: "7deg" },
+  { id: 7, top: "24%", left: "37%", delay: "9.26s", cycle: "12.8s", size: "156px", tone: "ivory", tilt: "10deg" },
+  { id: 8, top: "27%", left: "68%", delay: "10.92s", cycle: "12.8s", size: "144px", tone: "gold", tilt: "-8deg" }
 ];
 
 const greetingOpeningCelebrationParticles = [
@@ -300,14 +295,10 @@ const greetingCelebrationFountainParticles = [
   createCelebrationParticle(6, "ribbon", "gold", "9px", "9vw", "-15vh", "22vw", "-34vh", "4vw", "5.14s", "12s", "12deg", "-26deg", "1.04"),
   createCelebrationParticle(7, "star", "gold", "11px", "11vw", "-18vh", "25vw", "-38vh", "5vw", "5.42s", "12.2s", "-18deg", "-32deg", "1.12"),
   createCelebrationParticle(8, "confetti", "ivory", "8px", "8vw", "-14vh", "18vw", "-30vh", "3vw", "5.72s", "11.7s", "26deg", "-14deg", "0.94"),
-  createCelebrationParticle(9, "dot", "gold", "10px", "5vw", "-10vh", "12vw", "-22vh", "2vw", "8.96s", "11.4s", "10deg", "-20deg", "0.9"),
-  createCelebrationParticle(10, "streak", "ivory", "6px", "9vw", "-15vh", "20vw", "-32vh", "4vw", "9.26s", "11.6s", "-18deg", "-28deg", "0.98"),
   createCelebrationParticle(11, "star", "emerald", "10px", "12vw", "-18vh", "24vw", "-34vh", "5vw", "9.52s", "12s", "14deg", "-18deg", "0.98"),
   createCelebrationParticle(12, "ribbon", "gold", "9px", "9vw", "-13vh", "19vw", "-28vh", "4vw", "9.8s", "11.8s", "24deg", "-14deg", "0.94"),
-  createCelebrationParticle(13, "dot", "ivory", "8px", "7vw", "-11vh", "14vw", "-24vh", "3vw", "11.38s", "11.2s", "-6deg", "-20deg", "0.84"),
   createCelebrationParticle(14, "confetti", "gold", "8px", "10vw", "-15vh", "22vw", "-31vh", "4vw", "11.66s", "11.8s", "20deg", "-16deg", "0.9"),
-  createCelebrationParticle(15, "star", "ivory", "10px", "13vw", "-16vh", "26vw", "-36vh", "5vw", "11.96s", "12.4s", "-14deg", "-24deg", "1.04"),
-  createCelebrationParticle(16, "dot", "gold", "9px", "8vw", "-12vh", "17vw", "-26vh", "3vw", "12.24s", "11.6s", "8deg", "-20deg", "0.88")
+  createCelebrationParticle(15, "star", "ivory", "10px", "13vw", "-16vh", "26vw", "-36vh", "5vw", "11.96s", "12.4s", "-14deg", "-24deg", "1.04")
 ];
 
 function normalizeLanguage(value) {
@@ -964,10 +955,6 @@ function GreetingMode({ ui, isArabic, selectedStyle, senderName, greetingMessage
           ))}
         </div>
         <GreetingOpeningCelebration />
-        <div className="greeting-bird-groups">
-          <GreetingBirdGroup side="left" bannerText="عيد مبارك" accent="gold" />
-          <GreetingBirdGroup side="right" bannerText="كل عام وأنتم بخير" accent="emerald" />
-        </div>
         <div className="greeting-lanterns">
           <div className="greeting-lantern-rail" />
           {greetingLanterns.map((lantern) => (
@@ -1000,6 +987,12 @@ function GreetingMode({ ui, isArabic, selectedStyle, senderName, greetingMessage
         <div className="greeting-stage-glow greeting-stage-glow-left" aria-hidden="true" />
         <div className="greeting-stage-glow greeting-stage-glow-right" aria-hidden="true" />
         <div className="greeting-stage-floor" aria-hidden="true" />
+        <div className="greeting-flight-layer" aria-hidden="true">
+          <div className="greeting-bird-groups">
+            <GreetingBirdGroup side="left" bannerText="عيد مبارك" accent="gold" />
+            <GreetingBirdGroup side="right" bannerText="كل عام وأنتم بخير" accent="emerald" />
+          </div>
+        </div>
 
         <div className="greeting-arch">
           <div className="greeting-arch-layer arch-outer" aria-hidden="true" />
