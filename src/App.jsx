@@ -6,6 +6,7 @@ import SiteFooter from "./components/SiteFooter";
 import SupportPageView from "./components/SupportPageView";
 import { siteConfig } from "./config/siteConfig";
 import { siteContent } from "./content/siteContent";
+import { supportContent } from "./content/supportContent";
 
 const DEFAULT_LANGUAGE = "en";
 const DEFAULT_STYLE_ID = "classic";
@@ -1149,6 +1150,7 @@ export default function App() {
   const ui = copy[language];
   const isArabic = language === "ar";
   const content = siteContent[language];
+  const supportPages = supportContent[language];
 
   const selectedStyle = useMemo(
     () => styleOptions.find((style) => style.id === styleId) ?? styleOptions[0],
@@ -1284,7 +1286,7 @@ export default function App() {
         />
       ) : activeSupportPage ? (
         <SupportPageView
-          page={content.supportPages[activeSupportPage]}
+          page={supportPages[activeSupportPage]}
           homeHref={creatorUrl}
           backLabel={content.backToHome}
           linksLabel={content.supportNavLabel}
@@ -1314,7 +1316,7 @@ export default function App() {
           adsConfig={siteConfig.ads}
           footerLinks={footerLinks}
           footerHomeLabel={content.footerHome}
-          supportPages={content.supportPages}
+          supportPages={supportPages}
           creatorUrl={creatorUrl}
         />
       )}

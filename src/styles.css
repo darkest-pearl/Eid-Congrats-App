@@ -497,6 +497,7 @@ textarea:focus {
 .creator-more-section,
 .support-hero,
 .support-contact-panel,
+.support-form-panel,
 .support-links-panel,
 .support-card,
 .site-footer-inner {
@@ -861,6 +862,12 @@ textarea:focus {
   }
 }
 
+@media (max-width: 920px) {
+  .support-contact-grid.has-form {
+    grid-template-columns: 1fr;
+  }
+}
+
 .support-layout {
   position: relative;
   z-index: 1;
@@ -872,6 +879,7 @@ textarea:focus {
 
 .support-hero,
 .support-contact-panel,
+.support-form-panel,
 .support-links-panel {
   padding: clamp(22px, 3vw, 32px);
 }
@@ -887,14 +895,29 @@ textarea:focus {
   gap: 12px;
 }
 
+.support-contact-grid {
+  display: grid;
+  gap: 22px;
+}
+
+.support-contact-grid.has-form {
+  grid-template-columns: minmax(0, 0.72fr) minmax(0, 1.28fr);
+  align-items: start;
+}
+
 .support-contact-panel {
   display: grid;
-  gap: 8px;
+  gap: 10px;
 }
 
 .support-contact-label {
   color: var(--text-muted);
   font-size: 0.92rem;
+}
+
+.support-contact-note {
+  margin: 0;
+  color: var(--text-muted);
 }
 
 .support-contact-link {
@@ -907,6 +930,70 @@ textarea:focus {
 
 .support-contact-missing {
   color: rgba(255, 225, 171, 0.9);
+}
+
+.support-form-panel {
+  display: grid;
+  gap: 18px;
+}
+
+.support-form-header {
+  display: grid;
+  gap: 8px;
+}
+
+.support-form-header h2 {
+  margin: 0;
+  font-size: clamp(1.35rem, 2.4vw, 1.8rem);
+  line-height: 1.14;
+}
+
+.support-form-header p {
+  margin: 0;
+  color: var(--text-muted);
+}
+
+.support-form {
+  display: grid;
+  gap: 14px;
+}
+
+.support-form-row {
+  display: grid;
+  gap: 14px;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.support-form-field {
+  display: grid;
+  gap: 6px;
+}
+
+.support-form-field label {
+  margin: 0;
+}
+
+.support-form-error {
+  font-size: 0.84rem;
+  color: #ffd7b0;
+}
+
+.support-form-status {
+  padding: 12px 14px;
+  border-radius: 14px;
+  border: 1px solid rgba(255, 190, 160, 0.26);
+  background: rgba(90, 25, 18, 0.22);
+  color: #ffe5d2;
+}
+
+.support-form-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.support-form-success {
+  align-content: start;
 }
 
 .support-links-panel {
@@ -5196,6 +5283,10 @@ textarea:focus {
     flex-direction: column;
   }
 
+  .support-form-row {
+    grid-template-columns: 1fr;
+  }
+
   .creator-top-ad,
   .creator-card,
   .creator-menu-section,
@@ -5204,6 +5295,7 @@ textarea:focus {
   .creator-more-section,
   .support-hero,
   .support-contact-panel,
+  .support-form-panel,
   .support-card,
   .support-links-panel,
   .site-footer-inner {

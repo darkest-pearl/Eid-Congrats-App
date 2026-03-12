@@ -39,6 +39,7 @@ export default function CreatorSupportMenu({
           const panelId = `support-menu-panel-${item.id}`;
           const triggerId = `support-menu-trigger-${item.id}`;
           const page = isHome ? null : pages[item.id];
+          const sections = page?.summarySections ?? page?.sections ?? [];
 
           return (
             <article key={item.id} className={`support-menu-item ${isOpen ? "is-open" : ""}`}>
@@ -79,7 +80,7 @@ export default function CreatorSupportMenu({
                           </div>
 
                           <div className="support-menu-card-grid">
-                            {page.sections.map((section) => (
+                            {sections.map((section) => (
                               <article key={section.title} className="content-card compact">
                                 <h4>{section.title}</h4>
                                 <p>{section.body}</p>

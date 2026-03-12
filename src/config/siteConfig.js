@@ -1,6 +1,6 @@
 const localSiteConfig = {
   siteName: "Eid Congrats App",
-  contactEmail: "",
+  contactEmail: "musabcreate@gmail.com",
   adsenseClientId: "",
   homepageTopSlotId: "",
   homepageLowerSlotId: "",

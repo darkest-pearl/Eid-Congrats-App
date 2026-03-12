@@ -1,3 +1,5 @@
+import ContactForm from "./ContactForm";
+
 export default function SupportPageView({
   page,
   homeHref,
@@ -20,15 +22,20 @@ export default function SupportPageView({
       </section>
 
       {page.emailLabel ? (
-        <section className="support-contact-panel">
-          <div className="support-contact-label">{page.emailLabel}</div>
-          {contactEmail ? (
-            <a className="support-contact-link" href={`mailto:${contactEmail}`}>
-              {contactEmail}
-            </a>
-          ) : (
-            <div className="support-contact-missing">{page.emailMissing}</div>
-          )}
+        <section className={`support-contact-grid ${page.contactForm ? "has-form" : ""}`}>
+          <div className="support-contact-panel">
+            <div className="support-contact-label">{page.emailLabel}</div>
+            {page.emailNote ? <p className="support-contact-note">{page.emailNote}</p> : null}
+            {contactEmail ? (
+              <a className="support-contact-link" href={`mailto:${contactEmail}`}>
+                {contactEmail}
+              </a>
+            ) : (
+              <div className="support-contact-missing">{page.emailMissing}</div>
+            )}
+          </div>
+
+          {page.contactForm ? <ContactForm formCopy={page.contactForm} /> : null}
         </section>
       ) : null}
 
