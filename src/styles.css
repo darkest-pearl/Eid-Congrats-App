@@ -1634,13 +1634,13 @@ textarea:focus {
   position: absolute;
   left: 50%;
   bottom: clamp(32px, 4.8vh, 58px);
-  width: min(100%, 1020px);
+  width: min(100%, 1072px);
   height: clamp(230px, 28vh, 296px);
   transform: translateX(-50%);
   display: flex;
   align-items: flex-end;
   justify-content: space-between;
-  padding: 0 clamp(8px, 2.6vw, 36px);
+  padding: 0 clamp(0px, 1.8vw, 20px);
   overflow: visible;
   pointer-events: none;
   isolation: isolate;
@@ -1648,6 +1648,7 @@ textarea:focus {
 }
 
 .greeting-corner-burst {
+  --corner-burst-scale: 0.92;
   --burst-direction: 1;
   --fountain-haze-drift: 28px;
   --cannon-cycle: 12s;
@@ -1663,10 +1664,12 @@ textarea:focus {
   height: 100%;
   overflow: visible;
   flex: 0 0 auto;
+  transform: scale(var(--corner-burst-scale));
 }
 
 .greeting-corner-burst-left {
   align-self: flex-end;
+  transform-origin: left bottom;
 }
 
 .greeting-corner-burst-right {
@@ -1675,6 +1678,7 @@ textarea:focus {
   --cannon-aura: rgba(255, 240, 210, 0.2);
   --cannon-aura-soft: rgba(247, 198, 101, 0.18);
   --cannon-emerald: rgba(122, 222, 188, 0.22);
+  transform-origin: right bottom;
 }
 
 .greeting-cannon-aura,
@@ -4789,6 +4793,7 @@ textarea:focus {
   }
 
   .greeting-corner-burst {
+    --corner-burst-scale: 0.9;
     --cannon-origin-x: 128px;
     --cannon-origin-y: 104px;
     width: 198px;
@@ -4805,9 +4810,9 @@ textarea:focus {
 
   .greeting-corner-bursts {
     bottom: 26px;
-    width: min(100%, 790px);
+    width: min(100%, 836px);
     height: 202px;
-    padding: 0 6px;
+    padding: 0 2px;
   }
 
   .greeting-cannon-aura {
@@ -5253,6 +5258,7 @@ textarea:focus {
   }
 
   .greeting-corner-burst {
+    --corner-burst-scale: 0.88;
     --cannon-origin-x: 98px;
     --cannon-origin-y: 86px;
     width: min(37vw, 154px);
@@ -5270,7 +5276,7 @@ textarea:focus {
   .greeting-corner-bursts {
     bottom: 20px;
     height: 164px;
-    padding: 0 2px;
+    padding: 0;
   }
 
   .greeting-cannon-aura {
