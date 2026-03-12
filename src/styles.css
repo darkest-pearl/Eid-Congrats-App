@@ -255,6 +255,29 @@ label {
   color: var(--text-muted);
 }
 
+.message-field {
+  display: grid;
+  gap: 8px;
+}
+
+.message-field-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.message-field-header label {
+  margin: 10px 0 0;
+}
+
+.message-generator-note {
+  margin: 0;
+  font-size: 0.82rem;
+  color: rgba(233, 242, 255, 0.64);
+}
+
 input,
 select,
 textarea {
@@ -313,6 +336,17 @@ textarea:focus {
   background: rgba(255, 255, 255, 0.16);
 }
 
+.message-generate-btn {
+  white-space: nowrap;
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.18), rgba(247, 204, 122, 0.2)),
+    rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 225, 159, 0.2);
+  box-shadow:
+    0 12px 24px rgba(2, 9, 20, 0.18),
+    inset 0 1px 0 rgba(255, 255, 255, 0.18);
+}
+
 .ghost-btn {
   background: transparent;
   border: 1px solid rgba(255, 255, 255, 0.26);
@@ -323,6 +357,16 @@ textarea:focus {
 .ghost-btn:disabled {
   opacity: 0.7;
   cursor: not-allowed;
+}
+
+@media (max-width: 540px) {
+  .message-field-header {
+    align-items: stretch;
+  }
+
+  .message-generate-btn {
+    width: 100%;
+  }
 }
 
 .status-note {

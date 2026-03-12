@@ -1,4 +1,5 @@
-import { useMemo, useState } from "react";
+import { useMemo, useRef, useState } from "react";
+import { generateRandomEidMessage } from "./lib/messageGenerator";
 
 const DEFAULT_LANGUAGE = "en";
 const DEFAULT_STYLE_ID = "classic";
@@ -108,6 +109,11 @@ const copy = {
     ctaCreateOwn: "أنشئ تهنئة عيد خاصة بك"
   }
 };
+
+copy.en.generateMessage = "Generate Message";
+copy.en.generateMessageHint = "Generate a meaningful Eid message instantly";
+copy.ar.generateMessage = "توليد رسالة";
+copy.ar.generateMessageHint = "ولّد رسالة عيد جميلة فورًا";
 
 const styleIds = new Set(styleOptions.map((style) => style.id));
 
@@ -734,6 +740,7 @@ function CreatorMode({
   setStyleId,
   customMessage,
   setCustomMessage,
+  handleGenerateMessage,
   previewUrl,
   selectedStyle,
   greetingMessage,
@@ -791,8 +798,14 @@ function CreatorMode({
             </select>
           </div>
 
-          <div>
-            <label htmlFor="custom-message">{ui.customMessage}</label>
+          <div className="message-field">
+            <div className="message-field-header">
+              <label htmlFor="custom-message">{ui.customMessage}</label>
+              <button className="secondary-btn message-generate-btn" type="button" onClick={handleGenerateMessage}>
+                {ui.generateMessage}
+              </button>
+            </div>
+            <div className="message-generator-note">{ui.generateMessageHint}</div>
             <textarea
               id="custom-message"
               rows={4}
@@ -1069,6 +1082,7 @@ export default function App() {
   const [styleId, setStyleId] = useState(initial.styleId);
   const [statusMessage, setStatusMessage] = useState("");
   const [isSharing, setIsSharing] = useState(false);
+  const lastGeneratedMessageRef = useRef("");
 
   const ui = copy[language];
   const isArabic = language === "ar";
@@ -1141,12 +1155,24 @@ export default function App() {
     }
   }
 
+  function handleGenerateMessage() {
+    const nextMessage = generateRandomEidMessage(language, lastGeneratedMessageRef.current);
+    if (!nextMessage) {
+      return;
+    }
+
+    setCustomMessage(nextMessage);
+    setStatusMessage("");
+    lastGeneratedMessageRef.current = nextMessage;
+  }
+
   function resetState() {
     setLanguage(DEFAULT_LANGUAGE);
     setSenderName("");
     setCustomMessage("");
     setStyleId(DEFAULT_STYLE_ID);
     setStatusMessage("");
+    lastGeneratedMessageRef.current = "";
   }
 
   return (
@@ -1177,6 +1203,7 @@ export default function App() {
           setStyleId={setStyleId}
           customMessage={customMessage}
           setCustomMessage={setCustomMessage}
+          handleGenerateMessage={handleGenerateMessage}
           previewUrl={previewUrl}
           selectedStyle={selectedStyle}
           greetingMessage={greetingMessage}
