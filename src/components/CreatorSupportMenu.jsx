@@ -1,3 +1,4 @@
+import { AnimatePresence, motion } from "framer-motion";
 import { useMemo, useState } from "react";
 
 function MenuArrow({ isOpen }) {
@@ -20,9 +21,6 @@ export default function CreatorSupportMenu({
 
   const menuItems = useMemo(() => [{ id: "home", href: homeHref, label: homeLabel }, ...items], [homeHref, homeLabel, items]);
 
-  const activeLink = menuItems.find((item) => item.id === openId) || null;
-  const activePage = openId && openId !== "home" ? pages[openId] : null;
-
   function handleToggle(id) {
     setOpenId((current) => (current === id ? "" : id));
   }
@@ -34,68 +32,86 @@ export default function CreatorSupportMenu({
         <p>{intro}</p>
       </div>
 
-      <div className="support-menu-row" role="tablist" aria-label={title}>
+      <div className="support-menu-list" aria-label={title}>
         {menuItems.map((item) => {
           const isOpen = openId === item.id;
+          const isHome = item.id === "home";
+          const panelId = `support-menu-panel-${item.id}`;
+          const triggerId = `support-menu-trigger-${item.id}`;
+          const page = isHome ? null : pages[item.id];
 
           return (
-            <button
-              key={item.id}
-              className={`support-menu-trigger ${isOpen ? "is-open" : ""}`}
-              type="button"
-              role="tab"
-              aria-expanded={isOpen}
-              aria-controls={`support-menu-panel-${item.id}`}
-              aria-selected={isOpen}
-              onClick={() => handleToggle(item.id)}
-            >
-              <span>{item.label}</span>
-              <MenuArrow isOpen={isOpen} />
-            </button>
+            <article key={item.id} className={`support-menu-item ${isOpen ? "is-open" : ""}`}>
+              <h2 className="support-menu-heading">
+                <button
+                  id={triggerId}
+                  className={`support-menu-trigger ${isOpen ? "is-open" : ""}`}
+                  type="button"
+                  aria-expanded={isOpen}
+                  aria-controls={panelId}
+                  onClick={() => handleToggle(item.id)}
+                >
+                  <span className="support-menu-label">{item.label}</span>
+                  <MenuArrow isOpen={isOpen} />
+                </button>
+              </h2>
+
+              <AnimatePresence initial={false}>
+                {isOpen ? (
+                  <motion.div
+                    key={item.id}
+                    className="support-menu-panel-shell"
+                    initial={{ height: 0, opacity: 0 }}
+                    animate={{ height: "auto", opacity: 1 }}
+                    exit={{ height: 0, opacity: 0 }}
+                    transition={{
+                      height: { duration: 0.28, ease: [0.22, 1, 0.36, 1] },
+                      opacity: { duration: 0.18, ease: "easeOut" }
+                    }}
+                  >
+                    <div className="support-menu-panel" id={panelId} role="region" aria-labelledby={triggerId}>
+                      {page ? (
+                        <>
+                          <div className="support-menu-copy">
+                            <div className="pill">{page.eyebrow}</div>
+                            <h3>{page.title}</h3>
+                            <p>{page.intro}</p>
+                          </div>
+
+                          <div className="support-menu-card-grid">
+                            {page.sections.map((section) => (
+                              <article key={section.title} className="content-card compact">
+                                <h4>{section.title}</h4>
+                                <p>{section.body}</p>
+                              </article>
+                            ))}
+                          </div>
+
+                          <div className="support-menu-actions">
+                            <a className="ghost-link" href={item.href}>
+                              {openPageLabel}
+                            </a>
+                          </div>
+                        </>
+                      ) : (
+                        <>
+                          <div className="support-menu-copy">
+                            <div className="pill">{homeLabel}</div>
+                            <h3>{homeTitle}</h3>
+                            <p>{homeIntro}</p>
+                          </div>
+
+                          {lowerContent}
+                        </>
+                      )}
+                    </div>
+                  </motion.div>
+                ) : null}
+              </AnimatePresence>
+            </article>
           );
         })}
       </div>
-
-      {openId ? (
-        <div className="support-menu-panel" id={`support-menu-panel-${openId}`} role="tabpanel">
-          {activePage ? (
-            <>
-              <div className="support-menu-copy">
-                <div className="pill">{activePage.eyebrow}</div>
-                <h2>{activePage.title}</h2>
-                <p>{activePage.intro}</p>
-              </div>
-
-              <div className="support-menu-card-grid">
-                {activePage.sections.map((section) => (
-                  <article key={section.title} className="content-card compact">
-                    <h3>{section.title}</h3>
-                    <p>{section.body}</p>
-                  </article>
-                ))}
-              </div>
-
-              {activeLink ? (
-                <div className="support-menu-actions">
-                  <a className="ghost-link" href={activeLink.href}>
-                    {openPageLabel}
-                  </a>
-                </div>
-              ) : null}
-            </>
-          ) : (
-            <>
-              <div className="support-menu-copy">
-                <div className="pill">{homeLabel}</div>
-                <h2>{homeTitle}</h2>
-                <p>{homeIntro}</p>
-              </div>
-
-              {lowerContent}
-            </>
-          )}
-        </div>
-      ) : null}
     </section>
   );
 }
