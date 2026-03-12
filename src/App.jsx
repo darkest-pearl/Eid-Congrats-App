@@ -1,5 +1,10 @@
-import { useMemo, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { generateRandomEidMessage } from "./lib/messageGenerator";
+import AdSlot from "./components/AdSlot";
+import SiteFooter from "./components/SiteFooter";
+import SupportPageView from "./components/SupportPageView";
+import { siteConfig } from "./config/siteConfig";
+import { siteContent } from "./content/siteContent";
 
 const DEFAULT_LANGUAGE = "en";
 const DEFAULT_STYLE_ID = "classic";
@@ -116,6 +121,7 @@ copy.ar.generateMessage = "توليد رسالة";
 copy.ar.generateMessageHint = "ولّد رسالة عيد جميلة فورًا";
 
 const styleIds = new Set(styleOptions.map((style) => style.id));
+const supportPageIds = new Set(["privacy", "about", "contact", "faq"]);
 
 const lamps = Array.from({ length: 11 }, (_, index) => ({
   id: index,
@@ -326,6 +332,11 @@ function parseGreetingState(search) {
   };
 }
 
+function parseSupportPage(hash) {
+  const normalized = (hash || "").replace(/^#\/?/, "").replace(/\/$/, "").trim().toLowerCase();
+  return supportPageIds.has(normalized) ? normalized : "";
+}
+
 function buildShareUrl({ language, senderName, customMessage, styleId }, baseHref) {
   const source =
     baseHref ??
@@ -455,6 +466,10 @@ function runSelfTests() {
 
   if (!hasGreetingParams("?name=Sara") || hasGreetingParams("?x=1")) {
     throw new Error("Greeting-page mode detection failed.");
+  }
+
+  if (parseSupportPage("#/privacy") !== "privacy" || parseSupportPage("#/unknown") !== "") {
+    throw new Error("Support-page hash detection failed.");
   }
 
   const shareUrl = buildShareUrl(
@@ -739,7 +754,9 @@ function CreatorMode({
   handleShare,
   handleCopyLink,
   resetState,
-  statusMessage
+  statusMessage,
+  homepageContent,
+  adsConfig
 }) {
   return (
     <main className="creator-layout">
@@ -749,6 +766,20 @@ function CreatorMode({
           {ui.creatorTitleA} <span>{ui.creatorTitleB}</span>
         </h1>
         <p className="hero-description">{ui.creatorDescription}</p>
+
+        <AdSlot
+          className="creator-top-ad"
+          title={homepageContent.topAdTitle}
+          description={homepageContent.topAdDescription}
+          badgeLabel={homepageContent.adLabel}
+          placeholderLabel={homepageContent.adPlaceholder}
+          readyLabel={homepageContent.adReady}
+          hint={homepageContent.adHint}
+          adClient={adsConfig.adsenseClientId}
+          adSlot={adsConfig.homepageTopSlotId}
+          placeholderMode={adsConfig.usePlaceholderAds}
+          minHeight={146}
+        />
 
         <div className="creator-card">
           <div className="field-grid">
@@ -833,18 +864,6 @@ function CreatorMode({
           <div className="status-note">{statusMessage || ui.helperHint}</div>
         </div>
 
-        <div className="ads-grid">
-          <article className="ad-card">
-            <h3>{ui.ad1}</h3>
-            <p>{ui.ad1Description}</p>
-            <div className="ad-slot">client: ca-pub-xxxxxxxxxxxxxxxx · slot: 1234567890</div>
-          </article>
-          <article className="ad-card">
-            <h3>{ui.ad2}</h3>
-            <p>{ui.ad2Description}</p>
-            <div className="ad-slot">client: ca-pub-xxxxxxxxxxxxxxxx · slot: 0987654321</div>
-          </article>
-        </div>
       </section>
 
       <section className="creator-preview-panel">
@@ -858,6 +877,65 @@ function CreatorMode({
               <strong>{senderName.trim() || ui.defaultSender}</strong>
             </div>
           </div>
+        </div>
+      </section>
+
+      <section className="creator-info-section">
+        <div className="creator-section-heading">
+          <div className="pill">{homepageContent.howEyebrow}</div>
+          <h2>{homepageContent.howTitle}</h2>
+          <p>{homepageContent.howIntro}</p>
+        </div>
+
+        <div className="creator-steps-grid">
+          {homepageContent.steps.map((step) => (
+            <article key={step.title} className="content-card">
+              <h3>{step.title}</h3>
+              <p>{step.body}</p>
+            </article>
+          ))}
+        </div>
+
+        <div className="creator-trust-grid">
+          {homepageContent.trustCards.map((card) => (
+            <article key={card.title} className="content-card compact">
+              <h3>{card.title}</h3>
+              <p>{card.body}</p>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section className="creator-more-section">
+        <div className="creator-section-heading">
+          <h2>{homepageContent.moreTitle}</h2>
+          <p>{homepageContent.moreIntro}</p>
+        </div>
+
+        <div className="creator-more-grid">
+          {homepageContent.linkCards.map((card) => (
+            <article key={card.id} className="content-card link-card">
+              <h3>{card.title}</h3>
+              <p>{card.body}</p>
+              <a className="ghost-link" href={card.href}>
+                {card.cta}
+              </a>
+            </article>
+          ))}
+
+          <AdSlot
+            className="secondary-ad"
+            title={homepageContent.lowerAdTitle}
+            description={homepageContent.lowerAdDescription}
+            badgeLabel={homepageContent.adLabel}
+            placeholderLabel={homepageContent.adPlaceholder}
+            readyLabel={homepageContent.adReady}
+            hint={homepageContent.adHint}
+            adClient={adsConfig.adsenseClientId}
+            adSlot={adsConfig.homepageLowerSlotId}
+            placeholderMode={adsConfig.usePlaceholderAds}
+            minHeight={132}
+          />
         </div>
       </section>
     </main>
@@ -1048,19 +1126,19 @@ function GreetingMode({ ui, isArabic, selectedStyle, senderName, greetingMessage
                 <p dir={dynamicTextDirection}>{greetingMessage}</p>
               </div>
 
-              <div className="from-area">
-                <small dir={textDirection}>{ui.fromLabel}</small>
-                <div className="from-name-wrap">
-                  <span className="from-name-mark" aria-hidden="true" />
-                  <div className="from-name" dir={dynamicTextDirection}>
-                    {displayName}
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+	              <div className="from-area">
+	                <small dir={textDirection}>{ui.fromLabel}</small>
+	                <div className="from-name-wrap">
+	                  <span className="from-name-mark" aria-hidden="true" />
+	                  <div className="from-name" dir={dynamicTextDirection}>
+	                    {displayName}
+	                  </div>
+	                </div>
+	              </div>
+	            </div>
+	          </div>
+	        </div>
+	      </section>
 
       <div className="greeting-cta-wrap">
         <a className="cta-link" href={creatorUrl} dir={textDirection}>
@@ -1085,10 +1163,17 @@ export default function App() {
   const [styleId, setStyleId] = useState(initial.styleId);
   const [statusMessage, setStatusMessage] = useState("");
   const [isSharing, setIsSharing] = useState(false);
+  const [supportPage, setSupportPage] = useState(() => {
+    if (typeof window === "undefined") {
+      return "";
+    }
+    return parseSupportPage(window.location.hash);
+  });
   const lastGeneratedMessageRef = useRef("");
 
   const ui = copy[language];
   const isArabic = language === "ar";
+  const content = siteContent[language];
 
   const selectedStyle = useMemo(
     () => styleOptions.find((style) => style.id === styleId) ?? styleOptions[0],
@@ -1110,6 +1195,19 @@ export default function App() {
       return "/";
     }
     return buildCreatorUrl(window.location.href);
+  }, []);
+
+  useEffect(() => {
+    if (typeof window === "undefined") {
+      return undefined;
+    }
+
+    const syncSupportPage = () => {
+      setSupportPage(parseSupportPage(window.location.hash));
+    };
+
+    window.addEventListener("hashchange", syncSupportPage);
+    return () => window.removeEventListener("hashchange", syncSupportPage);
   }, []);
 
   async function handleCopyLink() {
@@ -1178,14 +1276,24 @@ export default function App() {
     lastGeneratedMessageRef.current = "";
   }
 
+  const footerLinks = [
+    { id: "privacy", href: "#/privacy", label: content.footerLinks.privacy },
+    { id: "about", href: "#/about", label: content.footerLinks.about },
+    { id: "contact", href: "#/contact", label: content.footerLinks.contact },
+    { id: "faq", href: "#/faq", label: content.footerLinks.faq }
+  ];
+
+  const showGreetingMode = initial.hasGreetingParams;
+  const activeSupportPage = showGreetingMode ? "" : supportPage;
+
   return (
     <div
-      className={`app-shell ${initial.hasGreetingParams ? "mode-greeting" : "mode-creator"}`}
+      className={`app-shell ${showGreetingMode ? "mode-greeting" : "mode-creator"}`}
       dir={isArabic ? "rtl" : "ltr"}
     >
       <DecorativeBackground />
 
-      {initial.hasGreetingParams ? (
+      {showGreetingMode ? (
         <GreetingMode
           ui={ui}
           isArabic={isArabic}
@@ -1193,6 +1301,15 @@ export default function App() {
           senderName={senderName}
           greetingMessage={greetingMessage}
           creatorUrl={creatorUrl}
+        />
+      ) : activeSupportPage ? (
+        <SupportPageView
+          page={content.supportPages[activeSupportPage]}
+          homeHref={creatorUrl}
+          backLabel={content.backToHome}
+          linksLabel={content.supportNavLabel}
+          links={footerLinks}
+          contactEmail={siteConfig.contactEmail}
         />
       ) : (
         <CreatorMode
@@ -1215,8 +1332,20 @@ export default function App() {
           handleCopyLink={handleCopyLink}
           resetState={resetState}
           statusMessage={statusMessage}
+          homepageContent={content.homepage}
+          adsConfig={siteConfig.ads}
         />
       )}
+
+      {!showGreetingMode ? (
+        <SiteFooter
+          homeHref={creatorUrl}
+          homeLabel={content.footerHome}
+          currentPage={activeSupportPage}
+          links={footerLinks}
+          tagline={content.footerTagline}
+        />
+      ) : null}
     </div>
   );
 }
