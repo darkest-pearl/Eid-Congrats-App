@@ -524,6 +524,16 @@ textarea:focus {
   grid-column: 1 / -1;
 }
 
+.creator-top-ad,
+.secondary-ad {
+  width: min(100%, 760px);
+  margin-inline: auto;
+}
+
+.creator-top-ad {
+  margin-top: 4px;
+}
+
 .creator-menu-section,
 .creator-info-section,
 .creator-more-section {
@@ -771,11 +781,13 @@ textarea:focus {
   display: grid;
   gap: 16px;
   padding: 18px;
+  overflow: hidden;
 }
 
 .ad-slot-copy {
   display: grid;
   gap: 8px;
+  max-width: 58ch;
 }
 
 .ad-slot-badge-row {
@@ -830,6 +842,14 @@ textarea:focus {
   overflow: hidden;
 }
 
+.creator-top-ad .ad-slot-frame,
+.secondary-ad .ad-slot-frame {
+  border-color: rgba(255, 255, 255, 0.16);
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.04), rgba(255, 255, 255, 0)),
+    rgba(3, 14, 27, 0.5);
+}
+
 .ad-slot-live {
   width: 100%;
   min-height: 100%;
@@ -861,6 +881,9 @@ textarea:focus {
 
 .secondary-ad {
   height: 100%;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.035), rgba(255, 255, 255, 0)),
+    rgba(4, 16, 29, 0.54);
 }
 
 @media (min-width: 860px) {

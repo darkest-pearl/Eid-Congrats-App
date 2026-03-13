@@ -9,18 +9,35 @@ const localSiteConfig = {
 
 const env = import.meta.env;
 
-const placeholderOverride = env.VITE_ADSENSE_USE_PLACEHOLDER;
+function readConfigValue(value) {
+  return typeof value === "string" ? value.trim() : "";
+}
+
+function parsePlaceholderOverride(value) {
+  const normalized = readConfigValue(value).toLowerCase();
+  if (!normalized) {
+    return null;
+  }
+  return normalized !== "false";
+}
+
+const adsenseClientId = readConfigValue(env.VITE_ADSENSE_CLIENT_ID) || localSiteConfig.adsenseClientId;
+const homepageTopSlotId =
+  readConfigValue(env.VITE_ADSENSE_HOMEPAGE_TOP_SLOT_ID) || localSiteConfig.homepageTopSlotId;
+const homepageLowerSlotId =
+  readConfigValue(env.VITE_ADSENSE_HOMEPAGE_LOWER_SLOT_ID) || localSiteConfig.homepageLowerSlotId;
+const placeholderOverride = parsePlaceholderOverride(env.VITE_ADSENSE_USE_PLACEHOLDER);
+const hasConfiguredHomepageAds = Boolean(adsenseClientId && homepageTopSlotId && homepageLowerSlotId);
+const defaultPlaceholderMode = hasConfiguredHomepageAds ? false : localSiteConfig.usePlaceholderAds;
 
 export const siteConfig = {
-  siteName: env.VITE_SITE_NAME || localSiteConfig.siteName,
-  contactEmail: env.VITE_SUPPORT_EMAIL || localSiteConfig.contactEmail,
+  siteName: readConfigValue(env.VITE_SITE_NAME) || localSiteConfig.siteName,
+  contactEmail: readConfigValue(env.VITE_SUPPORT_EMAIL) || localSiteConfig.contactEmail,
   ads: {
-    adsenseClientId: env.VITE_ADSENSE_CLIENT_ID || localSiteConfig.adsenseClientId,
-    homepageTopSlotId: env.VITE_ADSENSE_HOMEPAGE_TOP_SLOT_ID || localSiteConfig.homepageTopSlotId,
-    homepageLowerSlotId: env.VITE_ADSENSE_HOMEPAGE_LOWER_SLOT_ID || localSiteConfig.homepageLowerSlotId,
-    usePlaceholderAds:
-      placeholderOverride == null
-        ? localSiteConfig.usePlaceholderAds
-        : placeholderOverride !== "false"
+    adsenseClientId,
+    homepageTopSlotId,
+    homepageLowerSlotId,
+    hasConfiguredHomepageAds,
+    usePlaceholderAds: placeholderOverride == null ? defaultPlaceholderMode : placeholderOverride
   }
 };

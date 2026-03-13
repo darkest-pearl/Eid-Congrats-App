@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-labelledby="title">
+  <title>Eid Congrats App</title>
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0f3f68" />
+      <stop offset="55%" stop-color="#081d39" />
+      <stop offset="100%" stop-color="#061224" />
+    </linearGradient>
+    <linearGradient id="moon" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ffe4a6" />
+      <stop offset="100%" stop-color="#f5b54c" />
+    </linearGradient>
+  </defs>
+  <rect width="64" height="64" rx="18" fill="url(#bg)" />
+  <circle cx="28" cy="29" r="17" fill="url(#moon)" />
+  <circle cx="35" cy="24" r="16" fill="#081d39" />
+  <path d="M45 17l1.9 4.7 5.1.4-3.9 3.3 1.2 5-4.3-2.6-4.3 2.6 1.2-5-3.9-3.3 5.1-.4L45 17z" fill="#fff2cc" />
+  <path d="M18 49c4.8-5.4 9.5-8.1 14.3-8.1 4.6 0 8.8 2.5 12.7 7.4" fill="none" stroke="#49c492" stroke-width="3.2" stroke-linecap="round" opacity=".9" />
+</svg>

@@ -82,6 +82,7 @@ export default function AdSlot({
   }, [adClient, isLiveAd]);
 
   const classes = ["ad-slot-card", className].filter(Boolean).join(" ");
+  const configSummary = `${adClient || "client id not set"} | ${adSlot || "slot id not set"}`;
 
   return (
     <aside className={classes}>
@@ -111,7 +112,7 @@ export default function AdSlot({
           <div className="ad-slot-placeholder">
             <strong>{title}</strong>
             <span>{hint}</span>
-            <small>{adClient || "client id not set"} {" · "} {adSlot || "slot id not set"}</small>
+            <small>{configSummary}</small>
           </div>
         )}
       </div>
