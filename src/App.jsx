@@ -62,8 +62,19 @@ const copy = {
     shareTitle: "Eid Mubarak Greeting",
     shareSuccess: "Personalized message and link shared successfully.",
     copySuccess: "Personalized message and link copied.",
-    shareFallback: "Native share unavailable. Personalized message and link copied instead.",
+    shareFallback: "Native sharing is not supported in this browser. Personalized message and link copied instead.",
+    shareFallbackNoClipboard:
+      "Native sharing is not supported in this browser, and clipboard copying is unavailable.",
+    shareInsecureFallback:
+      "Native sharing requires HTTPS or another secure context. Open this page over HTTPS to use the mobile share sheet. Your personalized message and link were copied instead.",
+    shareInsecureNoClipboard:
+      "Native sharing requires HTTPS or another secure context, and clipboard copying is unavailable in this browser.",
+    shareDeniedFallback:
+      "The share sheet could not be completed. Personalized message and link copied instead.",
+    shareDeniedNoClipboard:
+      "The share sheet could not be completed, and clipboard copying is unavailable in this browser.",
     copyError: "Clipboard is unavailable in this browser.",
+    shareHelperNote: "Native sharing works on supported mobile browsers over HTTPS.",
     helperHint:
       "Only the personalized URL is shared. Recipients see a full Eid greeting page.",
     previewCardLabel: "Live Greeting Preview",
@@ -99,8 +110,19 @@ const copy = {
     shareTitle: "تهنئة عيد مبارك",
     shareSuccess: "تمت مشاركة الرسالة والرابط الشخصي بنجاح.",
     copySuccess: "تم نسخ الرسالة مع الرابط.",
-    shareFallback: "المشاركة المباشرة غير متاحة. تم نسخ الرسالة مع الرابط بدلًا من ذلك.",
+    shareFallback: "المشاركة المباشرة غير مدعومة في هذا المتصفح. تم نسخ الرسالة مع الرابط بدلًا من ذلك.",
+    shareFallbackNoClipboard:
+      "المشاركة المباشرة غير مدعومة في هذا المتصفح، كما أن النسخ إلى الحافظة غير متاح.",
+    shareInsecureFallback:
+      "المشاركة المباشرة تتطلب HTTPS أو سياقًا آمنًا. افتح هذه الصفحة عبر HTTPS لاستخدام لوحة المشاركة، وقد تم نسخ الرسالة مع الرابط بدلًا من ذلك.",
+    shareInsecureNoClipboard:
+      "المشاركة المباشرة تتطلب HTTPS أو سياقًا آمنًا، كما أن النسخ إلى الحافظة غير متاح في هذا المتصفح.",
+    shareDeniedFallback:
+      "تعذر إكمال لوحة المشاركة. تم نسخ الرسالة مع الرابط بدلًا من ذلك.",
+    shareDeniedNoClipboard:
+      "تعذر إكمال لوحة المشاركة، كما أن النسخ إلى الحافظة غير متاح في هذا المتصفح.",
     copyError: "لا يمكن الوصول إلى الحافظة في هذا المتصفح.",
+    shareHelperNote: "تعمل المشاركة المباشرة على متصفحات الجوال المدعومة عبر HTTPS.",
     helperHint:
       "تتم مشاركة الرابط الشخصي فقط. المستلم يرى صفحة تهنئة عيد كاملة.",
     previewCardLabel: "معاينة التهنئة",
@@ -380,25 +402,24 @@ function buildGreetingMessage(language, senderName, customMessage, style) {
   return `${defaultMessage} From ${fromName || copy.en.defaultSender}.`;
 }
 
-function canUseNativeShare() {
+const NATIVE_SHARE_AVAILABILITY = {
+  available: "available",
+  insecure: "insecure",
+  unsupported: "unsupported"
+};
+
+function getNativeShareAvailability() {
   if (typeof navigator === "undefined" || typeof window === "undefined") {
-    return false;
+    return NATIVE_SHARE_AVAILABILITY.unsupported;
   }
 
-  if (typeof navigator.share !== "function") {
-    return false;
+  if (!window.isSecureContext) {
+    return NATIVE_SHARE_AVAILABILITY.insecure;
   }
 
-  const secureOk =
-    window.isSecureContext ||
-    window.location.hostname === "localhost" ||
-    window.location.hostname === "127.0.0.1";
-
-  if (!secureOk) {
-    return false;
-  }
-
-  return true;
+  return typeof navigator.share === "function"
+    ? NATIVE_SHARE_AVAILABILITY.available
+    : NATIVE_SHARE_AVAILABILITY.unsupported;
 }
 
 async function copyToClipboard(text) {
@@ -417,6 +438,15 @@ async function copyToClipboard(text) {
   const copied = document.execCommand("copy");
   document.body.removeChild(textarea);
   return copied;
+}
+
+async function getClipboardFallbackMessage(text, successMessage, failureMessage) {
+  try {
+    const copied = await copyToClipboard(text);
+    return copied ? successMessage : failureMessage;
+  } catch {
+    return failureMessage;
+  }
 }
 
 function isShareDismissedError(error) {
@@ -884,6 +914,7 @@ function CreatorMode({
             </button>
           </div>
 
+          <div className="share-helper-note">{ui.shareHelperNote}</div>
           <div className="status-note">{statusMessage || ui.helperHint}</div>
         </div>
       </section>
@@ -1211,25 +1242,30 @@ export default function App() {
       text: shareMessage,
       url: previewUrl
     };
+    const shareAvailability = getNativeShareAvailability();
 
     try {
-      if (canUseNativeShare(payload)) {
-        await navigator.share(payload);
-        setStatusMessage(ui.shareSuccess);
-      } else {
-        const copied = await copyToClipboard(shareMessage);
-        setStatusMessage(copied ? ui.shareFallback : ui.copyError);
+      if (shareAvailability === NATIVE_SHARE_AVAILABILITY.insecure) {
+        setStatusMessage(
+          await getClipboardFallbackMessage(shareMessage, ui.shareInsecureFallback, ui.shareInsecureNoClipboard)
+        );
+        return;
       }
+
+      if (shareAvailability === NATIVE_SHARE_AVAILABILITY.unsupported) {
+        setStatusMessage(await getClipboardFallbackMessage(shareMessage, ui.shareFallback, ui.shareFallbackNoClipboard));
+        return;
+      }
+
+      await navigator.share(payload);
+      setStatusMessage(ui.shareSuccess);
     } catch (error) {
       if (isShareDismissedError(error)) {
         setStatusMessage("");
       } else if (isShareDeniedError(error)) {
-        try {
-          const copied = await copyToClipboard(shareMessage);
-          setStatusMessage(copied ? ui.shareFallback : ui.copyError);
-        } catch {
-          setStatusMessage(ui.copyError);
-        }
+        setStatusMessage(
+          await getClipboardFallbackMessage(shareMessage, ui.shareDeniedFallback, ui.shareDeniedNoClipboard)
+        );
       } else {
         setStatusMessage(error instanceof Error ? error.message : ui.copyError);
       }

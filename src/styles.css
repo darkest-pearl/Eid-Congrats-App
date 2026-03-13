@@ -328,6 +328,13 @@ textarea:focus {
   gap: 10px;
 }
 
+.share-helper-note {
+  margin-top: 8px;
+  font-size: 0.82rem;
+  line-height: 1.5;
+  color: rgba(233, 242, 255, 0.68);
+}
+
 .primary-btn,
 .secondary-btn,
 .ghost-btn {
