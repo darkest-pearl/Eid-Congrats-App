@@ -1,28 +1,20 @@
 import { useEffect, useMemo, useRef } from "react";
 
-function ensureAdSenseScript(adClient, onReady) {
+function findAdSenseScript(adClient) {
   if (typeof document === "undefined" || !adClient) {
     return undefined;
   }
 
-  const existing = document.querySelector(`script[data-adsense-client="${adClient}"]`);
-  if (existing) {
-    if (typeof onReady === "function") {
-      existing.addEventListener("load", onReady, { once: true });
-    }
-    return existing;
-  }
+  const expectedClientParam = `client=${encodeURIComponent(adClient)}`;
 
-  const script = document.createElement("script");
-  script.async = true;
-  script.crossOrigin = "anonymous";
-  script.dataset.adsenseClient = adClient;
-  script.src = `https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${encodeURIComponent(adClient)}`;
-  if (typeof onReady === "function") {
-    script.addEventListener("load", onReady, { once: true });
-  }
-  document.head.appendChild(script);
-  return script;
+  return Array.from(document.scripts).find((script) => {
+    const { src } = script;
+    return (
+      typeof src === "string" &&
+      src.includes("https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js") &&
+      src.includes(expectedClientParam)
+    );
+  });
 }
 
 export default function AdSlot({
@@ -71,13 +63,25 @@ export default function AdSlot({
       }
     };
 
-    const script = ensureAdSenseScript(adClient, requestAd);
-    if (window.adsbygoogle && script) {
-      requestAd();
+    const script = findAdSenseScript(adClient);
+    if (!script) {
+      return undefined;
     }
+
+    const handleScriptLoad = () => {
+      requestAd();
+    };
+
+    if (window.adsbygoogle) {
+      requestAd();
+      return undefined;
+    }
+
+    script.addEventListener("load", handleScriptLoad, { once: true });
 
     return () => {
       cancelled = true;
+      script.removeEventListener("load", handleScriptLoad);
     };
   }, [adClient, isLiveAd]);
 
