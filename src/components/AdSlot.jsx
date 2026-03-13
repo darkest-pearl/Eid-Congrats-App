@@ -81,40 +81,33 @@ export default function AdSlot({
     };
   }, [adClient, isLiveAd]);
 
+  if (!isLiveAd) {
+    return null;
+  }
+
   const classes = ["ad-slot-card", className].filter(Boolean).join(" ");
-  const configSummary = `${adClient || "client id not set"} | ${adSlot || "slot id not set"}`;
 
   return (
     <aside className={classes}>
       <div className="ad-slot-copy">
         <div className="ad-slot-badge-row">
           <span className="ad-slot-badge">{badgeLabel}</span>
-          <span className={`ad-slot-state ${isLiveAd ? "live" : "placeholder"}`}>
-            {isLiveAd ? readyLabel : placeholderLabel || badgeLabel}
-          </span>
+          <span className="ad-slot-state live">{readyLabel}</span>
         </div>
         <h3>{title}</h3>
         <p>{description}</p>
       </div>
 
       <div className="ad-slot-frame" style={{ minHeight }}>
-        {isLiveAd ? (
-          <ins
-            ref={adRef}
-            className="adsbygoogle ad-slot-live"
-            style={{ display: "block" }}
-            data-ad-client={adClient}
-            data-ad-slot={adSlot}
-            data-ad-format="auto"
-            data-full-width-responsive="true"
-          />
-        ) : (
-          <div className="ad-slot-placeholder">
-            <strong>{title}</strong>
-            <span>{hint}</span>
-            <small>{configSummary}</small>
-          </div>
-        )}
+        <ins
+          ref={adRef}
+          className="adsbygoogle ad-slot-live"
+          style={{ display: "block" }}
+          data-ad-client={adClient}
+          data-ad-slot={adSlot}
+          data-ad-format="auto"
+          data-full-width-responsive="true"
+        />
       </div>
     </aside>
   );
