@@ -174,7 +174,7 @@ const lamps = Array.from({ length: 11 }, (_, index) => ({
 const greetingLanterns = [
   { id: 1, left: "5%", delay: "0s", duration: "15.2s", size: 0.86, chain: 132, accent: "emerald" },
   { id: 2, left: "19%", delay: "0.9s", duration: "14.6s", size: 1, chain: 156, accent: "ivory" },
-  { id: 3, left: "36%", delay: "0.2s", duration: "16s", size: 1.26, chain: 184, accent: "gold" },
+  { id: 3, left: "36%", delay: "0.2s", duration: "16s", size: 1.26, chain: 164, accent: "gold" },
   { id: 4, left: "54%", delay: "1.1s", duration: "14.9s", size: 1.08, chain: 144, accent: "emerald" },
   { id: 5, left: "74%", delay: "0.5s", duration: "15.6s", size: 1.18, chain: 170, accent: "gold" },
   { id: 6, left: "91%", delay: "1.4s", duration: "14.2s", size: 0.9, chain: 138, accent: "ivory" }
