@@ -44,21 +44,28 @@ export default function CreatorSupportMenu({
           return (
             <article key={item.id} className={`support-menu-item ${isOpen ? "is-open" : ""}`}>
               <h2 className="support-menu-heading">
-                <button
-                  id={triggerId}
-                  className={`support-menu-trigger ${isOpen ? "is-open" : ""}`}
-                  type="button"
-                  aria-expanded={isOpen}
-                  aria-controls={panelId}
-                  onClick={() => handleToggle(item.id)}
-                >
-                  <span className="support-menu-label">{item.label}</span>
-                  <MenuArrow isOpen={isOpen} />
-                </button>
+                {isHome ? (
+                  <a id={triggerId} className="support-menu-trigger" href={item.href}>
+                    <span className="support-menu-label">{item.label}</span>
+                    <MenuArrow isOpen={false} />
+                  </a>
+                ) : (
+                  <button
+                    id={triggerId}
+                    className={`support-menu-trigger ${isOpen ? "is-open" : ""}`}
+                    type="button"
+                    aria-expanded={isOpen}
+                    aria-controls={panelId}
+                    onClick={() => handleToggle(item.id)}
+                  >
+                    <span className="support-menu-label">{item.label}</span>
+                    <MenuArrow isOpen={isOpen} />
+                  </button>
+                )}
               </h2>
 
               <AnimatePresence initial={false}>
-                {isOpen ? (
+                {!isHome && isOpen ? (
                   <motion.div
                     key={item.id}
                     className="support-menu-panel-shell"

@@ -578,6 +578,7 @@ textarea:focus {
   cursor: pointer;
   font: inherit;
   text-align: start;
+  text-decoration: none;
 }
 
 .support-menu-trigger:hover {

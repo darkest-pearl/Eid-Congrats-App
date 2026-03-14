@@ -191,7 +191,7 @@ export const supportContent = {
       eyebrow: "FAQ",
       title: "Frequently asked questions",
       intro:
-        "The app is built to separate creation from presentation. The homepage and article pages carry the site's practical value, while the recipient page stays focused on the shared greeting.",
+        "These answers explain how creating, sharing, and viewing an Eid greeting works, so you know what to expect before you send one.",
       summarySections: [
         {
           title: "Recipients open a ready-made page",
@@ -206,7 +206,7 @@ export const supportContent = {
         {
           title: "The greeting page stays clean",
           body:
-            "The recipient experience is intentionally kept away from homepage monetization elements."
+            "The shared greeting page stays focused on the message, without the extra elements from the homepage."
         }
       ],
       sections: [
@@ -228,12 +228,12 @@ export const supportContent = {
         {
           title: "Are the recipient greeting pages ad-free?",
           body:
-            "Yes in this version. The site keeps monetization away from the recipient greeting screen so the celebration remains the focus."
+            "Yes. Shared greeting pages stay focused on the message and the celebration."
         },
         {
           title: "Why are there separate article and support pages?",
           body:
-            "Those pages give visitors lasting value even when they are not creating a greeting. They also explain the product clearly, which makes the site more useful and trustworthy."
+            "They give you message ideas, practical guidance, and clear answers even when you are not creating a greeting yet."
         },
         {
           title: "Does the site support Arabic and English?",
@@ -246,12 +246,12 @@ export const supportContent = {
       eyebrow: "About",
       title: "About Eid Congrats App",
       intro:
-        "Eid Congrats App is a lightweight web experience built to help people send elegant Eid greetings while also giving visitors useful original content about wishes, messages, and online greeting etiquette.",
+        "Eid Congrats App helps people send elegant Eid greetings and also offers useful ideas for wishes, messages, and online greeting etiquette.",
       summarySections: [
         {
-          title: "A greeting tool and a content site",
+          title: "A greeting tool with helpful reading",
           body:
-            "The homepage is not only a form. It also acts as a content hub with articles, explanations, and support pages."
+            "The homepage lets you create a greeting and also browse helpful articles and support pages."
         },
         {
           title: "Designed around respect for the occasion",
@@ -259,31 +259,31 @@ export const supportContent = {
             "The recipient page is intentionally kept focused on the greeting rather than extra navigation or ad clutter."
         },
         {
-          title: "Built to stay simple",
+          title: "Made to stay simple",
           body:
-            "The project avoids accounts and unnecessary friction so sharing can feel quick and natural."
+            "There are no accounts or extra steps, so sharing stays quick and natural."
         }
       ],
       sections: [
         {
-          title: "What the site is meant to do",
+          title: "What you can do here",
           body:
-            "The core product helps a sender choose a language, pick a visual style, write or generate a message, and share one personalized Eid page. Around that creator flow, the site also publishes original guidance for people who want better Eid wording and ideas."
+            "You can choose a language, pick a visual style, write or generate a message, and share a personalized Eid page. The site also includes original guidance if you want better wording and more ideas."
         },
         {
           title: "Why the content pages matter",
           body:
-            "Many festive tools feel thin because they offer only a generator and nothing else. This project aims to be more useful by adding real articles, message examples, and support information that people can read even if they never create a link."
+            "Sometimes you want inspiration before you send anything. The articles and support pages are there to help with wording, ideas, and common questions."
         },
         {
           title: "Why the recipient page stays separate",
           body:
-            "A shared Eid page should feel like a warm final presentation. That is why the design keeps the greeting experience distinct from the homepage, site navigation, and any future monetization."
+            "A shared Eid page feels more thoughtful when it opens as a calm final presentation, without extra navigation or clutter."
         },
         {
-          title: "What the project values",
+          title: "What matters here",
           body:
-            "Clarity, warmth, bilingual usefulness, and a respectful presentation of the occasion. The site aims to help people say something meaningful, not just something fast."
+            "Warmth, clarity, bilingual ease, and a respectful presentation of the occasion. The goal is to help you say something meaningful with confidence."
         }
       ]
     },
@@ -304,9 +304,9 @@ export const supportContent = {
             "If you submit the contact form, the information is used to review and respond to your message."
         },
         {
-          title: "Generated greeting pages are not the editorial core",
+          title: "Main pages stay easy to revisit",
           body:
-            "The site's lasting content lives on the homepage, article pages, and support pages."
+            "The homepage, articles, and support pages remain available whenever you want ideas or help."
         }
       ],
       sections: [
@@ -323,7 +323,7 @@ export const supportContent = {
         {
           title: "Indexing and generated pages",
           body:
-            "Personalized greeting links are meant for sharing between people, not as the site's main publisher pages. The site may mark generated greeting URLs so search engines treat them differently from the homepage and editorial content pages."
+            "Personalized greeting links are meant for sharing with people you know. Search engines may be guided to treat those links differently from the main pages."
         },
         {
           title: "Contact form submissions",
@@ -341,7 +341,7 @@ export const supportContent = {
       eyebrow: "Contact",
       title: "Contact and support",
       intro:
-        "Use this page for support questions, technical issues, suggestions, or partnership inquiries related to Eid Congrats App and its content pages.",
+        "Use this page if you need help, want to share feedback, or have a partnership question.",
       summarySections: [
         {
           title: "Use the form for help or feedback",
@@ -351,7 +351,7 @@ export const supportContent = {
         {
           title: "Messages go to a real inbox",
           body:
-            "Form submissions are delivered to the support email configured for the project."
+            "Form messages are sent to the support inbox."
         },
         {
           title: "Direct email still works",
@@ -599,7 +599,7 @@ export const supportContent = {
       eyebrow: "الأسئلة الشائعة",
       title: "الأسئلة الشائعة",
       intro:
-        "تم تصميم التطبيق ليفصل بين مرحلة الإنشاء ومرحلة العرض. تحمل الصفحة الرئيسية والمقالات القيمة العملية للموقع، بينما تبقى صفحة المستلم مخصصة للتهنئة نفسها.",
+        "تشرح هذه الإجابات طريقة إنشاء تهنئة العيد ومشاركتها وعرضها حتى تعرف ما الذي تتوقعه قبل الإرسال.",
       summarySections: [
         {
           title: "المستلم يفتح صفحة جاهزة مباشرة",
@@ -614,7 +614,7 @@ export const supportContent = {
         {
           title: "صفحة التهنئة تبقى نظيفة",
           body:
-            "تم إبعاد عناصر تحقيق الدخل الموجودة في الصفحة الرئيسية عن تجربة المستلم."
+            "تبقى صفحة التهنئة المشتركة مركزة على الرسالة نفسها، من دون العناصر الإضافية الموجودة في الصفحة الرئيسية."
         }
       ],
       sections: [
@@ -636,12 +636,12 @@ export const supportContent = {
         {
           title: "هل صفحة التهنئة للمستلم خالية من الإعلانات؟",
           body:
-            "نعم في هذه النسخة. يحافظ الموقع على بقاء صفحة المستلم مخصصة للرسالة والمناسبة نفسها."
+            "نعم. تبقى صفحة التهنئة المشتركة مركزة على الرسالة وأجواء المناسبة."
         },
         {
           title: "لماذا توجد صفحات مقالات وصفحات دعم منفصلة؟",
           body:
-            "لأنها تمنح الزائر قيمة مستمرة حتى عندما لا ينشئ تهنئة، كما تشرح المنتج بوضوح وتجعل الموقع أكثر فائدة وموثوقية."
+            "لأنها تمنحك أفكارًا للرسائل وإرشادًا عمليًا وإجابات واضحة حتى عندما لا تكون بصدد إنشاء تهنئة الآن."
         },
         {
           title: "هل يدعم الموقع العربية والإنجليزية؟",
@@ -654,12 +654,12 @@ export const supportContent = {
       eyebrow: "من نحن",
       title: "حول Eid Congrats App",
       intro:
-        "Eid Congrats App تجربة ويب خفيفة تساعد الناس على إرسال تهاني عيد أنيقة، مع تقديم محتوى أصلي مفيد عن عبارات العيد ورسائله وآداب إرساله عبر الإنترنت.",
+        "يساعد Eid Congrats App الناس على إرسال تهاني عيد أنيقة، ويقدم أيضًا أفكارًا مفيدة لعبارات العيد ورسائله وآداب إرسالها عبر الإنترنت.",
       summarySections: [
         {
-          title: "أداة تهنئة وموقع محتوى معًا",
+          title: "أداة تهنئة مع صفحات مفيدة",
           body:
-            "الصفحة الرئيسية ليست مجرد نموذج، بل مركز محتوى يتضمن مقالات وشروحات وصفحات دعم."
+            "تتيح لك الصفحة الرئيسية إنشاء التهنئة، كما تتيح لك تصفح مقالات وصفحات دعم مفيدة."
         },
         {
           title: "مصمم باحترام للمناسبة",
@@ -667,31 +667,31 @@ export const supportContent = {
             "تُترك صفحة المستلم مركزة على التهنئة نفسها بدل التنقلات الكثيرة أو الإعلانات المزعجة."
         },
         {
-          title: "البساطة جزء من الفكرة",
+          title: "مصمم ليبقى بسيطًا",
           body:
-            "يتجنب المشروع الحسابات والخطوات غير الضرورية حتى تبقى المشاركة سهلة وطبيعية."
+            "لا توجد حسابات ولا خطوات إضافية، لذلك تبقى المشاركة سريعة وطبيعية."
         }
       ],
       sections: [
         {
-          title: "ما الذي يقدمه الموقع",
+          title: "ما الذي يمكنك فعله هنا",
           body:
-            "يساعد المنتج الأساسي المرسل على اختيار اللغة والتصميم وكتابة الرسالة أو توليدها، ثم مشاركة صفحة عيد شخصية واحدة. وحول هذه الأداة، ينشر الموقع محتوى عمليًا أصليًا لمن يريد صياغات أفضل وأفكارًا أنسب لتهنئة العيد."
+            "يمكنك اختيار اللغة والتصميم وكتابة الرسالة أو توليدها، ثم مشاركة صفحة عيد شخصية. كما توجد هنا إرشادات أصلية إذا كنت تريد صياغات أفضل وأفكارًا أكثر ملاءمة."
         },
         {
           title: "لماذا صفحات المحتوى مهمة",
           body:
-            "كثير من الأدوات الموسمية تبدو محدودة لأنها تقدم مولدًا فقط دون أي قيمة إضافية. أما هذا المشروع فيحاول أن يكون أكثر فائدة من خلال مقالات حقيقية وأمثلة رسائل وصفحات دعم يمكن قراءتها حتى دون إنشاء رابط."
+            "أحيانًا تحتاج إلى إلهام قبل أن ترسل أي شيء. لذلك وُجدت المقالات وصفحات الدعم لتساعدك في الصياغة والأفكار والإجابات الشائعة."
         },
         {
           title: "لماذا تبقى صفحة المستلم منفصلة",
           body:
-            "من الأفضل أن تبدو صفحة العيد المشتركة كعرض نهائي دافئ. لذلك تم الفصل بينها وبين الصفحة الرئيسية وتنقلات الموقع وأي مساحة تحقيق دخل مستقبلية."
+            "تبدو صفحة العيد المشتركة أكثر لطفًا عندما تفتح كعرض نهائي هادئ، من دون تنقلات إضافية أو ازدحام."
         },
         {
-          title: "ما الذي يقدّره المشروع",
+          title: "ما الذي يهم هنا",
           body:
-            "الوضوح والدفء والفائدة باللغتين والعرض المحترم للمناسبة. الهدف هو مساعدة الناس على قول شيء جميل ومعبر، لا مجرد شيء سريع."
+            "الدفء والوضوح وسهولة الاستخدام باللغتين والعرض المحترم للمناسبة. الهدف هو مساعدتك على قول شيء جميل ومعبّر بثقة."
         }
       ]
     },
@@ -712,9 +712,9 @@ export const supportContent = {
             "إذا أرسلت رسالة عبر نموذج التواصل، فستُستخدم البيانات لمراجعة رسالتك والرد عليها."
         },
         {
-          title: "روابط التهنئة ليست هي المحتوى التحريري الأساسي",
+          title: "الصفحات الرئيسية تبقى سهلة العودة إليها",
           body:
-            "القيمة المستمرة للموقع موجودة في الصفحة الرئيسية والمقالات وصفحات الدعم."
+            "تبقى الصفحة الرئيسية والمقالات وصفحات الدعم متاحة كلما احتجت إلى أفكار أو مساعدة."
         }
       ],
       sections: [
@@ -731,7 +731,7 @@ export const supportContent = {
         {
           title: "الفهرسة والصفحات المولدة",
           body:
-            "روابط التهنئة الشخصية خُلقت للمشاركة بين الأشخاص، وليست لتكون الصفحات الأساسية للموقع. لذلك قد يضع الموقع إشارات خاصة تجعل محركات البحث تتعامل مع هذه الروابط بشكل مختلف عن الصفحة الرئيسية وصفحات المحتوى."
+            "روابط التهنئة الشخصية مخصصة للمشاركة مع من تعرفهم. وقد تُوجَّه محركات البحث إلى التعامل معها بشكل مختلف عن الصفحات الرئيسية في الموقع."
         },
         {
           title: "رسائل نموذج التواصل",
@@ -749,7 +749,7 @@ export const supportContent = {
       eyebrow: "اتصل بنا",
       title: "التواصل والدعم",
       intro:
-        "استخدم هذه الصفحة للأسئلة المتعلقة بالدعم أو المشكلات التقنية أو الاقتراحات أو طلبات الشراكة المرتبطة بـ Eid Congrats App وصفحات محتواه.",
+        "استخدم هذه الصفحة إذا كنت تحتاج إلى مساعدة أو ترغب في إرسال ملاحظة أو لديك استفسار عن شراكة.",
       summarySections: [
         {
           title: "استخدم النموذج للمساعدة أو الملاحظات",
@@ -759,7 +759,7 @@ export const supportContent = {
         {
           title: "الرسائل تصل إلى بريد حقيقي",
           body:
-            "يتم إرسال رسائل النموذج إلى بريد الدعم المضبوط للمشروع."
+            "تصل رسائل النموذج إلى بريد الدعم مباشرة."
         },
         {
           title: "يبقى البريد المباشر متاحًا",
@@ -781,7 +781,7 @@ export const supportContent = {
         {
           title: "توقعات الرد",
           body:
-            "نراجع الرسائل الواردة بحسب الوقت المتاح. وقد لا نستطيع الرد الفوري على كل رسالة، لكن الملاحظات الجيدة تساعد فعلًا في تحسين المنتج."
+            "نراجع الرسائل الواردة بحسب الوقت المتاح. وقد لا نستطيع الرد الفوري على كل رسالة، لكن الملاحظات الجيدة تساعد فعلًا في تحسين التجربة."
         }
       ],
       emailLabel: "راسل الدعم مباشرة",

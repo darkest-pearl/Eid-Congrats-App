@@ -19,17 +19,17 @@ export const siteContent = {
       metaTitle: "Eid Congrats App | Eid Wishes, Messages, and Greeting Creator",
       metaDescription:
         "Create personalized Eid greeting pages, explore original Eid wishes and message ideas, and share beautiful greetings in English or Arabic.",
-      adLabel: "Homepage sponsor slot",
-      adPlaceholder: "Placeholder mode",
-      adReady: "AdSense ready",
-      adHint: "Use only light-touch homepage placements. Keep the shared greeting page focused on the message itself.",
-      topAdTitle: "Homepage-only monetization area",
+      adLabel: "Featured",
+      adPlaceholder: "Reserved space",
+      adReady: "Sponsored",
+      adHint: "Any featured placements stay light and limited to the homepage so shared greetings keep the focus on your message.",
+      topAdTitle: "Featured on the homepage",
       topAdDescription:
-        "If you enable ads later, keep them on the creator homepage so the recipient page stays calm, premium, and celebration-first.",
-      storyEyebrow: "Why this site exists",
-      storyTitle: "A practical creator tool with real Eid content around it",
+        "This space may occasionally highlight a seasonal sponsor or a helpful Eid recommendation.",
+      storyEyebrow: "Why people use it",
+      storyTitle: "Create a greeting and find thoughtful Eid ideas",
       storyIntro:
-        "Eid Congrats App is designed to be more than a quick utility. The homepage helps visitors create a greeting, but it also gives them useful reading, message ideas, etiquette tips, and clear support pages that make the whole site feel trustworthy and complete.",
+        "Eid Congrats App helps you create a personal greeting while also offering message ideas, writing tips, and helpful support pages when you need them.",
       storyCards: [
         {
           title: "Thoughtful greetings feel more personal",
@@ -97,7 +97,7 @@ export const siteContent = {
       articleEyebrow: "Original Eid reading",
       articleTitle: "Useful pages for visitors who need ideas before they share",
       articleIntro:
-        "These pages give the site real publisher value even for someone who is not ready to create a greeting yet. They are meant to be genuinely helpful on their own.",
+        "These pages are here whenever you want inspiration before writing or sharing your greeting, and each one is meant to be useful on its own.",
       articleCards: [
         {
           id: "wishes",
@@ -121,63 +121,63 @@ export const siteContent = {
           cta: "Read the message ideas"
         }
       ],
-      supportTitle: "Clear pages that help visitors trust the site",
-      supportEyebrow: "Trust pages",
+      supportTitle: "Helpful answers and support",
+      supportEyebrow: "Help pages",
       supportIntro:
-        "Useful festive content works better when it is supported by transparent policies, a clear contact path, and honest explanations of how the product works.",
+        "When you are deciding what to send, it helps to have clear answers, easy ways to get in touch, and simple explanations you can trust.",
       supportCards: [
         {
           id: "faq",
           title: "FAQ",
           body:
-            "Answer common questions about the greeting flow, language support, message generation, and what the recipient will see.",
+            "Find answers about creating and sharing greetings, language options, message generation, and what recipients will see.",
           cta: "Open the FAQ"
         },
         {
           id: "about",
           title: "About",
           body:
-            "Explain the purpose of the project, the editorial intent behind the content pages, and the decision to keep the greeting screen clean.",
-          cta: "Read about the project"
+            "Learn what Eid Congrats App is for, what you can do here, and why the greeting page stays calm and uncluttered.",
+          cta: "Read about Eid Congrats App"
         },
         {
           id: "contact",
           title: "Contact",
           body:
-            "Give visitors and potential partners a real support route that feels active, credible, and easy to use.",
+            "Reach out for help, feedback, or partnership questions through a clear support channel.",
           cta: "Open contact"
         }
       ],
       trustTitle: "How the experience stays respectful",
       trustIntro:
-        "The site separates its core publisher content from the generated greeting screens so each part can do its job well.",
+        "A few simple choices keep the experience calm, clear, and centered on the occasion.",
       trustCards: [
         {
           title: "Recipient greeting pages stay ad-free",
           body:
-            "The shared greeting view is reserved for the message and the celebration, not for monetization experiments."
+            "Shared greeting pages are kept for your message and the celebration, without extra distractions."
         },
         {
-          title: "Generated share URLs are not treated as the editorial core",
+          title: "Helpful reading stays easy to find",
           body:
-            "Greeting links are meant for personal sharing, while the homepage and content pages carry the site's lasting value."
+            "The homepage and reading pages are always there when you want ideas, while shared links stay focused on the personal greeting."
         },
         {
-          title: "Support pages stay visible and useful",
+          title: "Support pages stay easy to reach",
           body:
-            "About, privacy, contact, and FAQ pages remain part of the main site structure so visitors can understand who runs the experience."
+            "FAQ, privacy, about, and contact pages remain easy to find whenever you want more context or support."
         }
       ],
-      menuTitle: "Browse the full site library",
+      menuTitle: "Browse more pages",
       menuIntro:
-        "Open a quick summary for any page below, then jump into the full article or support page when you want the complete version.",
+        "Open a quick summary below, then jump to the full page whenever you want to read more.",
       menuHomeTitle: "Homepage overview",
       menuHomeIntro:
-        "The homepage combines the greeting creator, sharing tools, original Eid writing guidance, and links to the site's main article and support pages.",
+        "From the homepage you can create a greeting, explore Eid writing ideas, and open the main help and reading pages.",
       openPageLabel: "Open full page",
-      lowerAdTitle: "Reserved lower homepage ad area",
+      lowerAdTitle: "Featured on the homepage",
       lowerAdDescription:
-        "Leave this position quiet until the site has enough stable content and organic demand to justify a second homepage placement."
+        "This area may occasionally be used for a carefully chosen homepage feature or sponsor."
     }
   },
   ar: {
@@ -200,17 +200,17 @@ export const siteContent = {
       metaTitle: "Eid Congrats App | تهاني العيد ورسائله ومنشئ بطاقة المعايدة",
       metaDescription:
         "أنشئ صفحة تهنئة عيد مخصصة، وتصفح محتوى أصلي عن تهاني ورسائل العيد، وشارك معايدات جميلة بالعربية أو الإنجليزية.",
-      adLabel: "موضع إعلان الصفحة الرئيسية",
-      adPlaceholder: "وضع المعاينة",
-      adReady: "جاهز لـ AdSense",
-      adHint: "اجعل الإعلانات خفيفة ومحصورة في الصفحة الرئيسية فقط، وأبقِ صفحة التهنئة المشتركة مركزة على الرسالة نفسها.",
-      topAdTitle: "منطقة تحقيق دخل داخل الصفحة الرئيسية فقط",
+      adLabel: "مميز",
+      adPlaceholder: "مساحة مخصصة",
+      adReady: "برعاية",
+      adHint: "أي مساحات مميزة تبقى خفيفة ومحصورة في الصفحة الرئيسية حتى تظل صفحة التهنئة مركزة على رسالتك.",
+      topAdTitle: "محتوى مميز في الصفحة الرئيسية",
       topAdDescription:
-        "إذا فعّلت الإعلانات لاحقًا، فالأفضل أن تبقى داخل صفحة المنشئ حتى تظل صفحة المستلم هادئة وأنيقة ومرتبطة بالمناسبة.",
-      storyEyebrow: "لماذا أُنشئ هذا الموقع",
-      storyTitle: "أداة عملية لإنشاء التهنئة مع محتوى حقيقي ومفيد حولها",
+        "قد تُستخدم هذه المساحة أحيانًا لإبراز راعٍ موسمي أو توصية مفيدة خاصة بالعيد.",
+      storyEyebrow: "لماذا يستخدمه الناس",
+      storyTitle: "أنشئ تهنئة جميلة واعثر على أفكار عيد مفيدة",
       storyIntro:
-        "تم تصميم Eid Congrats App ليكون أكثر من مجرد أداة سريعة. فالصفحة الرئيسية تساعد الزائر على إنشاء التهنئة، لكنها تقدم أيضًا محتوى مفيدًا وأفكارًا للرسائل ونصائح للكتابة وصفحات دعم واضحة تجعل الموقع أكثر اكتمالًا وثقة.",
+        "يساعدك Eid Congrats App على إنشاء تهنئة شخصية، مع أفكار للرسائل ونصائح للكتابة وصفحات دعم مفيدة عندما تحتاج إليها.",
       storyCards: [
         {
           title: "التهنئة المدروسة تبدو أكثر قربًا",
@@ -278,7 +278,7 @@ export const siteContent = {
       articleEyebrow: "محتوى عيد أصلي",
       articleTitle: "صفحات مفيدة لمن يحتاج أفكارًا قبل أن يشارك التهنئة",
       articleIntro:
-        "هذه الصفحات تمنح الموقع قيمة حقيقية بذاتها حتى لو لم يكن الزائر جاهزًا بعد لإنشاء تهنئة ومشاركتها.",
+        "هذه الصفحات موجودة عندما تريد إلهامًا قبل كتابة التهنئة أو مشاركتها، وكل صفحة منها مفيدة بحد ذاتها.",
       articleCards: [
         {
           id: "wishes",
@@ -303,63 +303,63 @@ export const siteContent = {
           cta: "اقرأ أفكار الرسائل"
         }
       ],
-      supportTitle: "صفحات واضحة تعزز ثقة الزائر بالموقع",
-      supportEyebrow: "صفحات الثقة",
+      supportTitle: "مساعدة وإجابات واضحة",
+      supportEyebrow: "صفحات المساعدة",
       supportIntro:
-        "المحتوى المفيد يصبح أقوى عندما تدعمه سياسات واضحة وطريق تواصل حقيقي وشرح صادق لطريقة عمل المنتج.",
+        "عندما تختار ما سترسله، من المطمئن أن تجد إجابات واضحة ووسيلة تواصل سهلة وشرحًا بسيطًا يمكن الوثوق به.",
       supportCards: [
         {
           id: "faq",
           title: "الأسئلة الشائعة",
           body:
-            "أجب عن الأسئلة الأكثر تكرارًا حول إنشاء التهنئة، ودعم اللغات، وتوليد الرسائل، وما الذي يراه المستلم.",
+            "اعثر على إجابات حول إنشاء التهنئة ومشاركتها، ودعم اللغات، وتوليد الرسائل، وما الذي يراه المستلم.",
           cta: "افتح صفحة الأسئلة الشائعة"
         },
         {
           id: "about",
           title: "من نحن",
           body:
-            "اشرح هدف المشروع، ولماذا وُجدت صفحات المحتوى، ولماذا تبقى شاشة التهنئة نفسها نظيفة وهادئة.",
-          cta: "اقرأ عن المشروع"
+            "تعرّف على فكرة Eid Congrats App، وما الذي يمكنك فعله هنا، ولماذا تبقى صفحة التهنئة هادئة وخالية من التشتيت.",
+          cta: "اقرأ عن Eid Congrats App"
         },
         {
           id: "contact",
           title: "اتصل بنا",
           body:
-            "وفّر للزوار والشركاء المحتملين وسيلة تواصل حقيقية تبدو نشطة وموثوقة وسهلة الاستخدام.",
+            "تواصل معنا لطلب المساعدة أو إرسال الملاحظات أو الاستفسار عن الشراكات عبر قناة واضحة وسهلة.",
           cta: "افتح صفحة التواصل"
         }
       ],
       trustTitle: "كيف تبقى التجربة محترمة وواضحة",
       trustIntro:
-        "يفصل الموقع بين المحتوى الأساسي للموقع وبين صفحات التهنئة المولدة حتى يؤدي كل جزء وظيفته بشكل أفضل.",
+        "هناك اختيارات بسيطة تحافظ على هدوء التجربة ووضوحها وتبقي المناسبة في الواجهة.",
       trustCards: [
         {
           title: "صفحات التهنئة للمستلمين تبقى بلا إعلانات",
           body:
-            "واجهة التهنئة المشتركة مخصصة للرسالة وأجواء العيد، وليست مكانًا للتجارب الإعلانية."
+            "صفحات التهنئة المشتركة مخصصة للرسالة وأجواء العيد، من دون عناصر إضافية تشتت الانتباه."
         },
         {
-          title: "روابط التهنئة ليست هي القلب التحريري للموقع",
+          title: "صفحات القراءة تبقى سهلة الوصول",
           body:
-            "روابط التهنئة مخصصة للمشاركة الشخصية، بينما تحمل الصفحة الرئيسية وصفحات المحتوى القيمة الدائمة للموقع."
+            "الصفحة الرئيسية وصفحات القراءة موجودة دائمًا عندما تريد أفكارًا، بينما تبقى روابط التهنئة مركزة على الرسالة الشخصية."
         },
         {
-          title: "صفحات الدعم تبقى ظاهرة ومفيدة",
+          title: "صفحات الدعم تبقى سهلة الوصول",
           body:
-            "تظل صفحات من نحن والخصوصية والتواصل والأسئلة الشائعة جزءًا واضحًا من هيكل الموقع حتى يعرف الزائر من يقف وراء التجربة."
+            "صفحات الأسئلة الشائعة والخصوصية ومن نحن والتواصل تبقى واضحة وسهلة الوصول كلما احتجت إلى مزيد من المعلومات أو المساعدة."
         }
       ],
-      menuTitle: "تصفح مكتبة الموقع كاملة",
+      menuTitle: "تصفح المزيد من الصفحات",
       menuIntro:
-        "افتح ملخصًا سريعًا لأي صفحة بالأسفل، ثم انتقل إلى النسخة الكاملة عندما تريد قراءة المحتوى بالكامل.",
+        "افتح ملخصًا سريعًا في الأسفل، ثم انتقل إلى الصفحة الكاملة عندما تريد قراءة المزيد.",
       menuHomeTitle: "نظرة عامة على الصفحة الرئيسية",
       menuHomeIntro:
-        "تجمع الصفحة الرئيسية بين أداة إنشاء التهنئة، وأدوات المشاركة، وإرشادات الكتابة الخاصة بالعيد، وروابط المقالات والصفحات الأساسية في الموقع.",
+        "من الصفحة الرئيسية يمكنك إنشاء تهنئة، واستكشاف أفكار كتابة للعيد، وفتح أهم صفحات المساعدة والقراءة.",
       openPageLabel: "افتح الصفحة الكاملة",
-      lowerAdTitle: "مساحة إعلان سفلية مستقبلية",
+      lowerAdTitle: "محتوى مميز في الصفحة الرئيسية",
       lowerAdDescription:
-        "اترك هذا الموضع هادئًا حتى يمتلك الموقع محتوى ثابتًا وطلبًا عضويًا يبرر وجود موضع إضافي داخل الصفحة الرئيسية."
+        "قد تُستخدم هذه المساحة أحيانًا لإبراز ميزة مختارة بعناية أو راعٍ مناسب داخل الصفحة الرئيسية."
     }
   }
 };
