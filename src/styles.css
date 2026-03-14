@@ -4245,8 +4245,6 @@ textarea:focus {
   transform: translate(-50%, -50%);
   background: radial-gradient(circle, rgba(243, 194, 94, 0.18), transparent 70%);
   filter: blur(18px);
-  opacity: 0;
-  transition: opacity 0.9s ease;
 }
 
 .cta-link {
@@ -4265,14 +4263,7 @@ textarea:focus {
     0 18px 34px rgba(3, 11, 18, 0.48),
     0 0 24px rgba(248, 191, 91, 0.22);
   backdrop-filter: blur(8px);
-  opacity: 0;
-  transform: translateY(18px);
-  pointer-events: none;
-  transition:
-    opacity 0.9s cubic-bezier(0.2, 0.82, 0.24, 1),
-    transform 0.9s cubic-bezier(0.2, 0.82, 0.24, 1),
-    box-shadow 0.25s ease,
-    filter 0.25s ease;
+  transition: transform 0.22s ease, box-shadow 0.25s ease, filter 0.25s ease;
 }
 
 .cta-link::before {
@@ -4281,16 +4272,6 @@ textarea:focus {
   inset: 7px;
   clip-path: polygon(8% 0, 92% 0, 100% 32%, 100% 68%, 92% 100%, 8% 100%, 0 68%, 0 32%);
   border: 1px solid rgba(255, 242, 211, 0.24);
-}
-
-.greeting-cta-wrap.is-visible::before {
-  opacity: 1;
-}
-
-.greeting-cta-wrap.is-visible .cta-link {
-  opacity: 1;
-  transform: translateY(0);
-  pointer-events: auto;
 }
 
 .cta-link:hover {
