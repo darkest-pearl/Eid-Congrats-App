@@ -4,8 +4,6 @@ export default function SupportPageView({
   page,
   homeHref,
   backLabel,
-  linksLabel,
-  links,
   contactEmail,
   languageLabel,
   languageLinks
@@ -82,17 +80,6 @@ export default function SupportPageView({
             ) : null}
           </article>
         ))}
-      </section>
-
-      <section className="support-links-panel">
-        <div className="support-links-heading">{linksLabel}</div>
-        <div className="support-links-grid">
-          {links.map((link) => (
-            <a key={link.id} className="support-link-card" href={link.href}>
-              <strong>{link.label}</strong>
-            </a>
-          ))}
-        </div>
       </section>
     </main>
   );

@@ -2,7 +2,6 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import { generateRandomEidMessage } from "./lib/messageGenerator";
 import AdSlot from "./components/AdSlot";
 import CreatorSupportMenu from "./components/CreatorSupportMenu";
-import SiteFooter from "./components/SiteFooter";
 import SupportPageView from "./components/SupportPageView";
 import { siteConfig } from "./config/siteConfig";
 import { siteContent } from "./content/siteContent";
@@ -143,6 +142,14 @@ copy.en.generateMessage = "Generate Message";
 copy.en.generateMessageHint = "Generate a meaningful Eid message instantly";
 copy.ar.generateMessage = "توليد رسالة";
 copy.ar.generateMessageHint = "ولّد رسالة عيد جميلة فورًا";
+
+copy.en.recipientName = "Recipient or group name";
+copy.en.recipientPlaceholder = "Person or group name";
+copy.en.recipientLineLabel = "For";
+copy.ar.recipientName =
+  "\u0627\u0633\u0645 \u0627\u0644\u0645\u0633\u062a\u0644\u0645 \u0623\u0648 \u0627\u0633\u0645 \u0627\u0644\u0645\u062c\u0645\u0648\u0639\u0629";
+copy.ar.recipientPlaceholder = "\u0627\u0633\u0645 \u0634\u062e\u0635 \u0623\u0648 \u0645\u062c\u0645\u0648\u0639\u0629";
+copy.ar.recipientLineLabel = "\u0625\u0644\u0649";
 
 const styleIds = new Set(styleOptions.map((style) => style.id));
 const HOME_PATH = "/";
@@ -353,7 +360,7 @@ function normalizeStyleId(value) {
 
 function hasGreetingParams(search) {
   const params = new URLSearchParams(search || "");
-  return ["name", "msg", "style"].some((key) => params.has(key));
+  return ["name", "msg", "style", "to"].some((key) => params.has(key));
 }
 
 function parseGreetingState(search) {
@@ -363,6 +370,7 @@ function parseGreetingState(search) {
     hasGreetingParams: hasGreetingParams(search),
     language: normalizeLanguage(params.get("lang")),
     senderName: params.get("name")?.trim() ?? "",
+    recipientName: params.get("to")?.trim() ?? "",
     customMessage: params.get("msg")?.trim() ?? "",
     styleId: normalizeStyleId(params.get("style"))
   };
@@ -426,17 +434,21 @@ function parseSupportPage(pathname, hash) {
   return supportPageIds.has(normalizedHash) ? normalizedHash : "";
 }
 
-function buildShareUrl({ language, senderName, customMessage, styleId }, baseHref) {
+function buildShareUrl({ language, senderName, recipientName = "", customMessage, styleId }, baseHref) {
   const source =
     baseHref ??
     (typeof window !== "undefined" ? window.location.href : "https://example.com/");
   const url = new URL(source);
   const params = new URLSearchParams();
+  const normalizedRecipientName = recipientName.trim();
 
   params.set("lang", normalizeLanguage(language));
   params.set("name", senderName.trim());
   params.set("msg", customMessage.trim());
   params.set("style", normalizeStyleId(styleId));
+  if (normalizedRecipientName) {
+    params.set("to", normalizedRecipientName);
+  }
 
   url.pathname = HOME_PATH;
   url.search = params.toString();
@@ -570,11 +582,12 @@ function runSelfTests() {
     throw new Error("Language validation fallback failed.");
   }
 
-  const parsed = parseGreetingState("?lang=ar&name=Ali&msg=Hello&style=night");
+  const parsed = parseGreetingState("?lang=ar&name=Ali&to=Family&msg=Hello&style=night");
   if (
     !parsed.hasGreetingParams ||
     parsed.language !== "ar" ||
     parsed.senderName !== "Ali" ||
+    parsed.recipientName !== "Family" ||
     parsed.customMessage !== "Hello" ||
     parsed.styleId !== "night"
   ) {
@@ -586,13 +599,19 @@ function runSelfTests() {
     defaults.hasGreetingParams ||
     defaults.language !== "en" ||
     defaults.senderName !== "" ||
+    defaults.recipientName !== "" ||
     defaults.customMessage !== "" ||
     defaults.styleId !== DEFAULT_STYLE_ID
   ) {
     throw new Error("Default fallback behavior is incorrect.");
   }
 
-  if (!hasGreetingParams("?name=Sara") || !hasGreetingParams("?style=soft") || hasGreetingParams("?lang=ar")) {
+  if (
+    !hasGreetingParams("?name=Sara") ||
+    !hasGreetingParams("?style=soft") ||
+    !hasGreetingParams("?to=Family") ||
+    hasGreetingParams("?lang=ar")
+  ) {
     throw new Error("Greeting-page mode detection failed.");
   }
 
@@ -608,6 +627,7 @@ function runSelfTests() {
     {
       language: "en",
       senderName: "Mona",
+      recipientName: "Alsayari family, young and old",
       customMessage: "Warm wishes",
       styleId: "soft"
     },
@@ -619,6 +639,7 @@ function runSelfTests() {
     parsedShareUrl.pathname !== "/" ||
     params.get("lang") !== "en" ||
     params.get("name") !== "Mona" ||
+    params.get("to") !== "Alsayari family, young and old" ||
     params.get("msg") !== "Warm wishes" ||
     params.get("style") !== "soft"
   ) {
@@ -894,7 +915,9 @@ function CreatorMode({
   isArabic,
   language,
   senderName,
+  recipientName,
   setSenderName,
+  setRecipientName,
   setLanguage,
   styleId,
   setStyleId,
@@ -919,6 +942,7 @@ function CreatorMode({
   const textDirection = isArabic ? "rtl" : "ltr";
   const dynamicTextDirection = isArabic ? "auto" : "ltr";
   const displayName = senderName.trim() || ui.defaultSender;
+  const displayRecipient = recipientName.trim();
   const pageLinks = Object.fromEntries(footerLinks.map((link) => [link.id, link.href]));
 
   return (
@@ -967,11 +991,21 @@ function CreatorMode({
                 <option value="ar">العربية</option>
               </select>
             </div>
-          </div>
+	          </div>
 
-          <div>
-            <label htmlFor="style">{ui.style}</label>
-            <select
+	          <div>
+	            <label htmlFor="recipient-name">{ui.recipientName}</label>
+	            <input
+	              id="recipient-name"
+	              value={recipientName}
+	              onChange={(event) => setRecipientName(event.target.value)}
+	              placeholder={ui.recipientPlaceholder}
+	            />
+	          </div>
+
+	          <div>
+	            <label htmlFor="style">{ui.style}</label>
+	            <select
               id="style"
               value={styleId}
               onChange={(event) => setStyleId(normalizeStyleId(event.target.value))}
@@ -1034,7 +1068,13 @@ function CreatorMode({
           <div className={`creator-preview-card ${selectedStyle.className}`}>
             <div className="creator-preview-inner" dir={textDirection}>
               <span className="preview-pill">{ui.previewCardLabel}</span>
-              <h2>{isArabic ? "Ø¹ÙŠØ¯ Ù…Ø¨Ø§Ø±Ùƒ" : "Eid Mubarak"}</h2>
+              <h2>{isArabic ? "\u0639\u064a\u062f \u0645\u0628\u0627\u0631\u0643" : "Eid Mubarak"}</h2>
+              {displayRecipient ? (
+                <div className="creator-preview-recipient">
+                  <small>{ui.recipientLineLabel}</small>
+                  <strong dir={dynamicTextDirection}>{displayRecipient}</strong>
+                </div>
+              ) : null}
               <p dir={dynamicTextDirection}>{greetingMessage}</p>
               <div className="from-block">
                 <small>{ui.fromLabel}</small>
@@ -1191,8 +1231,9 @@ function CreatorMode({
   );
 }
 
-function GreetingMode({ ui, isArabic, selectedStyle, senderName, greetingMessage, creatorHref }) {
+function GreetingMode({ ui, isArabic, selectedStyle, senderName, recipientName, greetingMessage, creatorHref }) {
   const displayName = senderName.trim() || ui.defaultSender;
+  const displayRecipient = recipientName.trim();
   const textDirection = isArabic ? "rtl" : "ltr";
   const dynamicTextDirection = isArabic ? "auto" : "ltr";
 
@@ -1369,7 +1410,18 @@ function GreetingMode({ ui, isArabic, selectedStyle, senderName, greetingMessage
                 </p>
               </div>
 
-              <div className="greeting-message" role="note" aria-live="polite">
+              {displayRecipient ? (
+                <div className="greeting-recipient">
+                  <small dir={textDirection}>{ui.recipientLineLabel}</small>
+                  <strong dir={dynamicTextDirection}>{displayRecipient}</strong>
+                </div>
+              ) : null}
+
+              <div
+                className={`greeting-message ${displayRecipient ? "has-recipient" : ""}`}
+                role="note"
+                aria-live="polite"
+              >
                 <div className="greeting-message-glow" aria-hidden="true" />
                 <div className="greeting-message-frame" aria-hidden="true" />
                 <p dir={dynamicTextDirection}>{greetingMessage}</p>
@@ -1408,6 +1460,7 @@ export default function App() {
 
   const [language, setLanguage] = useState(initial.language);
   const [senderName, setSenderName] = useState(initial.senderName);
+  const [recipientName, setRecipientName] = useState(initial.recipientName);
   const [customMessage, setCustomMessage] = useState(initial.customMessage);
   const [styleId, setStyleId] = useState(initial.styleId);
   const [statusMessage, setStatusMessage] = useState("");
@@ -1436,8 +1489,8 @@ export default function App() {
   );
 
   const previewUrl = useMemo(
-    () => buildShareUrl({ language, senderName, customMessage, styleId }),
-    [language, senderName, customMessage, styleId]
+    () => buildShareUrl({ language, senderName, recipientName, customMessage, styleId }),
+    [language, senderName, recipientName, customMessage, styleId]
   );
 
   const shareMessage = useMemo(() => buildShareMessage(language, previewUrl), [language, previewUrl]);
@@ -1529,6 +1582,7 @@ export default function App() {
   function resetState() {
     setLanguage(DEFAULT_LANGUAGE);
     setSenderName("");
+    setRecipientName("");
     setCustomMessage("");
     setStyleId(DEFAULT_STYLE_ID);
     setStatusMessage("");
@@ -1598,27 +1652,43 @@ export default function App() {
           isArabic={isArabic}
           selectedStyle={selectedStyle}
           senderName={senderName}
+          recipientName={recipientName}
           greetingMessage={greetingMessage}
           creatorHref={creatorHref}
         />
       ) : activeSupportPage ? (
-        <SupportPageView
-          page={supportPages[activeSupportPage]}
-          homeHref={creatorHref}
-          backLabel={content.backToHome}
-          linksLabel={content.supportNavLabel}
-          links={footerLinks}
-          contactEmail={siteConfig.contactEmail}
-          languageLabel={content.pageLanguageLabel}
-          languageLinks={pageLanguageLinks}
-        />
+        <>
+          <SupportPageView
+            page={supportPages[activeSupportPage]}
+            homeHref={creatorHref}
+            backLabel={content.backToHome}
+            contactEmail={siteConfig.contactEmail}
+            languageLabel={content.pageLanguageLabel}
+            languageLinks={pageLanguageLinks}
+          />
+
+          <CreatorSupportMenu
+            title={content.homepage.menuTitle}
+            intro={content.homepage.menuIntro}
+            homeLabel={content.footerHome}
+            homeTitle={content.homepage.menuHomeTitle}
+            homeIntro={content.homepage.menuHomeIntro}
+            openPageLabel={content.homepage.openPageLabel}
+            homeHref={creatorHref}
+            items={footerLinks}
+            pages={supportPages}
+            lowerContent={null}
+          />
+        </>
       ) : (
         <CreatorMode
           ui={ui}
           isArabic={isArabic}
           language={language}
           senderName={senderName}
+          recipientName={recipientName}
           setSenderName={setSenderName}
+          setRecipientName={setRecipientName}
           setLanguage={setLanguage}
           styleId={styleId}
           setStyleId={setStyleId}
@@ -1641,16 +1711,6 @@ export default function App() {
           greetingMessage={greetingMessage}
         />
       )}
-
-      {!showGreetingMode ? (
-        <SiteFooter
-          homeHref={creatorHref}
-          homeLabel={content.footerHome}
-          currentPage={activeSupportPage}
-          links={footerLinks}
-          tagline={content.footerTagline}
-        />
-      ) : null}
     </div>
   );
 }

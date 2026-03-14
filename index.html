@@ -35,7 +35,7 @@
     <script>
       (function () {
         var params = new URLSearchParams(window.location.search);
-        var isGreetingPage = params.has("name") || params.has("msg") || params.has("style");
+        var isGreetingPage = params.has("name") || params.has("msg") || params.has("style") || params.has("to");
 
         if (!isGreetingPage) {
           return;
