@@ -145,7 +145,19 @@ copy.ar.generateMessage = "توليد رسالة";
 copy.ar.generateMessageHint = "ولّد رسالة عيد جميلة فورًا";
 
 const styleIds = new Set(styleOptions.map((style) => style.id));
-const supportPageIds = new Set(["privacy", "about", "contact", "faq"]);
+const HOME_PATH = "/";
+const pagePaths = {
+  wishes: "/eid-wishes",
+  guide: "/send-eid-greetings-online",
+  messages: "/eid-messages-family-friends",
+  faq: "/faq",
+  about: "/about",
+  privacy: "/privacy",
+  contact: "/contact"
+};
+const pagePathEntries = Object.entries(pagePaths);
+const footerPageIds = ["wishes", "guide", "messages", "faq", "about", "privacy", "contact"];
+const supportPageIds = new Set(footerPageIds);
 
 const lamps = Array.from({ length: 11 }, (_, index) => ({
   id: index,
@@ -341,7 +353,7 @@ function normalizeStyleId(value) {
 
 function hasGreetingParams(search) {
   const params = new URLSearchParams(search || "");
-  return ["lang", "name", "msg", "style"].some((key) => params.has(key));
+  return ["name", "msg", "style"].some((key) => params.has(key));
 }
 
 function parseGreetingState(search) {
@@ -356,9 +368,62 @@ function parseGreetingState(search) {
   };
 }
 
-function parseSupportPage(hash) {
-  const normalized = (hash || "").replace(/^#\/?/, "").replace(/\/$/, "").trim().toLowerCase();
-  return supportPageIds.has(normalized) ? normalized : "";
+function normalizePathname(pathname) {
+  const raw = typeof pathname === "string" ? pathname.trim() : "";
+  if (!raw || raw === "/") {
+    return HOME_PATH;
+  }
+
+  const withoutTrailingSlash = raw.replace(/\/+$/, "");
+  const withLeadingSlash = withoutTrailingSlash.startsWith("/") ? withoutTrailingSlash : `/${withoutTrailingSlash}`;
+  return withLeadingSlash || HOME_PATH;
+}
+
+function getLanguageSearch(language) {
+  const params = new URLSearchParams();
+
+  if (normalizeLanguage(language) === "ar") {
+    params.set("lang", "ar");
+  }
+
+  return params.toString();
+}
+
+function getPagePath(pageId) {
+  return pagePaths[pageId] ?? HOME_PATH;
+}
+
+function buildRouteHref(pathname, language) {
+  const search = getLanguageSearch(language);
+  return search ? `${pathname}?${search}` : pathname;
+}
+
+function buildAbsoluteRouteUrl(pathname, sourceHref, language, includeLanguage = true) {
+  const source =
+    sourceHref ??
+    (typeof window !== "undefined" ? window.location.href : "https://example.com/");
+  const url = new URL(source);
+
+  url.pathname = normalizePathname(pathname);
+  url.search = includeLanguage ? getLanguageSearch(language) : "";
+  url.hash = "";
+
+  return url.toString();
+}
+
+function buildPageHref(pageId, language) {
+  return buildRouteHref(getPagePath(pageId), language);
+}
+
+function parseSupportPage(pathname, hash) {
+  const normalizedPath = normalizePathname(pathname);
+  const matchedEntry = pagePathEntries.find(([, path]) => path === normalizedPath);
+  if (matchedEntry) {
+    return matchedEntry[0];
+  }
+
+  const normalizedHash = (hash || "").replace(/^#\/?/, "").replace(/\/$/, "").trim().toLowerCase();
+  return supportPageIds.has(normalizedHash) ? normalizedHash : "";
 }
 
 function buildShareUrl({ language, senderName, customMessage, styleId }, baseHref) {
@@ -373,7 +438,9 @@ function buildShareUrl({ language, senderName, customMessage, styleId }, baseHre
   params.set("msg", customMessage.trim());
   params.set("style", normalizeStyleId(styleId));
 
+  url.pathname = HOME_PATH;
   url.search = params.toString();
+  url.hash = "";
   return url.toString();
 }
 
@@ -460,12 +527,38 @@ function isShareDeniedError(error) {
   );
 }
 
-function buildCreatorUrl(sourceHref) {
-  const source = sourceHref || "https://example.com/";
-  const url = new URL(source);
-  url.search = "";
-  url.hash = "";
-  return `${url.origin}${url.pathname}`;
+function buildCreatorHref(language) {
+  return buildRouteHref(HOME_PATH, language);
+}
+
+function setHeadMeta(attribute, key, value) {
+  if (typeof document === "undefined") {
+    return;
+  }
+
+  let element = document.head.querySelector(`meta[${attribute}="${key}"]`);
+  if (!element) {
+    element = document.createElement("meta");
+    element.setAttribute(attribute, key);
+    document.head.appendChild(element);
+  }
+
+  element.setAttribute("content", value);
+}
+
+function setHeadLink(rel, href) {
+  if (typeof document === "undefined") {
+    return;
+  }
+
+  let element = document.head.querySelector(`link[rel="${rel}"]`);
+  if (!element) {
+    element = document.createElement("link");
+    element.setAttribute("rel", rel);
+    document.head.appendChild(element);
+  }
+
+  element.setAttribute("href", href);
 }
 
 function runSelfTests() {
@@ -499,12 +592,16 @@ function runSelfTests() {
     throw new Error("Default fallback behavior is incorrect.");
   }
 
-  if (!hasGreetingParams("?name=Sara") || hasGreetingParams("?x=1")) {
+  if (!hasGreetingParams("?name=Sara") || !hasGreetingParams("?style=soft") || hasGreetingParams("?lang=ar")) {
     throw new Error("Greeting-page mode detection failed.");
   }
 
-  if (parseSupportPage("#/privacy") !== "privacy" || parseSupportPage("#/unknown") !== "") {
-    throw new Error("Support-page hash detection failed.");
+  if (
+    parseSupportPage("/privacy", "") !== "privacy" ||
+    parseSupportPage("/", "#/wishes") !== "wishes" ||
+    parseSupportPage("/", "#/unknown") !== ""
+  ) {
+    throw new Error("Support-page route detection failed.");
   }
 
   const shareUrl = buildShareUrl(
@@ -516,14 +613,20 @@ function runSelfTests() {
     },
     "https://example.com/eid?x=1"
   );
-  const params = new URL(shareUrl).searchParams;
+  const parsedShareUrl = new URL(shareUrl);
+  const params = parsedShareUrl.searchParams;
   if (
+    parsedShareUrl.pathname !== "/" ||
     params.get("lang") !== "en" ||
     params.get("name") !== "Mona" ||
     params.get("msg") !== "Warm wishes" ||
     params.get("style") !== "soft"
   ) {
     throw new Error("Share URL generation sanity check failed.");
+  }
+
+  if (buildPageHref("about", "ar") !== "/about?lang=ar" || buildCreatorHref("en") !== "/") {
+    throw new Error("Route href generation failed.");
   }
 
   const englishShareMessage = buildShareMessage("en", "https://example.com/eid");
@@ -789,9 +892,9 @@ function GreetingCelebrationFountain({ side }) {
 function CreatorMode({
   ui,
   isArabic,
+  language,
   senderName,
   setSenderName,
-  language,
   setLanguage,
   styleId,
   setStyleId,
@@ -809,11 +912,19 @@ function CreatorMode({
   footerLinks,
   footerHomeLabel,
   supportPages,
-  creatorUrl
+  creatorHref,
+  selectedStyle,
+  greetingMessage
 }) {
+  const textDirection = isArabic ? "rtl" : "ltr";
+  const dynamicTextDirection = isArabic ? "auto" : "ltr";
+  const displayName = senderName.trim() || ui.defaultSender;
+  const pageLinks = Object.fromEntries(footerLinks.map((link) => [link.id, link.href]));
+
   return (
     <main className="creator-layout">
-      <section className="creator-panel">
+      <section className="creator-hero-grid">
+        <section className="creator-panel">
         <div className="pill">{ui.creatorBadge}</div>
         <h1 className="hero-title">
           {ui.creatorTitleA} <span>{ui.creatorTitleB}</span>
@@ -916,6 +1027,137 @@ function CreatorMode({
 
           <div className="share-helper-note">{ui.shareHelperNote}</div>
           <div className="status-note">{statusMessage || ui.helperHint}</div>
+          </div>
+        </section>
+
+        <aside className="creator-preview-panel">
+          <div className={`creator-preview-card ${selectedStyle.className}`}>
+            <div className="creator-preview-inner" dir={textDirection}>
+              <span className="preview-pill">{ui.previewCardLabel}</span>
+              <h2>{isArabic ? "Ø¹ÙŠØ¯ Ù…Ø¨Ø§Ø±Ùƒ" : "Eid Mubarak"}</h2>
+              <p dir={dynamicTextDirection}>{greetingMessage}</p>
+              <div className="from-block">
+                <small>{ui.fromLabel}</small>
+                <strong dir={dynamicTextDirection}>{displayName}</strong>
+              </div>
+            </div>
+          </div>
+
+          <div className="creator-preview-highlights">
+            {homepageContent.previewHighlights.map((highlight) => (
+              <article key={highlight} className="content-card compact preview-highlight-card">
+                <p>{highlight}</p>
+              </article>
+            ))}
+          </div>
+        </aside>
+      </section>
+
+      <section className="creator-info-section">
+        <div className="creator-section-heading">
+          <div className="pill">{homepageContent.storyEyebrow}</div>
+          <h2>{homepageContent.storyTitle}</h2>
+          <p>{homepageContent.storyIntro}</p>
+        </div>
+
+        <div className="creator-trust-grid">
+          {homepageContent.storyCards.map((card) => (
+            <article key={card.title} className="content-card">
+              <h3>{card.title}</h3>
+              <p>{card.body}</p>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section className="creator-info-section">
+        <div className="creator-section-heading">
+          <div className="pill">{homepageContent.howEyebrow}</div>
+          <h2>{homepageContent.howTitle}</h2>
+          <p>{homepageContent.howIntro}</p>
+        </div>
+
+        <div className="creator-steps-grid">
+          {homepageContent.steps.map((step) => (
+            <article key={step.title} className="content-card">
+              <h3>{step.title}</h3>
+              <p>{step.body}</p>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section className="creator-info-section">
+        <div className="creator-section-heading">
+          <div className="pill">{homepageContent.writingEyebrow}</div>
+          <h2>{homepageContent.writingTitle}</h2>
+          <p>{homepageContent.writingIntro}</p>
+        </div>
+
+        <div className="creator-trust-grid">
+          {homepageContent.writingTips.map((tip) => (
+            <article key={tip.title} className="content-card">
+              <h3>{tip.title}</h3>
+              <p>{tip.body}</p>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section className="creator-more-section">
+        <div className="creator-section-heading">
+          <div className="pill">{homepageContent.articleEyebrow}</div>
+          <h2>{homepageContent.articleTitle}</h2>
+          <p>{homepageContent.articleIntro}</p>
+        </div>
+
+        <div className="creator-more-grid">
+          {homepageContent.articleCards.map((card) => (
+            <article key={card.id} className="content-card link-card">
+              <h3>{card.title}</h3>
+              <p>{card.body}</p>
+              <a className="ghost-link" href={pageLinks[card.id]}>
+                {card.cta}
+              </a>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section className="creator-info-section">
+        <div className="creator-section-heading">
+          <div className="pill">{homepageContent.supportEyebrow}</div>
+          <h2>{homepageContent.supportTitle}</h2>
+          <p>{homepageContent.supportIntro}</p>
+        </div>
+
+        <div className="creator-more-grid">
+          {homepageContent.supportCards.map((card) => (
+            <article key={card.id} className="content-card link-card">
+              <h3>{card.title}</h3>
+              <p>{card.body}</p>
+              <a className="ghost-link" href={pageLinks[card.id]}>
+                {card.cta}
+              </a>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section className="creator-info-section">
+        <div className="creator-section-heading">
+          <div className="pill">{footerHomeLabel}</div>
+          <h2>{homepageContent.trustTitle}</h2>
+          <p>{homepageContent.trustIntro}</p>
+        </div>
+
+        <div className="creator-trust-grid">
+          {homepageContent.trustCards.map((card) => (
+            <article key={card.title} className="content-card">
+              <h3>{card.title}</h3>
+              <p>{card.body}</p>
+            </article>
+          ))}
         </div>
       </section>
 
@@ -926,7 +1168,7 @@ function CreatorMode({
         homeTitle={homepageContent.menuHomeTitle}
         homeIntro={homepageContent.menuHomeIntro}
         openPageLabel={homepageContent.openPageLabel}
-        homeHref={creatorUrl}
+        homeHref={creatorHref}
         items={footerLinks}
         pages={supportPages}
         lowerContent={
@@ -949,7 +1191,7 @@ function CreatorMode({
   );
 }
 
-function GreetingMode({ ui, isArabic, selectedStyle, senderName, greetingMessage, creatorUrl }) {
+function GreetingMode({ ui, isArabic, selectedStyle, senderName, greetingMessage, creatorHref }) {
   const displayName = senderName.trim() || ui.defaultSender;
   const textDirection = isArabic ? "rtl" : "ltr";
   const dynamicTextDirection = isArabic ? "auto" : "ltr";
@@ -1148,7 +1390,7 @@ function GreetingMode({ ui, isArabic, selectedStyle, senderName, greetingMessage
 	      </section>
 
       <div className="greeting-cta-wrap">
-        <a className="cta-link" href={creatorUrl} dir={textDirection}>
+        <a className="cta-link" href={creatorHref} dir={textDirection}>
           {ui.ctaCreateOwn}
         </a>
       </div>
@@ -1174,7 +1416,7 @@ export default function App() {
     if (typeof window === "undefined") {
       return "";
     }
-    return parseSupportPage(window.location.hash);
+    return parseSupportPage(window.location.pathname, window.location.hash);
   });
   const lastGeneratedMessageRef = useRef("");
 
@@ -1200,12 +1442,7 @@ export default function App() {
 
   const shareMessage = useMemo(() => buildShareMessage(language, previewUrl), [language, previewUrl]);
 
-  const creatorUrl = useMemo(() => {
-    if (typeof window === "undefined") {
-      return "/";
-    }
-    return buildCreatorUrl(window.location.href);
-  }, []);
+  const creatorHref = useMemo(() => buildCreatorHref(language), [language]);
 
   useEffect(() => {
     if (typeof window === "undefined") {
@@ -1213,11 +1450,15 @@ export default function App() {
     }
 
     const syncSupportPage = () => {
-      setSupportPage(parseSupportPage(window.location.hash));
+      setSupportPage(parseSupportPage(window.location.pathname, window.location.hash));
     };
 
+    window.addEventListener("popstate", syncSupportPage);
     window.addEventListener("hashchange", syncSupportPage);
-    return () => window.removeEventListener("hashchange", syncSupportPage);
+    return () => {
+      window.removeEventListener("popstate", syncSupportPage);
+      window.removeEventListener("hashchange", syncSupportPage);
+    };
   }, []);
 
   async function handleCopyLink() {
@@ -1294,15 +1535,55 @@ export default function App() {
     lastGeneratedMessageRef.current = "";
   }
 
-  const footerLinks = [
-    { id: "privacy", href: "#/privacy", label: content.footerLinks.privacy },
-    { id: "about", href: "#/about", label: content.footerLinks.about },
-    { id: "contact", href: "#/contact", label: content.footerLinks.contact },
-    { id: "faq", href: "#/faq", label: content.footerLinks.faq }
-  ];
+  const footerLinks = footerPageIds.map((id) => ({
+    id,
+    href: buildPageHref(id, language),
+    label: content.footerLinks[id]
+  }));
 
   const showGreetingMode = initial.hasGreetingParams;
   const activeSupportPage = showGreetingMode ? "" : supportPage;
+  const pageLanguageLinks = activeSupportPage
+    ? [
+        { id: "en", label: "English", href: buildPageHref(activeSupportPage, "en"), isActive: language === "en" },
+        { id: "ar", label: "العربية", href: buildPageHref(activeSupportPage, "ar"), isActive: language === "ar" }
+      ]
+    : [];
+
+  useEffect(() => {
+    if (typeof document === "undefined" || typeof window === "undefined") {
+      return;
+    }
+
+    const isGreetingPage = showGreetingMode;
+    const currentPage = activeSupportPage ? supportPages[activeSupportPage] : null;
+    const title = isGreetingPage
+      ? `${senderName.trim() ? `${senderName.trim()} | ` : ""}${ui.shareTitle} | ${siteConfig.siteName}`
+      : currentPage
+        ? `${currentPage.title} | ${siteConfig.siteName}`
+        : content.homepage.metaTitle;
+    const description = isGreetingPage
+      ? isArabic
+        ? "هذه صفحة تهنئة عيد مشتركة مخصصة للمشاهدة والمشاركة الشخصية."
+        : "This is a personalized Eid greeting page created for private sharing."
+      : currentPage
+        ? currentPage.intro
+        : content.homepage.metaDescription;
+    const canonicalUrl = isGreetingPage
+      ? buildAbsoluteRouteUrl(HOME_PATH, window.location.href, language)
+      : buildAbsoluteRouteUrl(activeSupportPage ? getPagePath(activeSupportPage) : HOME_PATH, window.location.href, language);
+    const robotsValue = isGreetingPage ? "noindex, nofollow" : "index, follow";
+
+    document.title = title;
+    setHeadMeta("name", "description", description);
+    setHeadMeta("name", "robots", robotsValue);
+    setHeadMeta("property", "og:title", title);
+    setHeadMeta("property", "og:description", description);
+    setHeadMeta("property", "og:url", canonicalUrl);
+    setHeadMeta("name", "twitter:title", title);
+    setHeadMeta("name", "twitter:description", description);
+    setHeadLink("canonical", canonicalUrl);
+  }, [activeSupportPage, content.homepage.metaDescription, content.homepage.metaTitle, isArabic, language, senderName, showGreetingMode, supportPages, ui.shareTitle]);
 
   return (
     <div
@@ -1318,24 +1599,26 @@ export default function App() {
           selectedStyle={selectedStyle}
           senderName={senderName}
           greetingMessage={greetingMessage}
-          creatorUrl={creatorUrl}
+          creatorHref={creatorHref}
         />
       ) : activeSupportPage ? (
         <SupportPageView
           page={supportPages[activeSupportPage]}
-          homeHref={creatorUrl}
+          homeHref={creatorHref}
           backLabel={content.backToHome}
           linksLabel={content.supportNavLabel}
           links={footerLinks}
           contactEmail={siteConfig.contactEmail}
+          languageLabel={content.pageLanguageLabel}
+          languageLinks={pageLanguageLinks}
         />
       ) : (
         <CreatorMode
           ui={ui}
           isArabic={isArabic}
+          language={language}
           senderName={senderName}
           setSenderName={setSenderName}
-          language={language}
           setLanguage={setLanguage}
           styleId={styleId}
           setStyleId={setStyleId}
@@ -1353,13 +1636,15 @@ export default function App() {
           footerLinks={footerLinks}
           footerHomeLabel={content.footerHome}
           supportPages={supportPages}
-          creatorUrl={creatorUrl}
+          creatorHref={creatorHref}
+          selectedStyle={selectedStyle}
+          greetingMessage={greetingMessage}
         />
       )}
 
       {!showGreetingMode ? (
         <SiteFooter
-          homeHref={creatorUrl}
+          homeHref={creatorHref}
           homeLabel={content.footerHome}
           currentPage={activeSupportPage}
           links={footerLinks}

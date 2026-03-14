@@ -6,7 +6,9 @@ export default function SupportPageView({
   backLabel,
   linksLabel,
   links,
-  contactEmail
+  contactEmail,
+  languageLabel,
+  languageLinks
 }) {
   return (
     <main className="support-layout">
@@ -18,8 +20,35 @@ export default function SupportPageView({
           <a className="ghost-link" href={homeHref}>
             {backLabel}
           </a>
+          {languageLinks?.length ? (
+            <div className="support-language-group" aria-label={languageLabel}>
+              <span className="support-language-label">{languageLabel}</span>
+              <div className="support-language-links">
+                {languageLinks.map((link) => (
+                  <a
+                    key={link.id}
+                    className={`ghost-link support-language-link ${link.isActive ? "is-active" : ""}`}
+                    href={link.href}
+                  >
+                    {link.label}
+                  </a>
+                ))}
+              </div>
+            </div>
+          ) : null}
         </div>
       </section>
+
+      {page.summarySections?.length ? (
+        <section className="support-summary-grid">
+          {page.summarySections.map((section) => (
+            <article key={section.title} className="support-card support-summary-card">
+              <h2>{section.title}</h2>
+              <p>{section.body}</p>
+            </article>
+          ))}
+        </section>
+      ) : null}
 
       {page.emailLabel ? (
         <section className={`support-contact-grid ${page.contactForm ? "has-form" : ""}`}>
@@ -44,6 +73,13 @@ export default function SupportPageView({
           <article key={section.title} className="support-card">
             <h2>{section.title}</h2>
             <p>{section.body}</p>
+            {section.items?.length ? (
+              <ul className="support-list">
+                {section.items.map((item) => (
+                  <li key={item}>{item}</li>
+                ))}
+              </ul>
+            ) : null}
           </article>
         ))}
       </section>

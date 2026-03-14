@@ -1,362 +1,375 @@
 export const siteContent = {
   en: {
     footerTagline:
-      "Create one polished Eid greeting link, keep the recipient page celebratory, and give the homepage enough original content for a trustworthy launch.",
+      "Create a personalized Eid page, explore original Eid wishes and message ideas, and keep the recipient experience focused on the celebration.",
     footerHome: "Home",
     footerLinks: {
-      privacy: "Privacy Policy",
+      wishes: "Eid wishes",
+      guide: "Send greetings online",
+      messages: "Family & friend messages",
+      faq: "FAQ",
       about: "About",
-      contact: "Contact",
-      faq: "FAQ / How it works"
+      privacy: "Privacy Policy",
+      contact: "Contact"
     },
     backToHome: "Back to greeting creator",
-    supportNavLabel: "Support pages",
+    supportNavLabel: "More pages and articles",
+    pageLanguageLabel: "Read this page in",
     homepage: {
+      metaTitle: "Eid Congrats App | Eid Wishes, Messages, and Greeting Creator",
+      metaDescription:
+        "Create personalized Eid greeting pages, explore original Eid wishes and message ideas, and share beautiful greetings in English or Arabic.",
       adLabel: "Homepage sponsor slot",
       adPlaceholder: "Placeholder mode",
       adReady: "AdSense ready",
-      adHint: "Paste your real AdSense client and slot IDs in siteConfig when you are ready to go live.",
-      topAdTitle: "A single light-touch ad lives on the creator page",
+      adHint: "Use only light-touch homepage placements. Keep the shared greeting page focused on the message itself.",
+      topAdTitle: "Homepage-only monetization area",
       topAdDescription:
-        "This spot is intentionally placed on the homepage only, so the recipient greeting page can stay clean and premium.",
-      howEyebrow: "How the tool works",
-      howTitle: "A simple flow for the sender and a polished page for the recipient",
+        "If you enable ads later, keep them on the creator homepage so the recipient page stays calm, premium, and celebration-first.",
+      previewHighlights: [
+        "Live preview updates as you write.",
+        "One share link works across chat, email, and social apps.",
+        "Recipient greeting pages stay ad-free in this experience."
+      ],
+      storyEyebrow: "Why this site exists",
+      storyTitle: "A practical creator tool with real Eid content around it",
+      storyIntro:
+        "Eid Congrats App is designed to be more than a quick utility. The homepage helps visitors create a greeting, but it also gives them useful reading, message ideas, etiquette tips, and clear support pages that make the whole site feel trustworthy and complete.",
+      storyCards: [
+        {
+          title: "Thoughtful greetings feel more personal",
+          body:
+            "A short Eid message can still feel warm when it mentions the relationship, carries a sincere prayer, and uses language that sounds natural instead of copied."
+        },
+        {
+          title: "The homepage is the information hub",
+          body:
+            "Visitors can read original guides, browse message inspiration, and understand how the service works before they decide to create and share a greeting."
+        },
+        {
+          title: "The recipient page stays focused",
+          body:
+            "When someone opens a shared greeting link, they land on a festive message screen instead of a cluttered publishing layout, which keeps the occasion respectful."
+        }
+      ],
+      howEyebrow: "How the greeting flow works",
+      howTitle: "Simple for the sender, polished for the recipient",
       howIntro:
-        "The creator page helps you compose, preview, and share one personalized link. The recipient opens a dedicated festive greeting view without extra clutter.",
-      menuTitle: "Explore site sections",
-      menuIntro: "Use the row below to expand a page summary only when you need it.",
-      menuHomeTitle: "Homepage overview",
-      menuHomeIntro:
-        "The creator page stays focused on building and sharing one Eid greeting link, while support pages and future monetization stay tucked into this expandable menu.",
-      openPageLabel: "Open full page",
+        "The creator page handles the practical work of writing, previewing, and sharing. The shared page then opens as a ready-made Eid greeting that feels like a gift rather than a tool interface.",
       steps: [
         {
-          title: "1. Add the sender details",
-          body: "Choose the language, enter the sender name, and pick the greeting style that fits the moment."
+          title: "1. Choose the language and style",
+          body:
+            "Pick English or Arabic, select the visual theme, and set the tone you want the greeting to carry."
         },
         {
           title: "2. Write or generate the message",
-          body: "Use your own wording or the built-in generator, then confirm it in the live preview before sharing."
+          body:
+            "You can add your own words or use the built-in generator, then adjust the wording until it sounds personal."
         },
         {
-          title: "3. Share one link",
-          body: "The personalized URL carries the greeting state so the recipient opens a ready-made Eid page immediately."
+          title: "3. Share one personalized link",
+          body:
+            "The finished URL opens a celebratory Eid page with the sender name and message already in place."
         }
       ],
-      trustCards: [
+      writingEyebrow: "Message quality matters",
+      writingTitle: "Small writing choices make an Eid greeting feel sincere",
+      writingIntro:
+        "People remember warmth and care more than length. A good Eid message usually feels direct, gentle, and specific to the person receiving it.",
+      writingTips: [
         {
-          title: "Clean recipient experience",
-          body: "The greeting page stays focused on the celebration, with no heavy ad stack interrupting the message."
+          title: "Lead with warmth",
+          body:
+            "Start with a blessing, a kind wish, or a line that sounds natural in your own voice before adding anything decorative."
         },
         {
-          title: "Approval-friendly structure",
-          body: "Support pages, explanatory homepage content, and restrained ad placement make the site easier to review and trust."
+          title: "Match the relationship",
+          body:
+            "A greeting for parents can be more heartfelt, while a message for friends can be lighter and more playful without losing respect."
         },
         {
-          title: "Easy to maintain",
-          body: "Ad client IDs, slot IDs, and placeholder mode live in one config file so you can switch to real ads later without rewiring the UI."
+          title: "Keep the main idea clear",
+          body:
+            "One prayer, one emotional note, and one personal detail are often enough to make the greeting memorable."
+        },
+        {
+          title: "Let the design support the message",
+          body:
+            "The page should make the greeting feel beautiful, but the words still need to do the real work of care and connection."
         }
       ],
-      moreTitle: "More content for visitors and future monetization",
-      moreIntro:
-        "This lower area adds original site content today and keeps a clear place for a second homepage ad later, if you decide to expand monetization.",
-      linkCards: [
+      articleEyebrow: "Original Eid reading",
+      articleTitle: "Useful pages for visitors who need ideas before they share",
+      articleIntro:
+        "These pages give the site real publisher value even for someone who is not ready to create a greeting yet. They are meant to be genuinely helpful on their own.",
+      articleCards: [
+        {
+          id: "wishes",
+          title: "Meaningful Eid wishes in English and Arabic",
+          body:
+            "Browse original examples, from short blessings to warmer messages that work for close family and dear friends.",
+          cta: "Read the wishes guide"
+        },
+        {
+          id: "guide",
+          title: "How to send a beautiful Eid greeting online",
+          body:
+            "Learn how to choose the right tone, message length, timing, and sharing format for a more thoughtful digital greeting.",
+          cta: "Read the online greeting guide"
+        },
+        {
+          id: "messages",
+          title: "Short and long Eid messages for family and friends",
+          body:
+            "Find message ideas for parents, siblings, close friends, and wider circles without sounding generic or overdone.",
+          cta: "Read the message ideas"
+        }
+      ],
+      supportTitle: "Clear pages that help visitors trust the site",
+      supportEyebrow: "Trust pages",
+      supportIntro:
+        "Useful festive content works better when it is supported by transparent policies, a clear contact path, and honest explanations of how the product works.",
+      supportCards: [
         {
           id: "faq",
-          title: "FAQ / How it works",
-          body: "Answer common questions about how the greeting link works and what recipients see.",
-          href: "#/faq",
-          cta: "Read the FAQ"
+          title: "FAQ",
+          body:
+            "Answer common questions about the greeting flow, language support, message generation, and what the recipient will see.",
+          cta: "Open the FAQ"
         },
         {
           id: "about",
-          title: "About this project",
-          body: "Explain the purpose of the greeting tool and why the experience prioritizes celebration over clutter.",
-          href: "#/about",
-          cta: "Learn more"
+          title: "About",
+          body:
+            "Explain the purpose of the project, the editorial intent behind the content pages, and the decision to keep the greeting screen clean.",
+          cta: "Read about the project"
+        },
+        {
+          id: "contact",
+          title: "Contact",
+          body:
+            "Give visitors and potential partners a real support route that feels active, credible, and easy to use.",
+          cta: "Open contact"
         }
       ],
+      trustTitle: "How the experience stays respectful",
+      trustIntro:
+        "The site separates its core publisher content from the generated greeting screens so each part can do its job well.",
+      trustCards: [
+        {
+          title: "Recipient greeting pages stay ad-free",
+          body:
+            "The shared greeting view is reserved for the message and the celebration, not for monetization experiments."
+        },
+        {
+          title: "Generated share URLs are not treated as the editorial core",
+          body:
+            "Greeting links are meant for personal sharing, while the homepage and content pages carry the site's lasting value."
+        },
+        {
+          title: "Support pages stay visible and useful",
+          body:
+            "About, privacy, contact, and FAQ pages remain part of the main site structure so visitors can understand who runs the experience."
+        }
+      ],
+      menuTitle: "Browse the full site library",
+      menuIntro:
+        "Open a quick summary for any page below, then jump into the full article or support page when you want the complete version.",
+      menuHomeTitle: "Homepage overview",
+      menuHomeIntro:
+        "The homepage combines the greeting creator, a live preview, original Eid writing guidance, and links to the site's main article and support pages.",
+      openPageLabel: "Open full page",
       lowerAdTitle: "Reserved lower homepage ad area",
       lowerAdDescription:
-        "Keep this secondary position quiet for now. It is ready for a future responsive ad once the site has enough traffic and content."
-    },
-    supportPages: {
-      privacy: {
-        eyebrow: "Privacy Policy",
-        title: "Privacy policy for the Eid greeting tool",
-        intro:
-          "This site is designed to work with minimal friction. It does not require an account, and the greeting details are prepared in the browser and passed through the shared link.",
-        sections: [
-          {
-            title: "Information entered on the creator page",
-            body:
-              "When you create a greeting, the sender name, language, style, and message are placed into the shareable URL so the recipient can open the final greeting page."
-          },
-          {
-            title: "How shared links work",
-            body:
-              "Because the greeting state is stored in the link itself, anyone with the link can see the message details included in that URL. Do not place sensitive personal data in a greeting."
-          },
-          {
-            title: "Ads and future updates",
-            body:
-              "The site includes homepage ad placement support. If analytics, advertising, or additional data collection are added later, this policy should be updated before public rollout."
-          }
-        ]
-      },
-      about: {
-        eyebrow: "About",
-        title: "About Eid Congrats App",
-        intro:
-          "Eid Congrats App is a lightweight greeting maker built to help someone create a polished Eid page quickly, then share it through a single personalized link.",
-        sections: [
-          {
-            title: "Why this site exists",
-            body:
-              "The goal is to make festive sharing simple: one creator page for setup, one celebration page for the recipient, and no unnecessary account flow."
-          },
-          {
-            title: "What makes the experience different",
-            body:
-              "The greeting page focuses on visual quality and the message itself, while the homepage handles the practical tools, support links, and future monetization structure."
-          },
-          {
-            title: "What comes next",
-            body:
-              "The project is prepared for light monetization, support content, and future refinement without turning the greeting experience into an ad-heavy page."
-          }
-        ]
-      },
-      contact: {
-        eyebrow: "Contact",
-        title: "Contact and support",
-        intro:
-          "Use this page to give visitors a clear support path before launch. A real support email is recommended before you apply for ad network approval.",
-        sections: [
-          {
-            title: "General questions",
-            body:
-              "Visitors may use the contact details here for help with the greeting tool, delivery questions, or general feedback."
-          },
-          {
-            title: "Business and partnership requests",
-            body:
-              "This page can also handle sponsor, advertiser, or collaboration inquiries once the site starts attracting traffic."
-          }
-        ],
-        emailLabel: "Support email",
-        emailMissing:
-          "Add your real support email in src/config/siteConfig.js or via VITE_SUPPORT_EMAIL before launch.",
-        emailAction: "Email support"
-      },
-      faq: {
-        eyebrow: "FAQ / How it works",
-        title: "Frequently asked questions",
-        intro:
-          "The creator page and greeting page are intentionally separated. The creator handles setup, while the recipient page stays focused on the final festive message.",
-        sections: [
-          {
-            title: "How does the greeting link work?",
-            body:
-              "The creator page packages the selected language, style, sender name, and message into the share URL. Opening that link loads the greeting page with the saved content."
-          },
-          {
-            title: "Will recipients see ads?",
-            body:
-              "Not by default in this version. Monetization is currently centered on the homepage creator experience so the greeting view can remain mostly clean."
-          },
-          {
-            title: "Can I use my own message?",
-            body:
-              "Yes. You can write a custom message or use the built-in generator and then preview everything before sharing."
-          },
-          {
-            title: "What should I prepare before monetizing?",
-            body:
-              "Use a real support email, publish the support pages, keep the homepage content original, and switch from placeholder mode to your live AdSense IDs only when the site is ready."
-          }
-        ]
-      }
+        "Leave this position quiet until the site has enough stable content and organic demand to justify a second homepage placement."
     }
   },
   ar: {
     footerTagline:
-      "أنشئ رابط تهنئة عيد أنيق، وحافظ على صفحة المستلم احتفالية ونظيفة، وأضف في الصفحة الرئيسية محتوى أصليًا كافيًا لتهيئة الموقع للإطلاق والثقة.",
+      "أنشئ صفحة تهنئة عيد مخصصة، وتصفح محتوى أصلي عن تهاني ورسائل العيد، مع إبقاء صفحة المستلم مركزة على أجواء المناسبة فقط.",
     footerHome: "الرئيسية",
     footerLinks: {
-      privacy: "سياسة الخصوصية",
+      wishes: "تهاني العيد",
+      guide: "إرسال التهنئة أونلاين",
+      messages: "رسائل للعائلة والأصدقاء",
+      faq: "الأسئلة الشائعة",
       about: "من نحن",
-      contact: "اتصل بنا",
-      faq: "الأسئلة الشائعة / طريقة العمل"
+      privacy: "سياسة الخصوصية",
+      contact: "اتصل بنا"
     },
     backToHome: "العودة إلى منشئ التهنئة",
-    supportNavLabel: "صفحات الدعم",
+    supportNavLabel: "صفحات ومقالات أخرى",
+    pageLanguageLabel: "اقرأ هذه الصفحة باللغة",
     homepage: {
+      metaTitle: "Eid Congrats App | تهاني العيد ورسائله ومنشئ بطاقة المعايدة",
+      metaDescription:
+        "أنشئ صفحة تهنئة عيد مخصصة، وتصفح محتوى أصلي عن تهاني ورسائل العيد، وشارك معايدات جميلة بالعربية أو الإنجليزية.",
       adLabel: "موضع إعلان الصفحة الرئيسية",
       adPlaceholder: "وضع المعاينة",
       adReady: "جاهز لـ AdSense",
-      adHint: "أضف معرّف العميل ومعرّفات الوحدات الإعلانية الحقيقية في siteConfig عندما تصبح جاهزًا للإطلاق.",
-      topAdTitle: "موضع إعلاني واحد وخفيف داخل صفحة المنشئ فقط",
+      adHint: "اجعل الإعلانات خفيفة ومحصورة في الصفحة الرئيسية فقط، وأبقِ صفحة التهنئة المشتركة مركزة على الرسالة نفسها.",
+      topAdTitle: "منطقة تحقيق دخل داخل الصفحة الرئيسية فقط",
       topAdDescription:
-        "تم وضع هذا الموضع في الصفحة الرئيسية فقط حتى تبقى صفحة التهنئة للمستلم نظيفة وراقية.",
-      howEyebrow: "كيف تعمل الأداة",
-      howTitle: "خطوات بسيطة للمرسل وصفحة تهنئة أنيقة للمستلم",
+        "إذا فعّلت الإعلانات لاحقًا، فالأفضل أن تبقى داخل صفحة المنشئ حتى تظل صفحة المستلم هادئة وأنيقة ومرتبطة بالمناسبة.",
+      previewHighlights: [
+        "المعاينة تتحدث مباشرة أثناء الكتابة.",
+        "رابط واحد يصلح للمحادثات والبريد والتطبيقات الاجتماعية.",
+        "صفحات التهنئة للمستلمين تبقى خالية من الإعلانات في هذه التجربة."
+      ],
+      storyEyebrow: "لماذا أُنشئ هذا الموقع",
+      storyTitle: "أداة عملية لإنشاء التهنئة مع محتوى حقيقي ومفيد حولها",
+      storyIntro:
+        "تم تصميم Eid Congrats App ليكون أكثر من مجرد أداة سريعة. فالصفحة الرئيسية تساعد الزائر على إنشاء التهنئة، لكنها تقدم أيضًا محتوى مفيدًا وأفكارًا للرسائل ونصائح للكتابة وصفحات دعم واضحة تجعل الموقع أكثر اكتمالًا وثقة.",
+      storyCards: [
+        {
+          title: "التهنئة المدروسة تبدو أكثر قربًا",
+          body:
+            "حتى الرسالة القصيرة يمكن أن تبدو دافئة إذا راعت طبيعة العلاقة، وحملت دعاءً صادقًا، واستخدمت كلمات طبيعية غير منسوخة."
+        },
+        {
+          title: "الصفحة الرئيسية هي مركز المعلومات",
+          body:
+            "يمكن للزائر قراءة الأدلة الأصلية، وتصفح أفكار الرسائل، وفهم طريقة عمل الخدمة قبل أن يقرر إنشاء التهنئة ومشاركتها."
+        },
+        {
+          title: "صفحة المستلم تبقى مركزة على المناسبة",
+          body:
+            "عند فتح رابط التهنئة، يصل المستلم إلى صفحة احتفالية واضحة بدلًا من واجهة مزدحمة، وهذا يحافظ على احترام المناسبة."
+        }
+      ],
+      howEyebrow: "كيف تعمل تجربة التهنئة",
+      howTitle: "خطوات بسيطة للمرسل وصفحة أنيقة للمستلم",
       howIntro:
-        "تساعدك الصفحة الرئيسية على كتابة الرسالة ومعاينتها ومشاركة رابط شخصي واحد، بينما يفتح المستلم صفحة تهنئة احتفالية جاهزة بدون ازدحام.",
-      menuTitle: "استكشاف أقسام الموقع",
-      menuIntro: "استخدم الشريط التالي لفتح ملخص أي صفحة فقط عند الحاجة.",
-      menuHomeTitle: "نظرة عامة على الصفحة الرئيسية",
-      menuHomeIntro:
-        "تبقى الصفحة الرئيسية مركزة على إنشاء رابط تهنئة عيد واحد ومشاركته، بينما تظل صفحات الدعم ومساحة الإعلانات المستقبلية داخل هذه القائمة القابلة للتوسعة.",
-      openPageLabel: "فتح الصفحة الكاملة",
+        "تتولى صفحة المنشئ الأعمال العملية مثل الكتابة والمعاينة والمشاركة، بينما تفتح الصفحة المشتركة كتجربة عيد جاهزة تبدو كهدية أكثر من كونها أداة.",
       steps: [
         {
-          title: "1. أضف بيانات المرسل",
-          body: "اختر اللغة، واكتب اسم المرسل، وحدد نمط التهنئة المناسب."
+          title: "1. اختر اللغة والنمط",
+          body:
+            "حدد العربية أو الإنجليزية، واختر التصميم المناسب، واضبط الإحساس الذي تريد أن تحمله التهنئة."
         },
         {
           title: "2. اكتب الرسالة أو ولّدها",
-          body: "استخدم كلماتك الخاصة أو مولّد الرسائل المدمج ثم راجع النتيجة في المعاينة المباشرة."
+          body:
+            "يمكنك كتابة كلماتك الخاصة أو استخدام مولد الرسائل المدمج، ثم تعديل الصياغة حتى تبدو شخصية ومناسبة."
         },
         {
-          title: "3. شارك رابطًا واحدًا",
-          body: "يحمل الرابط الشخصي حالة التهنئة بحيث يفتح المستلم صفحة عيد جاهزة مباشرة."
+          title: "3. شارك رابطًا شخصيًا واحدًا",
+          body:
+            "يفتح الرابط النهائي صفحة تهنئة عيد احتفالية يظهر فيها اسم المرسل والرسالة بشكل جاهز."
         }
       ],
-      trustCards: [
+      writingEyebrow: "جودة الرسالة مهمة",
+      writingTitle: "تفاصيل صغيرة في الكتابة تجعل تهنئة العيد أكثر صدقًا",
+      writingIntro:
+        "الناس يتذكرون الدفء والاهتمام أكثر من طول الرسالة. وغالبًا تكون التهنئة الجيدة مباشرة ولطيفة وقريبة من الشخص الذي يقرأها.",
+      writingTips: [
         {
-          title: "تجربة نظيفة للمستلم",
-          body: "صفحة التهنئة تركز على أجواء العيد والرسالة نفسها، بدون تكديس إعلاني مزعج."
+          title: "ابدأ بنبرة دافئة",
+          body:
+            "ابدأ بدعاء أو تمنٍ جميل أو عبارة طبيعية بصوتك أنت قبل أي لمسة زخرفية."
         },
         {
-          title: "بنية مناسبة للمراجعة والثقة",
-          body: "وجود صفحات الدعم والمحتوى التوضيحي في الصفحة الرئيسية مع مواضع إعلانية محدودة يجعل الموقع أوضح وأكثر موثوقية."
+          title: "راعِ طبيعة العلاقة",
+          body:
+            "رسالة الوالدين يمكن أن تكون أعمق، بينما رسالة الأصدقاء قد تكون أخف وأكثر مرحًا مع بقاء الاحترام."
         },
         {
-          title: "سهولة في الإدارة لاحقًا",
-          body: "معلومات عميل الإعلانات ومعرّفات الوحدات ووضع المعاينة موجودة في ملف إعداد واحد لتفعيل الإعلانات الحقيقية لاحقًا بسهولة."
+          title: "اجعل الفكرة الأساسية واضحة",
+          body:
+            "دعاء واحد ومشاعر واضحة وتفصيلة شخصية صغيرة تكفي غالبًا لجعل الرسالة لا تُنسى."
+        },
+        {
+          title: "دع التصميم يخدم الرسالة",
+          body:
+            "جمال الصفحة مهم، لكن الكلمات هي التي تحمل المعنى الحقيقي للعناية والود."
         }
       ],
-      moreTitle: "محتوى إضافي للزوار ولمساحة إعلانية مستقبلية",
-      moreIntro:
-        "تضيف هذه المنطقة محتوى أصليًا للموقع الآن، وتبقي مكانًا مناسبًا لوحدة إعلانية ثانية في الصفحة الرئيسية لاحقًا إذا رغبت في التوسع.",
-      linkCards: [
+      articleEyebrow: "محتوى عيد أصلي",
+      articleTitle: "صفحات مفيدة لمن يحتاج أفكارًا قبل أن يشارك التهنئة",
+      articleIntro:
+        "هذه الصفحات تمنح الموقع قيمة حقيقية بذاتها حتى لو لم يكن الزائر جاهزًا بعد لإنشاء تهنئة ومشاركتها.",
+      articleCards: [
+        {
+          id: "wishes",
+          title: "تهاني عيد مؤثرة بالإنجليزية والعربية",
+          body:
+            "تصفح أمثلة أصلية تبدأ من الدعوات القصيرة وتصل إلى الرسائل الأدفأ المناسبة للعائلة والأصدقاء المقربين.",
+          cta: "اقرأ دليل التهاني"
+        },
+        {
+          id: "guide",
+          title: "كيف ترسل تهنئة عيد جميلة عبر الإنترنت",
+          body:
+            "تعرّف على اختيار النبرة المناسبة وطول الرسالة والتوقيت وطريقة المشاركة لتبدو التهنئة أكثر عناية."
+        ,
+          cta: "اقرأ دليل الإرسال"
+        },
+        {
+          id: "messages",
+          title: "رسائل عيد قصيرة وطويلة للعائلة والأصدقاء",
+          body:
+            "اعثر على أفكار مناسبة للوالدين والإخوة والأصدقاء والدائرة الأوسع دون أن تبدو الرسائل عامة أو متكلفة.",
+          cta: "اقرأ أفكار الرسائل"
+        }
+      ],
+      supportTitle: "صفحات واضحة تعزز ثقة الزائر بالموقع",
+      supportEyebrow: "صفحات الثقة",
+      supportIntro:
+        "المحتوى المفيد يصبح أقوى عندما تدعمه سياسات واضحة وطريق تواصل حقيقي وشرح صادق لطريقة عمل المنتج.",
+      supportCards: [
         {
           id: "faq",
-          title: "الأسئلة الشائعة / طريقة العمل",
-          body: "اعرض إجابات واضحة حول طريقة عمل الرابط وما الذي يراه المستلم.",
-          href: "#/faq",
-          cta: "عرض الأسئلة الشائعة"
+          title: "الأسئلة الشائعة",
+          body:
+            "أجب عن الأسئلة الأكثر تكرارًا حول إنشاء التهنئة، ودعم اللغات، وتوليد الرسائل، وما الذي يراه المستلم.",
+          cta: "افتح صفحة الأسئلة الشائعة"
         },
         {
           id: "about",
           title: "من نحن",
-          body: "اشرح فكرة الأداة ولماذا تركز على التهنئة الأنيقة وتجربة الاستخدام النظيفة.",
-          href: "#/about",
-          cta: "اقرأ المزيد"
+          body:
+            "اشرح هدف المشروع، ولماذا وُجدت صفحات المحتوى، ولماذا تبقى شاشة التهنئة نفسها نظيفة وهادئة.",
+          cta: "اقرأ عن المشروع"
+        },
+        {
+          id: "contact",
+          title: "اتصل بنا",
+          body:
+            "وفّر للزوار والشركاء المحتملين وسيلة تواصل حقيقية تبدو نشطة وموثوقة وسهلة الاستخدام.",
+          cta: "افتح صفحة التواصل"
         }
       ],
-      lowerAdTitle: "مساحة إعلانية سفلية مستقبلية",
+      trustTitle: "كيف تبقى التجربة محترمة وواضحة",
+      trustIntro:
+        "يفصل الموقع بين المحتوى الأساسي للموقع وبين صفحات التهنئة المولدة حتى يؤدي كل جزء وظيفته بشكل أفضل.",
+      trustCards: [
+        {
+          title: "صفحات التهنئة للمستلمين تبقى بلا إعلانات",
+          body:
+            "واجهة التهنئة المشتركة مخصصة للرسالة وأجواء العيد، وليست مكانًا للتجارب الإعلانية."
+        },
+        {
+          title: "روابط التهنئة ليست هي القلب التحريري للموقع",
+          body:
+            "روابط التهنئة مخصصة للمشاركة الشخصية، بينما تحمل الصفحة الرئيسية وصفحات المحتوى القيمة الدائمة للموقع."
+        },
+        {
+          title: "صفحات الدعم تبقى ظاهرة ومفيدة",
+          body:
+            "تظل صفحات من نحن والخصوصية والتواصل والأسئلة الشائعة جزءًا واضحًا من هيكل الموقع حتى يعرف الزائر من يقف وراء التجربة."
+        }
+      ],
+      menuTitle: "تصفح مكتبة الموقع كاملة",
+      menuIntro:
+        "افتح ملخصًا سريعًا لأي صفحة بالأسفل، ثم انتقل إلى النسخة الكاملة عندما تريد قراءة المحتوى بالكامل.",
+      menuHomeTitle: "نظرة عامة على الصفحة الرئيسية",
+      menuHomeIntro:
+        "تجمع الصفحة الرئيسية بين أداة إنشاء التهنئة، والمعاينة الحية، وإرشادات الكتابة الخاصة بالعيد، وروابط المقالات والصفحات الأساسية في الموقع.",
+      openPageLabel: "افتح الصفحة الكاملة",
+      lowerAdTitle: "مساحة إعلان سفلية مستقبلية",
       lowerAdDescription:
-        "اترك هذا الموضع هادئًا في الوقت الحالي. يمكن استخدامه لاحقًا كوحدة إعلانية ثانية في الصفحة الرئيسية عندما يصبح الموقع جاهزًا لذلك."
-    },
-    supportPages: {
-      privacy: {
-        eyebrow: "سياسة الخصوصية",
-        title: "سياسة الخصوصية لأداة تهنئة العيد",
-        intro:
-          "تم تصميم هذا الموقع ليعمل بأقل قدر من التعقيد. لا يحتاج إلى حساب، ويتم تجهيز تفاصيل التهنئة داخل المتصفح ثم تمريرها عبر الرابط المشترك.",
-        sections: [
-          {
-            title: "البيانات المدخلة في صفحة المنشئ",
-            body:
-              "عند إنشاء تهنئة، يتم وضع اسم المرسل واللغة والنمط والرسالة داخل الرابط القابل للمشاركة حتى يتمكن المستلم من فتح صفحة التهنئة النهائية."
-          },
-          {
-            title: "كيف يعمل رابط المشاركة",
-            body:
-              "لأن حالة التهنئة محفوظة داخل الرابط نفسه، فإن أي شخص يملك الرابط يمكنه رؤية التفاصيل الموجودة فيه. لذلك لا تضع بيانات شخصية حساسة داخل الرسالة."
-          },
-          {
-            title: "الإعلانات والتحديثات المستقبلية",
-            body:
-              "يتضمن الموقع دعمًا لمواضع إعلانية في الصفحة الرئيسية. وإذا تمت إضافة تحليلات أو إعلانات أو جمع بيانات إضافي لاحقًا، فيجب تحديث هذه السياسة قبل الإطلاق العام."
-          }
-        ]
-      },
-      about: {
-        eyebrow: "من نحن",
-        title: "عن Eid Congrats App",
-        intro:
-          "Eid Congrats App أداة خفيفة تساعد المستخدم على إنشاء صفحة تهنئة عيد أنيقة بسرعة ثم مشاركتها عبر رابط شخصي واحد.",
-        sections: [
-          {
-            title: "لماذا تم إنشاء هذا الموقع",
-            body:
-              "الهدف هو جعل مشاركة التهنئة سهلة: صفحة واحدة للإنشاء، وصفحة واحدة للمستلم، وبدون تسجيل أو خطوات إضافية غير ضرورية."
-          },
-          {
-            title: "ما الذي يميز التجربة",
-            body:
-              "تركز صفحة التهنئة على الجودة البصرية والرسالة نفسها، بينما تتولى الصفحة الرئيسية الأدوات العملية وصفحات الدعم والبنية الخاصة بتحقيق الدخل لاحقًا."
-          },
-          {
-            title: "ما الخطوة التالية",
-            body:
-              "تم تجهيز المشروع لتحقيق دخل خفيف وصفحات دعم وتطويرات مستقبلية دون تحويل تجربة التهنئة نفسها إلى صفحة مزدحمة بالإعلانات."
-          }
-        ]
-      },
-      contact: {
-        eyebrow: "اتصل بنا",
-        title: "التواصل والدعم",
-        intro:
-          "استخدم هذه الصفحة لتوفير طريقة واضحة للتواصل قبل الإطلاق. يفضّل إضافة بريد دعم حقيقي قبل التقديم لأي شبكة إعلانية.",
-        sections: [
-          {
-            title: "الأسئلة العامة",
-            body:
-              "يمكن للزوار استخدام بيانات التواصل هنا للاستفسار عن طريقة عمل الأداة أو إرسال الملاحظات أو طلب المساعدة."
-          },
-          {
-            title: "الاستفسارات التجارية والشراكات",
-            body:
-              "يمكن استخدام الصفحة نفسها لاحقًا لطلبات الرعاية أو الإعلانات أو التعاون عندما يبدأ الموقع بجذب الزيارات."
-          }
-        ],
-        emailLabel: "بريد الدعم",
-        emailMissing:
-          "أضف بريد الدعم الحقيقي داخل src/config/siteConfig.js أو عبر VITE_SUPPORT_EMAIL قبل الإطلاق.",
-        emailAction: "مراسلة الدعم"
-      },
-      faq: {
-        eyebrow: "الأسئلة الشائعة / طريقة العمل",
-        title: "الأسئلة الشائعة",
-        intro:
-          "تم فصل صفحة الإنشاء عن صفحة التهنئة بشكل مقصود. صفحة المنشئ لإعداد الرابط، وصفحة المستلم مخصصة لعرض التهنئة النهائية فقط.",
-        sections: [
-          {
-            title: "كيف يعمل رابط التهنئة؟",
-            body:
-              "تقوم صفحة المنشئ بوضع اللغة والنمط واسم المرسل والرسالة داخل رابط المشاركة، وعند فتحه تظهر صفحة التهنئة بالمحتوى نفسه."
-          },
-          {
-            title: "هل سيرى المستلم إعلانات؟",
-            body:
-              "ليس بشكل افتراضي في هذه النسخة. يتركز تحقيق الدخل حاليًا في الصفحة الرئيسية الخاصة بالمنشئ حتى تبقى صفحة التهنئة نفسها نظيفة."
-          },
-          {
-            title: "هل يمكنني كتابة رسالة خاصة؟",
-            body:
-              "نعم. يمكنك كتابة رسالة مخصصة أو استخدام مولد الرسائل المدمج ثم معاينتها قبل المشاركة."
-          },
-          {
-            title: "ما الذي أحتاجه قبل تفعيل الإعلانات؟",
-            body:
-              "أضف بريد دعم حقيقيًا، وانشر صفحات الدعم، واجعل محتوى الصفحة الرئيسية أصليًا، ثم بدّل وضع المعاينة إلى بيانات AdSense الحقيقية عندما يصبح الموقع جاهزًا."
-          }
-        ]
-      }
+        "اترك هذا الموضع هادئًا حتى يمتلك الموقع محتوى ثابتًا وطلبًا عضويًا يبرر وجود موضع إضافي داخل الصفحة الرئيسية."
     }
   }
 };

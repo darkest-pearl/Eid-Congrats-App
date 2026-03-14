@@ -1,156 +1,383 @@
 export const supportContent = {
   en: {
-    privacy: {
-      eyebrow: "Privacy Policy",
-      title: "Privacy Policy",
+    wishes: {
+      eyebrow: "Eid Wishes",
+      title: "Meaningful Eid wishes in English and Arabic",
       intro:
-        "Effective date: March 12, 2026. Eid Greetings is designed to help people create and share personalized Eid greeting pages while collecting as little personal information as possible.",
+        "A beautiful Eid wish does not have to be long. The best ones feel sincere, fit the relationship, and carry warmth, prayer, and clarity.",
       summarySections: [
         {
-          title: "Greeting details live in the shared link",
+          title: "Short wishes can still feel personal",
           body:
-            "The sender name, language, style, and optional message are placed into the greeting URL so the recipient can open the page directly."
+            "A brief blessing often works better than a copied paragraph if it sounds natural and sincere."
         },
         {
-          title: "Contact messages are used for support only",
+          title: "Arabic lines add warmth and tradition",
           body:
-            "If you submit the contact form, your details are used to review and respond to your message."
+            "Arabic phrases often feel especially heartfelt when paired with a simple prayer or kind wish."
         },
         {
-          title: "Future analytics or ads will be disclosed",
+          title: "Longer messages suit close relationships",
           body:
-            "If cookies, analytics, or advertising tools are introduced later, this policy will be updated to reflect those services."
+            "Family and dear friends usually appreciate a few extra lines of gratitude, love, or dua."
         }
       ],
       sections: [
         {
-          title: "1. Information you provide",
+          title: "Short English Eid wishes",
           body:
-            "When you use Eid Greetings, you may provide a sender name, an optional custom greeting message, a selected language, and a greeting style. If you contact us, you may also provide your name, email address, subject, and message."
+            "These work well when you want a warm, polished message without becoming too formal.",
+          items: [
+            "Eid Mubarak. May your home be filled with peace, mercy, and lasting joy.",
+            "Wishing you a beautiful Eid filled with prayer, gratitude, and happy moments with family.",
+            "May this Eid bring calm to your heart and blessing to everything you hope for.",
+            "Eid Mubarak to you and your loved ones. May the day be bright, gentle, and full of goodness."
+          ]
         },
         {
-          title: "2. How personalized greeting links work",
+          title: "Arabic Eid wishes",
           body:
-            "The greeting experience is built around shareable links. The selected language, style, sender name, and optional message are encoded into the link so the recipient can open the greeting page without creating an account. Anyone with the link can view the information contained in it, so sensitive personal data should not be included in the message."
+            "If you want the message to feel traditional and warm, Arabic lines can add a beautiful emotional texture.",
+          items: [
+            "عيد مبارك، تقبل الله طاعتكم وأعاد الله عليكم الأيام بالخير واليمن والبركات.",
+            "أسأل الله أن يجعل عيدكم فرحًا وسكينة وأن يملأ بيتكم بالمحبة والرضا.",
+            "كل عام وأنتم بخير، وعساكم من عواده بالصحة والسعادة.",
+            "جعله الله عيدًا مباركًا عليكم وعلى من تحبون."
+          ]
         },
         {
-          title: "3. Contact form submissions",
+          title: "Longer wishes for family and dear friends",
           body:
-            "If you send a message through the contact form, the information you submit is used only to receive, review, and respond to your inquiry. Contact submissions are not used to create marketing lists or public profiles."
+            "Longer messages work best when they stay specific and warm instead of becoming overly dramatic.",
+          items: [
+            "Eid Mubarak. I pray this day brings peace to your heart, ease to your life, and more love into your home.",
+            "Wishing you an Eid full of mercy, laughter, and quiet moments of gratitude.",
+            "On this Eid, I wanted to send more than a quick greeting. I wanted to send a sincere prayer for your peace and happiness."
+          ]
         },
         {
-          title: "4. Accounts and message storage",
+          title: "How to make a wish feel personal",
           body:
-            "Eid Greetings does not currently require user accounts to create or view greeting pages. The site is designed around temporary greeting state in the shared URL rather than permanent user profiles. We do not represent that every greeting is stored indefinitely on a server."
+            "Even one extra detail can make the message feel written for the person rather than copied for everyone.",
+          items: [
+            "Mention the relationship: parent, sibling, cousin, friend, or colleague.",
+            "Add one sincere prayer instead of stacking many generic phrases together.",
+            "Keep the wording close to how you actually speak and write."
+          ]
+        }
+      ]
+    },
+    guide: {
+      eyebrow: "Online Greeting Guide",
+      title: "How to send a beautiful Eid greeting online",
+      intro:
+        "A beautiful online greeting is not only about design. It is about choosing the right tone, writing with care, and sending the message in a way that feels thoughtful instead of rushed.",
+      summarySections: [
+        {
+          title: "Tone comes before decoration",
+          body:
+            "A good greeting starts with the right emotional tone for the person receiving it."
         },
         {
-          title: "5. Cookies, analytics, and future advertising",
+          title: "Digital convenience should still feel human",
           body:
-            "The site may use basic cookies, analytics, or advertising tools in the future to improve performance, understand usage, and support monetization. If third-party analytics or ad providers are enabled, they may collect limited technical information such as device, browser, IP-related, or cookie data under their own policies."
+            "Even when a page is generated quickly, the wording and timing can make it feel genuinely personal."
         },
         {
-          title: "6. Third-party services",
+          title: "The recipient page should stay focused",
           body:
-            "To operate the site, we may rely on trusted third-party providers for hosting, email delivery, performance monitoring, analytics, or advertising. Those providers may process limited technical data as needed to deliver their services securely and reliably."
+            "A clean presentation helps the greeting feel intentional and respectful."
+        }
+      ],
+      sections: [
+        {
+          title: "Start with the audience",
+          body:
+            "Decide whether the greeting is for parents, siblings, close friends, professional contacts, or a wider family group. That choice shapes the tone immediately.",
+          items: [
+            "Use warmer language for close family.",
+            "Keep the message shorter and cleaner for wider circles.",
+            "Avoid jokes or slang unless you know the recipient will enjoy it."
+          ]
         },
         {
-          title: "7. Data security",
+          title: "Write for reading on a phone screen",
           body:
-            "We take reasonable steps to protect the site, contact submissions, and server-side configuration, including keeping email credentials on the server only. No internet service can guarantee absolute security, but we aim to keep the amount of collected information limited and proportionate to the service."
+            "Most people open greetings on mobile. That means short paragraphs, clear wording, and one central emotion work better than a dense block of text.",
+          items: [
+            "Aim for one or two short paragraphs.",
+            "Put the main blessing in the first line.",
+            "Avoid repeating the same prayer in several forms."
+          ]
         },
         {
-          title: "8. Your choices and questions",
+          title: "Choose language and timing carefully",
           body:
-            "You can choose not to include a custom message, avoid entering sensitive information into a greeting link, or contact us if you have questions about privacy. For privacy-related questions or support, email musabcreate@gmail.com."
+            "Arabic can feel especially warm and traditional, while English may feel more natural for some friends or mixed-language groups. Timing also matters: morning greetings feel festive, while the night before can feel reflective and thoughtful."
+        },
+        {
+          title: "Keep the final page elegant",
+          body:
+            "The best digital greeting pages do not compete with the message. They support it. A clear layout, festive visual tone, and lack of distractions help the recipient focus on the words and the occasion."
+        }
+      ]
+    },
+    messages: {
+      eyebrow: "Message Ideas",
+      title: "Short and long Eid messages for family and friends",
+      intro:
+        "Different relationships call for different kinds of Eid messages. A parent may appreciate tenderness and gratitude, while a close friend may enjoy something lighter but still sincere.",
+      summarySections: [
+        {
+          title: "Short messages suit quick sharing",
+          body:
+            "They work well for wider circles, group chats, and people you want to remember warmly without writing a long note."
+        },
+        {
+          title: "Longer messages suit close ties",
+          body:
+            "Family and dear friends often appreciate a fuller expression of prayer, love, and appreciation."
+        },
+        {
+          title: "One message does not fit everyone",
+          body:
+            "Changing the tone slightly for parents, siblings, or friends can make the greeting feel much more thoughtful."
+        }
+      ],
+      sections: [
+        {
+          title: "Short Eid messages for family",
+          body:
+            "These are useful when you want something gentle and affectionate without writing a full letter.",
+          items: [
+            "Eid Mubarak to my family. May our home stay full of love, mercy, and togetherness.",
+            "Wishing my dear family a peaceful Eid filled with laughter, health, and blessing.",
+            "May this Eid bring comfort, joy, and answered prayers to everyone at home."
+          ]
+        },
+        {
+          title: "Longer messages for parents or siblings",
+          body:
+            "For the people closest to you, a little more depth can feel especially meaningful.",
+          items: [
+            "Eid Mubarak. Thank you for the love, patience, and care you continue to give so generously.",
+            "On this Eid, I am especially grateful for the comfort of family. May Allah keep our bond strong and our home blessed.",
+            "Wishing you a blessed Eid and sending heartfelt thanks for all the support and kindness you have shown me."
+          ]
+        },
+        {
+          title: "Messages for close friends",
+          body:
+            "Friendship messages can feel relaxed, but they still land best when they carry a sincere wish.",
+          items: [
+            "Eid Mubarak, my friend. May your day be full of peace, laughter, and the people who matter most.",
+            "Wishing you an Eid full of light, good memories, and every blessing your heart hopes for.",
+            "So grateful for your friendship. May this Eid bring you happiness, calm, and many answered prayers."
+          ]
+        },
+        {
+          title: "Polite messages for wider circles",
+          body:
+            "These are suitable for colleagues, neighbors, or people you want to greet respectfully without sounding too formal.",
+          items: [
+            "Eid Mubarak. Wishing you and your family a blessed and joyful celebration.",
+            "Warm Eid wishes to you. May the day bring peace, health, and happiness.",
+            "May this Eid be a source of joy and blessing for you and your loved ones."
+          ]
+        }
+      ]
+    },
+    faq: {
+      eyebrow: "FAQ",
+      title: "Frequently asked questions",
+      intro:
+        "The app is built to separate creation from presentation. The homepage and article pages carry the site's practical value, while the recipient page stays focused on the shared greeting.",
+      summarySections: [
+        {
+          title: "Recipients open a ready-made page",
+          body:
+            "They do not need an account or app installation to view a shared Eid greeting."
+        },
+        {
+          title: "You can write or generate a message",
+          body:
+            "The sender can type a custom note or use the built-in generator before sharing."
+        },
+        {
+          title: "The greeting page stays clean",
+          body:
+            "The recipient experience is intentionally kept away from homepage monetization elements."
+        }
+      ],
+      sections: [
+        {
+          title: "How does the greeting link work?",
+          body:
+            "When you create a greeting, the selected language, style, sender name, and optional message are packaged into the shared URL. Opening that URL loads the final greeting page with the saved details already in place."
+        },
+        {
+          title: "Do recipients need an account?",
+          body:
+            "No. The greeting opens directly in the browser and does not require sign-in, registration, or app installation."
+        },
+        {
+          title: "Can I use my own message?",
+          body:
+            "Yes. You can write your own Eid message or use the message generator as a starting point and then edit it."
+        },
+        {
+          title: "Are the recipient greeting pages ad-free?",
+          body:
+            "Yes in this version. The site keeps monetization away from the recipient greeting screen so the celebration remains the focus."
+        },
+        {
+          title: "Why are there separate article and support pages?",
+          body:
+            "Those pages give visitors lasting value even when they are not creating a greeting. They also explain the product clearly, which makes the site more useful and trustworthy."
+        },
+        {
+          title: "Does the site support Arabic and English?",
+          body:
+            "Yes. The creator flow, articles, and greeting experience are designed to support both Arabic and English."
         }
       ]
     },
     about: {
       eyebrow: "About",
-      title: "About Eid Greetings",
+      title: "About Eid Congrats App",
       intro:
-        "Eid Greetings is a simple web app created to help people send beautiful, personalized Eid greeting pages to family, friends, and loved ones in a way that feels festive, respectful, and easy to share.",
+        "Eid Congrats App is a lightweight web experience built to help people send elegant Eid greetings while also giving visitors useful original content about wishes, messages, and online greeting etiquette.",
       summarySections: [
         {
-          title: "A polished alternative to plain text",
+          title: "A greeting tool and a content site",
           body:
-            "Instead of sending a basic message, users can share a dedicated Eid page with their own name, language, and message."
+            "The homepage is not only a form. It also acts as a content hub with articles, explanations, and support pages."
         },
         {
-          title: "Built for simplicity",
+          title: "Designed around respect for the occasion",
           body:
-            "The experience is intentionally lightweight so people can create a greeting quickly on phone or desktop."
+            "The recipient page is intentionally kept focused on the greeting rather than extra navigation or ad clutter."
         },
         {
-          title: "Respectful by design",
+          title: "Built to stay simple",
           body:
-            "The greeting page focuses on the celebration itself rather than clutter, unnecessary steps, or distractions."
+            "The project avoids accounts and unnecessary friction so sharing can feel quick and natural."
         }
       ],
       sections: [
         {
-          title: "1. What the site does",
+          title: "What the site is meant to do",
           body:
-            "Eid Greetings lets a user create a festive greeting link with a sender name, language selection, greeting style, and either a custom message or a generated suggestion. The recipient opens the link and sees a dedicated Eid greeting page designed to feel warm, polished, and memorable."
+            "The core product helps a sender choose a language, pick a visual style, write or generate a message, and share one personalized Eid page. Around that creator flow, the site also publishes original guidance for people who want better Eid wording and ideas."
         },
         {
-          title: "2. Why it exists",
+          title: "Why the content pages matter",
           body:
-            "Many holiday messages are sent as short text or copied greetings. This project was created to offer a more thoughtful and visually beautiful way to share Eid wishes without making the process complicated."
+            "Many festive tools feel thin because they offer only a generator and nothing else. This project aims to be more useful by adding real articles, message examples, and support information that people can read even if they never create a link."
         },
         {
-          title: "3. The value of the experience",
+          title: "Why the recipient page stays separate",
           body:
-            "The site keeps the creation flow simple, supports both Arabic and English, and gives senders a clean way to personalize their greeting. The result is something more expressive than a plain message while still being easy to use."
+            "A shared Eid page should feel like a warm final presentation. That is why the design keeps the greeting experience distinct from the homepage, site navigation, and any future monetization."
         },
         {
-          title: "4. Product principles",
+          title: "What the project values",
           body:
-            "Eid Greetings aims to stay lightweight, mobile-friendly, and respectful of the occasion. The creator tools, support pages, and future monetization are kept separate from the celebratory greeting view so the recipient experience can remain clear and elegant."
+            "Clarity, warmth, bilingual usefulness, and a respectful presentation of the occasion. The site aims to help people say something meaningful, not just something fast."
+        }
+      ]
+    },
+    privacy: {
+      eyebrow: "Privacy Policy",
+      title: "Privacy policy",
+      intro:
+        "Effective date: March 14, 2026. Eid Congrats App is designed to keep personal data collection limited while still allowing visitors to create and share personalized Eid greeting pages.",
+      summarySections: [
+        {
+          title: "Greeting details travel in the shared link",
+          body:
+            "The sender name, selected language, style, and optional message are placed in the URL so the recipient can open the greeting directly."
+        },
+        {
+          title: "Contact messages are used for support",
+          body:
+            "If you submit the contact form, the information is used to review and respond to your message."
+        },
+        {
+          title: "Generated greeting pages are not the editorial core",
+          body:
+            "The site's lasting content lives on the homepage, article pages, and support pages."
+        }
+      ],
+      sections: [
+        {
+          title: "Information you enter on the site",
+          body:
+            "When you create a greeting, you may enter a sender name, choose a language, select a visual style, and optionally write a custom Eid message. If you contact us, you may also provide your name, email address, subject, and message."
+        },
+        {
+          title: "How greeting links work",
+          body:
+            "The greeting experience is built around shareable URLs. That means the information needed to display the final greeting is included in the link itself. Anyone who has the link can see the content stored in it, so sensitive personal information should never be included."
+        },
+        {
+          title: "Indexing and generated pages",
+          body:
+            "Personalized greeting links are meant for sharing between people, not as the site's main publisher pages. The site may mark generated greeting URLs so search engines treat them differently from the homepage and editorial content pages."
+        },
+        {
+          title: "Contact form submissions",
+          body:
+            "If you use the contact form, the information you submit is used only to receive, review, and respond to your inquiry. It is not intended for marketing lists or public profiles."
+        },
+        {
+          title: "Questions about privacy",
+          body:
+            "If you have a question about privacy or data handling, you can contact support at musabcreate@gmail.com."
         }
       ]
     },
     contact: {
       eyebrow: "Contact",
-      title: "Contact Us",
+      title: "Contact and support",
       intro:
-        "If you have a question, suggestion, technical issue, partnership inquiry, or general feedback about Eid Greetings, you can reach out using the form below or email us directly.",
+        "Use this page for support questions, technical issues, suggestions, or partnership inquiries related to Eid Congrats App and its content pages.",
       summarySections: [
         {
-          title: "Use the form for support or feedback",
+          title: "Use the form for help or feedback",
           body:
-            "You can contact us about technical issues, suggestions, business inquiries, or anything related to the site."
+            "You can report bugs, ask about the greeting experience, or send ideas for improving the site."
         },
         {
-          title: "Messages go to a real support inbox",
+          title: "Messages go to a real inbox",
           body:
-            "Form submissions are sent to musabcreate@gmail.com through a server-side email flow."
+            "Form submissions are delivered to the support email configured for the project."
         },
         {
-          title: "Email remains available as a fallback",
+          title: "Direct email still works",
           body:
-            "If the form is unavailable for any reason, you can still contact us directly by email."
+            "If the form is unavailable, visitors can still reach support by email."
         }
       ],
       sections: [
         {
-          title: "1. What to contact us about",
+          title: "When to contact us",
           body:
-            "Use this page for questions about how the greeting link works, support with message creation, bug reports, suggestions, or partnership and collaboration inquiries."
+            "Please use this page for questions about how the greeting flow works, suggestions for improving the content pages, reports of broken links or design issues, or business and partnership requests."
         },
         {
-          title: "2. What to include in your message",
+          title: "What helps us respond faster",
           body:
-            "If you are reporting a technical issue, include the device or browser you used, what you expected to happen, and what actually happened. Clear details help us review issues faster."
+            "If you are reporting a problem, include the browser or device you used, what you expected to happen, and what happened instead. Clear details make it easier to review the issue."
         },
         {
-          title: "3. Response expectations",
+          title: "Response expectations",
           body:
-            "We review incoming messages as availability allows. While we may not reply to every suggestion, we do use feedback to improve the product and support experience."
+            "We read incoming messages as availability allows. While we may not be able to reply instantly to every note, thoughtful feedback is valuable and helps guide future improvements."
         }
       ],
       emailLabel: "Email support directly",
-      emailNote: "If the form is unavailable, you can also reach us at:",
+      emailNote: "If the form is unavailable, you can also contact us at:",
       emailAction: "Email support",
       contactForm: {
         title: "Send a message",
@@ -166,8 +393,7 @@ export const supportContent = {
         submitLabel: "Send message",
         sendingLabel: "Sending...",
         successTitle: "Message sent",
-        successBody:
-          "Your message was sent successfully. Thank you for contacting Eid Greetings.",
+        successBody: "Your message was sent successfully. Thank you for contacting Eid Congrats App.",
         resetLabel: "Send another message",
         validation: {
           nameRequired: "Please enter your name.",
@@ -179,226 +405,388 @@ export const supportContent = {
         errorMessage:
           "We could not send your message right now. Please try again in a moment or email musabcreate@gmail.com."
       }
-    },
-    faq: {
-      eyebrow: "FAQ",
-      title: "Frequently Asked Questions",
-      intro:
-        "The app is designed to keep the creation flow simple for the sender and the final greeting page clean for the recipient. These answers cover the most common questions about how it works.",
-      summarySections: [
-        {
-          title: "Greeting links open directly",
-          body:
-            "Recipients do not need an account or app install to view a shared Eid greeting page."
-        },
-        {
-          title: "You can write or generate a message",
-          body:
-            "The sender can type a personal message or use the built-in message generator before sharing."
-        },
-        {
-          title: "Arabic and English are both supported",
-          body:
-            "The app supports bilingual greeting creation and display."
-        }
-      ],
-      sections: [
-        {
-          title: "1. How does the greeting link work?",
-          body:
-            "When you create a greeting, the app generates a personalized link that contains the selected language, greeting style, sender name, and optional custom message. Opening the link loads the greeting page with that saved information."
-        },
-        {
-          title: "2. Does the recipient need an account?",
-          body:
-            "No. Recipients can open the greeting page directly in their browser without creating an account or signing in."
-        },
-        {
-          title: "3. Can I write my own message?",
-          body:
-            "Yes. You can type a custom Eid message before sharing the greeting link."
-        },
-        {
-          title: "4. Can the app generate a message for me?",
-          body:
-            "Yes. The built-in message generator can produce a greeting suggestion in the selected language, and you can edit it before sharing."
-        },
-        {
-          title: "5. Does the site support Arabic and English?",
-          body:
-            "Yes. The creator flow and greeting experience support both Arabic and English, including right-to-left presentation for Arabic content."
-        },
-        {
-          title: "6. Can I share the same greeting with more than one person?",
-          body:
-            "Yes. A single greeting link can be shared with multiple people if you want several recipients to open the same greeting page."
-        },
-        {
-          title: "7. Are messages stored permanently?",
-          body:
-            "The current experience is designed around shareable links rather than permanent user accounts or long-term message storage. You should not rely on the site as a permanent archive for sensitive or important content."
-        },
-        {
-          title: "8. How do I contact support?",
-          body:
-            "You can use the contact page form or email musabcreate@gmail.com directly for support, feedback, or business inquiries."
-        }
-      ]
     }
   },
   ar: {
-    privacy: {
-      eyebrow: "سياسة الخصوصية",
-      title: "سياسة الخصوصية",
+    wishes: {
+      eyebrow: "تهاني العيد",
+      title: "تهاني عيد مؤثرة بالإنجليزية والعربية",
       intro:
-        "تاريخ السريان: 12 مارس 2026. صُمم Eid Greetings لمساعدة الناس على إنشاء صفحات تهنئة عيد مخصصة ومشاركتها مع تقليل جمع البيانات الشخصية إلى الحد الأدنى الممكن.",
+        "التهنئة الجميلة في العيد لا تحتاج إلى تعقيد. أفضل الرسائل هي التي تبدو صادقة، وتناسب طبيعة العلاقة، وتحمل دفئًا ودعاءً ومعنى واضحًا.",
       summarySections: [
         {
-          title: "تفاصيل التهنئة تكون داخل الرابط المشترك",
+          title: "الرسائل القصيرة تنجح عندما تبدو طبيعية",
           body:
-            "يتم تضمين اسم المرسل واللغة والنمط والرسالة الاختيارية داخل رابط التهنئة حتى يتمكن المستلم من فتح الصفحة مباشرة."
+            "قد تكون العبارة المختصرة أكثر قربًا من رسالة طويلة منسوخة إذا جاءت بصوتك أنت."
         },
         {
-          title: "رسائل نموذج التواصل تُستخدم للدعم فقط",
+          title: "العبارات العربية تحمل دفئًا وتراثًا خاصًا",
           body:
-            "إذا أرسلت رسالة عبر صفحة التواصل، فسيتم استخدام بياناتك لمراجعة رسالتك والرد عليها فقط."
+            "العبارات العربية البسيطة تصبح مؤثرة جدًا عندما تقترن بدعاء مناسب أو أمنية صادقة."
         },
         {
-          title: "سيتم توضيح أي تحليلات أو إعلانات مستقبلية",
+          title: "الرسائل الأطول تناسب العلاقات الأقرب",
           body:
-            "إذا تمت إضافة ملفات تعريف ارتباط أو أدوات تحليل أو إعلانات مستقبلًا، فسيتم تحديث هذه السياسة لتوضيح ذلك."
+            "العائلة والأصدقاء المقربون يتقبلون عادة تعبيرًا أوسع عن الدعاء والمحبة والتقدير."
         }
       ],
       sections: [
         {
-          title: "1. المعلومات التي تقدمها",
+          title: "تهاني عيد قصيرة باللغة الإنجليزية",
           body:
-            "عند استخدام Eid Greetings قد تقدم اسم المرسل ورسالة تهنئة مخصصة اختيارية واللغة المختارة ونمط التهنئة. وإذا تواصلت معنا فقد تقدم أيضًا اسمك وبريدك الإلكتروني وموضوع الرسالة ومحتواها."
+            "هذه الأمثلة مناسبة عندما تريد رسالة دافئة وواضحة وأنيقة دون أن تبدو رسمية أكثر من اللازم.",
+          items: [
+            "Eid Mubarak. May your home be filled with peace, mercy, and lasting joy.",
+            "Wishing you a beautiful Eid filled with prayer, gratitude, and happy moments with family.",
+            "May this Eid bring calm to your heart and blessing to everything you hope for.",
+            "Eid Mubarak to you and your loved ones. May the day be bright, gentle, and full of goodness."
+          ]
         },
         {
-          title: "2. كيف تعمل روابط التهنئة المخصصة",
+          title: "عبارات عيد عربية",
           body:
-            "تعتمد التجربة على روابط قابلة للمشاركة. يتم تضمين اللغة والنمط واسم المرسل والرسالة الاختيارية داخل الرابط حتى يتمكن المستلم من فتح صفحة التهنئة دون إنشاء حساب. وأي شخص يملك الرابط يمكنه رؤية المعلومات الموجودة بداخله، لذلك يُرجى عدم وضع بيانات شخصية حساسة في الرسالة."
+            "إذا أردت أن تبدو الرسالة أكثر قربًا من أجواء المناسبة، فإن العبارات العربية تضيف لمسة دافئة ومألوفة.",
+          items: [
+            "عيد مبارك، تقبل الله طاعتكم وأعاد الله عليكم الأيام بالخير واليمن والبركات.",
+            "أسأل الله أن يجعل عيدكم فرحًا وسكينة وأن يملأ بيتكم بالمحبة والرضا.",
+            "كل عام وأنتم بخير، وعساكم من عواده بالصحة والسعادة.",
+            "جعله الله عيدًا مباركًا عليكم وعلى من تحبون."
+          ]
         },
         {
-          title: "3. رسائل نموذج التواصل",
+          title: "رسائل أطول للعائلة والأصدقاء المقربين",
           body:
-            "إذا أرسلت رسالة عبر نموذج التواصل، فسيتم استخدام البيانات التي ترسلها فقط لاستلام الاستفسار ومراجعته والرد عليه عند الحاجة. ولا تُستخدم هذه الرسائل لإنشاء قوائم تسويقية أو ملفات تعريف عامة."
+            "تنجح الرسائل الطويلة عندما تبقى دافئة ومحددة ولا تتحول إلى مبالغة أو تكرار.",
+          items: [
+            "عيد مبارك. أسأل الله أن يملأ أيامكم طمأنينة، وأن يبارك لكم في الصحة والأهل وكل ما تتمنونه من خير.",
+            "أتمنى لكم عيدًا مليئًا بالرحمة والفرح ولحظات الامتنان، وأن يحفظ الله من تحبون ويكتب لكم السعادة والسكينة.",
+            "في هذا العيد أحببت أن أرسل لكم أكثر من عبارة سريعة؛ أحببت أن أرسل دعاءً صادقًا بالخير والبركة ودوام المودة."
+          ]
         },
         {
-          title: "4. الحسابات وتخزين الرسائل",
+          title: "كيف تجعل التهنئة أكثر شخصية",
           body:
-            "لا يتطلب Eid Greetings حاليًا إنشاء حسابات من أجل إنشاء صفحات التهنئة أو عرضها. والتجربة مبنية على حالة مؤقتة داخل الرابط المشترك بدلًا من ملفات مستخدمين دائمة، لذلك لا نزعم أن كل تهنئة يتم تخزينها بشكل دائم على الخادم."
+            "تفصيلة صغيرة واحدة كافية أحيانًا لتجعل الرسالة تبدو مكتوبة لهذا الشخص بالذات.",
+          items: [
+            "اذكر طبيعة العلاقة مثل أمي أو أخي أو صديقي أو زميلي.",
+            "أضف دعاءً واحدًا صادقًا بدل تكديس عبارات عامة كثيرة.",
+            "استخدم كلمات قريبة من أسلوبك المعتاد في الكتابة."
+          ]
+        }
+      ]
+    },
+    guide: {
+      eyebrow: "دليل الإرسال أونلاين",
+      title: "كيف ترسل تهنئة عيد جميلة عبر الإنترنت",
+      intro:
+        "التهنئة الجميلة عبر الإنترنت لا تعتمد على التصميم وحده. بل تعتمد على اختيار النبرة المناسبة، وكتابة كلمات بعناية، وإرسالها بطريقة تبدو لطيفة وغير مستعجلة.",
+      summarySections: [
+        {
+          title: "النبرة تأتي قبل الزخرفة",
+          body:
+            "الرسالة الجيدة تبدأ بإحساس مناسب للشخص الذي ستصل إليه."
         },
         {
-          title: "5. ملفات تعريف الارتباط والتحليلات والإعلانات المستقبلية",
+          title: "السرعة الرقمية لا تمنع اللمسة الإنسانية",
           body:
-            "قد يستخدم الموقع مستقبلاً ملفات تعريف ارتباط أساسية أو أدوات تحليل أو خدمات إعلانية لتحسين الأداء وفهم الاستخدام ودعم تحقيق الدخل. وإذا تم تفعيل مزودي تحليلات أو إعلانات من أطراف ثالثة فقد يجمعون بيانات تقنية محدودة مثل معلومات المتصفح والجهاز وعنوان IP أو بيانات ملفات تعريف الارتباط وفقًا لسياساتهم الخاصة."
+            "حتى لو تم إنشاء الصفحة بسرعة، فإن الصياغة والتوقيت قادران على جعلها أكثر صدقًا."
         },
         {
-          title: "6. الخدمات التابعة لجهات خارجية",
+          title: "صفحة المستلم يجب أن تبقى مركزة",
           body:
-            "لتشغيل الموقع قد نعتمد على مزودين موثوقين للاستضافة أو إرسال البريد الإلكتروني أو مراقبة الأداء أو التحليلات أو الإعلانات. وقد يعالج هؤلاء المزودون بيانات تقنية محدودة بالقدر اللازم لتقديم خدماتهم بشكل آمن وموثوق."
+            "كلما كانت الصفحة النهائية هادئة وواضحة، بدا الإهداء أكثر احترامًا وجمالًا."
+        }
+      ],
+      sections: [
+        {
+          title: "ابدأ بتحديد الشخص الذي سترسل إليه",
+          body:
+            "قبل الكتابة، حدّد هل الرسالة موجهة إلى الوالدين أو الإخوة أو الأصدقاء المقربين أو المعارف أو زملاء العمل. هذا يحدد إن كانت النبرة عاطفية أو خفيفة أو رسمية.",
+          items: [
+            "استخدم دفئًا أكبر مع العائلة القريبة.",
+            "اجعل الرسالة أقصر وأوضح مع الدائرة الأوسع.",
+            "تجنب المزاح أو العبارات العامية إذا لم تكن مناسبة للشخص."
+          ]
         },
         {
-          title: "7. أمان البيانات",
+          title: "اكتب بما يناسب شاشة الهاتف",
           body:
-            "نتخذ خطوات معقولة لحماية الموقع ورسائل التواصل وإعدادات الخادم، بما في ذلك إبقاء بيانات اعتماد البريد الإلكتروني داخل الخادم فقط. ولا يمكن لأي خدمة عبر الإنترنت أن تضمن أمانًا مطلقًا، لكننا نسعى إلى تقليل كمية البيانات المجمعة وجعلها متناسبة مع طبيعة الخدمة."
+            "معظم الناس يفتحون التهاني على الهاتف. لذلك تنجح الفقرات القصيرة والصياغة الواضحة والفكرة المركزية أكثر من النصوص المكتظة.",
+          items: [
+            "اجعل الرسالة في فقرة أو فقرتين قصيرتين.",
+            "ضع الدعاء أو الفكرة الأساسية في البداية.",
+            "ابتعد عن التكرار الزائد والعبارات المكدسة."
+          ]
         },
         {
-          title: "8. خياراتك وأسئلتك",
+          title: "اختر اللغة والتوقيت بعناية",
           body:
-            "يمكنك اختيار عدم كتابة رسالة مخصصة أو عدم إدخال معلومات حساسة داخل رابط التهنئة أو التواصل معنا إذا كانت لديك أسئلة تتعلق بالخصوصية. ولأي استفسار متعلق بالخصوصية أو الدعم يمكنك مراسلتنا على musabcreate@gmail.com."
+            "قد تبدو العربية أكثر دفئًا وتقليدية في بعض العلاقات، بينما تكون الإنجليزية أكثر طبيعية في دوائر أخرى. كما أن التوقيت مهم؛ فتهنئة صباح العيد تبدو احتفالية، بينما تحمل رسالة الليلة السابقة طابعًا تأمليًا."
+        },
+        {
+          title: "اجعل الصفحة النهائية أنيقة",
+          body:
+            "أفضل صفحات التهنئة لا تنافس الرسالة، بل تدعمها. فالتصميم الواضح والجو الاحتفالي وعدم وجود المشتتات يجعل المستلم يركز على الكلمات والمناسبة نفسها."
+        }
+      ]
+    },
+    messages: {
+      eyebrow: "أفكار الرسائل",
+      title: "رسائل عيد قصيرة وطويلة للعائلة والأصدقاء",
+      intro:
+        "تختلف رسالة العيد المناسبة باختلاف الشخص. فالوالدان يقدّران كلمات الامتنان والدعاء، بينما قد يفضل الأصدقاء رسالة أخف لكنها تبقى صادقة ودافئة.",
+      summarySections: [
+        {
+          title: "الرسائل القصيرة مناسبة للمشاركة السريعة",
+          body:
+            "هي الأفضل للدائرة الأوسع والمحادثات السريعة دون أن تفقد الدفء."
+        },
+        {
+          title: "الرسائل الأطول تناسب العلاقات الأقرب",
+          body:
+            "العائلة والأصدقاء المقربون يتقبلون عادة تعبيرًا أوسع عن الدعاء والمحبة والتقدير."
+        },
+        {
+          title: "ليس كل شخص يناسبه النص نفسه",
+          body:
+            "تغيير النبرة قليلًا بين الوالدين والإخوة والأصدقاء يجعل التهنئة أكثر عناية."
+        }
+      ],
+      sections: [
+        {
+          title: "رسائل عيد قصيرة للعائلة",
+          body:
+            "هذه الصياغات مفيدة عندما تريد رسالة لطيفة ومختصرة دون الدخول في نص طويل.",
+          items: [
+            "عيد مبارك لعائلتي الغالية، أسأل الله أن يديم على بيتنا المحبة والسكينة والبركة.",
+            "أطيب تهاني العيد لكم، وأسأل الله أن يملأ أيامكم صحة وفرحًا وراحة بال.",
+            "جعل الله هذا العيد باب خير وسعادة وطمأنينة لكل من في بيتنا."
+          ]
+        },
+        {
+          title: "رسائل أطول للوالدين أو الإخوة",
+          body:
+            "مع الأقرب إلى القلب، تبدو الكلمات الأعمق أكثر معنى وأثرًا.",
+          items: [
+            "عيد مبارك. شكرًا لكل ما تقدمونه من حب وصبر واهتمام. أسأل الله أن يمنّ عليكم بالصحة والسكينة والأجر الجميل.",
+            "في هذا العيد أشعر بامتنان خاص لوجود العائلة. أسأل الله أن يحفظ رابطتنا ويبارك بيتنا.",
+            "أرسل لكم في هذا العيد دعاءً صادقًا بالخير والبركة ودوام النعمة، مع امتنان كبير لكل ما منحتموني إياه من دعم وحنان."
+          ]
+        },
+        {
+          title: "رسائل للأصدقاء المقربين",
+          body:
+            "يمكن أن تكون رسائل الأصدقاء أخف، لكن الأفضل أن تبقى صادقة وتحمل أمنية واضحة.",
+          items: [
+            "عيد مبارك يا صديقي، أتمنى لك يومًا مليئًا بالسكينة والفرح والناس الذين تحبهم.",
+            "أطيب أمنيات العيد لك، وأسأل الله أن يكتب لك أيامًا مضيئة وذكريات جميلة.",
+            "ممتن لصداقتك، وأسأل الله أن يجعل هذا العيد بداية خير وسعادة وراحة بال."
+          ]
+        },
+        {
+          title: "رسائل مهذبة للدائرة الأوسع",
+          body:
+            "هذه الرسائل مناسبة للزملاء والجيران والمعارف عندما تريد تهنئة محترمة وواضحة.",
+          items: [
+            "عيد مبارك، أتمنى لكم ولعائلتكم عيدًا مليئًا بالخير والسرور.",
+            "أحر التهاني بالعيد، وأسأل الله لكم الصحة والسعادة والبركة.",
+            "جعله الله عيدًا جميلًا عليكم وعلى من تحبون."
+          ]
+        }
+      ]
+    },
+    faq: {
+      eyebrow: "الأسئلة الشائعة",
+      title: "الأسئلة الشائعة",
+      intro:
+        "تم تصميم التطبيق ليفصل بين مرحلة الإنشاء ومرحلة العرض. تحمل الصفحة الرئيسية والمقالات القيمة العملية للموقع، بينما تبقى صفحة المستلم مخصصة للتهنئة نفسها.",
+      summarySections: [
+        {
+          title: "المستلم يفتح صفحة جاهزة مباشرة",
+          body:
+            "لا يحتاج إلى حساب أو تثبيت تطبيق إضافي لعرض التهنئة."
+        },
+        {
+          title: "يمكنك كتابة الرسالة أو توليدها",
+          body:
+            "يستطيع المرسل كتابة رسالة خاصة أو استخدام المولد المدمج قبل المشاركة."
+        },
+        {
+          title: "صفحة التهنئة تبقى نظيفة",
+          body:
+            "تم إبعاد عناصر تحقيق الدخل الموجودة في الصفحة الرئيسية عن تجربة المستلم."
+        }
+      ],
+      sections: [
+        {
+          title: "كيف يعمل رابط التهنئة؟",
+          body:
+            "عند إنشاء التهنئة، يتم تضمين اللغة والنمط واسم المرسل والرسالة الاختيارية داخل الرابط القابل للمشاركة. وعند فتحه تظهر صفحة التهنئة النهائية بهذه البيانات نفسها."
+        },
+        {
+          title: "هل يحتاج المستلم إلى حساب؟",
+          body:
+            "لا. تفتح صفحة التهنئة مباشرة من المتصفح دون تسجيل دخول أو إنشاء حساب أو تثبيت تطبيق."
+        },
+        {
+          title: "هل يمكنني كتابة رسالتي الخاصة؟",
+          body:
+            "نعم. يمكنك كتابة رسالة عيد خاصة بك أو استخدام مولد الرسائل كنقطة بداية ثم تعديل النص كما تريد."
+        },
+        {
+          title: "هل صفحة التهنئة للمستلم خالية من الإعلانات؟",
+          body:
+            "نعم في هذه النسخة. يحافظ الموقع على بقاء صفحة المستلم مخصصة للرسالة والمناسبة نفسها."
+        },
+        {
+          title: "لماذا توجد صفحات مقالات وصفحات دعم منفصلة؟",
+          body:
+            "لأنها تمنح الزائر قيمة مستمرة حتى عندما لا ينشئ تهنئة، كما تشرح المنتج بوضوح وتجعل الموقع أكثر فائدة وموثوقية."
+        },
+        {
+          title: "هل يدعم الموقع العربية والإنجليزية؟",
+          body:
+            "نعم. تم تصميم أداة الإنشاء والمقالات وتجربة التهنئة لدعم اللغتين العربية والإنجليزية."
         }
       ]
     },
     about: {
       eyebrow: "من نحن",
-      title: "حول Eid Greetings",
+      title: "حول Eid Congrats App",
       intro:
-        "Eid Greetings هو تطبيق ويب بسيط يساعد الناس على إرسال صفحات تهنئة عيد جميلة ومخصصة للعائلة والأصدقاء والأحبّة بطريقة احتفالية ومحترمة وسهلة المشاركة.",
+        "Eid Congrats App تجربة ويب خفيفة تساعد الناس على إرسال تهاني عيد أنيقة، مع تقديم محتوى أصلي مفيد عن عبارات العيد ورسائله وآداب إرساله عبر الإنترنت.",
       summarySections: [
         {
-          title: "بديل أنيق للرسائل النصية العادية",
+          title: "أداة تهنئة وموقع محتوى معًا",
           body:
-            "بدلًا من إرسال رسالة عادية، يمكن للمستخدم مشاركة صفحة عيد مخصصة تحمل اسمه ولغته ورسالة مناسبة."
+            "الصفحة الرئيسية ليست مجرد نموذج، بل مركز محتوى يتضمن مقالات وشروحات وصفحات دعم."
         },
         {
-          title: "مصمم ليكون بسيطًا",
+          title: "مصمم باحترام للمناسبة",
           body:
-            "التجربة خفيفة ومباشرة حتى يتمكن أي شخص من إنشاء التهنئة بسرعة على الهاتف أو الكمبيوتر."
+            "تُترك صفحة المستلم مركزة على التهنئة نفسها بدل التنقلات الكثيرة أو الإعلانات المزعجة."
         },
         {
-          title: "تجربة محترمة في جوهرها",
+          title: "البساطة جزء من الفكرة",
           body:
-            "تركز صفحة التهنئة على المناسبة نفسها بدلًا من الخطوات المربكة أو العناصر المشتتة."
+            "يتجنب المشروع الحسابات والخطوات غير الضرورية حتى تبقى المشاركة سهلة وطبيعية."
         }
       ],
       sections: [
         {
-          title: "1. ماذا يفعل الموقع",
+          title: "ما الذي يقدمه الموقع",
           body:
-            "يتيح Eid Greetings للمستخدم إنشاء رابط تهنئة احتفالي يتضمن اسم المرسل واللغة ونمط التهنئة ورسالة مخصصة أو مقترحة. وعند فتح الرابط تظهر للمستلم صفحة تهنئة عيد مصممة لتكون دافئة وأنيقة وسهلة التذكر."
+            "يساعد المنتج الأساسي المرسل على اختيار اللغة والتصميم وكتابة الرسالة أو توليدها، ثم مشاركة صفحة عيد شخصية واحدة. وحول هذه الأداة، ينشر الموقع محتوى عمليًا أصليًا لمن يريد صياغات أفضل وأفكارًا أنسب لتهنئة العيد."
         },
         {
-          title: "2. لماذا أُنشئ هذا المشروع",
+          title: "لماذا صفحات المحتوى مهمة",
           body:
-            "كثير من رسائل العيد تُرسل كنصوص قصيرة أو عبارات منسوخة. وقد أُنشئ هذا المشروع لتقديم طريقة أجمل وأكثر عناية لمشاركة التهاني دون جعل العملية معقدة."
+            "كثير من الأدوات الموسمية تبدو محدودة لأنها تقدم مولدًا فقط دون أي قيمة إضافية. أما هذا المشروع فيحاول أن يكون أكثر فائدة من خلال مقالات حقيقية وأمثلة رسائل وصفحات دعم يمكن قراءتها حتى دون إنشاء رابط."
         },
         {
-          title: "3. القيمة التي يقدمها",
+          title: "لماذا تبقى صفحة المستلم منفصلة",
           body:
-            "يحافظ الموقع على بساطة خطوات الإنشاء، ويدعم العربية والإنجليزية، ويمنح المرسل وسيلة واضحة لتخصيص التهنئة. والنتيجة تجربة أكثر تعبيرًا من الرسالة التقليدية مع بقاء الاستخدام سهلًا."
+            "من الأفضل أن تبدو صفحة العيد المشتركة كعرض نهائي دافئ. لذلك تم الفصل بينها وبين الصفحة الرئيسية وتنقلات الموقع وأي مساحة تحقيق دخل مستقبلية."
         },
         {
-          title: "4. مبادئ المنتج",
+          title: "ما الذي يقدّره المشروع",
           body:
-            "يهدف Eid Greetings إلى أن يبقى خفيفًا ومتوافقًا مع الهواتف ومحترمًا للمناسبة. لذلك يتم فصل أدوات الإنشاء وصفحات الدعم ومساحة تحقيق الدخل المستقبلية عن صفحة التهنئة الاحتفالية حتى تظل تجربة المستلم واضحة وأنيقة."
+            "الوضوح والدفء والفائدة باللغتين والعرض المحترم للمناسبة. الهدف هو مساعدة الناس على قول شيء جميل ومعبر، لا مجرد شيء سريع."
+        }
+      ]
+    },
+    privacy: {
+      eyebrow: "سياسة الخصوصية",
+      title: "سياسة الخصوصية",
+      intro:
+        "تاريخ السريان: 14 مارس 2026. صُمم Eid Congrats App ليحد من جمع البيانات الشخصية قدر الإمكان مع الاستمرار في تمكين الزوار من إنشاء صفحات تهنئة عيد ومشاركتها.",
+      summarySections: [
+        {
+          title: "تفاصيل التهنئة تنتقل داخل الرابط",
+          body:
+            "يتم وضع اسم المرسل واللغة والنمط والرسالة الاختيارية داخل الرابط حتى يتمكن المستلم من فتح التهنئة مباشرة."
+        },
+        {
+          title: "رسائل التواصل تُستخدم للدعم",
+          body:
+            "إذا أرسلت رسالة عبر نموذج التواصل، فستُستخدم البيانات لمراجعة رسالتك والرد عليها."
+        },
+        {
+          title: "روابط التهنئة ليست هي المحتوى التحريري الأساسي",
+          body:
+            "القيمة المستمرة للموقع موجودة في الصفحة الرئيسية والمقالات وصفحات الدعم."
+        }
+      ],
+      sections: [
+        {
+          title: "البيانات التي تدخلها في الموقع",
+          body:
+            "عند إنشاء تهنئة، قد تدخل اسم المرسل وتختار اللغة والتصميم وتكتب رسالة عيد مخصصة. وإذا تواصلت معنا، فقد تدخل أيضًا اسمك وبريدك الإلكتروني وموضوع الرسالة ومحتواها."
+        },
+        {
+          title: "كيف تعمل روابط التهنئة",
+          body:
+            "تعتمد التجربة على روابط قابلة للمشاركة، ما يعني أن المعلومات اللازمة لعرض التهنئة النهائية تكون موجودة داخل الرابط نفسه. وأي شخص يملك الرابط يستطيع رؤية المحتوى الموجود بداخله، لذلك لا ينبغي وضع معلومات شخصية حساسة فيه."
+        },
+        {
+          title: "الفهرسة والصفحات المولدة",
+          body:
+            "روابط التهنئة الشخصية خُلقت للمشاركة بين الأشخاص، وليست لتكون الصفحات الأساسية للموقع. لذلك قد يضع الموقع إشارات خاصة تجعل محركات البحث تتعامل مع هذه الروابط بشكل مختلف عن الصفحة الرئيسية وصفحات المحتوى."
+        },
+        {
+          title: "رسائل نموذج التواصل",
+          body:
+            "إذا استخدمت نموذج التواصل، فستُستخدم المعلومات التي ترسلها فقط لاستلام الاستفسار ومراجعته والرد عليه عند الحاجة، وليست لإنشاء قوائم تسويقية أو ملفات تعريف عامة."
+        },
+        {
+          title: "الاستفسارات المتعلقة بالخصوصية",
+          body:
+            "إذا كانت لديك أسئلة حول الخصوصية أو طريقة التعامل مع البيانات، يمكنك التواصل عبر البريد musabcreate@gmail.com."
         }
       ]
     },
     contact: {
       eyebrow: "اتصل بنا",
-      title: "تواصل معنا",
+      title: "التواصل والدعم",
       intro:
-        "إذا كانت لديك ملاحظة أو اقتراح أو مشكلة تقنية أو استفسار تجاري أو أي رأي يتعلق بـ Eid Greetings، يمكنك التواصل معنا عبر النموذج التالي أو من خلال البريد الإلكتروني مباشرة.",
+        "استخدم هذه الصفحة للأسئلة المتعلقة بالدعم أو المشكلات التقنية أو الاقتراحات أو طلبات الشراكة المرتبطة بـ Eid Congrats App وصفحات محتواه.",
       summarySections: [
         {
-          title: "استخدم النموذج للدعم أو الملاحظات",
+          title: "استخدم النموذج للمساعدة أو الملاحظات",
           body:
-            "يمكنك التواصل معنا بخصوص المشاكل التقنية أو الاقتراحات أو الاستفسارات التجارية أو أي أمر يتعلق بالموقع."
+            "يمكنك الإبلاغ عن الأخطاء أو السؤال عن تجربة التهنئة أو إرسال أفكار لتحسين الموقع."
         },
         {
-          title: "الرسائل تصل إلى بريد دعم حقيقي",
+          title: "الرسائل تصل إلى بريد حقيقي",
           body:
-            "يتم إرسال رسائل النموذج إلى musabcreate@gmail.com عبر مسار بريد إلكتروني يعمل من جهة الخادم."
+            "يتم إرسال رسائل النموذج إلى بريد الدعم المضبوط للمشروع."
         },
         {
-          title: "يبقى البريد الإلكتروني متاحًا كخيار بديل",
+          title: "يبقى البريد المباشر متاحًا",
           body:
-            "إذا تعذر استخدام النموذج لأي سبب، يمكنك دائمًا مراسلتنا مباشرة عبر البريد الإلكتروني."
+            "إذا تعذر استخدام النموذج، يمكن للزائر التواصل معنا عبر البريد الإلكتروني مباشرة."
         }
       ],
       sections: [
         {
-          title: "1. متى تتواصل معنا",
+          title: "متى تتواصل معنا",
           body:
-            "استخدم هذه الصفحة للأسئلة حول طريقة عمل رابط التهنئة أو المساعدة المتعلقة بكتابة الرسائل أو الإبلاغ عن الأخطاء أو إرسال الاقتراحات أو الاستفسارات الخاصة بالشراكات والتعاون."
+            "استخدم هذه الصفحة للأسئلة حول طريقة عمل التهنئة، أو اقتراحات تحسين صفحات المحتوى، أو الإبلاغ عن الروابط المعطلة أو المشكلات التصميمية، أو طلبات العمل والشراكات."
         },
         {
-          title: "2. ماذا يُفضل تضمينه في الرسالة",
+          title: "ما الذي يساعدنا على الرد بشكل أسرع",
           body:
-            "إذا كنت تبلغ عن مشكلة تقنية، فمن المفيد ذكر الجهاز أو المتصفح الذي استخدمته وما الذي كنت تتوقع حدوثه وما الذي حدث بالفعل. التفاصيل الواضحة تساعدنا على مراجعة المشكلات بشكل أسرع."
+            "إذا كنت تبلغ عن مشكلة، فمن المفيد ذكر المتصفح أو الجهاز الذي استخدمته، وما الذي كنت تتوقع حدوثه، وما الذي حدث بالفعل. التفاصيل الواضحة تسهل المراجعة."
         },
         {
-          title: "3. توقعات الرد",
+          title: "توقعات الرد",
           body:
-            "نراجع الرسائل الواردة حسب الوقت المتاح. وقد لا نتمكن من الرد على كل اقتراح، لكننا نستخدم الملاحظات لتحسين المنتج وتجربة الدعم."
+            "نراجع الرسائل الواردة بحسب الوقت المتاح. وقد لا نستطيع الرد الفوري على كل رسالة، لكن الملاحظات الجيدة تساعد فعلًا في تحسين المنتج."
         }
       ],
       emailLabel: "راسل الدعم مباشرة",
-      emailNote: "إذا لم يكن النموذج متاحًا، يمكنك أيضًا التواصل معنا عبر:",
-      emailAction: "إرسال بريد إلى الدعم",
+      emailNote: "إذا لم يكن النموذج متاحًا، يمكنك أيضًا التواصل عبر:",
+      emailAction: "إرسال بريد للدعم",
       contactForm: {
         title: "أرسل رسالة",
         intro: "املأ النموذج التالي وسيتم إرسال رسالتك بشكل آمن إلى بريد الدعم.",
@@ -413,7 +801,7 @@ export const supportContent = {
         submitLabel: "إرسال الرسالة",
         sendingLabel: "جارٍ الإرسال...",
         successTitle: "تم إرسال الرسالة",
-        successBody: "تم إرسال رسالتك بنجاح. شكرًا لتواصلك مع Eid Greetings.",
+        successBody: "تم إرسال رسالتك بنجاح. شكرًا لتواصلك مع Eid Congrats App.",
         resetLabel: "إرسال رسالة أخرى",
         validation: {
           nameRequired: "يرجى إدخال الاسم.",
@@ -423,73 +811,8 @@ export const supportContent = {
           messageRequired: "يرجى إدخال الرسالة."
         },
         errorMessage:
-          "تعذر إرسال الرسالة الآن. حاول مرة أخرى بعد قليل أو راسلنا على musabcreate@gmail.com."
+          "تعذر إرسال رسالتك الآن. حاول مرة أخرى بعد قليل أو راسلنا على musabcreate@gmail.com."
       }
-    },
-    faq: {
-      eyebrow: "الأسئلة الشائعة",
-      title: "الأسئلة الشائعة",
-      intro:
-        "صُمم التطبيق ليبقي خطوات الإنشاء بسيطة للمرسل وصفحة التهنئة النهائية واضحة للمستلم. وهذه إجابات على أكثر الأسئلة شيوعًا حول طريقة عمله.",
-      summarySections: [
-        {
-          title: "روابط التهنئة تفتح مباشرة",
-          body:
-            "لا يحتاج المستلم إلى حساب أو تطبيق إضافي لعرض صفحة تهنئة العيد."
-        },
-        {
-          title: "يمكنك كتابة الرسالة أو توليدها",
-          body:
-            "يستطيع المرسل كتابة رسالة شخصية أو استخدام مولد الرسائل قبل مشاركة الرابط."
-        },
-        {
-          title: "يدعم العربية والإنجليزية",
-          body:
-            "يدعم التطبيق إنشاء التهاني وعرضها باللغتين العربية والإنجليزية."
-        }
-      ],
-      sections: [
-        {
-          title: "1. كيف يعمل رابط التهنئة؟",
-          body:
-            "عند إنشاء التهنئة، يقوم التطبيق بإنشاء رابط مخصص يحتوي على اللغة المختارة ونمط التهنئة واسم المرسل والرسالة الاختيارية. وعند فتح الرابط يتم تحميل صفحة التهنئة بنفس البيانات."
-        },
-        {
-          title: "2. هل يحتاج المستلم إلى حساب؟",
-          body:
-            "لا. يمكن للمستلم فتح صفحة التهنئة مباشرة من المتصفح دون إنشاء حساب أو تسجيل دخول."
-        },
-        {
-          title: "3. هل يمكنني كتابة رسالتي الخاصة؟",
-          body:
-            "نعم. يمكنك كتابة رسالة عيد مخصصة بنفسك قبل مشاركة الرابط."
-        },
-        {
-          title: "4. هل يستطيع التطبيق توليد رسالة لي؟",
-          body:
-            "نعم. يحتوي التطبيق على مولد رسائل يقدم اقتراحًا مناسبًا بلغة التهنئة المختارة، ويمكنك تعديله قبل المشاركة."
-        },
-        {
-          title: "5. هل يدعم الموقع العربية والإنجليزية؟",
-          body:
-            "نعم. تدعم تجربة الإنشاء وصفحة التهنئة اللغتين العربية والإنجليزية، بما في ذلك العرض من اليمين إلى اليسار عند استخدام العربية."
-        },
-        {
-          title: "6. هل يمكنني مشاركة نفس التهنئة مع أكثر من شخص؟",
-          body:
-            "نعم. يمكنك مشاركة رابط تهنئة واحد مع أكثر من شخص إذا أردت أن يشاهد عدة مستلمين الصفحة نفسها."
-        },
-        {
-          title: "7. هل يتم تخزين الرسائل بشكل دائم؟",
-          body:
-            "التجربة الحالية مبنية أساسًا على روابط قابلة للمشاركة وليست على حسابات دائمة أو أرشفة طويلة المدى. لذلك لا ينبغي الاعتماد على الموقع كأرشيف دائم لمحتوى حساس أو مهم."
-        },
-        {
-          title: "8. كيف أتواصل مع الدعم؟",
-          body:
-            "يمكنك استخدام نموذج صفحة التواصل أو مراسلتنا مباشرة على musabcreate@gmail.com للاستفسارات أو الدعم أو الملاحظات أو الطلبات التجارية."
-        }
-      ]
     }
   }
 };
