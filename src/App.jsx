@@ -9,6 +9,7 @@ import { supportContent } from "./content/supportContent";
 
 const DEFAULT_LANGUAGE = "en";
 const DEFAULT_STYLE_ID = "classic";
+const GREETING_CTA_REVEAL_DELAY_MS = 5800;
 
 const styleOptions = [
   {
@@ -1200,6 +1201,17 @@ function GreetingMode({ ui, isArabic, selectedStyle, senderName, recipientName, 
   const displayRecipient = recipientName.trim();
   const textDirection = isArabic ? "rtl" : "ltr";
   const dynamicTextDirection = isArabic ? "auto" : "ltr";
+  const [isCtaVisible, setIsCtaVisible] = useState(false);
+
+  useEffect(() => {
+    setIsCtaVisible(false);
+
+    const timeoutId = window.setTimeout(() => {
+      setIsCtaVisible(true);
+    }, GREETING_CTA_REVEAL_DELAY_MS);
+
+    return () => window.clearTimeout(timeoutId);
+  }, [creatorHref, greetingMessage, isArabic, recipientName, senderName]);
 
   return (
     <main className={`greeting-layout ${selectedStyle.className}`} dir="ltr" lang={isArabic ? "ar" : "en"}>
@@ -1405,8 +1417,14 @@ function GreetingMode({ ui, isArabic, selectedStyle, senderName, recipientName, 
         </div>
       </section>
 
-      <div className="greeting-cta-wrap">
-        <a className="cta-link" href={creatorHref} dir={textDirection}>
+      <div className={`greeting-cta-wrap ${isCtaVisible ? "is-visible" : ""}`}>
+        <a
+          className="cta-link"
+          href={creatorHref}
+          dir={textDirection}
+          aria-hidden={isCtaVisible ? undefined : true}
+          tabIndex={isCtaVisible ? undefined : -1}
+        >
           {ui.ctaCreateOwn}
         </a>
       </div>
