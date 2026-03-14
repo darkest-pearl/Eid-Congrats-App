@@ -76,7 +76,6 @@ const copy = {
     shareHelperNote: "Native sharing works on supported mobile browsers over HTTPS.",
     helperHint:
       "Only the personalized URL is shared. Recipients see a full Eid greeting page.",
-    previewCardLabel: "Live Greeting Preview",
     fromLabel: "From",
     defaultSender: "Someone who cares",
     ad1: "Ad Space 1",
@@ -124,7 +123,6 @@ const copy = {
     shareHelperNote: "تعمل المشاركة المباشرة على متصفحات الجوال المدعومة عبر HTTPS.",
     helperHint:
       "تتم مشاركة الرابط الشخصي فقط. المستلم يرى صفحة تهنئة عيد كاملة.",
-    previewCardLabel: "معاينة التهنئة",
     fromLabel: "من",
     defaultSender: "شخص يقدّرك",
     ad1: "مساحة إعلانية 1",
@@ -924,7 +922,7 @@ function CreatorMode({
   customMessage,
   setCustomMessage,
   handleGenerateMessage,
-  previewUrl,
+  shareUrl,
   isSharing,
   handleShare,
   handleCopyLink,
@@ -935,162 +933,128 @@ function CreatorMode({
   footerLinks,
   footerHomeLabel,
   supportPages,
-  creatorHref,
-  selectedStyle,
-  greetingMessage
+  creatorHref
 }) {
-  const textDirection = isArabic ? "rtl" : "ltr";
-  const dynamicTextDirection = isArabic ? "auto" : "ltr";
-  const displayName = senderName.trim() || ui.defaultSender;
-  const displayRecipient = recipientName.trim();
   const pageLinks = Object.fromEntries(footerLinks.map((link) => [link.id, link.href]));
 
   return (
     <main className="creator-layout">
       <section className="creator-hero-grid">
         <section className="creator-panel">
-        <div className="pill">{ui.creatorBadge}</div>
-        <h1 className="hero-title">
-          {ui.creatorTitleA} <span>{ui.creatorTitleB}</span>
-        </h1>
-        <p className="hero-description">{ui.creatorDescription}</p>
+          <div className="pill">{ui.creatorBadge}</div>
+          <h1 className="hero-title">
+            {ui.creatorTitleA} <span>{ui.creatorTitleB}</span>
+          </h1>
+          <p className="hero-description">{ui.creatorDescription}</p>
 
-        <AdSlot
-          className="creator-top-ad"
-          title={homepageContent.topAdTitle}
-          description={homepageContent.topAdDescription}
-          badgeLabel={homepageContent.adLabel}
-          placeholderLabel={homepageContent.adPlaceholder}
-          readyLabel={homepageContent.adReady}
-          hint={homepageContent.adHint}
-          adClient={adsConfig.adsenseClientId}
-          adSlot={adsConfig.homepageTopSlotId}
-          placeholderMode={adsConfig.usePlaceholderAds}
-          minHeight={146}
-        />
+          <AdSlot
+            className="creator-top-ad"
+            title={homepageContent.topAdTitle}
+            description={homepageContent.topAdDescription}
+            badgeLabel={homepageContent.adLabel}
+            placeholderLabel={homepageContent.adPlaceholder}
+            readyLabel={homepageContent.adReady}
+            hint={homepageContent.adHint}
+            adClient={adsConfig.adsenseClientId}
+            adSlot={adsConfig.homepageTopSlotId}
+            placeholderMode={adsConfig.usePlaceholderAds}
+            minHeight={146}
+          />
 
-        <div className="creator-card">
-          <div className="field-grid">
-            <div>
-              <label htmlFor="sender-name">{ui.senderName}</label>
-              <input
-                id="sender-name"
-                value={senderName}
-                onChange={(event) => setSenderName(event.target.value)}
-                placeholder={ui.senderPlaceholder}
-              />
-            </div>
-            <div>
-              <label htmlFor="language">{ui.language}</label>
-              <select
-                id="language"
-                value={language}
-                onChange={(event) => setLanguage(normalizeLanguage(event.target.value))}
-              >
-                <option value="en">English</option>
-                <option value="ar">العربية</option>
-              </select>
-            </div>
-	          </div>
-
-	          <div>
-	            <label htmlFor="recipient-name">{ui.recipientName}</label>
-	            <input
-	              id="recipient-name"
-	              value={recipientName}
-	              onChange={(event) => setRecipientName(event.target.value)}
-	              placeholder={ui.recipientPlaceholder}
-	            />
-	          </div>
-
-	          <div>
-	            <label htmlFor="style">{ui.style}</label>
-	            <select
-              id="style"
-              value={styleId}
-              onChange={(event) => setStyleId(normalizeStyleId(event.target.value))}
-            >
-              {styleOptions.map((style) => (
-                <option key={style.id} value={style.id}>
-                  {isArabic ? style.title.ar : style.title.en}
-                </option>
-              ))}
-            </select>
-          </div>
-
-          <div className="message-field">
-            <div className="message-field-header">
-              <label htmlFor="custom-message">{ui.customMessage}</label>
-              <button className="secondary-btn message-generate-btn" type="button" onClick={handleGenerateMessage}>
-                {ui.generateMessage}
-              </button>
-            </div>
-            <div className="message-generator-note">{ui.generateMessageHint}</div>
-            <textarea
-              id="custom-message"
-              rows={4}
-              value={customMessage}
-              onChange={(event) => setCustomMessage(event.target.value)}
-              placeholder={ui.customPlaceholder}
-            />
-          </div>
-
-          <div>
-            <label htmlFor="preview-link">{ui.previewLink}</label>
-            <div className="preview-link-row">
-              <input
-                id="preview-link"
-                readOnly
-                value={previewUrl}
-                onFocus={(event) => event.target.select()}
-              />
-              <button className="secondary-btn" onClick={handleCopyLink}>
-                {ui.copyLink}
-              </button>
-            </div>
-          </div>
-
-          <div className="button-row">
-            <button className="primary-btn" onClick={handleShare} disabled={isSharing}>
-              {isSharing ? ui.sharing : ui.share}
-            </button>
-            <button className="ghost-btn" onClick={resetState}>
-              {ui.reset}
-            </button>
-          </div>
-
-          <div className="share-helper-note">{ui.shareHelperNote}</div>
-          <div className="status-note">{statusMessage || ui.helperHint}</div>
-          </div>
-        </section>
-
-        <aside className="creator-preview-panel">
-          <div className={`creator-preview-card ${selectedStyle.className}`}>
-            <div className="creator-preview-inner" dir={textDirection}>
-              <span className="preview-pill">{ui.previewCardLabel}</span>
-              <h2>{isArabic ? "\u0639\u064a\u062f \u0645\u0628\u0627\u0631\u0643" : "Eid Mubarak"}</h2>
-              {displayRecipient ? (
-                <div className="creator-preview-recipient">
-                  <small>{ui.recipientLineLabel}</small>
-                  <strong dir={dynamicTextDirection}>{displayRecipient}</strong>
-                </div>
-              ) : null}
-              <p dir={dynamicTextDirection}>{greetingMessage}</p>
-              <div className="from-block">
-                <small>{ui.fromLabel}</small>
-                <strong dir={dynamicTextDirection}>{displayName}</strong>
+          <div className="creator-card">
+            <div className="field-grid">
+              <div>
+                <label htmlFor="sender-name">{ui.senderName}</label>
+                <input
+                  id="sender-name"
+                  value={senderName}
+                  onChange={(event) => setSenderName(event.target.value)}
+                  placeholder={ui.senderPlaceholder}
+                />
+              </div>
+              <div>
+                <label htmlFor="language">{ui.language}</label>
+                <select
+                  id="language"
+                  value={language}
+                  onChange={(event) => setLanguage(normalizeLanguage(event.target.value))}
+                >
+                  <option value="en">English</option>
+                  <option value="ar">العربية</option>
+                </select>
               </div>
             </div>
-          </div>
 
-          <div className="creator-preview-highlights">
-            {homepageContent.previewHighlights.map((highlight) => (
-              <article key={highlight} className="content-card compact preview-highlight-card">
-                <p>{highlight}</p>
-              </article>
-            ))}
+            <div>
+              <label htmlFor="recipient-name">{ui.recipientName}</label>
+              <input
+                id="recipient-name"
+                value={recipientName}
+                onChange={(event) => setRecipientName(event.target.value)}
+                placeholder={ui.recipientPlaceholder}
+              />
+            </div>
+
+            <div>
+              <label htmlFor="style">{ui.style}</label>
+              <select
+                id="style"
+                value={styleId}
+                onChange={(event) => setStyleId(normalizeStyleId(event.target.value))}
+              >
+                {styleOptions.map((style) => (
+                  <option key={style.id} value={style.id}>
+                    {isArabic ? style.title.ar : style.title.en}
+                  </option>
+                ))}
+              </select>
+            </div>
+
+            <div className="message-field">
+              <div className="message-field-header">
+                <label htmlFor="custom-message">{ui.customMessage}</label>
+                <button className="secondary-btn message-generate-btn" type="button" onClick={handleGenerateMessage}>
+                  {ui.generateMessage}
+                </button>
+              </div>
+              <div className="message-generator-note">{ui.generateMessageHint}</div>
+              <textarea
+                id="custom-message"
+                rows={4}
+                value={customMessage}
+                onChange={(event) => setCustomMessage(event.target.value)}
+                placeholder={ui.customPlaceholder}
+              />
+            </div>
+
+            <div>
+              <label htmlFor="share-link">{ui.previewLink}</label>
+              <div className="share-link-row">
+                <input
+                  id="share-link"
+                  readOnly
+                  value={shareUrl}
+                  onFocus={(event) => event.target.select()}
+                />
+                <button className="secondary-btn" onClick={handleCopyLink}>
+                  {ui.copyLink}
+                </button>
+              </div>
+            </div>
+
+            <div className="button-row">
+              <button className="primary-btn" onClick={handleShare} disabled={isSharing}>
+                {isSharing ? ui.sharing : ui.share}
+              </button>
+              <button className="ghost-btn" onClick={resetState}>
+                {ui.reset}
+              </button>
+            </div>
+
+            <div className="share-helper-note">{ui.shareHelperNote}</div>
+            <div className="status-note">{statusMessage || ui.helperHint}</div>
           </div>
-        </aside>
+        </section>
       </section>
 
       <section className="creator-info-section">
@@ -1323,7 +1287,21 @@ function GreetingMode({ ui, isArabic, selectedStyle, senderName, recipientName, 
           ))}
         </div>
         <GreetingOpeningCelebration />
-        <div className="greeting-lanterns">
+        <div className="greeting-floor-glow" />
+        <div className="greeting-silhouette" />
+      </div>
+
+      <section className="greeting-stage">
+        <div className="greeting-stage-glow greeting-stage-glow-left" aria-hidden="true" />
+        <div className="greeting-stage-glow greeting-stage-glow-right" aria-hidden="true" />
+        <div className="greeting-stage-floor" aria-hidden="true" />
+        <div className="greeting-flight-layer" aria-hidden="true">
+          <div className="greeting-bird-groups">
+            <GreetingBirdGroup side="left" bannerText="عيد مبارك" accent="gold" />
+            <GreetingBirdGroup side="right" bannerText="كل عام وأنتم بخير" accent="emerald" />
+          </div>
+        </div>
+        <div className="greeting-lanterns" aria-hidden="true">
           <div className="greeting-lantern-rail" />
           {greetingLanterns.map((lantern) => (
             <span
@@ -1346,20 +1324,6 @@ function GreetingMode({ ui, isArabic, selectedStyle, senderName, recipientName, 
               </span>
             </span>
           ))}
-        </div>
-        <div className="greeting-floor-glow" />
-        <div className="greeting-silhouette" />
-      </div>
-
-      <section className="greeting-stage">
-        <div className="greeting-stage-glow greeting-stage-glow-left" aria-hidden="true" />
-        <div className="greeting-stage-glow greeting-stage-glow-right" aria-hidden="true" />
-        <div className="greeting-stage-floor" aria-hidden="true" />
-        <div className="greeting-flight-layer" aria-hidden="true">
-          <div className="greeting-bird-groups">
-            <GreetingBirdGroup side="left" bannerText="عيد مبارك" accent="gold" />
-            <GreetingBirdGroup side="right" bannerText="كل عام وأنتم بخير" accent="emerald" />
-          </div>
         </div>
 
         <div className="greeting-arch">
@@ -1427,19 +1391,19 @@ function GreetingMode({ ui, isArabic, selectedStyle, senderName, recipientName, 
                 <p dir={dynamicTextDirection}>{greetingMessage}</p>
               </div>
 
-	              <div className="from-area">
-	                <small dir={textDirection}>{ui.fromLabel}</small>
-	                <div className="from-name-wrap">
-	                  <span className="from-name-mark" aria-hidden="true" />
-	                  <div className="from-name" dir={dynamicTextDirection}>
-	                    {displayName}
-	                  </div>
-	                </div>
-	              </div>
-	            </div>
-	          </div>
-	        </div>
-	      </section>
+              <div className="from-area">
+                <small dir={textDirection}>{ui.fromLabel}</small>
+                <div className="from-name-wrap">
+                  <span className="from-name-mark" aria-hidden="true" />
+                  <div className="from-name" dir={dynamicTextDirection}>
+                    {displayName}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
 
       <div className="greeting-cta-wrap">
         <a className="cta-link" href={creatorHref} dir={textDirection}>
@@ -1488,12 +1452,12 @@ export default function App() {
     [language, senderName, customMessage, selectedStyle]
   );
 
-  const previewUrl = useMemo(
+  const shareUrl = useMemo(
     () => buildShareUrl({ language, senderName, recipientName, customMessage, styleId }),
     [language, senderName, recipientName, customMessage, styleId]
   );
 
-  const shareMessage = useMemo(() => buildShareMessage(language, previewUrl), [language, previewUrl]);
+  const shareMessage = useMemo(() => buildShareMessage(language, shareUrl), [language, shareUrl]);
 
   const creatorHref = useMemo(() => buildCreatorHref(language), [language]);
 
@@ -1534,7 +1498,7 @@ export default function App() {
     const payload = {
       title: ui.shareTitle,
       text: shareMessage,
-      url: previewUrl
+      url: shareUrl
     };
     const shareAvailability = getNativeShareAvailability();
 
@@ -1695,7 +1659,7 @@ export default function App() {
           customMessage={customMessage}
           setCustomMessage={setCustomMessage}
           handleGenerateMessage={handleGenerateMessage}
-          previewUrl={previewUrl}
+          shareUrl={shareUrl}
           isSharing={isSharing}
           handleShare={handleShare}
           handleCopyLink={handleCopyLink}
@@ -1707,8 +1671,6 @@ export default function App() {
           footerHomeLabel={content.footerHome}
           supportPages={supportPages}
           creatorHref={creatorHref}
-          selectedStyle={selectedStyle}
-          greetingMessage={greetingMessage}
         />
       )}
     </div>

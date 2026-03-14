@@ -26,11 +26,6 @@ export const siteContent = {
       topAdTitle: "Homepage-only monetization area",
       topAdDescription:
         "If you enable ads later, keep them on the creator homepage so the recipient page stays calm, premium, and celebration-first.",
-      previewHighlights: [
-        "Live preview updates as you write.",
-        "One share link works across chat, email, and social apps.",
-        "Recipient greeting pages stay ad-free in this experience."
-      ],
       storyEyebrow: "Why this site exists",
       storyTitle: "A practical creator tool with real Eid content around it",
       storyIntro:
@@ -55,7 +50,7 @@ export const siteContent = {
       howEyebrow: "How the greeting flow works",
       howTitle: "Simple for the sender, polished for the recipient",
       howIntro:
-        "The creator page handles the practical work of writing, previewing, and sharing. The shared page then opens as a ready-made Eid greeting that feels like a gift rather than a tool interface.",
+        "The creator page handles the practical work of writing, generating, and sharing. The shared page then opens as a ready-made Eid greeting that feels like a gift rather than a tool interface.",
       steps: [
         {
           title: "1. Choose the language and style",
@@ -178,7 +173,7 @@ export const siteContent = {
         "Open a quick summary for any page below, then jump into the full article or support page when you want the complete version.",
       menuHomeTitle: "Homepage overview",
       menuHomeIntro:
-        "The homepage combines the greeting creator, a live preview, original Eid writing guidance, and links to the site's main article and support pages.",
+        "The homepage combines the greeting creator, sharing tools, original Eid writing guidance, and links to the site's main article and support pages.",
       openPageLabel: "Open full page",
       lowerAdTitle: "Reserved lower homepage ad area",
       lowerAdDescription:
@@ -212,11 +207,6 @@ export const siteContent = {
       topAdTitle: "منطقة تحقيق دخل داخل الصفحة الرئيسية فقط",
       topAdDescription:
         "إذا فعّلت الإعلانات لاحقًا، فالأفضل أن تبقى داخل صفحة المنشئ حتى تظل صفحة المستلم هادئة وأنيقة ومرتبطة بالمناسبة.",
-      previewHighlights: [
-        "المعاينة تتحدث مباشرة أثناء الكتابة.",
-        "رابط واحد يصلح للمحادثات والبريد والتطبيقات الاجتماعية.",
-        "صفحات التهنئة للمستلمين تبقى خالية من الإعلانات في هذه التجربة."
-      ],
       storyEyebrow: "لماذا أُنشئ هذا الموقع",
       storyTitle: "أداة عملية لإنشاء التهنئة مع محتوى حقيقي ومفيد حولها",
       storyIntro:
@@ -241,7 +231,7 @@ export const siteContent = {
       howEyebrow: "كيف تعمل تجربة التهنئة",
       howTitle: "خطوات بسيطة للمرسل وصفحة أنيقة للمستلم",
       howIntro:
-        "تتولى صفحة المنشئ الأعمال العملية مثل الكتابة والمعاينة والمشاركة، بينما تفتح الصفحة المشتركة كتجربة عيد جاهزة تبدو كهدية أكثر من كونها أداة.",
+        "تتولى صفحة المنشئ الأعمال العملية مثل الكتابة وتوليد الرسائل والمشاركة، بينما تفتح الصفحة المشتركة كتجربة عيد جاهزة تبدو كهدية أكثر من كونها أداة.",
       steps: [
         {
           title: "1. اختر اللغة والنمط",
@@ -365,7 +355,7 @@ export const siteContent = {
         "افتح ملخصًا سريعًا لأي صفحة بالأسفل، ثم انتقل إلى النسخة الكاملة عندما تريد قراءة المحتوى بالكامل.",
       menuHomeTitle: "نظرة عامة على الصفحة الرئيسية",
       menuHomeIntro:
-        "تجمع الصفحة الرئيسية بين أداة إنشاء التهنئة، والمعاينة الحية، وإرشادات الكتابة الخاصة بالعيد، وروابط المقالات والصفحات الأساسية في الموقع.",
+        "تجمع الصفحة الرئيسية بين أداة إنشاء التهنئة، وأدوات المشاركة، وإرشادات الكتابة الخاصة بالعيد، وروابط المقالات والصفحات الأساسية في الموقع.",
       openPageLabel: "افتح الصفحة الكاملة",
       lowerAdTitle: "مساحة إعلان سفلية مستقبلية",
       lowerAdDescription:
